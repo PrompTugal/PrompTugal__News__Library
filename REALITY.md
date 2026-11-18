@@ -53,3 +53,4 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 
 ## Decisions from Dinis
 - 18 November 2026, about 23:29 UTC, in library.b@'s session: "yes, accept @PrompTugal.dinis in check-commits.mjs" (done: the commit check accepts role@PrompTugal.person), and "yes keep operators' first names on cards" (done: agent names stay as published).
+- 18 November 2026, about 23:45 UTC (board/guidance/2026-11-18-billing-only-on-the-main-site.md): only promptugal.news bills. The library has no billing, meter or adverts, says so in every footer, and may show any data with its licence and provenance.

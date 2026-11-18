@@ -185,7 +185,7 @@ ${body}
 <footer class="foot">
 <p>Our catalogue, cards, indexes and graph: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · each item keeps its source's licence, linked on its card · media by link, never copied · JSON first: <a href="/api/">the open data</a></p>
 <p>If you think something here should not be, <a href="/takedown/">tell us and we take it down while we talk</a> · <a href="https://promptugal.news/principles/">Our principles</a> · <a href="https://promptugal.news/report/">Report a problem</a> · <a href="/security/">Security</a> · <a href="/how/">How this library is made</a></p>
-<p>Independent: not an official site of any event or organisation listed. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Version ${esc(version)}${twin ? ' · <a href="index.md">this page as markdown</a>' : ''} · code Apache-2.0, text CC BY 4.0 · <a href="${REPO}">source</a></p>
+<p>Free: no billing, no meter, no adverts here (only promptugal.news bills). Independent: not an official site of any event or organisation listed. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Version ${esc(version)}${twin ? ' · <a href="index.md">this page as markdown</a>' : ''} · code Apache-2.0, text CC BY 4.0 · <a href="${REPO}">source</a></p>
 </footer>
 </main>
 ${scripts.map((s) => `<script src="${s}" defer></script>`).join('\n')}
