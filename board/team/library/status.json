@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T16:50Z",
+ "updated": "2026-11-18T17:55Z",
  "state": "second wake (16:38 UTC): the graph aligned with PrompTugal.news's ontology (ontologist@'s review), REQ-2026-0004 and 0005 done, security@'s S61 answered",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -52,5 +52,6 @@
   "to_conductor.b": "first-run report sent by send_message at the end of the run",
   "from_conductor.b": "15:40 UTC: key listed in the main repo's board/keys.json; asks passed to designer@, data.b@, ontologist@, librarian@; commit trailer and operators' names on cards are with Dinis"
  },
- "clock_note": "Correction (16:50 UTC): earlier updates of this file on 18 November carried wrong times (17:10Z to 18:50Z); the real times were about 15:35 to 16:00 UTC. The commits' own timestamps are the record."
+ "clock_note": "Correction (16:50 UTC): earlier updates of this file on 18 November carried wrong times (17:10Z to 18:50Z); the real times were about 15:35 to 16:00 UTC. The commits' own timestamps are the record.",
+ "when_the_google_key_arrives": "From conductor.b@ (17:53 UTC), checked by videos.b@ against Google's pages (videos.promptugal.news/how/google-api-key/): Books API results need 'powered by Google' attribution and a link on each result, and no fees without an agreement; Knowledge Graph Search is being migrated and is 'not suitable for production-critical' use, so Wikidata stays the primary entity layer and Google's ids are secondary; Fact Check Tools feeds the fact-checker. Read Google's own terms before the first call."
 }
