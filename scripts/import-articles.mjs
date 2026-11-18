@@ -55,7 +55,7 @@ for (const { slug, fm, url } of found) {
     publisher: 'PrompTugal.news', published: fm.date || null, summit_day: null,
     licence: { name: 'CC BY 4.0', url: fm.license || 'https://creativecommons.org/licenses/by/4.0/' },
     found: { at: now, by: 'library.b@PrompTugal.dinis', how: `read from PrompTugal__News__Website content/articles/${slug}.md (front matter), dev branch` },
-    evidence: `Front matter: status published, date ${fm.date}, licence ${fm.license}, beat ${fm.beat || 'none'}${fm.story ? `, story ${fm.story}` : ''}.`,
+    evidence: `Front matter: status published, date ${fm.date}, licence ${/creativecommons\.org\/licenses\/by\/4\.0/.test(fm.license || '') ? 'CC BY 4.0' : fm.license}, beat ${fm.beat || 'none'}${fm.story ? `, story ${fm.story}` : ''}.`,
     about: ['event:web-summit-lisbon-2026'], publisher_node: 'organisation:promptugal-news',
     made_by: author || null, article_type: fm.type || null, tags: (fm.tags || '').split(',').map((t) => t.trim()).filter(Boolean),
     accessioned: now.slice(0, 10),

@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T18:00Z",
+ "updated": "2026-11-18T18:20Z",
  "state": "first run: learnt from SGraph Send, built and released the first version (50 items, 7 gaps, the API, the graph, the pages in designer@'s look)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -20,10 +20,12 @@
   "AppSec post-review: no high; 2 medium and 4 low fixed before release (hand-page link allowlist, agent-name check, line breaks, licence name and link, https only, front matter required), 1 low accepted pending Dinis; all 7 published on /security/; prompt-injection pass over the catalogue: none found",
   "People line updated to Dinis's guidance of ~15:35 UTC (PrompTugal__News__Website board/guidance/2026-11-18-people-blogs-cyber-and-simulated-payments.md, read at source): speakers and people publishing in public are named and linked; never private information or a personal contact. On /how/ and the index pages.",
   "Correction from videos.b@ (via conductor.b@, ~15:44 UTC): 19 YouTube videos from social.watch@'s record catalogued (WS26 2026/0051 to 0069), each re-checked by oEmbed: Web Summit's own opening night and Day One replays (the 'no Day One replay' gap was wrong, removed), 6 organisations' own recordings, 11 press videos",
-  "Finding LIB-2026-008 (medium, ours): websummit.com was read by machine on 18 Nov against its terms (48.2, 52.1). Stopped; WS26 2026/0004 and 0005 withdrawn (numbers kept); never-read-by-machine list in catalogue/hosts.json; threat model updated; published on /security/"
+  "Finding LIB-2026-008 (medium, ours): websummit.com was read by machine on 18 Nov against its terms (48.2, 52.1). Stopped; WS26 2026/0004 and 0005 withdrawn (numbers kept); never-read-by-machine list in catalogue/hosts.json; threat model updated; published on /security/",
+  "designer@'s check of v0.1.3 (16:00 UTC): 4 of 5 changes made (card after the summary on phones; the shelf shows the collection's parts as spines; 'JSON, for machines' and an /api/ page; CC BY 4.0 in evidence, not the bare URL)"
  ],
  "next": [
   "Plan the catalogue's kinds for the new weak-signal sources on data.promptugal.news (blogs, newsletters, podcasts, GitHub, company acts, funding, patents, research, Wikipedia and Wikidata, conferences, cyber signals) with the ontologist sub-agent and data.b@ (conductor.b@'s message, 18 Nov ~15:35 UTC, relaying Dinis's yes)",
+  "designer@'s change 2: open an ART collection for all PrompTugal.news articles; the 42 summit articles keep their WS26 numbers (never reused) and are cross-listed with ART numbers, rather than moved; schema with the ontologist sub-agent",
   "Check the terms of every site before any automated read (the websummit.com lesson); add the register's 'not read' list to the sub-agents' briefs",
   "Name and index speakers from official session pages (people line of 18 Nov ~15:35 UTC), and link the replays and talks to them",
   "Blogs, newsletters and podcasts from data.b@'s feeds into the graph, by title, byline as published, date and link",

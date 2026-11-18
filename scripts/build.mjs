@@ -160,7 +160,7 @@ ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</
 <main id="main" class="w">
 ${body}
 <footer class="foot">
-<p>Our catalogue, cards, indexes and graph: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · each item keeps its source's licence, linked on its card · media by link, never copied · JSON first: <a href="/api/v1/index.json">/api/v1/</a></p>
+<p>Our catalogue, cards, indexes and graph: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · each item keeps its source's licence, linked on its card · media by link, never copied · JSON first: <a href="/api/">the open data</a></p>
 <p>If you think something here should not be, <a href="/takedown/">tell us and we take it down while we talk</a> · <a href="https://promptugal.news/principles/">Our principles</a> · <a href="https://promptugal.news/report/">Report a problem</a> · <a href="/security/">Security</a> · <a href="/how/">How this library is made</a></p>
 <p>Independent: not an official site of any event or organisation listed. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Version ${esc(version)}${twin ? ' · <a href="index.md">this page as markdown</a>' : ''} · code Apache-2.0, text CC BY 4.0 · <a href="${REPO}">source</a></p>
 </footer>
@@ -263,7 +263,10 @@ const counts = { items: held.length, replays: held.filter((i) => i.kind === 'rep
 // home: the hall
 {
   const recent = [...items].sort((a, b) => (b.accessioned + b.id).localeCompare(a.accessioned + a.id)).slice(0, 6);
-  const spines = collections.map((c, n) => `<a class="sp ${['r', 'g', 's', 'o'][n % 4]} h${(n % 3) + 1}" href="/collections/${c.id}/"><small>${esc(c.prefix)} · ${byCollection(c.id).length}</small>${esc(c.title)}</a>`).join('');
+  const PARTS = [['Official replays', (i) => i.kind === 'replay-day', 'replays'], ['Recordings', (i) => ['talk-video', 'recording', 'press-video'].includes(i.kind), 'recordings'], ['Organiser\'s words', (i) => i.kind.startsWith('organiser'), 'organiser'], ['Press and data', (i) => ['press-recap', 'data-set', 'write-up'].includes(i.kind), 'press'], ['Our coverage', (i) => i.kind === 'article', 'coverage']];
+  const one = collections.length === 1 ? collections[0] : null;
+  const partSpines = one ? PARTS.map(([t, f, a], n) => [t, held.filter((i) => i.collection === one.id && f(i)).length, a, n]).filter((x) => x[1]).map(([t, k, a, n]) => `<a class="sp ${['r', 'g', 's', 'o', 'g'][n]} h${(n % 3) + 1}" href="/collections/${one.id}/#${a}"><small>${esc(one.prefix)} · ${k}</small>${esc(t)}</a>`).join('') + `<a class="sp o h3" href="/missing/"><small>${esc(one.prefix)} · ${missing.length}</small>What is missing</a>` : '';
+  const spines = one ? partSpines : collections.map((c, n) => `<a class="sp ${['r', 'g', 's', 'o'][n % 4]} h${(n % 3) + 1}" href="/collections/${c.id}/"><small>${esc(c.prefix)} · ${byCollection(c.id).length}</small>${esc(c.title)}</a>`).join('');
   const body = `<section class="hall"><p class="k">library.promptugal.news · the catalogue at the heart of PrompTugal.news</p>
 <h1>Everything we found, <em>catalogued,</em> sourced and linked.</h1>
 <p class="d">Every talk, replay, article and data set PrompTugal.news has read, each with its own card: what it is, who made it, when and where, the source, the licence, the evidence, and how it connects to the rest.</p>
@@ -301,20 +304,20 @@ const counts = { items: held.length, replays: held.filter((i) => i.kind === 'rep
   for (const c of collections) {
     const its = byCollection(c.id);
     const groups = [
-      ['The official replays', (i) => i.kind === 'replay-day'],
-      ['Other recordings: organisations and media', (i) => ['talk-video', 'recording', 'press-video'].includes(i.kind)],
-      ['The organiser\'s own statements and pages', (i) => i.kind.startsWith('organiser')],
+      ['The official replays', (i) => i.kind === 'replay-day', 'replays'],
+      ['Other recordings: organisations and media', (i) => ['talk-video', 'recording', 'press-video'].includes(i.kind), 'recordings'],
+      ['The organiser\'s own statements and pages', (i) => i.kind.startsWith('organiser'), 'organiser'],
       ['Speaker-side write-ups', (i) => i.kind === 'write-up'],
-      ['Press reports', (i) => i.kind === 'press-recap'],
+      ['Press reports', (i) => i.kind === 'press-recap', 'press'],
       ['Data sets', (i) => i.kind === 'data-set'],
-      ['PrompTugal.news\'s own coverage', (i) => i.kind === 'article'],
+      ['PrompTugal.news\'s own coverage', (i) => i.kind === 'article', 'coverage'],
     ];
     const gaps = missing.filter((m) => m.collection === c.id);
     let body = `<section class="page wide"><p class="crumb"><a href="/">Library</a> › <a href="/collections/">Collections</a> › ${esc(c.prefix)}</p><p class="k">Finding aid · ${esc(c.prefix)} · ${its.length} items</p><h1>${esc(c.title)}</h1><p>${esc(c.scope)}</p>`;
     let md = `# ${c.title}\n\n${c.scope}\n`;
-    for (const [h, f] of groups) {
+    for (const [h, f, a] of groups) {
       const g = its.filter(f);
-      body += `<h2>${esc(h)}</h2>` + (g.length ? `<ol class="acc">${g.map(cardLine).join('')}</ol>` : '<p class="note">None catalogued yet; see what is missing below.</p>');
+      body += `<h2${a ? ` id="${a}"` : ''}>${esc(h)}</h2>` + (g.length ? `<ol class="acc">${g.map(cardLine).join('')}</ol>` : '<p class="note">None catalogued yet; see what is missing below.</p>');
       md += `\n## ${h}\n\n${g.length ? g.map(mdLine).join('\n') : 'None catalogued yet.'}\n`;
     }
     body += `<h2 id="missing">What is missing</h2>${gaps.map((m) => `<div class="gap"><strong>${esc(m.what)}</strong><br>${esc(m.note)}${m.asked ? `<br><span class="note">Asked: ${esc(m.asked)}</span>` : ''}</div>`).join('')}`;
@@ -341,17 +344,18 @@ for (const it of items) {
 <dt>Source</dt><dd><a href="${esc(it.url)}" rel="noopener noreferrer">${esc(host(it.url))}</a></dd>
 <dt>Licence</dt><dd><a class="lic" href="${esc(lic.url)}" rel="noopener noreferrer">${esc(isOurs ? 'CC BY 4.0' : 'source\'s terms')}</a></dd>
 <dt>Found</dt><dd title="${esc(it.found.by)}">${esc(it.found.at.slice(0, 10))}, by ${esc(it.found.by.split(' ')[0].replace(/@.*/, '@'))}</dd>
-</dl><p class="tr"><a href="/api/v1/items/${it.id}.json">JSON</a><a href="index.md">markdown</a><a href="#cite">cite</a></p></aside>`;
+</dl><p class="tr"><a href="/api/v1/items/${it.id}.json">JSON, for machines</a><a href="index.md">markdown</a><a href="#cite">cite</a></p></aside>`;
   const cite = `${it.publisher}. "${it.title}". ${it.published ? day(it.published) + '. ' : ''}${it.url}. Catalogued in library.promptugal.news as ${it.call_number}, ${SITE}/item/${it.id}/.`;
-  const body = `<div class="rr"><p class="crumb"><a href="/">Library</a> › <a href="/collections/${c.id}/">${esc(c.title)}</a> › ${esc(it.call_number)}</p><div class="rr-g"><div>
+  const body = `<div class="rr"><p class="crumb"><a href="/">Library</a> › <a href="/collections/${c.id}/">${esc(c.title)}</a> › ${esc(it.call_number)}</p><div class="rr-g"><div class="rr-head">
 <p class="k">The reading room · ${esc(kindLabel(it.kind))}</p><h1>${esc(it.title)}</h1>
 ${it.summary ? `<p class="sum">${esc(it.summary)}</p>` : `<p class="sum">${esc(it.publisher)}${it.published ? `, ${esc(day(it.published))}` : ''}. The text stays at its source: we catalogue the title and the link only.</p>`}
 ${it.status === 'withdrawn' ? `<p class="gap"><strong>Withdrawn ${esc(day(it.withdrawn.at))}.</strong> ${esc(it.withdrawn.why)} The call number stays with this item and is never reused.</p>` : `<a class="open" href="${esc(it.url)}" rel="noopener noreferrer">Read it at its source →</a>`}
-<p class="note">At ${esc(host(it.url))}. Linked, never copied: ${isOurs ? 'PrompTugal.news\'s own, CC BY 4.0' : `under <a href="${esc(lic.url)}" rel="noopener noreferrer">the source's terms</a>`}${lic.note ? `. ${esc(lic.note.replace(/\.$/, ''))}` : ''}.</p>
+</div>
+${card}
+<div class="rr-body"><p class="note">At ${esc(host(it.url))}. Linked, never copied: ${isOurs ? 'PrompTugal.news\'s own, CC BY 4.0' : `under <a href="${esc(lic.url)}" rel="noopener noreferrer">the source's terms</a>`}${lic.note ? `. ${esc(lic.note.replace(/\.$/, ''))}` : ''}.</p>
 <dl class="ev"><dt>Evidence</dt><dd>${esc(it.evidence)}</dd><dt>Found</dt><dd>${esc(it.found.at)} by ${esc(it.found.by)}${it.found.how ? `: ${esc(it.found.how)}` : ''}</dd>${(it.open || []).length ? `<dt>Still open</dt><dd>${it.open.map(esc).join('; ')}</dd>` : ''}<dt id="cite">Cite</dt><dd>${esc(cite)}</dd></dl>
 <div class="rel"><h3>On the same shelf</h3><ul>${same.map((x) => `<li><i>${esc(x.call_number)}</i><a href="/item/${x.id}/">${esc(x.title)}</a></li>`).join('') || '<li>Nothing else of this kind yet.</li>'}</ul>
-<h3>Connected in the graph</h3><ul>${conn.map(({ type, n }) => { const u = nodeLink(n); return `<li><i>${esc(type.replace(/_/g, ' '))}</i>${u ? `<a href="${u}">${esc(n.label)}</a>` : esc(n.label)}</li>`; }).join('')}</ul></div></div>
-${card}</div></div>`;
+<h3>Connected in the graph</h3><ul>${conn.map(({ type, n }) => { const u = nodeLink(n); return `<li><i>${esc(type.replace(/_/g, ' '))}</i>${u ? `<a href="${u}">${esc(n.label)}</a>` : esc(n.label)}</li>`; }).join('')}</ul></div></div></div></div>`;
   const md = `# ${it.call_number}: ${it.title}\n\n${it.summary || ''}\n\n- What: ${kindLabel(it.kind)}\n- Who: ${it.publisher}${it.made_by ? `, by ${it.made_by}` : ''}\n- When: ${day(it.published) || 'not given'}\n- Source: ${it.url}\n- Licence: ${lic.name} (${lic.url})\n- Found: ${it.found.at} by ${it.found.by}\n- Evidence: ${it.evidence}\n- Collection: [${c.title}](/collections/${c.id}/)\n- JSON: /api/v1/items/${it.id}.json\n\nCite: ${cite}`;
   page({ path: `/item/${it.id}/`, title: `${it.call_number}: ${it.title}`, description: (it.summary || `${kindLabel(it.kind)} from ${it.publisher}, catalogued with its source, licence and evidence.`).slice(0, 300), body, md });
 }
