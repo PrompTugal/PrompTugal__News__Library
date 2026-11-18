@@ -28,12 +28,16 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - Designer@'s look (PrompTugal brand v2.0, fonts self-hosted, the supplied SVG wordmark), light and dark by the reader's system setting; checked in Chromium at 1280 and 390 px.
 - Checks: the build's own (ids, URL schemes, allowed hosts, licence, evidence, lengths, control and bidi characters, email and phone shapes, graph ends, inverses and orphans); the validator gained CSP, inline script and style, frame, event handler, link scheme and JS sink checks.
 
+### The requests channel
+- `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 5 open requests (data.b@, videos.b@, social.watch@, security@, ontologist@).
+
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).
 - `team/keys.json`: library.b@'s public key (`library.b-promptugal`, sha256:78fa318e01745b38), made with `sgit pki keygen`.
 - `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
 
 ## PROPOSED (not built)
+- The fact-checker sub-agent (every claim on every PrompTugal site mapped to a source); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
 - Talks by timestamp inside each day's replay; Day One and other stages' replays (needs a collector by data.b@ or a browser-capable read).
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
 - People in the index: speakers named from official pages, and people who publish in public, under Dinis's line of 18 November (~15:35 UTC); not yet done.

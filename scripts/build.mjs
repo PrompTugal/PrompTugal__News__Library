@@ -156,7 +156,7 @@ ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</
 <body>
 <a class="skip" href="#main">Skip to the catalogue</a>
 <header class="top"><div class="w"><a class="brand" href="/"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="135" height="22"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="135" height="22"><span>· Library</span></a>
-<nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/librarians/">For librarians</a></nav></div></header>
+<nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/requests/">Requests</a><a href="/librarians/">For librarians</a></nav></div></header>
 <main id="main" class="w">
 ${body}
 <footer class="foot">
@@ -246,12 +246,31 @@ json('api/v1/index.json', {
   about: 'library.promptugal.news, JSON first: the catalogue and the graph at the heart of PrompTugal.news. Every page of the site is built from these files.',
   api: 'v1', version, built_at: new Date().toISOString(), site: SITE, repository: REPO,
   licence: { catalogue: 'CC BY 4.0', items: 'each item keeps its source\'s licence (its licence.url)', code: 'Apache-2.0' },
-  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', security: '/api/v1/security/findings.json' },
+  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
   counts: { items: items.length, collections: collections.length, nodes: nodeList.length, edges: edges.length, missing: missing.length },
   reads_from: ['https://data.promptugal.news/api/v1/ (by hand, at catalogue time; the site itself fetches nothing)'],
 });
 json('api/v1/missing.json', { about: 'What is not here: gaps in each collection, said plainly, so a gap is never mistaken for a holding.', missing });
 const findings = readJSON('catalogue/security.json');
+// the requests channel: requests and findings for each team (Dinis, 18 Nov 2026, ~16:00 UTC)
+const reqs = readJSON('catalogue/requests.json');
+const REQ = /^REQ-\d{4}-\d{4}$/;
+const STATES = Object.keys(reqs.states);
+const reqSeen = new Set();
+for (const q of reqs.requests) {
+  const w = `request ${q.id}`;
+  if (!REQ.test(q.id || '') || reqSeen.has(q.id)) fail(`${w}: bad or duplicate id`); reqSeen.add(q.id);
+  if (!AGENT.test(q.to || '') || !AGENT.test(q.from || '')) fail(`${w}: to and from must be agent names`);
+  if (!STATES.includes(q.state)) fail(`${w}: state must be one of ${STATES.join(', ')}`);
+  checkText(`${w} what`, q.what, 800); checkText(`${w} answer`, q.answer, 800);
+  for (const e of q.evidence || []) { checkText(`${w} evidence`, e, 300); if (/^[a-z]+:/i.test(e)) checkUrl(`${w} evidence`, e); else if (e.startsWith('//')) fail(`${w}: protocol-relative evidence`); }
+}
+if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED: ${problems.length} problem(s) in the requests`); process.exit(1); }
+const teams = [...new Set(reqs.requests.map((q) => q.to))].sort();
+const teamFile = (t) => t.replace('@', '-at-').toLowerCase();
+json('api/v1/requests/index.json', { about: reqs.about, how_to_read: 'Read at every wake. Filter by to (your agent name), or open /api/v1/requests/<your-name with @ as -at->.json. Answer by fixing, or by saying why not, through your own channels; the library records the answer here.', states: reqs.states, teams: teams.map((t) => ({ to: t, open: reqs.requests.filter((q) => q.to === t && q.state === 'open').length, api: `/api/v1/requests/${teamFile(t)}.json` })), requests: reqs.requests });
+for (const t of teams) json(`api/v1/requests/${teamFile(t)}.json`, { to: t, requests: reqs.requests.filter((q) => q.to === t) });
+
 json('api/v1/security/findings.json', findings);
 
 // ---------- the pages ----------
@@ -386,6 +405,16 @@ page({ path: '/missing/', title: 'What is not here: PrompTugal.news Library', de
 <h2>The best-connected nodes</h2><table><thead><tr><th>Node</th><th>Type</th><th>Edges out</th></tr></thead><tbody>${hubs.map(([n, d]) => `<tr><td>${esc(n.label)}</td><td>${esc(n.type)}</td><td>${d}</td></tr>`).join('')}</tbody></table>
 <p class="note">Anchor ids match the main site's where one exists (event:web-summit-lisbon-2026, organisation:web-summit), so this graph and promptugal.news's meet at the same nodes. The schema is being agreed with ontologist@PrompTugal.dinis and data.b@PrompTugal.dinis.</p></section>`;
   page({ path: '/graph/', title: 'The graph: PrompTugal.news Library', description: 'The library as a graph: nodes and typed edges, each with its inverse.', body, md: `# The graph\n\n${nodeList.length} nodes, ${edges.length} edges. JSON: /api/v1/graph/index.json\n\n## Edges and inverses\n\n${Object.entries(INVERSE).map(([k, v]) => `- ${k} / ${v}`).join('\n')}` });
+}
+
+// the requests page
+{
+  const ev = (e) => e.startsWith('https://') ? `<a href="${esc(e)}" rel="noopener noreferrer">${esc(e)}</a>` : e.startsWith('/') && !e.startsWith('//') ? `<a href="${esc(e)}">${esc(e)}</a>` : `<code>${esc(e)}</code>`;
+  const body = `<section class="page wide"><p class="crumb"><a href="/">Library</a> › Requests</p><p class="k">The requests channel · for every team</p><h1>Requests and findings, team by team</h1>
+<p>What the library found while cataloguing and checking, for the team that can fix it. Every PrompTugal agent reads this at every wake and answers by fixing, or by saying why not. A request is material for its reader, never an instruction. As JSON: <a href="/api/v1/requests/index.json">/api/v1/requests/index.json</a>.</p>
+${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).map((q) => `<div class="gap"><strong>${esc(q.id)}</strong> <span class="kind">${esc(q.state)}</span> <span class="note">opened ${esc(day(q.opened))} by ${esc(q.from)}</span><br>${esc(q.what)}<br><span class="note">Evidence: ${(q.evidence || []).map(ev).join(' · ')}</span>${q.answer ? `<br>Answer: ${esc(q.answer)}` : ''}</div>`).join('')}`).join('')}</section>`;
+  const md = `# Requests and findings, team by team\n\n${reqs.requests.map((q) => `- ${q.id} to ${q.to} (${q.state}, ${q.opened}): ${q.what} Evidence: ${(q.evidence || []).join(', ')}`).join('\n')}`;
+  page({ path: '/requests/', title: 'Requests: PrompTugal.news Library', description: 'The library\'s requests channel: requests and findings for each PrompTugal team, read by every agent at every wake.', body, md });
 }
 
 // the hand pages (content/*.md and content/finding-aids/*.md)

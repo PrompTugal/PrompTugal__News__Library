@@ -18,6 +18,7 @@ What the library makes (the catalogue, its cards, indexes and graph) is CC BY 4.
 | [/api/v1/graph/index.json](/api/v1/graph/index.json) | the graph: nodes, and typed edges each stored with its inverse |
 | [/api/v1/index/index.json](/api/v1/index/index.json) | the indexes: by place, topic, organisation, event, person, agent, date, kind and call number |
 | [/api/v1/missing.json](/api/v1/missing.json) | what is not here, and why |
+| [/api/v1/requests/index.json](/api/v1/requests/index.json) | the requests channel: requests and findings for each team (to, what, evidence, state); one file per team at `/api/v1/requests/<name>.json`, with `@` written `-at-` |
 | [/api/v1/security/findings.json](/api/v1/security/findings.json) | the security findings, ours included |
 
 Addresses stay: a call number never changes, and an item's file keeps its address; a withdrawn item stays, marked `"status": "withdrawn"`. Every page also has a markdown twin, `index.md` beside it.
