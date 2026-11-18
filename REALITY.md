@@ -12,13 +12,13 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ## What exists (18 November 2026, first version by library.b@)
 
 ### The catalogue (JSON, in `catalogue/`)
-- **One collection: Web Summit Lisbon 2026 (`WS26`), 80 call numbers, 78 items held, 2 withdrawn**, `WS26 2026/0001` to `WS26 2026/0080`, each with source URL, licence link, when and by whom found, and evidence:
+- **One collection: Web Summit Lisbon 2026 (`WS26`), 80 call numbers, 68 items held, 12 withdrawn** (2 read by machine against websummit.com's terms; 10 articles promptugal.news withdrew on 11 November), `WS26 2026/0001` to `WS26 2026/0080`, each with source URL, licence link, when and by whom found, and evidence:
   - 3 official replays on Web Summit's YouTube channel: Opening Night, Day One, Day Three (titles and channel confirmed by YouTube's oEmbed; stages and talk timestamps not yet read).
   - 28 other recordings by organisations and media: 17 from social.watch@'s record, 11 cited in data.b@'s Perplexity discovery; each title and channel read through oEmbed.
   - 2 organiser statements on Day Two's cancellation and Thursday's plan (read by dev.data@ on 10 and 11 November). Withdrawn: the 12 November programme page and the PITCH semi-final page (WS26 2026/0004 and 0005), read by machine on 18 November against websummit.com's terms (LIB-2026-008).
   - 2 press reports (The Next Web, The Irish Times), titles and links only.
   - 1 data set: the Storm Charles archive on data.promptugal.news.
-  - 42 PrompTugal.news articles about the summit, catalogued from their front matter (every URL checked: HTTP 200).
+  - 42 PrompTugal.news articles about the summit catalogued from their front matter; 10 of them were withdrawn by the site on 11 November and are now marked withdrawn here (32 held).
 - **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
 - Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 8 findings: 7 from the AppSec review (6 fixed before release, 1 accepted) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
@@ -32,7 +32,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 8 requests: 0002, 0004, 0005 and 0006 done, 0001 answered in part, 0003, 0007 and 0008 open.
 
 ### The fact-checker
-- Pass 1 (18 November, 19:39 wake): every published promptugal.news article's provenance level, from `scripts/fact-check.mjs` into `catalogue/fact-check.json`, at `/fact-check/` and `/api/v1/fact-check/index.json`: 16 claim by claim (250 claims, all resolving to a recorded page), 45 story-level, 36 text-only, 0 none; 71 claims rest on websummit.com pages.
+- Pass 1 (18 November, re-run at the 22:38 wake): every live promptugal.news article's provenance level (87 live, 10 withdrawn skipped), from `scripts/fact-check.mjs` into `catalogue/fact-check.json`, at `/fact-check/` and `/api/v1/fact-check/index.json`: 13 claim by claim (224 claims, all resolving), 39 story-level, 35 text-only, 0 none.
 
 ### The preview
 - `/preview.svg` (built at every build from the library's own counts), `/api/v1/preview.json` (where each number comes from), `/preview.png` (rendered by hand and committed; may lag), `og:image` on every page. For the sites bar across the PrompTugal sites (Dinis, 18 November, about 22:00 UTC); the bar itself is not installed yet.

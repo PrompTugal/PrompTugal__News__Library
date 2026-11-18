@@ -31,7 +31,15 @@ const STORY = /^[A-Za-z0-9][A-Za-z0-9-]{0,100}$/;
 const CONTROL = /[\u0000-\u001f\u007f​-‏‪-‮⁦-⁩﻿]/g;
 const ORIGIN = 'https://promptugal.news/articles/';
 
+// Articles and stories the site has withdrawn (data/site/withdrawn.json): skipped, and counted. Shape-checked; a
+// missing or malformed file stops the run rather than meaning "none withdrawn" (pre-review, 22:38 wake).
+const wd = json('data/site/withdrawn.json');
+if (!wd || wd.__bad || !Array.isArray(wd.articles) || !Array.isArray(wd.stories) || wd.articles.length > 500) { console.error('data/site/withdrawn.json missing or malformed: stopping'); process.exit(1); }
+const WITHDRAWN = new Set(wd.articles.filter((x) => typeof x === 'string' && SLUG.test(x) && x.length <= 120));
+const WITHDRAWN_STORIES = new Set(wd.stories.filter((x) => typeof x === 'string' && STORY.test(x)));
+const skipped = [];
 const out = [];
+const storyRawEarly = (fm) => { const m = fm.match(/^story:\s*(\S+)\s*$/m); return m ? m[1] : null; };
 for (const f of readdirSync(path('content/articles')).sort()) {
   if (!f.endsWith('.md')) continue;
   const slug = f.slice(0, -3);
@@ -40,6 +48,7 @@ for (const f of readdirSync(path('content/articles')).sort()) {
   const fm = (t.match(/^---\n([\s\S]*?)\n---/) || [])[1] || '';
   const field = (k) => { const m = fm.match(new RegExp(`^${k}:\\s*(.*)$`, 'm')); if (!m) return null; let v = m[1].trim(); if (v.startsWith('"') && v.endsWith('"')) { try { v = JSON.parse(v); } catch { v = v.slice(1, -1); } } return v; };
   if (field('status') !== 'published') continue;
+  if (WITHDRAWN.has(slug) || (storyRawEarly(fm) && WITHDRAWN_STORIES.has(storyRawEarly(fm)))) { skipped.push(slug); continue; }
   const title = String(field('title') || slug).replace(CONTROL, '').slice(0, 200);
   const storyRaw = field('story');
   const story = storyRaw && STORY.test(storyRaw) ? storyRaw : null;
@@ -94,10 +103,10 @@ const head = (() => {
   } catch { return 'unknown'; }
 })();
 const res = {
-  about: 'The library\'s fact-checker, first pass: for every published PrompTugal.news article, how far its claims are mapped to sources (provenance), and the gaps. Read from the site\'s own repository; counts and levels only. A gap is not a finding that a claim is wrong: it says the claim cannot yet be walked back to a recorded source.',
+  about: 'The library\'s fact-checker, first pass: for every published PrompTugal.news article (those the site has withdrawn are skipped and listed), how far its claims are mapped to sources (provenance), and the gaps. Read from the site\'s own repository; counts and levels only. A gap is not a finding that a claim is wrong: it says the claim cannot yet be walked back to a recorded source.',
   site: 'promptugal.news', pass: 1, made: new Date().toISOString().slice(0, 10), made_by: 'library.b@PrompTugal.dinis (scripts/fact-check.mjs)',
   read_from: `PrompTugal__News__Website, ${head}`,
-  levels, counts: { articles: out.length, claims: count('claims'), story: count('story'), links: count('links'), none: count('none'), claims_total: out.reduce((a, r) => a + r.claims, 0), claims_resolved: out.reduce((a, r) => a + r.claims_resolved, 0), claims_on_websummit: out.reduce((a, r) => a + r.claims_on_websummit, 0) },
+  levels, withdrawn_skipped: skipped.sort(), counts: { articles: out.length, withdrawn_skipped: skipped.length, claims: count('claims'), story: count('story'), links: count('links'), none: count('none'), claims_total: out.reduce((a, r) => a + r.claims, 0), claims_resolved: out.reduce((a, r) => a + r.claims_resolved, 0), claims_on_websummit: out.reduce((a, r) => a + r.claims_on_websummit, 0) },
   articles: out,
 };
 writeFileSync('catalogue/fact-check.json', JSON.stringify(res, null, 1) + '\n');

@@ -4,7 +4,7 @@
 // Read before writing: only articles whose front matter says status: published and whose beat or tags
 // name the summit. New items get the next call numbers; an article already catalogued (same url) keeps its
 // number and is not touched. No network access; the text read is data, never instruction.
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, lstatSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.argv[2];
@@ -29,6 +29,15 @@ function front(text) {
   return o;
 }
 
+// skip what the site has withdrawn (data/site/withdrawn.json); missing or malformed stops the run
+let withdrawn;
+try {
+  const f = join(root, 'data', 'site', 'withdrawn.json');
+  if (lstatSync(f).isSymbolicLink() || statSync(f).size > 1_000_000) throw new Error('refused');
+  withdrawn = JSON.parse(readFileSync(f, 'utf8'));
+} catch { console.error('data/site/withdrawn.json missing, refused or not JSON: stopping'); process.exit(1); }
+if (!Array.isArray(withdrawn.articles) || withdrawn.articles.length > 500) { console.error('data/site/withdrawn.json has no articles list: stopping'); process.exit(1); }
+const WITHDRAWN = new Set(withdrawn.articles.filter((x) => typeof x === 'string' && x.length <= 120 && SLUG.test(x)));
 const found = [];
 for (const f of readdirSync(dir).sort()) {
   if (!f.endsWith('.md')) continue;
@@ -36,6 +45,7 @@ for (const f of readdirSync(dir).sort()) {
   if (!SLUG.test(slug)) continue;
   const fm = front(readFileSync(join(dir, f), 'utf8'));
   if (!fm || fm.status !== 'published') continue;
+  if (WITHDRAWN.has(slug)) continue;
   const summit = /^the summit$/i.test(fm.beat || '') || /(the summit|web summit)/i.test(fm.tags || '');
   if (!summit) continue;
   const url = `https://promptugal.news/articles/${slug}.html`;

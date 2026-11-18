@@ -245,6 +245,28 @@
    "fix": "Said so in the code; every value is escaped by esc() before it reaches the SVG",
    "state": "fixed",
    "fixed_in": "the preview commit of 18 November 2026"
+  },
+  {
+   "id": "LIB-2026-022",
+   "severity": "low",
+   "title": "The article importer read the withdrawn list without refusing symlinks or capping size",
+   "where": "scripts/import-articles.mjs",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 22:38 wake, before the push",
+   "fix": "Symlinks refused, 1 MB cap, at most 500 entries, slugs of at most 120 characters",
+   "state": "fixed",
+   "fixed_in": "the commit of the 22:38 wake"
+  },
+  {
+   "id": "LIB-2026-023",
+   "severity": "low",
+   "title": "Withdrawn item pages still presented their source link without saying it may now show only a notice",
+   "where": "scripts/build.mjs, reading room",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 22:38 wake, before the push",
+   "fix": "Withdrawn pages say they are kept for the record and that the address may show only a withdrawal notice",
+   "state": "fixed",
+   "fixed_in": "the commit of the 22:38 wake"
   }
  ],
  "from_the_central_log": [

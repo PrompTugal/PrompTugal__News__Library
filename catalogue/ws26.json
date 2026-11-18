@@ -287,7 +287,13 @@
     "delegations",
     "practical guide"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0010",
@@ -392,7 +398,13 @@
     "robotics",
     "the summit"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0013",
@@ -532,7 +544,13 @@
     "Portugal",
     "practical guide"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0017",
@@ -812,7 +830,13 @@
     "schedule",
     "planning"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0025",
@@ -886,7 +910,13 @@
     "modelbest",
     "you.com"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0027",
@@ -924,7 +954,13 @@
     "telemedicine",
     "diagnostics"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0028",
@@ -958,7 +994,13 @@
     "startups",
     "the summit"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0029",
@@ -1031,7 +1073,13 @@
     "schedule",
     "practical]"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0031",
@@ -1066,7 +1114,13 @@
     "announcements",
     "schedule"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0032",
@@ -1473,7 +1527,13 @@
     "ai agents",
     "brazil"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Withdrawn by PrompTugal.news on 11 November 2026 (data/site/withdrawn.json in PrompTugal__News__Website): the article rested only on websummit.com, and its address now shows only a withdrawal notice. The library catalogued it as held on 18 November because it read the article's front matter but not the site's withdrawn list; corrected on 18 November at 22:40 UTC."
+   }
   },
   {
    "id": "WS26-2026-0043",
@@ -2689,6 +2749,11 @@
    "at": "2026-11-18",
    "by": "library.b@PrompTugal.dinis",
    "what": "11 more videos catalogued (WS26 2026/0070 to 0080): cited in data.b@'s Perplexity discovery for REQ-2026-0001, each title and channel read through YouTube's oEmbed."
+  },
+  {
+   "at": "2026-11-18",
+   "by": "library.b@PrompTugal.dinis",
+   "what": "10 PrompTugal.news articles marked withdrawn (WS26 2026/0009, 0012, 0016, 0024, 0026, 0027, 0028, 0030, 0031, 0042): promptugal.news withdrew them on 11 November; the library had missed its withdrawn list. Found through journalist@'s answer to REQ-2026-0008."
   }
  ]
 }
