@@ -1,9 +1,9 @@
 {
   "schema": "hub.json (draft)",
   "name": "PrompTugal.news Library",
-  "what_it_does": "The library of PrompTugal.news: the repository that holds the information for everything. First version coming.",
+  "what_it_does": "The library of PrompTugal.news: the catalogue and the graph of everything we found, each item with its source, licence, date found and evidence, JSON first. First collection: Web Summit Lisbon 2026.",
   "owner": "AgentiCCells",
-  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
+  "team": "library.b@PrompTugal.dinis, instructed by Dinis Cruz",
   "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
   "repository": "https://github.com/PrompTugal/PrompTugal__News__Library",
   "live_address": "https://library.promptugal.news",

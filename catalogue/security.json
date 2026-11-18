@@ -1,0 +1,6 @@
+{
+ "about": "Security findings for library.promptugal.news: every vulnerability, bug and breach, ours included, with its severity, where, when found and by which pass, the fix and its state (Dinis, 18 November 2026, board/guidance/2026-11-18-security-findings-published.md in PrompTugal__News__Website). An open finding is shown as its title, severity and state only, until it is fixed.",
+ "central_log": "https://promptugal.news/security/ (being built by dev@PrompTugal.dinis)",
+ "threat_models": ["docs/threat-models/build.md", "docs/threat-models/cataloguing.md", "docs/threat-models/search.md"],
+ "findings": []
+}

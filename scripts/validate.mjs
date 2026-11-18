@@ -25,12 +25,26 @@ for (const f of [...files, 'hub.json', 'README.md']) {
     if (!/<html lang="/.test(s)) fail(`${f}: no lang on <html>`);
     for (const m of s.matchAll(/<script[^>]+src="([^"]+)"/g)) if (/^(https?:)?\/\//.test(m[1])) fail(`${f}: third-party script ${m[1]}`);
     for (const m of s.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)) if (/^(https?:)?\/\//.test(m[1])) fail(`${f}: third-party stylesheet ${m[1]}`);
+    // AppSec checks (library.b@, 18 November 2026, from the security pre-review): every page carries the content
+    // security policy; no inline script or style (the policy forbids them); no frames; no script: or data: links.
+    if (!/<meta http-equiv="Content-Security-Policy" content="default-src 'none';[^"]*script-src 'self'/.test(s)) fail(`${f}: no content security policy`);
+    if (/<script(?![^>]*\bsrc=)[^>]*>/i.test(s)) fail(`${f}: inline script`);
+    if (/<style[\s>]/i.test(s) || /\sstyle="/i.test(s)) fail(`${f}: inline style`);
+    if (/<(iframe|frame|object|embed)[\s>]/i.test(s)) fail(`${f}: frame or embedded object`);
+    if (/\son[a-z]+="/i.test(s)) fail(`${f}: inline event handler`);
+    for (const m of s.matchAll(/(?:href|src|action)="\s*([a-z][a-z0-9+.-]*):/gi)) if (!/^(https?|mailto)$/i.test(m[1])) fail(`${f}: ${m[1]}: link`);
     for (const m of s.matchAll(/(?:href|src)="([^"#?]+)/g)) {
       const u = m[1]; if (/^(https?:|mailto:|data:|\/\/)/.test(u)) continue;
       const target = u.startsWith('/') ? join('_site', u) : join(dirname(f), u);
       if (!existsSync(target) && !existsSync(join(target, 'index.html'))) fail(`${f}: broken link ${u}`);
     }
   }
+}
+// No script may turn text into HTML or code (the catalogue's text is untrusted).
+for (const f of files.filter((f) => f.endsWith('.js'))) {
+  const s = readFileSync(f, 'utf8');
+  const sink = s.match(/\.(innerHTML|outerHTML)\b|insertAdjacentHTML|document\.write|\beval\s*\(|new Function\s*\(/);
+  if (sink) fail(`${f}: unsafe sink ${sink[0]}`);
 }
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');

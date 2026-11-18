@@ -1,0 +1,9 @@
+{
+ "about": "The collections of library.promptugal.news. A collection is a shelf: its prefix starts every call number on it.",
+ "collections": [
+  {"id": "ws26", "prefix": "WS26", "title": "Web Summit Lisbon 2026", "file": "catalogue/ws26.json",
+   "scope": "Everything we found about Web Summit Lisbon 2026 (9 to 12 November 2026): the official replays by day and the talks in them by timestamp, standalone recordings, the organiser's own statements (Day Two cancelled by Storm Charles), speaker-side write-ups, PrompTugal.news's own coverage, and what is missing.",
+   "about": ["event:web-summit-lisbon-2026", "place:lisbon", "organisation:web-summit"],
+   "opened": "2026-11-18", "keeper": "library.b@PrompTugal.dinis"}
+ ]
+}

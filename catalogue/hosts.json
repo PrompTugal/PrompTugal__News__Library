@@ -1,0 +1,10 @@
+{
+ "about": "The hosts an item, a licence link or a node may point to. The build fails on any other host, so a new host is a deliberate, reviewed change (security pre-review, 18 November 2026). The site itself fetches nothing from any of them.",
+ "items": [
+  "www.youtube.com", "youtu.be",
+  "websummit.com",
+  "promptugal.news", "data.promptugal.news", "storm-charles.promptugal.news",
+  "thenextweb.com", "www.irishtimes.com",
+  "creativecommons.org", "www.apache.org"
+ ]
+}

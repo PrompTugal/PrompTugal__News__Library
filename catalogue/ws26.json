@@ -1,0 +1,1811 @@
+{
+ "collection": "ws26",
+ "prefix": "WS26",
+ "next_seq": 51,
+ "rule": "Call numbers are assigned once, in the order catalogued, and never reused or renumbered. Withdrawn items keep their number with status withdrawn.",
+ "items": [
+  {
+   "id": "WS26-2026-0001",
+   "call_number": "WS26 2026/0001",
+   "collection": "ws26",
+   "kind": "replay-day",
+   "title": "Web Summit 2026 | Day Three",
+   "summary": "The organiser's own recording of the final day of Web Summit Lisbon 2026, published on its YouTube channel. Which stage it shows, its length and the talks in it by timestamp are not yet catalogued.",
+   "url": "https://www.youtube.com/watch?v=-MGZdAtbTrs",
+   "publisher": "Web Summit (its YouTube channel, @websummit)",
+   "published": null,
+   "summit_day": "2026-11-12",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by Web Summit; YouTube's terms and the publisher's rights apply."
+   },
+   "found": {
+    "at": "2026-11-18T15:28:21Z",
+    "by": "library.b@PrompTugal.dinis (librarian sub-agent, Sonnet)",
+    "how": "web search, then YouTube's public oEmbed endpoint; re-checked by library.b@ at about 16:10 UTC"
+   },
+   "evidence": "YouTube's oEmbed answer for this address gives the title 'Web Summit 2026 | Day Three' and the author 'Web Summit' (youtube.com/@websummit); a search snippet showed its description opening 'Welcome to day three of Web Summit Lisbon 2026!'.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-12",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "open": [
+    "Stage not confirmed",
+    "Publication date not read",
+    "Talk timestamps not read: the watch page did not render to our reader"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0002",
+   "call_number": "WS26 2026/0002",
+   "collection": "ws26",
+   "kind": "organiser-statement",
+   "title": "Important event update (Web Summit, 10 November 2026)",
+   "summary": "The organiser's statement that, on the Portuguese Government's formal advice because of Storm Charles, Day Two (Wednesday 11 November) would not take place; later updated to say Web Summit was back on Thursday.",
+   "url": "https://websummit.com/blog/web-summit/important-event-update-2026/",
+   "publisher": "Web Summit",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-11",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://websummit.com/terms-and-conditions/"
+   },
+   "found": {
+    "at": "2026-11-10T22:33:00Z",
+    "by": "dev.data@PrompTugal.dinis (record in PrompTugal__News__Website data/stories/S41-websummit/sources/); catalogued by library.b@PrompTugal.dinis",
+    "how": "read by dev.data@ on 10 and 11 November; address re-checked by library.b@ on 18 November (HTTP 200)"
+   },
+   "evidence": "Read at 22:33 UTC on 10 November: posted 19:09 UTC (its page data), Day 2 will not take place on the Portuguese Government's formal advice because of Storm Charles. Re-read 20:34 UTC on 11 November: modified 14:26, now opens with 'officially back on Thursday'.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-11",
+    "event:storm-charles",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0003",
+   "call_number": "WS26 2026/0003",
+   "collection": "ws26",
+   "kind": "organiser-statement",
+   "title": "Arrive early tomorrow: stage talks start at 9am (Web Summit, 11 November 2026)",
+   "summary": "The organiser's plan for Thursday 12 November: stage talks from 9am to 5.30pm, talks rescheduled from Wednesday, 65 meetups moved to Thursday, the schedule updated by the morning.",
+   "url": "https://websummit.com/blog/web-summit/web-summit-2026-thursday-schedule-update/",
+   "publisher": "Web Summit",
+   "published": "2026-11-11",
+   "summit_day": "2026-11-12",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://websummit.com/terms-and-conditions/"
+   },
+   "found": {
+    "at": "2026-11-11T20:36:00Z",
+    "by": "dev.data@PrompTugal.dinis (S41-websummit sources); catalogued by library.b@PrompTugal.dinis",
+    "how": "read by dev.data@ on 11 November; address re-checked by library.b@ on 18 November (HTTP 200)"
+   },
+   "evidence": "Published 18:10 UTC on 11 November (its page data; modified 18:54); read 20:36 UTC.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-12",
+    "event:storm-charles",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0004",
+   "call_number": "WS26 2026/0004",
+   "collection": "ws26",
+   "kind": "organiser-page",
+   "title": "Check out the 2026 programme (12 November)",
+   "summary": "The organiser's programme page for the final day, the finding aid for which talks happened on Thursday and on which stage.",
+   "url": "https://websummit.com/schedule/date/2026-11-12/",
+   "publisher": "Web Summit",
+   "published": null,
+   "summit_day": "2026-11-12",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://websummit.com/terms-and-conditions/"
+   },
+   "found": {
+    "at": "2026-11-18T15:29:00Z",
+    "by": "library.b@PrompTugal.dinis (librarian sub-agent, Sonnet)",
+    "how": "read on the public page"
+   },
+   "evidence": "The official schedule page for 12 November 2026 on websummit.com; HTTP 200 when re-checked on 18 November.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-12",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0005",
+   "call_number": "WS26 2026/0005",
+   "collection": "ws26",
+   "kind": "organiser-page",
+   "title": "PITCH semi-final (session page)",
+   "summary": "The organiser's page for the PITCH startup competition semi-final on Thursday, with its published line-up. No recording is linked from it.",
+   "url": "https://websummit.com/sessions/lis26/c739a1a1-3d8e-4a81-8648-53a0f5ea9013/pitch-semi-final/",
+   "publisher": "Web Summit",
+   "published": null,
+   "summit_day": "2026-11-12",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://websummit.com/terms-and-conditions/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:00Z",
+    "by": "library.b@PrompTugal.dinis (librarian sub-agent, Sonnet)",
+    "how": "read on the public page"
+   },
+   "evidence": "An official session page under websummit.com/sessions/lis26/; it lists the session and its speakers and links no video.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-12",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0006",
+   "call_number": "WS26 2026/0006",
+   "collection": "ws26",
+   "kind": "press-recap",
+   "title": "Web Summit returns Thursday with rescheduled sessions after storm cancellation",
+   "summary": null,
+   "url": "https://thenextweb.com/news/web-summit-day-2-cancelled-storm-charles-lisbon",
+   "publisher": "The Next Web",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-11",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://thenextweb.com/terms-and-conditions"
+   },
+   "found": {
+    "at": "2026-11-18T15:33:00Z",
+    "by": "library.b@PrompTugal.dinis (librarian sub-agent, Sonnet)",
+    "how": "web search, then read on the public page"
+   },
+   "evidence": "A news report dated 10 November 2026 (updated 11 November) on Day Two's cancellation and the rescheduled Thursday; title only here, the text stays at its source.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-11",
+    "event:storm-charles"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0007",
+   "call_number": "WS26 2026/0007",
+   "collection": "ws26",
+   "kind": "press-recap",
+   "title": "Web Summit a washout as attendees count the cost of unused €1,595 tickets",
+   "summary": null,
+   "url": "https://www.irishtimes.com/business/2026/11/11/as-heavy-rain-lashes-lisbon-web-summits-wednesday-schedule-is-washed-away/",
+   "publisher": "The Irish Times",
+   "published": "2026-11-11",
+   "summit_day": "2026-11-11",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.irishtimes.com/policy-and-terms/terms-conditions/"
+   },
+   "found": {
+    "at": "2026-11-18T15:33:00Z",
+    "by": "library.b@PrompTugal.dinis (librarian sub-agent, Sonnet)",
+    "how": "web search, then read on the public page (no paywall shown)"
+   },
+   "evidence": "A business report dated 11 November 2026 on the cancelled Wednesday; title only here, the text stays at its source.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "day:2026-11-11",
+    "event:storm-charles"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0008",
+   "call_number": "WS26 2026/0008",
+   "collection": "ws26",
+   "kind": "data-set",
+   "title": "Storm Charles archive (data.promptugal.news)",
+   "summary": "The data the Storm Charles incident team collected while the storm closed Web Summit's Day Two: 142 files, archived and served with their own API.",
+   "url": "https://data.promptugal.news/sources/storm-charles-archive/",
+   "publisher": "data.promptugal.news, from the Storm Charles incident site (storm-charles.promptugal.news)",
+   "published": "2026-11-17",
+   "summit_day": null,
+   "licence": {
+    "name": "Apache-2.0 (the storm site's own data); quoted sources keep their own terms",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0"
+   },
+   "found": {
+    "at": "2026-11-18T15:40:00Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from data.promptugal.news/api/v1/ (the catalogue, source storm-charles-archive)"
+   },
+   "evidence": "data.promptugal.news's catalogue lists source storm-charles-archive: status archived, 142 files, read 2026-11-17T19:27:57Z, terms 'Apache-2.0 (its repository's licence)'.",
+   "about": [
+    "event:storm-charles",
+    "event:web-summit-lisbon-2026",
+    "place:lisbon"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0009",
+   "call_number": "WS26 2026/0009",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Brazil on Web Summit's stages: officials, founders and a pavilion",
+   "summary": "Where to see Brazil at Web Summit Lisbon: seven Brazilian officials on the main and masterclass stages, eighteen founders and team members in the Startup Showcase, and fifteen sessions at the Brazil Pavilion and around it. No Brazilian investor was found on the programme.",
+   "url": "https://promptugal.news/articles/brazil-on-the-stages.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/brazil-on-the-stages.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Brazil, story BR4.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "explainer",
+   "tags": [
+    "Brazil",
+    "the summit",
+    "delegations",
+    "practical guide"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0010",
+   "call_number": "WS26 2026/0010",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Brazil's startup mission comes to Web Summit Lisbon",
+   "summary": "Brazil, which brought one of the two largest national delegations to Web Summit in 2025, comes back to Lisbon with a mission led by ApexBrasil and Sebrae. Five public counts for 2026 run from 100 to about 300, and no public list names the companies. What is known, who is named, where to find them, and how to help us map the rest.",
+   "url": "https://promptugal.news/articles/brazil-startup-mission.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/brazil-startup-mission.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Announcements, story S9.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "news",
+   "tags": [
+    "Brazil",
+    "delegations",
+    "ApexBrasil",
+    "Sebrae",
+    "the summit"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0011",
+   "call_number": "WS26 2026/0011",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Europe in Pavilion 4: the Commission's week at Web Summit",
+   "summary": "The European Commission brings a fireside chat, four masterclasses, an IP panel and stands in Pavilion 4 to Web Summit Lisbon, on AI, data, funding and free supercomputing.",
+   "url": "https://promptugal.news/articles/europe-in-pavilion-4.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/europe-in-pavilion-4.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Europe, story S2.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-europe@web-summit.vicky",
+   "article_type": "news",
+   "tags": [
+    "Europe",
+    "European Commission",
+    "the summit",
+    "funding"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0012",
+   "call_number": "WS26 2026/0012",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Following robotics at Web Summit: from the lineup to Técnico's stand",
+   "summary": "Two robots are listed as Web Summit speakers, a Unitree co-founder is in the lineup, and Técnico's stand shows Unitree robots and its own. A route for anyone following robotics in Lisbon.",
+   "url": "https://promptugal.news/articles/following-robotics-at-web-summit.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/following-robotics-at-web-summit.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat AI and robotics (Connections: the summit), story S15.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-ai@web-summit.vicky",
+   "article_type": "news",
+   "tags": [
+    "AI",
+    "robotics",
+    "the summit"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0013",
+   "call_number": "WS26 2026/0013",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Gender in Tech report: 84% see women in leadership",
+   "summary": "Web Summit's seventh Gender in Tech report finds women firmly in leadership at their companies, and is plain about what still holds them back. Its figures, as Web Summit published them before the Lisbon summit.",
+   "url": "https://promptugal.news/articles/gender-in-tech-report-2026.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/gender-in-tech-report-2026.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Announcements, story S6.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@web-summit.vicky",
+   "article_type": "news",
+   "tags": [
+    "announcements",
+    "Web Summit",
+    "women in tech",
+    "survey"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0014",
+   "call_number": "WS26 2026/0014",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Lisbon's universities at Web Summit: two stands and a pitch day",
+   "summary": "The University of Lisbon and its engineering school, Técnico, bring robots, spin-offs and student projects to Web Summit, and nine Portuguese universities pitch their startups on 10 November.",
+   "url": "https://promptugal.news/articles/lisbon-universities-at-web-summit.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/lisbon-universities-at-web-summit.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S10.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@web-summit.vicky",
+   "article_type": "news",
+   "tags": [
+    "Portugal",
+    "universities",
+    "startups",
+    "the summit"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0015",
+   "call_number": "WS26 2026/0015",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Road 2 Web Summit: Portugal's startups head for Lisbon",
+   "summary": "Startup Portugal and Web Summit run the eleventh Road 2 Web Summit, a programme that prepares up to 125 Portuguese startups for the summit, with a bootcamp, cheaper tickets, space on Portugal's stand and two prizes from Galp. Its winner is announced on 12 November.",
+   "url": "https://promptugal.news/articles/road-2-web-summit-2026.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/road-2-web-summit-2026.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S3.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "news",
+   "tags": [
+    "Portugal",
+    "startups",
+    "Startup Portugal",
+    "the summit"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0016",
+   "call_number": "WS26 2026/0016",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Tuesday 10 November: Europe on stage, universities pitching, first-timers meeting",
+   "summary": "On Tuesday 10 November a European Commission Executive Vice-President speaks on Centre Stage, nine Portuguese universities hold a pitch day and first-time attendees have a meetup of their own. Two of the three clash, so newcomers will have to choose.",
+   "url": "https://promptugal.news/articles/tuesday-10-november-three-ways-in.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/tuesday-10-november-three-ways-in.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S18.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@web-summit.vicky",
+   "article_type": "explainer",
+   "tags": [
+    "the summit",
+    "Europe",
+    "Portugal",
+    "practical guide"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0017",
+   "call_number": "WS26 2026/0017",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit 2026 in numbers: 70,000 people, 10,000 startups",
+   "summary": "The size of Web Summit Lisbon 2026 in Web Summit's own figures, how it picks its startups, and what its first State of the Industry survey found about AI at work.",
+   "url": "https://promptugal.news/articles/web-summit-2026-in-numbers.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/web-summit-2026-in-numbers.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Announcements, story S5.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@web-summit.vicky",
+   "article_type": "news",
+   "tags": [
+    "announcements",
+    "the summit",
+    "Web Summit",
+    "survey"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0018",
+   "call_number": "WS26 2026/0018",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "From 400 people to 71,386: Web Summit before 2026",
+   "summary": "How Web Summit grew from a Dublin meet-up to Lisbon's November fixture: the earlier editions, last year's record, and Portugal Tech Week, which opens today.",
+   "url": "https://promptugal.news/articles/web-summit-before-2026.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/web-summit-before-2026.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat none, story WS177.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "past events",
+    "Web Summit",
+    "history"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0019",
+   "call_number": "WS26 2026/0019",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit's ten Lisbon years: 2.5 billion euros, says EY",
+   "summary": "A report by EY, released at Web Summit's press conference on 5 November, puts the event's impact on Portugal's economy at almost 2.5 billion euros over ten editions. The figures, what they count, and what an earlier government study found.",
+   "url": "https://promptugal.news/articles/web-summit-ten-lisbon-years.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/web-summit-ten-lisbon-years.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S13.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "news",
+   "tags": [
+    "Portugal",
+    "Web Summit",
+    "economy",
+    "startups"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0020",
+   "call_number": "WS26 2026/0020",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Wednesday 11 November: a day for startups going abroad",
+   "summary": "For a startup thinking beyond its home market, Wednesday 11 November at Web Summit has EU help for AI businesses and EU funding in the afternoon, free supercomputing, IP-backed finance at lunchtime, a Dutch networking event, and Italy and Portugal on scaling in Beato in the evening. The day in order, with what clashes.",
+   "url": "https://promptugal.news/articles/wednesday-11-november-going-abroad.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/wednesday-11-november-going-abroad.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat Europe, story S17.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "explainer",
+   "tags": [
+    "Europe",
+    "the summit",
+    "practical guide",
+    "funding",
+    "AI"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0021",
+   "call_number": "WS26 2026/0021",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit Lisbon: your first day, from airport to arena",
+   "summary": "Where to collect your wristband, how to get to the MEO Arena by metro, bus or Carris's shuttle, where to buy the transport pass, and what to bring. Every detail from Web Summit and Lisbon's transport operators.",
+   "url": "https://promptugal.news/articles/your-first-day-at-web-summit.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-06",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/your-first-day-at-web-summit.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-06, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S1.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@web-summit.vicky",
+   "article_type": "explainer",
+   "tags": [
+    "the summit",
+    "practical guide",
+    "transport",
+    "registration"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0022",
+   "call_number": "WS26 2026/0022",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "How many Brazilian startups came to Web Summit last year?",
+   "summary": "Brazil brought one of the two largest delegations to Web Summit in 2025. The public counts run from 151 to almost 380, because each counts something different. Five figures side by side, the delegation year by year since 2022, and why the names are still hard to find.",
+   "url": "https://promptugal.news/articles/brazil-last-year-counts.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-07",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/brazil-last-year-counts.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-07, licence https://creativecommons.org/licenses/by/4.0/, beat Brazil, story BR1.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "news",
+   "tags": [
+    "Brazil",
+    "startups",
+    "Web Summit",
+    "counts"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0023",
+   "call_number": "WS26 2026/0023",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Driving to Web Summit? Road closures and drop-off points",
+   "summary": "Which roads around the MEO Arena and FIL close from 8 to 12 November, where taxis and ride-hailing cars drop you off, and Carris's temporary terminal by Oriente.",
+   "url": "https://promptugal.news/articles/driving-to-web-summit.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-07",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/driving-to-web-summit.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-07, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S24.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "explainer",
+   "tags": [
+    "the summit",
+    "practical guide",
+    "transport",
+    "road closures"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0024",
+   "call_number": "WS26 2026/0024",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Plan your week by field: which summit day is yours",
+   "summary": "Web Summit's tracks do not run every day. From a count of all 1,158 sessions on its public schedule: security is all on Thursday, PITCH's group rounds all on Tuesday, AI and policy every day, developers mostly Wednesday and Thursday. One table to plan your week.",
+   "url": "https://promptugal.news/articles/plan-your-week-by-field.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-07",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/plan-your-week-by-field.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-07, licence https://creativecommons.org/licenses/by/4.0/, beat Web Summit, story WK1.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.dinis",
+   "article_type": "news",
+   "tags": [
+    "Web Summit",
+    "schedule",
+    "planning"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0025",
+   "call_number": "WS26 2026/0025",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "A map of Web Summit's buildings, and what each holds",
+   "summary": "PrompTugal.news has a new venue map: the summit's buildings in Parque das Nações, drawn from OpenStreetMap, with a count of the programme's sessions in each. No people are on it. The map is drawn in advance; a small script shades the sessions a reader picks, in their own browser, and sends nothing.",
+   "url": "https://promptugal.news/articles/venue-map.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-07",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/venue-map.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-07, licence https://creativecommons.org/licenses/by/4.0/, beat AI and robotics (a team topic), story S27.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-ai@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "how this newsroom is made",
+    "the summit",
+    "maps"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0026",
+   "call_number": "WS26 2026/0026",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Five AI builders on Web Summit's speaker list worth knowing",
+   "summary": "Web Summit's 2026 speaker list includes people building AI at every layer, from models to finished apps. Five worth knowing, from Replit, Manus AI, MiniMax, ModelBest and You.com, and what each company says it does.",
+   "url": "https://promptugal.news/articles/five-ai-builders-to-know.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-08",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/five-ai-builders-to-know.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-08, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S28.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "connections",
+    "the summit",
+    "ai",
+    "speakers",
+    "replit",
+    "manus ai",
+    "minimax",
+    "modelbest",
+    "you.com"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0027",
+   "call_number": "WS26 2026/0027",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Eleven health startups at Web Summit, by the problem they tackle",
+   "summary": "Eleven health and wellness startups appear on the first page of Web Summit's featured startups. Grouped by the problem each says it tackles, they cover four needs, from getting care faster to recovering well.",
+   "url": "https://promptugal.news/articles/health-startups-by-problem.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-08",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/health-startups-by-problem.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-08, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S30.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "connections",
+    "the summit",
+    "health",
+    "healthtech",
+    "startups",
+    "telemedicine",
+    "diagnostics"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0028",
+   "call_number": "WS26 2026/0028",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Who builds an AI agent's parts? Startups at Web Summit",
+   "summary": "An AI agent needs a framework, data, computing power, an identity and rules, and something useful to do. Eight startups on Web Summit's featured list describe those parts, by our reading. A reader's guide, in the companies' own words.",
+   "url": "https://promptugal.news/articles/who-builds-the-parts-of-an-ai-agent.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-08",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/who-builds-the-parts-of-an-ai-agent.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-08, licence https://creativecommons.org/licenses/by/4.0/, beat AI and robotics, story S29.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-ai@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "AI agents",
+    "startups",
+    "the summit"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0029",
+   "call_number": "WS26 2026/0029",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Sports tech at Web Summit: IBM's startup challenge ends in Lisbon",
+   "summary": "IBM's year-long challenge for sports tech startups ends at Web Summit Lisbon: a showcase of six startups on Tuesday 10 November, and an invitation-only prize challenge on Wednesday 11 November.",
+   "url": "https://promptugal.news/articles/ibm-sports-tech-challenge.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/ibm-sports-tech-challenge.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S33.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "sports tech",
+    "startups",
+    "IBM"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0030",
+   "call_number": "WS26 2026/0030",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Portugal on the programme: a masterclass, a meetup and three announcements",
+   "summary": "Five Web Summit sessions for anyone following Portugal's startup scene, from Startup Portugal's masterclass on Tuesday to a meetup for founders who moved to Portugal on Thursday, with three press conferences in between.",
+   "url": "https://promptugal.news/articles/portugal-on-the-programme.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/portugal-on-the-programme.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S36.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "[Portugal",
+    "Startup Portugal",
+    "Unicorn Factory Lisboa",
+    "Discord",
+    "Road 2 Web Summit",
+    "schedule",
+    "practical]"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0031",
+   "call_number": "WS26 2026/0031",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit's press conferences, day by day",
+   "summary": "Web Summit lists 24 press conferences this week, all on Stage 2 in the Media Village: 11 on Tuesday, 9 on Wednesday and 4 on Thursday. The times, titles and who speaks, from Web Summit's own pages.",
+   "url": "https://promptugal.news/articles/press-conferences-day-by-day.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/press-conferences-day-by-day.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S35.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "press conferences",
+    "announcements",
+    "schedule"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0032",
+   "call_number": "WS26 2026/0032",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Beyond Lisbon: where Road 2 Web Summit's 78 startups come from",
+   "summary": "Startup Portugal's Road 2 Web Summit class of 2026 has 78 startups from 14 places. Lisbon has 41; the other 37 come from Porto, Braga, Aveiro, the Azores, Madeira and smaller cities, building everything from drone detection to airborne wind power.",
+   "url": "https://promptugal.news/articles/road-2-web-summit-beyond-lisbon.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/road-2-web-summit-beyond-lisbon.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S31.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "[Portugal",
+    "Road 2 Web Summit",
+    "Startup Portugal",
+    "startups",
+    "regions",
+    "Porto",
+    "Braga",
+    "Azores",
+    "Madeira]"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0033",
+   "call_number": "WS26 2026/0033",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit's nineteen passes: who is who, by colour",
+   "summary": "Web Summit Lisbon 2026 has nineteen kinds of pass, from attendee and ALPHA to crew and volunteer, each with its own colours in the official app. What they are, a colour sample of each, and what the wristband and badge are for.",
+   "url": "https://promptugal.news/articles/web-summit-passes-and-colours.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/web-summit-passes-and-colours.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat Web Summit, story wristband-colours.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "writer@PrompTugal.angelo",
+   "article_type": "news",
+   "tags": [
+    "Web Summit",
+    "practical"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0034",
+   "call_number": "WS26 2026/0034",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit wristbands: where the queues are short, and when",
+   "summary": "Pick up your lanyard and wristband today if you can. The airport desk is usually quick; the venue's first morning is where past years' queues were. Where to go, the hours, and what past attendees reported.",
+   "url": "https://promptugal.news/articles/web-summit-wristband-queues.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/web-summit-wristband-queues.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat Web Summit, story wristband-queues.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "writer@PrompTugal.angelo",
+   "article_type": "news",
+   "tags": [
+    "Web Summit",
+    "practical",
+    "getting there"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0035",
+   "call_number": "WS26 2026/0035",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Where to find Portugal at Web Summit: Pavilion 1, stand E145",
+   "summary": "The Portugal Stand is in Pavilion 1, stand E145, at the entrance to Web Summit. AICEP, Portugal's trade and investment agency, is there from 9 to 12 November with teams for companies, investors and partners.",
+   "url": "https://promptugal.news/articles/where-to-find-portugal.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-09",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/where-to-find-portugal.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-09, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S34.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "[Portugal",
+    "AICEP",
+    "Portugal Stand",
+    "Pavilion 1",
+    "Road 2 Web Summit",
+    "investment",
+    "practical]"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0036",
+   "call_number": "WS26 2026/0036",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Glovo's restaurant partners meet 80 AI agents on WhatsApp, GetVocal says",
+   "summary": "GetVocal, a French startup on Web Summit's featured list, says the delivery platform Glovo uses its AI agents on WhatsApp to check restaurants are open, keep them online and bring new ones on board. In GetVocal's account, one pilot grew to 80 agents.",
+   "url": "https://promptugal.news/articles/glovo-restaurant-agents-getvocal.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-10",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/glovo-restaurant-agents-getvocal.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-10, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S38.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "connections",
+    "the summit",
+    "ai agents",
+    "agents at work",
+    "getvocal",
+    "glovo",
+    "delivery",
+    "whatsapp"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0037",
+   "call_number": "WS26 2026/0037",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "AI agents are spreading faster than their security, Gravitee's survey finds",
+   "summary": "A survey by Gravitee, which sells tools to secure AI agents, finds most teams already testing or running agents, while few have full security approval for them. Its CEO gives a press conference at Web Summit today.",
+   "url": "https://promptugal.news/articles/gravitee-agent-security-survey.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-10",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/gravitee-agent-security-survey.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-10, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S40.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "AI agents",
+    "security",
+    "survey",
+    "press conferences"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0038",
+   "call_number": "WS26 2026/0038",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit calls off Wednesday on the government's advice",
+   "summary": "Web Summit says Day 2, Wednesday 11 November, will not take place, after Portugal's government formally advised against it because of Storm Charles. On Wednesday it said it is officially back on Thursday for its final day. IPMA has since eased its Lisbon warnings: no wind or rain warning, and only the sea warning left, orange until 21:00 and yellow until 03:00 Thursday.",
+   "url": "https://promptugal.news/articles/red-wind-warning-lisbon-wednesday.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-10",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/red-wind-warning-lisbon-wednesday.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-10, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S41.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "Lisbon",
+    "weather",
+    "IPMA",
+    "practical"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0039",
+   "call_number": "WS26 2026/0039",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Web Summit's cancelled Day 2: what is known about refunds",
+   "summary": "Web Summit says Day 2, Wednesday 11 November, will not take place. As of 22:07 UTC on Tuesday, its public post announced no refunds, credits or compensation. Here is what its published terms say about cancellation, postponement and events beyond its control, quoted as published.",
+   "url": "https://promptugal.news/articles/web-summit-day-2-refunds.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-10",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/web-summit-day-2-refunds.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-10, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S45.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "Storm Charles",
+    "tickets",
+    "refunds",
+    "practical"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0040",
+   "call_number": "WS26 2026/0040",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "What Lovable deleted: its CEO on rebuilding an AI coding agent",
+   "summary": "In a post on Lovable's new technical blog, its co-founder and CEO Anton Osika, a speaker at Web Summit, describes how the team deleted almost all of its agent code, swapped planned fine-tuning for short written notes, and built sandboxes that save and restore a whole running computer.",
+   "url": "https://promptugal.news/articles/what-lovable-deleted.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-10",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/what-lovable-deleted.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-10, licence https://creativecommons.org/licenses/by/4.0/, beat AI and robotics, story S42.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-ai@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "ai and robotics",
+    "ai agents",
+    "agents at work",
+    "coding agents",
+    "lovable",
+    "web summit speakers"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0041",
+   "call_number": "WS26 2026/0041",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "How WPP turns call transcripts into reviewed Jira plans",
+   "summary": "WPP built an internal platform that turns technical calls into project plans, with a person reviewing every plan before it goes into Jira, according to a case study by Mastra, a startup on Web Summit's featured list. Mastra says each client's data is kept apart by the system's design, not by instructions to the AI.",
+   "url": "https://promptugal.news/articles/wpp-call-transcripts-to-jira.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-10",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/wpp-call-transcripts-to-jira.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-10, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S39.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "connections",
+    "the summit",
+    "ai agents",
+    "agents at work",
+    "mastra",
+    "wpp",
+    "jira",
+    "software delivery"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0042",
+   "call_number": "WS26 2026/0042",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Four startups pitch on Thursday's Centre Stage: what each does",
+   "summary": "Web Summit's 'Breakout startups' session on Thursday morning puts four young companies on Centre Stage: a physical AI lab, a finance tool for Brazil's mid-sized companies, an enterprise agent platform and a hologram company. What each says it does. Web Summit says Thursday is officially back on.",
+   "url": "https://promptugal.news/articles/breakout-startups-thursday-centre-stage.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-11",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/breakout-startups-thursday-centre-stage.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-11, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S54.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "connections",
+    "the summit",
+    "startups",
+    "pitch",
+    "robotics",
+    "fintech",
+    "ai agents",
+    "brazil"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0043",
+   "call_number": "WS26 2026/0043",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Getting around Lisbon on Wednesday: what operators and the government say",
+   "summary": "With Web Summit's Day 2 off and a red weather warning for Lisbon, Carris has cancelled its Web Summit shuttle and warns of disruption, Fertagus says it will stop trains on the 25 de Abril bridge if winds pass 90 km/h, and the government's alert closes schools and suspends outdoor events. What each has said, as read at 03:06 UTC.",
+   "url": "https://promptugal.news/articles/getting-around-lisbon-wednesday.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-11",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/getting-around-lisbon-wednesday.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-11, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S51.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "the summit",
+    "Storm Charles",
+    "Lisbon",
+    "transport",
+    "practical"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0044",
+   "call_number": "WS26 2026/0044",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Manus 2.0 gives each agent its own email, phone and wallet",
+   "summary": "Manus, whose co-founder spoke on Web Summit's Centre Stage on Monday, describes Manus 2.0 as a new architecture, not an update: a new agent harness, event-triggered automations, a desktop studio, and Cue, an app where each agent has its own email, phone number, wallet and computer. All in Manus's own words.",
+   "url": "https://promptugal.news/articles/manus-2-0-agents-own-email-phone-wallet.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-11",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/manus-2-0-agents-own-email-phone-wallet.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-11, licence https://creativecommons.org/licenses/by/4.0/, beat Connections: the summit, story S48.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-connections@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "connections",
+    "the summit",
+    "ai agents",
+    "manus ai",
+    "product launch"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0045",
+   "call_number": "WS26 2026/0045",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Thursday at Web Summit: a practical guide to the last day",
+   "summary": "Web Summit's last day, Thursday 12 November, after Wednesday's cancellation: what Web Summit says has changed, the weather, the end of the national alert, transport and side events, each from its own source.",
+   "url": "https://promptugal.news/articles/thursday-last-day-guide.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-11",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/thursday-last-day-guide.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-11, licence https://creativecommons.org/licenses/by/4.0/, beat The summit, story S58.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist@PrompTugal.vicky",
+   "article_type": "explainer",
+   "tags": [
+    "the summit",
+    "practical guide",
+    "weather",
+    "transport",
+    "schedule"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0046",
+   "call_number": "WS26 2026/0046",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Discord opens its first engineering hub outside San Francisco, in Lisbon",
+   "summary": "Discord is opening an engineering hub in Lisbon, its first dedicated one outside San Francisco. The company says it plans about 30 workers there by the end of 2027, working on the core of its platform.",
+   "url": "https://promptugal.news/articles/discord-lisbon-engineering-hub.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-12",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/discord-lisbon-engineering-hub.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-12, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S59.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "[Portugal",
+    "Discord",
+    "Lisbon",
+    "engineering",
+    "jobs",
+    "investment",
+    "Web Summit]"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0047",
+   "call_number": "WS26 2026/0047",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Humanos wins Road 2 Web Summit's top prize, 15,000 euros",
+   "summary": "Humanos, which builds a risk network for AI agents, won the Most Promising Startup prize at Road 2 Web Summit 2026, worth 15,000 euros, the press reports. eDynamics, from Braga, took the Best Performance prize. Sources differ on where Humanos is based.",
+   "url": "https://promptugal.news/articles/humanos-road-2-web-summit-winner.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-13",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/humanos-road-2-web-summit-winner.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-13, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S61.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "[Portugal",
+    "Humanos",
+    "eDynamics",
+    "Road 2 Web Summit",
+    "Startup Portugal",
+    "Galp",
+    "AI agents",
+    "prizes]"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0048",
+   "call_number": "WS26 2026/0048",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Loulé agency 3WX launches Best Number One, a free start page",
+   "summary": "3WX, a digital agency in Loulé, says it launched Best Number One at Web Summit 2026, a free page for organising your web links, and passed 300 sign-ups in the first hours. The launch and the figure are the company's own claims.",
+   "url": "https://promptugal.news/articles/best-number-one-3wx-loule.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-14",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/best-number-one-3wx-loule.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-14, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal, story S65.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "journalist-portugal@PrompTugal.vicky",
+   "article_type": "news",
+   "tags": [
+    "Portugal",
+    "Algarve",
+    "Loulé",
+    "3WX",
+    "Best Number One",
+    "Web Summit 2026",
+    "web tools"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0049",
+   "call_number": "WS26 2026/0049",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Know the Reach: an Algarve musician's AI music video",
+   "summary": "Silvio Switha, a musician who runs a wedding band in the Algarve, directed the first part of the music video for RiskMandate's song Know the Reach with AI tools. The song came out on Spotify on 13 November 2026.",
+   "url": "https://promptugal.news/articles/know-the-reach-ai-music-video.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-16",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/know-the-reach-ai-music-video.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-16, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "place.loule@PrompTugal.dinis",
+   "article_type": "local",
+   "tags": [
+    "Portugal",
+    "Algarve",
+    "Loulé",
+    "RiskMandate",
+    "AI",
+    "music",
+    "video",
+    "Web Summit 2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0050",
+   "call_number": "WS26 2026/0050",
+   "collection": "ws26",
+   "kind": "article",
+   "title": "Six people and 250 agents: the team behind PrompTugal.news",
+   "summary": "Six people and about 250 named agents ran Web Summit Lisbon's newsroom and tools from 3 to 13 November 2026. Dinis Cruz says three of the people on the ground live around Loulé and Quarteira, and that he grew up in Loulé himself.",
+   "url": "https://promptugal.news/articles/six-people-250-agents-promptugal-news.html",
+   "publisher": "PrompTugal.news",
+   "published": "2026-11-16",
+   "summit_day": null,
+   "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "found": {
+    "at": "2026-11-18T15:30:43Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from PrompTugal__News__Website content/articles/six-people-250-agents-promptugal-news.md (front matter), dev branch"
+   },
+   "evidence": "Front matter: status published, date 2026-11-16, licence https://creativecommons.org/licenses/by/4.0/, beat Portugal.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "publisher_node": "organisation:promptugal-news",
+   "made_by": "place.loule@PrompTugal.dinis",
+   "article_type": "local",
+   "tags": [
+    "Portugal",
+    "Algarve",
+    "Loulé",
+    "Quarteira",
+    "RiskMandate",
+    "AI agents",
+    "PrompTugal.news",
+    "Web Summit 2026"
+   ],
+   "accessioned": "2026-11-18"
+  }
+ ],
+ "missing": [
+  {
+   "what": "Day One (Tuesday 10 November) replays",
+   "note": "No official recording of Day One found on Web Summit's YouTube channel or site by 18 November. The channel's video list did not render to our reader.",
+   "asked": "data.b@PrompTugal.dinis: a collector for the channel's public feed"
+  },
+  {
+   "what": "Day Two (Wednesday 11 November)",
+   "note": "No replay will exist: the day did not take place (Storm Charles). Its talks moved to Thursday; see WS26 2026/0002 and 2026/0003."
+  },
+  {
+   "what": "Day Three's other stages",
+   "note": "Only one Day Three recording found; which stage it shows is not confirmed. Web Summit may publish only some stages publicly (a search snippet about 2025, not read)."
+  },
+  {
+   "what": "Talks by timestamp",
+   "note": "No talk start times read yet: the Day Three video's description did not render to our reader."
+  },
+  {
+   "what": "Standalone talk recordings and speaker-side write-ups",
+   "note": "None verified yet; two general searches only. Next: targeted searches by organisation."
+  },
+  {
+   "what": "Euronews: 'Web Summit Lisbon day 2 cancelled due to Storm Charles' (10 November)",
+   "note": "Found by search, but euronews.com answers our checks with HTTP 406, so its address and terms could not be re-checked; held back until they can, never worked around."
+  },
+  {
+   "what": "Portugal Resident coverage",
+   "note": "portugalresident.com refused our reader (HTTP 403); recorded, not worked around."
+  }
+ ],
+ "history": [
+  {
+   "at": "2026-11-18",
+   "by": "library.b@PrompTugal.dinis",
+   "what": "Collection opened: 8 items catalogued by hand from public pages and PrompTugal records, 7 gaps recorded."
+  },
+  {
+   "at": "2026-11-18",
+   "by": "library.b@PrompTugal.dinis",
+   "what": "42 PrompTugal.news articles about the summit catalogued from their front matter."
+  }
+ ]
+}

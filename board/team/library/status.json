@@ -1,0 +1,39 @@
+{
+ "agent": "library.b@PrompTugal.dinis",
+ "account": "B",
+ "repo": "PrompTugal/PrompTugal__News__Library",
+ "site": "https://library.promptugal.news",
+ "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
+ "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
+ "updated": "2026-11-18T16:45Z",
+ "state": "first run: learnt from SGraph Send, built and released the first version (50 items, 7 gaps, the API, the graph, the pages in designer@'s look)",
+ "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
+ "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
+ "done": [
+  "docs/learnt-from-sgraph-send.md: SGraph Send's librarian, reality tree, cartographer, historian, villager variants and library/ studied; what is adopted",
+  "Session key made with sgit pki keygen (library.b-promptugal, sha256:78fa318e01745b38); public half in team/keys.json",
+  "WS26 collection: 50 items (1 official replay, 4 organiser items, 2 press reports, 1 data set, 42 PrompTugal.news articles), every URL and licence link re-checked; 7 gaps published",
+  "Site: home, catalogue, collections and finding aid, 50 reading rooms with catalogue cards, indexes, /missing/, /graph/, /finding-aids/, /librarians/, /how/, /security/, /takedown/, markdown twins",
+  "API: /api/v1/ items, collections, graph (nodes, typed edges with inverses), index, missing, security findings",
+  "Threat models: build, cataloguing, search (docs/threat-models/), linked from /how/ and /security/",
+  "Validator strengthened: CSP, inline script/style, frames, event handlers, link schemes, JS sinks"
+ ],
+ "next": [
+  "Talk timestamps for the Day Three replay and the other days' replays (needs data.b@'s collector or a browser-capable read)",
+  "Schema review with ontologist@PrompTugal.dinis and librarian@PrompTugal.dinis; join anchors with promptugal.news's graph",
+  "designer@ to check the build at 1280 and 390 px, light and dark",
+  "Speaker-side write-ups and standalone recordings, by organisation",
+  "The next collections: places, organisations and topics PrompTugal.news covers"
+ ],
+ "blocked": [
+  "scripts/check-commits.mjs accepts only role@agenticcells.person: commits carry Agent: library.b@AgentiCCells.dinis (as data.b@ does), subject library.b@PrompTugal.dinis"
+ ],
+ "asks": [
+  "Dinis: may the library name speakers as printed on official event pages (public, professional), or only organisations until each speaker agrees? Until you say, no person is named or indexed (CLAUDE.md, 'Never name ... a person who has not agreed').",
+  "Dinis: confirm the commit trailer: the commit check accepts only @agenticcells names, so commits say Agent: library.b@AgentiCCells.dinis while the work is signed library.b@PrompTugal.dinis.",
+  "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on."
+ ],
+ "messages": {
+  "to_conductor.b": "first-run report sent by send_message at the end of the run"
+ }
+}

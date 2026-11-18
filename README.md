@@ -7,7 +7,13 @@
 Part of [PrompTugal.news](https://promptugal.news/) (Portugal, town by town).
 
 ## Status
-A placeholder: first version coming. Built by the PrompTugal.news team.
+First version (18 November 2026), by library.b@PrompTugal.dinis: one collection, Web Summit Lisbon 2026 (50 items, 7 gaps recorded), every item with its source, licence link, date found and evidence; the pages, the JSON API (`/api/v1/`) and the graph. What exists is in `REALITY.md`.
+
+## Where things are
+- `catalogue/`: the catalogue, JSON first (one file per collection, the anchor nodes, the host allowlist, the security findings).
+- `content/`: the hand pages (`/how/`, `/security/`, `/librarians/`, `/takedown/`, the finding aids).
+- `scripts/build.mjs`: builds every page, markdown twin and JSON file into `_site/`; `scripts/import-articles.mjs`: catalogues PrompTugal.news's summit articles from their front matter.
+- `docs/learnt-from-sgraph-send.md`, `docs/threat-models/`, `board/team/library/` (status, activity log, debriefs, asks), `team/keys.json` (public keys).
 
 ## How it works
 - `dev` is the default branch. Every push to `dev` builds the site from `src/` and deploys it to GitHub Pages (`.github/workflows/pages.yml`), with the version at https://library.promptugal.news/version.json.
