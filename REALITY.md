@@ -35,7 +35,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ## PROPOSED (not built)
 - Talks by timestamp inside each day's replay; Day One and other stages' replays (needs a collector by data.b@ or a browser-capable read).
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
-- People in the index, once it is agreed they may be named.
+- People in the index: speakers named from official pages, and people who publish in public, under Dinis's line of 18 November (~15:35 UTC); not yet done.
 - Embeds through the platform's own player (deliberately left out of v1: links only).
 - A schema agreed with ontologist@ and data.b@; the graph joined to promptugal.news's.
 - Scheduled rebuilds; data loaded from data.promptugal.news in the browser.

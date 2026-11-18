@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T17:10Z",
+ "updated": "2026-11-18T17:30Z",
  "state": "first run: learnt from SGraph Send, built and released the first version (50 items, 7 gaps, the API, the graph, the pages in designer@'s look)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -17,10 +17,14 @@
   "API: /api/v1/ items, collections, graph (nodes, typed edges with inverses), index, missing, security findings",
   "Threat models: build, cataloguing, search (docs/threat-models/), linked from /how/ and /security/",
   "Validator strengthened: CSP, inline script/style, frames, event handlers, link schemes, JS sinks",
-  "AppSec post-review: no high; 2 medium and 4 low fixed before release (hand-page link allowlist, agent-name check, line breaks, licence name and link, https only, front matter required), 1 low accepted pending Dinis; all 7 published on /security/; prompt-injection pass over the catalogue: none found"
+  "AppSec post-review: no high; 2 medium and 4 low fixed before release (hand-page link allowlist, agent-name check, line breaks, licence name and link, https only, front matter required), 1 low accepted pending Dinis; all 7 published on /security/; prompt-injection pass over the catalogue: none found",
+  "People line updated to Dinis's guidance of ~15:35 UTC (PrompTugal__News__Website board/guidance/2026-11-18-people-blogs-cyber-and-simulated-payments.md, read at source): speakers and people publishing in public are named and linked; never private information or a personal contact. On /how/ and the index pages."
  ],
  "next": [
   "Plan the catalogue's kinds for the new weak-signal sources on data.promptugal.news (blogs, newsletters, podcasts, GitHub, company acts, funding, patents, research, Wikipedia and Wikidata, conferences, cyber signals) with the ontologist sub-agent and data.b@ (conductor.b@'s message, 18 Nov ~15:35 UTC, relaying Dinis's yes)",
+  "Name and index speakers from official session pages (people line of 18 Nov ~15:35 UTC), and link the replays and talks to them",
+  "Catalogue videos.b@'s 20 Web Summit videos (videos.promptugal.news) and offer it the Day Three replay it missed (WS26 2026/0001); videos.b@ will read this API as its catalogue (conductor.b@, ~15:40 UTC)",
+  "Blogs, newsletters and podcasts from data.b@'s feeds into the graph, by title, byline as published, date and link",
   "Talk timestamps for the Day Three replay and the other days' replays (needs data.b@'s collector or a browser-capable read)",
   "Schema review with ontologist@PrompTugal.dinis and librarian@PrompTugal.dinis; join anchors with promptugal.news's graph",
   "designer@ to check the build at 1280 and 390 px, light and dark",
@@ -31,12 +35,12 @@
   "scripts/check-commits.mjs accepts only role@agenticcells.person: commits carry Agent: library.b@AgentiCCells.dinis (as data.b@ does), subject library.b@PrompTugal.dinis"
  ],
  "asks": [
-  "Dinis: may the library name speakers as printed on official event pages (public, professional), or only organisations until each speaker agrees? Until you say, no person is named or indexed (CLAUDE.md, 'Never name ... a person who has not agreed').",
   "Dinis: confirm the commit trailer: the commit check accepts only @agenticcells names, so commits say Agent: library.b@AgentiCCells.dinis while the work is signed library.b@PrompTugal.dinis.",
   "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on.",
   "Dinis: agent names carry operators' first names (journalist@web-summit.vicky, writer@PrompTugal.angelo); they are shown on cards as each article's maker. Keep them, or show only the role?"
  ],
  "messages": {
-  "to_conductor.b": "first-run report sent by send_message at the end of the run"
+  "to_conductor.b": "first-run report sent by send_message at the end of the run",
+  "from_conductor.b": "15:40 UTC: key listed in the main repo's board/keys.json; asks passed to designer@, data.b@, ontologist@, librarian@; commit trailer and operators' names on cards are with Dinis"
  }
 }

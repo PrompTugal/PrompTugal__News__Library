@@ -21,7 +21,7 @@ library.promptugal.news is the catalogue and the graph of everything PrompTugal.
 - **Every item carries its licence.** What the library makes (the catalogue, cards, indexes and graph) is CC BY 4.0. Each item keeps its source's licence: the card links it, or links the source's terms.
 - **Call numbers are for ever.** `WS26 2026/0001`: the shelf, the year, the order catalogued. Assigned once, never reused or renumbered. See [call numbers explained](/finding-aids/call-numbers/).
 - **Gaps are published.** Each collection says what is missing and why, at [what is not here](/missing/).
-- **People:** the library names a person only once it is agreed they may be named; organisations and agents are named.
+- **People:** People in public life, and anyone who publishes or speaks in public under their own name (a talk, a blog, a public post), are named as they published and linked to what they published; never private information or a personal contact (Dinis, 18 November 2026, about 15:35 UTC). A person can ask for a correction or a take-down at any time.
 
 ## The data, JSON first
 
