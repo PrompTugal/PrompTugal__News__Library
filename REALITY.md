@@ -29,7 +29,10 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - Checks: the build's own (ids, URL schemes, allowed hosts, licence, evidence, lengths, control and bidi characters, email and phone shapes, graph ends, inverses and orphans); the validator gained CSP, inline script and style, frame, event handler, link scheme and JS sink checks.
 
 ### The requests channel
-- `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 6 requests: 0002, 0004 and 0005 done, 0001 answered in part, 0003 and 0006 open.
+- `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 8 requests: 0002, 0004, 0005 and 0006 done, 0001 answered in part, 0003, 0007 and 0008 open.
+
+### The fact-checker
+- Pass 1 (18 November, 19:39 wake): every published promptugal.news article's provenance level, from `scripts/fact-check.mjs` into `catalogue/fact-check.json`, at `/fact-check/` and `/api/v1/fact-check/index.json`: 16 claim by claim (250 claims, all resolving to a recorded page), 45 story-level, 36 text-only, 0 none; 71 claims rest on websummit.com pages.
 
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).
@@ -37,7 +40,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
 
 ## PROPOSED (not built)
-- The fact-checker sub-agent (every claim on every PrompTugal site mapped to a source); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
+- The fact-checker beyond promptugal.news's articles (the library's cards, the other sites); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
 - Talks by timestamp inside each day's replay; Day One and other stages' replays (needs a collector by data.b@ or a browser-capable read).
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
 - People in the index: speakers named from official pages, and people who publish in public, under Dinis's line of 18 November (~15:35 UTC); not yet done.

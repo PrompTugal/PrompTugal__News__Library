@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T17:55Z",
- "state": "second wake (16:38 UTC): the graph aligned with PrompTugal.news's ontology (ontologist@'s review), REQ-2026-0004 and 0005 done, security@'s S61 answered",
+ "updated": "2026-11-18T19:42Z",
+ "state": "third wake (19:39 UTC): the fact-checker's first pass published at /fact-check/",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -25,10 +25,12 @@
   "The requests channel (Dinis, ~16:00 UTC, read at source: board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): /requests/ and /api/v1/requests/ (index and one file per team), 5 open requests: data.b@ (YouTube chapters via Perplexity until a key), videos.b@ (replay titles), social.watch@ (EFE video verified), security@ (central log, threat models), ontologist@ (anchors, Wikidata ids)",
   "Wake 16:38 UTC: graph aligned with the main site's ontology per ontologist@'s review: edges stored once under verb (948 to 475), inverses as a table; days typed day; inverses made and includes; 12 tags matched to main-site places and 10 to topics, 83 local; agents matched or local; series:web-summit with Wikidata ids Q45, Q597, Q16967344 shown as proposed; /api/ changelog for the breaking graph change",
   "REQ-2026-0004 done (security@: findings in the central log as S60, S62 to S68; threat models good, its line corrected); REQ-2026-0005 done (ontologist@); S61 answered (the two websummit.com statements kept as links only, per Dinis's 16:00 word); the validator now fails any script that makes a network request",
-  "AppSec post-review of the 16:38 wake: no high or medium; 5 low fixed before the push (network tripwire widened and tested, graph label, match whitelist, match on existing nodes, realpath containment), published as LIB-2026-009 to 013"
+  "AppSec post-review of the 16:38 wake: no high or medium; 5 low fixed before the push (network tripwire widened and tested, graph label, match whitelist, match on existing nodes, realpath containment), published as LIB-2026-009 to 013",
+  "Wake 19:39 UTC: the fact-checker's first pass (Dinis, 16:00 and 19:00 UTC): scripts/fact-check.mjs (offline, read-only clone) to catalogue/fact-check.json, /fact-check/ and /api/v1/fact-check/. Of 97 published promptugal.news articles: 16 map every claim to a recorded source (250 of 250 resolve), 45 name sources for the story only, 36 only in the text, 0 with none (the fact-checker sub-agent corrected my first count of 10 'none': they have Sources sections of bare URLs). 71 claims in 2 articles rest only on websummit.com pages, not in websummit-only.json.",
+  "REQ-2026-0006 done (data.b@, 2777758); REQ-2026-0007 (claim-level provenance) and REQ-2026-0008 (two articles resting on websummit.com) opened to journalist@"
  ],
  "next": [
-  "The fact-checker sub-agent, every wake: every claim on every PrompTugal site mapped to a source; claims without one as gaps and requests to their team (Dinis, ~16:00 UTC)",
+  "Fact-checker pass 2: the library's own cards, then data.promptugal.news, events, videos and the other PrompTugal sites; Google Fact Check Tools once the key exists",
   "Wikipedia and Wikidata as the reference layer: every anchor node linked to its entries, changes tracked (needs the hosts added to catalogue/hosts.json and their terms checked first)",
   "A page per university, the University of the Algarve first, from data.b@'s research feeds",
   "Plan the catalogue's kinds for the new weak-signal sources on data.promptugal.news (blogs, newsletters, podcasts, GitHub, company acts, funding, patents, research, Wikipedia and Wikidata, conferences, cyber signals) with the ontologist sub-agent and data.b@ (conductor.b@'s message, 18 Nov ~15:35 UTC, relaying Dinis's yes)",

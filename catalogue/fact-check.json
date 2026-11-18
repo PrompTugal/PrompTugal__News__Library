@@ -1,0 +1,1647 @@
+{
+ "about": "The library's fact-checker, first pass: for every published PrompTugal.news article, how far its claims are mapped to sources (provenance), and the gaps. Read from the site's own repository; counts and levels only. A gap is not a finding that a claim is wrong: it says the claim cannot yet be walked back to a recorded source.",
+ "site": "promptugal.news",
+ "pass": 1,
+ "made": "2026-11-18",
+ "made_by": "library.b@PrompTugal.dinis (scripts/fact-check.mjs)",
+ "read_from": "PrompTugal__News__Website, dev dcf040e",
+ "levels": {
+  "claims": "every claim mapped to a recorded source (a page with its address and the date it was read)",
+  "story": "sources recorded for the story as a whole, not claim by claim",
+  "links": "sources only in the text (links or a Sources section), not recorded as data",
+  "none": "no recorded source and no link found"
+ },
+ "counts": {
+  "articles": 97,
+  "claims": 16,
+  "story": 45,
+  "links": 36,
+  "none": 0,
+  "claims_total": 250,
+  "claims_resolved": 250,
+  "claims_on_websummit": 71
+ },
+ "articles": [
+  {
+   "slug": "agent-setup-guide",
+   "title": "Set up your AI agents and decide what each may do",
+   "url": "https://promptugal.news/articles/agent-setup-guide.html",
+   "published": "2026-11-06",
+   "story": "WS125",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 21,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "ai-act-first-harmonised-standard",
+   "title": "The AI Act's first harmonised standard: what EN 18286 changes",
+   "url": "https://promptugal.news/articles/ai-act-first-harmonised-standard.html",
+   "published": "2026-11-11",
+   "story": "S50",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 7,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "ai-physiotherapy-portugal-health-service",
+   "title": "AI physiotherapy in Portugal's health service: what the government says",
+   "url": "https://promptugal.news/articles/ai-physiotherapy-portugal-health-service.html",
+   "published": "2026-11-17",
+   "story": "S69",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "alcoutim-ai-path-runs-through-the-guadiana",
+   "title": "Alcoutim has no AI company, but the road is being built",
+   "url": "https://promptugal.news/articles/alcoutim-ai-path-runs-through-the-guadiana.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 6,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "alcoutim-council-in-a-weeding-robot-project",
+   "title": "Alcoutim's council is a partner in an AI weeding robot project",
+   "url": "https://promptugal.news/articles/alcoutim-council-in-a-weeding-robot-project.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "algar-ai-recycling-points-almancil",
+   "title": "Almancil waste firm uses AI to site recycling points",
+   "url": "https://promptugal.news/articles/algar-ai-recycling-points-almancil.html",
+   "published": "2026-11-15",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 3,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "algarve-farms-become-ai-and-robot-test-beds",
+   "title": "Two Algarve farms will test farm robots and AI",
+   "url": "https://promptugal.news/articles/algarve-farms-become-ai-and-robot-test-beds.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 4,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "algarve-tourism-ai-funded-pilot-and-agentic-warning",
+   "title": "Algarve tourism gets free AI help and a booking warning",
+   "url": "https://promptugal.news/articles/algarve-tourism-ai-funded-pilot-and-agentic-warning.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 7,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "amalia-and-ania-portugal-ai-plans",
+   "title": "AMALIA and ANIA: what Portugal says about its own AI plans",
+   "url": "https://promptugal.news/articles/amalia-and-ania-portugal-ai-plans.html",
+   "published": "2026-11-16",
+   "story": "S64",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 8,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "angelos-communication-graph",
+   "title": "Angelo's communication graph: watch our agents talk",
+   "url": "https://promptugal.news/articles/angelos-communication-graph.html",
+   "published": "2026-11-06",
+   "story": "T1",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 11,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "atm-currency-conversion-portugal-mark-up",
+   "title": "A Portuguese ATM offered a 13.6% mark-up, twice, with a flag",
+   "url": "https://promptugal.news/articles/atm-currency-conversion-portugal-mark-up.html",
+   "published": "2026-11-17",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 14,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "best-number-one-3wx-loule",
+   "title": "Loulé agency 3WX launches Best Number One, a free start page",
+   "url": "https://promptugal.news/articles/best-number-one-3wx-loule.html",
+   "published": "2026-11-14",
+   "story": "S65",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 3,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "brazil-comes-to-lisbon-intuitivo-heads-to-brazil",
+   "title": "Brazil comes to Lisbon as Intuitivo heads to Brazil",
+   "url": "https://promptugal.news/articles/brazil-comes-to-lisbon-intuitivo-heads-to-brazil.html",
+   "published": "2026-11-06",
+   "story": "S19",
+   "level": "claims",
+   "claims": 10,
+   "claims_resolved": 10,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 4,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "brazil-last-year-counts",
+   "title": "How many Brazilian startups came to Web Summit last year?",
+   "url": "https://promptugal.news/articles/brazil-last-year-counts.html",
+   "published": "2026-11-07",
+   "story": "BR1",
+   "level": "claims",
+   "claims": 10,
+   "claims_resolved": 10,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 7,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "brazil-on-the-stages",
+   "title": "Brazil on Web Summit's stages: officials, founders and a pavilion",
+   "url": "https://promptugal.news/articles/brazil-on-the-stages.html",
+   "published": "2026-11-06",
+   "story": "BR4",
+   "level": "claims",
+   "claims": 45,
+   "claims_resolved": 45,
+   "claims_on_websummit": 45,
+   "story_sources": 0,
+   "links": 3,
+   "sources_section": false,
+   "gaps": [
+    "45 claim(s) resting on websummit.com pages (the house rule of 11 November: what rests only on websummit.com comes off unless another source is cited)"
+   ]
+  },
+  {
+   "slug": "brazil-startup-mission",
+   "title": "Brazil's startup mission comes to Web Summit Lisbon",
+   "url": "https://promptugal.news/articles/brazil-startup-mission.html",
+   "published": "2026-11-06",
+   "story": "S9",
+   "level": "claims",
+   "claims": 26,
+   "claims_resolved": 26,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 8,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "brazils-doors-into-europe",
+   "title": "Beyond the pavilion: Brazil's year-round doors into Europe through Portugal",
+   "url": "https://promptugal.news/articles/brazils-doors-into-europe.html",
+   "published": "2026-11-07",
+   "story": "BR6",
+   "level": "claims",
+   "claims": 12,
+   "claims_resolved": 12,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 15,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "brazils-startup-house-in-lisbon",
+   "title": "Brazil's startup house in Lisbon picks its second class",
+   "url": "https://promptugal.news/articles/brazils-startup-house-in-lisbon.html",
+   "published": "2026-11-06",
+   "story": "BR2",
+   "level": "claims",
+   "claims": 10,
+   "claims_resolved": 10,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 4,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "breakout-startups-thursday-centre-stage",
+   "title": "Four startups pitch on Thursday's Centre Stage: what each does",
+   "url": "https://promptugal.news/articles/breakout-startups-thursday-centre-stage.html",
+   "published": "2026-11-11",
+   "story": "S54",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 8,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "center-for-responsible-ai-money-partners-goals",
+   "title": "Portugal's Center for Responsible AI: the money, partners and goals",
+   "url": "https://promptugal.news/articles/center-for-responsible-ai-money-partners-goals.html",
+   "published": "2026-11-16",
+   "story": "S67",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 3,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "daily-newsletter",
+   "title": "Two editions a day: PrompTugal.news starts a daily newsletter",
+   "url": "https://promptugal.news/articles/daily-newsletter.html",
+   "published": "2026-11-07",
+   "story": "S26",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 8,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "digital-fairness-act-ai-agents",
+   "title": "The EU's Digital Fairness Act: rules for AI agents that shop",
+   "url": "https://promptugal.news/articles/digital-fairness-act-ai-agents.html",
+   "published": "2026-11-11",
+   "story": "S56",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "discord-lisbon-engineering-hub",
+   "title": "Discord opens its first engineering hub outside San Francisco, in Lisbon",
+   "url": "https://promptugal.news/articles/discord-lisbon-engineering-hub.html",
+   "published": "2026-11-12",
+   "story": "S59",
+   "level": "claims",
+   "claims": 10,
+   "claims_resolved": 10,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 8,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "driving-to-web-summit",
+   "title": "Driving to Web Summit? Road closures and drop-off points",
+   "url": "https://promptugal.news/articles/driving-to-web-summit.html",
+   "published": "2026-11-07",
+   "story": "S24",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 7,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "eu-election-guidelines-generative-ai",
+   "title": "The EU asks for views on election rules for generative AI",
+   "url": "https://promptugal.news/articles/eu-election-guidelines-generative-ai.html",
+   "published": "2026-11-11",
+   "story": "S53",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "europe-ai-help-and-portugal-ai-startups",
+   "title": "Europe's AI and funding help, and Portuguese startups it could suit",
+   "url": "https://promptugal.news/articles/europe-ai-help-and-portugal-ai-startups.html",
+   "published": "2026-11-06",
+   "story": "S16",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 4,
+   "links": 6,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "europe-in-pavilion-4",
+   "title": "Europe in Pavilion 4: the Commission's week at Web Summit",
+   "url": "https://promptugal.news/articles/europe-in-pavilion-4.html",
+   "published": "2026-11-06",
+   "story": "S2",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 3,
+   "links": 8,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "faro-ai-gathers-around-the-university",
+   "title": "In Faro, the AI gathers around the university",
+   "url": "https://promptugal.news/articles/faro-ai-gathers-around-the-university.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 11,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "five-ai-builders-to-know",
+   "title": "Five AI builders on Web Summit's speaker list worth knowing",
+   "url": "https://promptugal.news/articles/five-ai-builders-to-know.html",
+   "published": "2026-11-08",
+   "story": "S28",
+   "level": "claims",
+   "claims": 10,
+   "claims_resolved": 10,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 12,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "following-robotics-at-web-summit",
+   "title": "Following robotics at Web Summit: from the lineup to Técnico's stand",
+   "url": "https://promptugal.news/articles/following-robotics-at-web-summit.html",
+   "published": "2026-11-06",
+   "story": "S15",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 9,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "from-pitch-to-new-markets",
+   "title": "From the PITCH stage to new markets: Portuguese startups raising",
+   "url": "https://promptugal.news/articles/from-pitch-to-new-markets.html",
+   "published": "2026-11-06",
+   "story": "S4",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 3,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "gender-in-tech-report-2026",
+   "title": "Gender in Tech report: 84% see women in leadership",
+   "url": "https://promptugal.news/articles/gender-in-tech-report-2026.html",
+   "published": "2026-11-06",
+   "story": "S6",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 6,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "getting-around-lisbon-wednesday",
+   "title": "Getting around Lisbon on Wednesday: what operators and the government say",
+   "url": "https://promptugal.news/articles/getting-around-lisbon-wednesday.html",
+   "published": "2026-11-11",
+   "story": "S51",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 3,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "glovo-restaurant-agents-getvocal",
+   "title": "Glovo's restaurant partners meet 80 AI agents on WhatsApp, GetVocal says",
+   "url": "https://promptugal.news/articles/glovo-restaurant-agents-getvocal.html",
+   "published": "2026-11-10",
+   "story": "S38",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "gravitee-agent-security-survey",
+   "title": "AI agents are spreading faster than their security, Gravitee's survey finds",
+   "url": "https://promptugal.news/articles/gravitee-agent-security-survey.html",
+   "published": "2026-11-10",
+   "story": "S40",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "health-startups-by-problem",
+   "title": "Eleven health startups at Web Summit, by the problem they tackle",
+   "url": "https://promptugal.news/articles/health-startups-by-problem.html",
+   "published": "2026-11-08",
+   "story": "S30",
+   "level": "claims",
+   "claims": 4,
+   "claims_resolved": 4,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 15,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "how-agents-avoid-collisions",
+   "title": "Many agents, one newsroom: how they avoid collisions",
+   "url": "https://promptugal.news/articles/how-agents-avoid-collisions.html",
+   "published": "2026-11-06",
+   "story": "T4",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 13,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "how-the-agents-talk",
+   "title": "How our agents talk: commits, inboxes and signed keys",
+   "url": "https://promptugal.news/articles/how-the-agents-talk.html",
+   "published": "2026-11-06",
+   "story": "T3",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 11,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "humanos-road-2-web-summit-winner",
+   "title": "Humanos wins Road 2 Web Summit's top prize, 15,000 euros",
+   "url": "https://promptugal.news/articles/humanos-road-2-web-summit-winner.html",
+   "published": "2026-11-13",
+   "story": "S61",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 9,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "humans-and-ai-vicky-wang",
+   "title": "When an agent says it's done, check a few things yourself",
+   "url": "https://promptugal.news/articles/humans-and-ai-vicky-wang.html",
+   "published": "2026-11-14",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 1,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "ibm-sports-tech-challenge",
+   "title": "Sports tech at Web Summit: IBM's startup challenge ends in Lisbon",
+   "url": "https://promptugal.news/articles/ibm-sports-tech-challenge.html",
+   "published": "2026-11-09",
+   "story": "S33",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "italy-and-portugal-in-beato",
+   "title": "Italy and Portugal meet in Beato on how European tech scales",
+   "url": "https://promptugal.news/articles/italy-and-portugal-in-beato.html",
+   "published": "2026-11-06",
+   "story": "S11",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "know-the-reach-ai-music-video",
+   "title": "Know the Reach: an Algarve musician's AI music video",
+   "url": "https://promptugal.news/articles/know-the-reach-ai-music-video.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 6,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "konecta-lisbon-delivery-centre",
+   "title": "Konecta picks Lisbon for a delivery centre and 700 jobs",
+   "url": "https://promptugal.news/articles/konecta-lisbon-delivery-centre.html",
+   "published": "2026-11-11",
+   "story": "S52",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "lagos-ai-community-not-a-cluster",
+   "title": "Lagos has an AI crowd, not yet an AI industry",
+   "url": "https://promptugal.news/articles/lagos-ai-community-not-a-cluster.html",
+   "published": "2026-11-15",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 9,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "lisbon-awards-and-the-algarve-plan",
+   "title": "Lisbon's startup awards, and the Algarve's plan beyond tourism",
+   "url": "https://promptugal.news/articles/lisbon-awards-and-the-algarve-plan.html",
+   "published": "2026-11-06",
+   "story": "S7",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 5,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "lisbon-universities-at-web-summit",
+   "title": "Lisbon's universities at Web Summit: two stands and a pitch day",
+   "url": "https://promptugal.news/articles/lisbon-universities-at-web-summit.html",
+   "published": "2026-11-06",
+   "story": "S10",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 6,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "manus-2-0-agents-own-email-phone-wallet",
+   "title": "Manus 2.0 gives each agent its own email, phone and wallet",
+   "url": "https://promptugal.news/articles/manus-2-0-agents-own-email-phone-wallet.html",
+   "published": "2026-11-11",
+   "story": "S48",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "mistakes-we-made",
+   "title": "Three mistakes our agents made, and the rules they left",
+   "url": "https://promptugal.news/articles/mistakes-we-made.html",
+   "published": "2026-11-06",
+   "story": "T5",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 16,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "monchique-ai-in-the-accounts-not-the-forest",
+   "title": "In Monchique, the AI is in the accounts, not the forest",
+   "url": "https://promptugal.news/articles/monchique-ai-in-the-accounts-not-the-forest.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 9,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "neuraspace-coimbra-raises-15-6-million",
+   "title": "Neuraspace of Coimbra raises 15.6 million euros for AI space software",
+   "url": "https://promptugal.news/articles/neuraspace-coimbra-raises-15-6-million.html",
+   "published": "2026-11-16",
+   "story": "S66",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "newsroom-status-four-days-out",
+   "title": "The newsroom four days out, in pictures",
+   "url": "https://promptugal.news/articles/newsroom-status-four-days-out.html",
+   "published": "2026-11-05",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 3,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "octo-health-launches",
+   "title": "Lisbon's Octo Health launches health tracking in Portugal and the US",
+   "url": "https://promptugal.news/articles/octo-health-launches.html",
+   "published": "2026-11-06",
+   "story": "S20",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 6,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "olhao-the-ai-path-runs-through-the-fish-farm",
+   "title": "In Olhão, the AI path runs through the fish farm",
+   "url": "https://promptugal.news/articles/olhao-the-ai-path-runs-through-the-fish-farm.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 12,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "one-door",
+   "title": "One door: running a dozen AI agents without being the middleman",
+   "url": "https://promptugal.news/articles/one-door.html",
+   "published": "2026-11-16",
+   "story": "JW1",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 16,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "pagerduty-agents-in-production",
+   "title": "What PagerDuty says it learned running AI agents in production",
+   "url": "https://promptugal.news/articles/pagerduty-agents-in-production.html",
+   "published": "2026-11-12",
+   "story": "S60",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "pineapple-waste-to-fish-feed",
+   "title": "From pineapple waste to fish feed: AgroGrINTech's pilot in Maia",
+   "url": "https://promptugal.news/articles/pineapple-waste-to-fish-feed.html",
+   "published": "2026-11-06",
+   "story": "S22",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 6,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "plan-your-week-by-field",
+   "title": "Plan your week by field: which summit day is yours",
+   "url": "https://promptugal.news/articles/plan-your-week-by-field.html",
+   "published": "2026-11-07",
+   "story": "WK1",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "portimao-ai-in-the-public-service",
+   "title": "In Portimão, public bodies put AI to work",
+   "url": "https://promptugal.news/articles/portimao-ai-in-the-public-service.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 11,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "portugal-60-mw-computing-capacity",
+   "title": "Analysis: Portugal has 60 MW of computing power and wants 1,000",
+   "url": "https://promptugal.news/articles/portugal-60-mw-computing-capacity.html",
+   "published": "2026-11-16",
+   "story": "A3",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "portugal-on-the-programme",
+   "title": "Portugal on the programme: a masterclass, a meetup and three announcements",
+   "url": "https://promptugal.news/articles/portugal-on-the-programme.html",
+   "published": "2026-11-09",
+   "story": "S36",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 5,
+   "links": 9,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "press-conferences-day-by-day",
+   "title": "Web Summit's press conferences, day by day",
+   "url": "https://promptugal.news/articles/press-conferences-day-by-day.html",
+   "published": "2026-11-09",
+   "story": "S35",
+   "level": "claims",
+   "claims": 26,
+   "claims_resolved": 26,
+   "claims_on_websummit": 26,
+   "story_sources": 0,
+   "links": 12,
+   "sources_section": false,
+   "gaps": [
+    "26 claim(s) resting on websummit.com pages (the house rule of 11 November: what rests only on websummit.com comes off unless another source is cited)"
+   ]
+  },
+  {
+   "slug": "promptugal-news-local-news-town-by-town",
+   "title": "PrompTugal.news goes local: an AI agent for every Algarve town",
+   "url": "https://promptugal.news/articles/promptugal-news-local-news-town-by-town.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 7,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "red-wind-warning-lisbon-wednesday",
+   "title": "Web Summit calls off Wednesday on the government's advice",
+   "url": "https://promptugal.news/articles/red-wind-warning-lisbon-wednesday.html",
+   "published": "2026-11-10",
+   "story": "S41",
+   "level": "claims",
+   "claims": 38,
+   "claims_resolved": 38,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 14,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "rio-ten-startups-to-lisbon",
+   "title": "Rio sends ten startups to Lisbon, with Gol paying the tickets",
+   "url": "https://promptugal.news/articles/rio-ten-startups-to-lisbon.html",
+   "published": "2026-11-06",
+   "story": "BR3",
+   "level": "claims",
+   "claims": 9,
+   "claims_resolved": 9,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 14,
+   "sources_section": true,
+   "gaps": []
+  },
+  {
+   "slug": "riskmandate-film-claude-laptop",
+   "title": "A 26-second RiskMandate film, made with Claude on a laptop",
+   "url": "https://promptugal.news/articles/riskmandate-film-claude-laptop.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 2,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "road-2-web-summit-2026",
+   "title": "Road 2 Web Summit: Portugal's startups head for Lisbon",
+   "url": "https://promptugal.news/articles/road-2-web-summit-2026.html",
+   "published": "2026-11-06",
+   "story": "S3",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 7,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "road-2-web-summit-beyond-lisbon",
+   "title": "Beyond Lisbon: where Road 2 Web Summit's 78 startups come from",
+   "url": "https://promptugal.news/articles/road-2-web-summit-beyond-lisbon.html",
+   "published": "2026-11-09",
+   "story": "S31",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 7,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "six-people-250-agents-promptugal-news",
+   "title": "Six people and 250 agents: the team behind PrompTugal.news",
+   "url": "https://promptugal.news/articles/six-people-250-agents-promptugal-news.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 5,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "speed-where-its-safe-control-where-it-matters",
+   "title": "Speed where it's safe, control where it matters",
+   "url": "https://promptugal.news/articles/speed-where-its-safe-control-where-it-matters.html",
+   "published": "2026-11-10",
+   "story": "authority-checks",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 28,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "teamworks-coaches-agent",
+   "title": "What failed first as Teamworks builds an AI assistant for coaches",
+   "url": "https://promptugal.news/articles/teamworks-coaches-agent.html",
+   "published": "2026-11-10",
+   "story": "S37",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "the-first-night-of-promptugal-news",
+   "title": "The first night of PrompTugal.news, set up by people and agents",
+   "url": "https://promptugal.news/articles/the-first-night-of-promptugal-news.html",
+   "published": "2026-11-06",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 3,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "the-payment-desk-that-could-not-take-payment",
+   "title": "The payment desk that could not take payment",
+   "url": "https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html",
+   "published": "2026-11-17",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 3,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "the-sign-in",
+   "title": "The sign-in: how editors and agents prove who they are",
+   "url": "https://promptugal.news/articles/the-sign-in.html",
+   "published": "2026-11-07",
+   "story": "S25",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "thursday-last-day-guide",
+   "title": "Thursday at Web Summit: a practical guide to the last day",
+   "url": "https://promptugal.news/articles/thursday-last-day-guide.html",
+   "published": "2026-11-11",
+   "story": "S58",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 10,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "tiktok-for-you-dsa-preliminary-finding",
+   "title": "EU says TikTok's For You feed may breach its platform law",
+   "url": "https://promptugal.news/articles/tiktok-for-you-dsa-preliminary-finding.html",
+   "published": "2026-11-11",
+   "story": "S55",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 4,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "tuesday-10-november-three-ways-in",
+   "title": "Tuesday 10 November: Europe on stage, universities pitching, first-timers meeting",
+   "url": "https://promptugal.news/articles/tuesday-10-november-three-ways-in.html",
+   "published": "2026-11-06",
+   "story": "S18",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 4,
+   "links": 8,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "venue-map",
+   "title": "A map of Web Summit's buildings, and what each holds",
+   "url": "https://promptugal.news/articles/venue-map.html",
+   "published": "2026-11-07",
+   "story": "S27",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 7,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "vila-real-de-santo-antonio-shipyard-robots-and-drones",
+   "title": "The Guadiana shipyard that builds the boats robots are tested on",
+   "url": "https://promptugal.news/articles/vila-real-de-santo-antonio-shipyard-robots-and-drones.html",
+   "published": "2026-11-16",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 3,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "web-summit-2026-in-numbers",
+   "title": "Web Summit 2026 in numbers: 70,000 people, 10,000 startups",
+   "url": "https://promptugal.news/articles/web-summit-2026-in-numbers.html",
+   "published": "2026-11-06",
+   "story": "S5",
+   "level": "claims",
+   "claims": 6,
+   "claims_resolved": 6,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 11,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "web-summit-before-2026",
+   "title": "From 400 people to 71,386: Web Summit before 2026",
+   "url": "https://promptugal.news/articles/web-summit-before-2026.html",
+   "published": "2026-11-06",
+   "story": "WS177",
+   "level": "claims",
+   "claims": 11,
+   "claims_resolved": 11,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 6,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "web-summit-day-2-refunds",
+   "title": "Web Summit's cancelled Day 2: what is known about refunds",
+   "url": "https://promptugal.news/articles/web-summit-day-2-refunds.html",
+   "published": "2026-11-10",
+   "story": "S45",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 9,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "web-summit-passes-and-colours",
+   "title": "Web Summit's nineteen passes: who is who, by colour",
+   "url": "https://promptugal.news/articles/web-summit-passes-and-colours.html",
+   "published": "2026-11-09",
+   "story": "wristband-colours",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 27,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "web-summit-ten-lisbon-years",
+   "title": "Web Summit's ten Lisbon years: 2.5 billion euros, says EY",
+   "url": "https://promptugal.news/articles/web-summit-ten-lisbon-years.html",
+   "published": "2026-11-06",
+   "story": "S13",
+   "level": "claims",
+   "claims": 15,
+   "claims_resolved": 15,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 4,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "web-summit-wristband-queues",
+   "title": "Web Summit wristbands: where the queues are short, and when",
+   "url": "https://promptugal.news/articles/web-summit-wristband-queues.html",
+   "published": "2026-11-09",
+   "story": "wristband-queues",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "wednesday-11-november-going-abroad",
+   "title": "Wednesday 11 November: a day for startups going abroad",
+   "url": "https://promptugal.news/articles/wednesday-11-november-going-abroad.html",
+   "published": "2026-11-06",
+   "story": "S17",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 5,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "what-lovable-deleted",
+   "title": "What Lovable deleted: its CEO on rebuilding an AI coding agent",
+   "url": "https://promptugal.news/articles/what-lovable-deleted.html",
+   "published": "2026-11-10",
+   "story": "S42",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 2,
+   "links": 3,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "what-the-agents-say-to-each-other",
+   "title": "What our agents say to each other, counted",
+   "url": "https://promptugal.news/articles/what-the-agents-say-to-each-other.html",
+   "published": "2026-11-06",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 9,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "where-to-find-portugal",
+   "title": "Where to find Portugal at Web Summit: Pavilion 1, stand E145",
+   "url": "https://promptugal.news/articles/where-to-find-portugal.html",
+   "published": "2026-11-09",
+   "story": "S34",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "who-builds-the-parts-of-an-ai-agent",
+   "title": "Who builds an AI agent's parts? Startups at Web Summit",
+   "url": "https://promptugal.news/articles/who-builds-the-parts-of-an-ai-agent.html",
+   "published": "2026-11-08",
+   "story": "S29",
+   "level": "claims",
+   "claims": 8,
+   "claims_resolved": 8,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 13,
+   "sources_section": false,
+   "gaps": []
+  },
+  {
+   "slug": "who-does-the-work",
+   "title": "Who does the work: six people and their 93 agents",
+   "url": "https://promptugal.news/articles/who-does-the-work.html",
+   "published": "2026-11-06",
+   "story": "T2",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 10,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "who-wrote-this-who-checked-it-who-signs-it",
+   "title": "Who wrote this, who checked it, and who signs it",
+   "url": "https://promptugal.news/articles/who-wrote-this-who-checked-it-who-signs-it.html",
+   "published": "2026-11-17",
+   "story": null,
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 9,
+   "sources_section": true,
+   "gaps": [
+    "sources listed in the article's Sources section, not recorded as data with read dates"
+   ]
+  },
+  {
+   "slug": "why-people-trust-ai-summaries",
+   "title": "Why people trust AI summaries more than they check them",
+   "url": "https://promptugal.news/articles/why-people-trust-ai-summaries.html",
+   "published": "2026-11-13",
+   "story": "S62",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "women-learning-and-building-ai-in-portugal",
+   "title": "Where women in Portugal can learn and build with AI",
+   "url": "https://promptugal.news/articles/women-learning-and-building-ai-in-portugal.html",
+   "published": "2026-11-13",
+   "story": "S63",
+   "level": "links",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 0,
+   "links": 10,
+   "sources_section": false,
+   "gaps": [
+    "sources as links in the text only, not recorded with a read date"
+   ]
+  },
+  {
+   "slug": "wpp-call-transcripts-to-jira",
+   "title": "How WPP turns call transcripts into reviewed Jira plans",
+   "url": "https://promptugal.news/articles/wpp-call-transcripts-to-jira.html",
+   "published": "2026-11-10",
+   "story": "S39",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 5,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "your-first-day-at-web-summit",
+   "title": "Web Summit Lisbon: your first day, from airport to arena",
+   "url": "https://promptugal.news/articles/your-first-day-at-web-summit.html",
+   "published": "2026-11-06",
+   "story": "S1",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 8,
+   "links": 12,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  },
+  {
+   "slug": "zalando-ai-coding-agents",
+   "title": "How Zalando rolled out AI coding agents across its engineering teams",
+   "url": "https://promptugal.news/articles/zalando-ai-coding-agents.html",
+   "published": "2026-11-11",
+   "story": "S46",
+   "level": "story",
+   "claims": 0,
+   "claims_resolved": 0,
+   "claims_on_websummit": 0,
+   "story_sources": 1,
+   "links": 2,
+   "sources_section": false,
+   "gaps": [
+    "sources named for the story, not claim by claim"
+   ]
+  }
+ ]
+}

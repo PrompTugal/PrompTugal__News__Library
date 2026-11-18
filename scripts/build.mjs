@@ -177,7 +177,7 @@ ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</
 <body>
 <a class="skip" href="#main">Skip to the catalogue</a>
 <header class="top"><div class="w"><a class="brand" href="/"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="135" height="22"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="135" height="22"><span>· Library</span></a>
-<nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/requests/">Requests</a><a href="/librarians/">For librarians</a></nav></div></header>
+<nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/fact-check/">Fact-check</a><a href="/requests/">Requests</a><a href="/librarians/">For librarians</a></nav></div></header>
 <main id="main" class="w">
 ${body}
 <footer class="foot">
@@ -267,7 +267,7 @@ json('api/v1/index.json', {
   about: 'library.promptugal.news, JSON first: the catalogue and the graph at the heart of PrompTugal.news. Every page of the site is built from these files.',
   api: 'v1', version, built_at: new Date().toISOString(), site: SITE, repository: REPO,
   licence: { catalogue: 'CC BY 4.0', items: 'each item keeps its source\'s licence (its licence.url)', code: 'Apache-2.0' },
-  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
+  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', fact_check: '/api/v1/fact-check/index.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
   counts: { items: items.length, collections: collections.length, nodes: nodeList.length, edges: edges.length, missing: missing.length },
   reads_from: ['https://data.promptugal.news/api/v1/ (by hand, at catalogue time; the site itself fetches nothing)'],
 });
@@ -439,6 +439,31 @@ page({ path: '/missing/', title: 'What is not here: PrompTugal.news Library', de
 ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).map((q) => `<div class="gap"><strong>${esc(q.id)}</strong> <span class="kind">${esc(q.state)}</span> <span class="note">opened ${esc(day(q.opened))} by ${esc(q.from)}</span><br>${esc(q.what)}<br><span class="note">Evidence: ${(q.evidence || []).map(ev).join(' · ')}</span>${q.answer ? `<br>Answer: ${esc(q.answer)}` : ''}</div>`).join('')}`).join('')}</section>`;
   const md = `# Requests and findings, team by team\n\n## How to answer\n\n${reqs.how_to_answer}\n\n## Requests\n\n${reqs.requests.map((q) => `- ${q.id} to ${q.to} (${q.state}, ${q.opened}): ${q.what} Evidence: ${(q.evidence || []).join(', ')}`).join('\n')}`;
   page({ path: '/requests/', title: 'Requests: PrompTugal.news Library', description: 'The library\'s requests channel: requests and findings for each PrompTugal team, read by every agent at every wake.', body, md });
+}
+
+// the fact-checker (Dinis, 18 Nov ~16:00 and ~19:00 UTC): provenance of every claim on the PrompTugal sites
+{
+  const fc = readJSON('catalogue/fact-check.json');
+  const LEVELS = ['claims', 'story', 'links', 'none'];
+  for (const a of fc.articles) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.slug) || !LEVELS.includes(a.level)) fail(`fact-check ${a.slug}: bad slug or level`);
+    if (a.url !== `https://promptugal.news/articles/${a.slug}.html`) fail(`fact-check ${a.slug}: url not built from the slug`);
+    checkText(`fact-check ${a.slug} title`, a.title, 200);
+    for (const g of a.gaps) checkText(`fact-check ${a.slug} gap`, g, 300);
+  }
+  if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
+  json('api/v1/fact-check/index.json', fc);
+  const c = fc.counts;
+  const row = (a) => `<tr><td><a href="${esc(a.url)}" rel="noopener noreferrer">${esc(a.title)}</a></td><td>${esc(a.level)}</td><td>${a.level === 'claims' ? `${a.claims_resolved} of ${a.claims}` : a.level === 'story' ? `${a.story_sources} for the story` : `${a.links} link${a.links === 1 ? '' : 's'}`}</td><td>${a.gaps.map(esc).join('; ')}</td></tr>`;
+  const order = [...fc.articles].sort((x, y) => LEVELS.indexOf(x.level) - LEVELS.indexOf(y.level) || (y.claims_on_websummit || 0) - (x.claims_on_websummit || 0) || x.slug.localeCompare(y.slug));
+  const body = `<section class="page wide"><p class="crumb"><a href="/">Library</a> › Fact-check</p><p class="k">The fact-checker · pass ${fc.pass} · ${esc(fc.site)}</p><h1>Is every claim walked back to its source?</h1>
+<p>${esc(fc.about)} Read from ${esc(fc.read_from)} on ${esc(day(fc.made))} by ${esc(fc.made_by)}. As JSON: <a href="/api/v1/fact-check/index.json">/api/v1/fact-check/index.json</a>.</p>
+<h2>The count</h2><table><thead><tr><th>Level</th><th>Articles</th><th>What it means</th></tr></thead><tbody>${LEVELS.map((l) => `<tr><td>${l}</td><td>${c[l]}</td><td>${esc(fc.levels[l])}</td></tr>`).join('')}</tbody></table>
+<p>Of ${c.articles} published articles, ${c.claims} map every claim to a recorded source: ${c.claims_resolved} of their ${c.claims_total} claims resolve to a page with its address and read date. ${c.claims_on_websummit} of those claims rest on websummit.com pages, which the site's rule of 11 November takes off unless another source is cited. The rest name their sources for the story, or in the text, but not claim by claim: those are gaps, not errors. Requests to the teams: <a href="/requests/">/requests/</a>.</p>
+<h2>Article by article</h2><div class="tbl"><table><thead><tr><th>Article (PrompTugal.news, CC BY 4.0)</th><th>Level</th><th>Sources</th><th>Gaps</th></tr></thead><tbody>${order.map(row).join('')}</tbody></table></div>
+<p class="note">Next passes: the library's own cards, then the other PrompTugal sites (data, events, videos and the rest).</p></section>`;
+  const md = `# Is every claim walked back to its source?\n\n${fc.about}\n\nPass ${fc.pass}, ${fc.site}, ${fc.made}. Articles ${c.articles}: claims ${c.claims}, story ${c.story}, links ${c.links}, none ${c.none}. Claims ${c.claims_resolved} of ${c.claims_total} resolved; ${c.claims_on_websummit} on websummit.com pages.\n\n${order.map((a) => `- [${a.title}](${a.url}): ${a.level}; ${a.gaps.join('; ')}`).join('\n')}`;
+  page({ path: '/fact-check/', title: 'Fact-check: PrompTugal.news Library', description: 'The library\'s fact-checker: how far each claim on the PrompTugal sites walks back to a recorded source, and the gaps.', body, md });
 }
 
 // the hand pages (content/*.md and content/finding-aids/*.md)
