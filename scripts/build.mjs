@@ -110,7 +110,8 @@ const edge = (from, verb, to) => {
   if (edgeKeys.has(k)) return; // the same edge from two routes is one edge
   edgeKeys.add(k); edges.push({ from, verb, to });
 };
-const addNode = (id, type, label, extra = {}) => { if (!nodes.has(id)) nodes.set(id, { id, type, label, ...extra }); return id; };
+const addNode = (id, type, label, extra = {}) => { if (!nodes.has(id)) nodes.set(id, { id, type, label, ...extra }); else if (extra.match && !nodes.get(id).match) nodes.get(id).match = extra.match; return id; };
+const MATCHES = new Set(['promptugal.news place', 'promptugal.news topic', 'promptugal.news agent', 'local']);
 for (const c of collections) {
   addNode(`collection:${c.id}`, 'collection', c.title);
   for (const a of c.about || []) edge(`collection:${c.id}`, 'covers', a);
@@ -123,12 +124,12 @@ for (const it of items) {
   if (it.summit_day && nodes.has(`day:${it.summit_day}`)) edge(me, it.kind === 'replay-day' ? 'records' : 'about', `day:${it.summit_day}`);
   for (const a of it.about || []) if (!(it.summit_day && a === `day:${it.summit_day}`)) edge(me, 'about', a);
   if (it.publisher_node) edge(me, 'published_by', it.publisher_node);
-  if (it.made_by) edge(me, 'made_by', addNode(`agent:${slug(it.made_by)}`, 'agent', it.made_by, { match: (omap.agents[it.made_by] || {}).match || 'local' }));
+  if (it.made_by) edge(me, 'made_by', addNode(`agent:${slug(it.made_by)}`, 'agent', it.made_by, { match: MATCHES.has((omap.agents[it.made_by] || {}).match) ? omap.agents[it.made_by].match : 'local' }));
   for (const t of it.tags || []) {
     if (/^(web summit( 2026| lisbon)?|the summit)$/i.test(t)) continue;
     const m = omap.tags[t];
     if (!m) { fail(`${me}: tag "${t}" is not in catalogue/ontology-map.json (run scripts/map-ontology.mjs)`); continue; }
-    if (!/^(place|topic):[a-z0-9][a-z0-9-]{0,60}$/.test(m.id)) { fail(`${me}: mapped id ${m.id} not allowed`); continue; }
+    if (!/^(place|topic):[a-z0-9][a-z0-9-]{0,60}$/.test(m.id) || !MATCHES.has(m.match)) { fail(`${me}: mapped id or match not allowed (${m.id}, ${m.match})`); continue; }
     edge(me, 'about', addNode(m.id, m.id.split(':')[0], t.replace(/^\[|\]$/g, ''), { match: m.match }));
   }
 }
@@ -424,7 +425,7 @@ page({ path: '/missing/', title: 'What is not here: PrompTugal.news Library', de
 <h2>Verbs and their inverses</h2><table><thead><tr><th>Verb</th><th>Inverse</th><th>Edges</th></tr></thead><tbody>${Object.entries(INVERSE).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td><td>${etypes[k] || 0}</td></tr>`).join('')}</tbody></table>
 <h2>The anchors</h2><p>The nodes other graphs link to. Wikidata ids were read by ontologist@PrompTugal.dinis on 18 November and are not yet checked by the library; Wikidata is linked, never read by machine here.</p><table><thead><tr><th>Node</th><th>Id</th><th>Wikidata</th></tr></thead><tbody>${nodesFile.nodes.map((n) => `<tr><td>${esc(n.label)}</td><td><code>${esc(n.id)}</code></td><td>${n.wikidata ? `<a href="https://www.wikidata.org/wiki/${esc(n.wikidata.id)}" rel="noopener noreferrer">${esc(n.wikidata.id)}</a> <span class="kind">proposed</span>` : 'none'}</td></tr>`).join('')}</tbody></table>
 <h2>Matched to the main site</h2><table><thead><tr><th>Kind</th><th>Matched to a promptugal.news id</th><th>The library's own</th></tr></thead><tbody>${['place', 'topic', 'agent'].map((t) => { const ns = nodeList.filter((n) => n.type === t && n.match); return `<tr><td>${t}</td><td>${ns.filter((n) => n.match !== 'local').length}</td><td>${ns.filter((n) => n.match === 'local').length}</td></tr>`; }).join('')}</tbody></table>
-<h2>The best-connected nodes</h2><table><thead><tr><th>Node</th><th>Type</th><th>Edges out</th></tr></thead><tbody>${hubs.map(([n, d]) => `<tr><td>${esc(n.label)}</td><td>${esc(n.type)}</td><td>${d}</td></tr>`).join('')}</tbody></table>
+<h2>The best-connected nodes</h2><table><thead><tr><th>Node</th><th>Type</th><th>Edges</th></tr></thead><tbody>${hubs.map(([n, d]) => `<tr><td>${esc(n.label)}</td><td>${esc(n.type)}</td><td>${d}</td></tr>`).join('')}</tbody></table>
 <p class="note">Anchor ids match the main site's where one exists (event:web-summit-lisbon-2026, organisation:web-summit), so this graph and promptugal.news's meet at the same nodes. The schema is being agreed with ontologist@PrompTugal.dinis and data.b@PrompTugal.dinis.</p></section>`;
   page({ path: '/graph/', title: 'The graph: PrompTugal.news Library', description: 'The library as a graph: nodes and typed edges, each with its inverse.', body, md: `# The graph\n\n${nodeList.length} nodes, ${edges.length} edges. JSON: /api/v1/graph/index.json\n\n## Edges and inverses\n\n${Object.entries(INVERSE).map(([k, v]) => `- ${k} / ${v}`).join('\n')}` });
 }

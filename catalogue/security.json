@@ -102,6 +102,61 @@
    "state": "accepted",
    "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)",
    "central_log": "S68"
+  },
+  {
+   "id": "LIB-2026-009",
+   "severity": "low",
+   "title": "The no-network check in the validator was easy to bypass (imports without node:, http2, net, tls, child_process, dynamic import, subfolders)",
+   "where": "scripts/validate.mjs",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 16:38 wake, before the push",
+   "fix": "Widened, walks scripts/ recursively, child_process allowed only for git in two named files; described as a tripwire, not a guarantee; tested with three bypasses",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after 8323f5b (AppSec post-review fixes of the 16:38 wake)"
+  },
+  {
+   "id": "LIB-2026-010",
+   "severity": "low",
+   "title": "The graph page's degree column was labelled 'Edges out' after degree began counting both ways",
+   "where": "scripts/build.mjs, the graph page",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 16:38 wake, before the push",
+   "fix": "Labelled 'Edges'",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after 8323f5b (AppSec post-review fixes of the 16:38 wake)"
+  },
+  {
+   "id": "LIB-2026-011",
+   "severity": "low",
+   "title": "A tag's match label from ontology-map.json was not checked against an allowed set",
+   "where": "scripts/build.mjs, tag mapping",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 16:38 wake, before the push",
+   "fix": "Only promptugal.news place/topic/agent or local accepted; anything else fails the build",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after 8323f5b (AppSec post-review fixes of the 16:38 wake)"
+  },
+  {
+   "id": "LIB-2026-012",
+   "severity": "low",
+   "title": "Nodes already in nodes.json (Lisbon, Portugal) got no match label, so the match table undercounted",
+   "where": "scripts/build.mjs, addNode",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 16:38 wake, before the push",
+   "fix": "The label is set on an existing node too",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after 8323f5b (AppSec post-review fixes of the 16:38 wake)"
+  },
+  {
+   "id": "LIB-2026-013",
+   "severity": "low",
+   "title": "map-ontology.mjs's containment check was lexical, so a symlink in the clone could point outside it",
+   "where": "scripts/map-ontology.mjs",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 16:38 wake, before the push",
+   "fix": "Both paths resolved with realpath before comparing; the script refuses to run outside the library's root",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after 8323f5b (AppSec post-review fixes of the 16:38 wake)"
   }
  ],
  "from_the_central_log": [

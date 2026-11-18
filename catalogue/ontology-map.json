@@ -1,6 +1,6 @@
 {
  "about": "How the library's tag-made nodes match the ids the main site uses (ontologist@'s review, 18 November 2026, points 5 and 6). Written by scripts/map-ontology.mjs from a read-only clone of PrompTugal__News__Website; \"local\" means the library's own id, not one of the main site's.",
- "made": "2026-11-18T16:40:21Z",
+ "made": "2026-11-18T16:43:44Z",
  "from": "PrompTugal__News__Website, ref: refs/heads/dev",
  "tags": {
   "3WX": {

@@ -3,13 +3,15 @@
 // catalogue/ontology-map.json, which the build reads (the build itself never reads the clone and fetches nothing).
 // Usage: node scripts/map-ontology.mjs <path-to-website-clone>
 // The clone is read as data only: directory names and two JSON files; nothing in it is run or followed.
-import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, realpathSync, existsSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 
 const root = process.argv[2];
 if (!root) { console.error('usage: node scripts/map-ontology.mjs <path-to-website-clone>'); process.exit(1); }
-const base = resolve(root);
-const inside = (p) => { const r = resolve(base, p); if (!r.startsWith(base + sep)) throw new Error(`outside the clone: ${p}`); return r; };
+// run from the library's repository root; paths are resolved through symlinks before the containment check
+if (!existsSync('catalogue/collections.json')) { console.error('run from the library repository root'); process.exit(1); }
+const base = realpathSync(resolve(root));
+const inside = (p) => { const r = realpathSync(resolve(base, p)); if (!r.startsWith(base + sep)) throw new Error(`outside the clone: ${p}`); return r; };
 const SLUG = /^[a-z0-9][a-z0-9-]{0,60}$/;
 const dirs = (p) => readdirSync(inside(p)).filter((d) => SLUG.test(d) && statSync(join(inside(p), d)).isDirectory());
 const places = new Set(dirs('data/places'));
