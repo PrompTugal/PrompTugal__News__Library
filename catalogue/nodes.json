@@ -1,15 +1,92 @@
 {
- "about": "Anchor nodes of the library's graph: events, organisations, places and days that items connect to. Ids match the ids the main site already uses where one exists (event:web-summit-lisbon-2026, organisation:web-summit), so the two graphs meet at the same anchors. Topic and agent nodes are added by the build from the items.",
+ "about": "Anchor nodes of the library's graph: events, organisations, places and days that items connect to. Ids match the ids the main site already uses where one exists (event:web-summit-lisbon-2026, organisation:web-summit), so the two graphs meet at the same anchors. Topic, place and agent nodes made from items' tags and makers are matched to the main site's ids in catalogue/ontology-map.json. Wikidata ids are proposed by ontologist@ and not yet checked by the library; www.wikidata.org is linked, never read by machine.",
  "nodes": [
-  {"id": "event:web-summit-lisbon-2026", "type": "event", "label": "Web Summit Lisbon 2026", "note": "9 to 12 November 2026, Lisbon. Day Two (Wednesday 11 November) did not take place: Storm Charles, on the Portuguese Government's formal advice.", "same_as": "https://promptugal.news/"},
-  {"id": "day:2026-11-09", "type": "event", "label": "Opening night, Monday 9 November 2026", "part_of": "event:web-summit-lisbon-2026"},
-  {"id": "day:2026-11-10", "type": "event", "label": "Day One, Tuesday 10 November 2026", "part_of": "event:web-summit-lisbon-2026"},
-  {"id": "day:2026-11-11", "type": "event", "label": "Day Two, Wednesday 11 November 2026 (cancelled)", "part_of": "event:web-summit-lisbon-2026", "note": "Did not take place: Storm Charles. Many sessions moved to Thursday."},
-  {"id": "day:2026-11-12", "type": "event", "label": "Day Three, Thursday 12 November 2026", "part_of": "event:web-summit-lisbon-2026", "note": "The final day, with sessions rescheduled from Wednesday."},
-  {"id": "event:storm-charles", "type": "event", "label": "Storm Charles", "note": "The storm that closed Web Summit's Day Two, November 2026."},
-  {"id": "organisation:web-summit", "type": "organisation", "label": "Web Summit", "same_as": "https://websummit.com/"},
-  {"id": "organisation:promptugal-news", "type": "organisation", "label": "PrompTugal.news", "same_as": "https://promptugal.news/"},
-  {"id": "place:lisbon", "type": "place", "label": "Lisbon", "part_of": "place:portugal"},
-  {"id": "place:portugal", "type": "place", "label": "Portugal"}
+  {
+   "id": "event:web-summit-lisbon-2026",
+   "type": "event",
+   "label": "Web Summit Lisbon 2026",
+   "note": "9 to 12 November 2026, Lisbon. Day Two (Wednesday 11 November) did not take place: Storm Charles, on the Portuguese Government's formal advice. No Wikidata item of its own for the 2026 edition (ontologist@, 18 November).",
+   "same_as": "https://promptugal.news/",
+   "edition_of": "series:web-summit"
+  },
+  {
+   "id": "series:web-summit",
+   "type": "series",
+   "label": "Web Summit (the conference series)",
+   "note": "The conference that comes back each year; its 2026 Lisbon edition is event:web-summit-lisbon-2026. Not the company that runs it (organisation:web-summit).",
+   "wikidata": {
+    "id": "Q16967344",
+    "read": "2026-11-18",
+    "by": "ontologist@PrompTugal.dinis (Special:EntityData; PrompTugal__News__Website board/briefs/2026-11-18-library-graph-review.md)",
+    "status": "proposed, unverified by the library"
+   }
+  },
+  {
+   "id": "day:2026-11-09",
+   "type": "day",
+   "label": "Opening night, Monday 9 November 2026",
+   "part_of": "event:web-summit-lisbon-2026"
+  },
+  {
+   "id": "day:2026-11-10",
+   "type": "day",
+   "label": "Day One, Tuesday 10 November 2026",
+   "part_of": "event:web-summit-lisbon-2026"
+  },
+  {
+   "id": "day:2026-11-11",
+   "type": "day",
+   "label": "Day Two, Wednesday 11 November 2026 (cancelled)",
+   "part_of": "event:web-summit-lisbon-2026",
+   "note": "Did not take place: Storm Charles. Many sessions moved to Thursday."
+  },
+  {
+   "id": "day:2026-11-12",
+   "type": "day",
+   "label": "Day Three, Thursday 12 November 2026",
+   "part_of": "event:web-summit-lisbon-2026",
+   "note": "The final day, with sessions rescheduled from Wednesday."
+  },
+  {
+   "id": "event:storm-charles",
+   "type": "event",
+   "label": "Storm Charles",
+   "note": "The storm that closed Web Summit's Day Two, November 2026."
+  },
+  {
+   "id": "organisation:web-summit",
+   "type": "organisation",
+   "label": "Web Summit",
+   "same_as": "https://websummit.com/"
+  },
+  {
+   "id": "organisation:promptugal-news",
+   "type": "organisation",
+   "label": "PrompTugal.news",
+   "same_as": "https://promptugal.news/"
+  },
+  {
+   "id": "place:lisbon",
+   "type": "place",
+   "label": "Lisbon",
+   "part_of": "place:portugal",
+   "wikidata": {
+    "id": "Q597",
+    "read": "2026-11-18",
+    "by": "ontologist@PrompTugal.dinis (Special:EntityData; PrompTugal__News__Website board/briefs/2026-11-18-library-graph-review.md)",
+    "status": "proposed, unverified by the library"
+   }
+  },
+  {
+   "id": "place:portugal",
+   "type": "place",
+   "label": "Portugal",
+   "wikidata": {
+    "id": "Q45",
+    "read": "2026-11-18",
+    "by": "ontologist@PrompTugal.dinis (Special:EntityData; PrompTugal__News__Website board/briefs/2026-11-18-library-graph-review.md)",
+    "status": "proposed, unverified by the library"
+   }
+  }
  ]
 }

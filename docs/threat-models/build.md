@@ -1,6 +1,6 @@
 # Threat model: the build and the deploy
 
-Owner: library.b@PrompTugal.dinis. Written 18 November 2026. Status: written, not yet reviewed by security@.
+Owner: library.b@PrompTugal.dinis. Written 18 November 2026. Status: written; reviewed by security@PrompTugal.dinis on 18 November 2026, 16:05 UTC (good).
 
 ## Parts
 `scripts/build.mjs` (catalogue and content to `_site/`), `scripts/validate.mjs`, `scripts/leak-scan.mjs`, `scripts/check-commits.mjs`, `scripts/release.sh`, `.github/workflows/pages.yml` (from the AgentiCCells site template; runs on every push to `dev`).

@@ -52,8 +52,16 @@ for (const n of nodesFile.nodes) {
   if (!NODE.test(n.id) && !/^day:\d{4}-\d{2}-\d{2}$/.test(n.id)) fail(`node ${n.id}: bad id`);
   checkText(`node ${n.id} label`, n.label, 200); checkText(`node ${n.id} note`, n.note, 500);
   if (n.same_as) checkUrl(`node ${n.id} same_as`, n.same_as);
+  if (!['event', 'day', 'series', 'organisation', 'place', 'topic'].includes(n.type)) fail(`node ${n.id}: type ${n.type} not allowed in nodes.json`);
+  if (n.wikidata) {
+    // ids only, read by another agent: never a URL, never fetched by the build (security pre-review, wake of 16:38)
+    if (!/^Q[1-9][0-9]{0,11}$/.test(n.wikidata.id || '')) fail(`node ${n.id}: wikidata id must be Q<number>`);
+    if (!n.wikidata.read || !n.wikidata.by || !/^proposed/.test(n.wikidata.status || '')) fail(`node ${n.id}: wikidata needs read, by and status 'proposed, unverified'`);
+    checkText(`node ${n.id} wikidata by`, n.wikidata.by, 200);
+  }
   nodes.set(n.id, { ...n });
 }
+const omap = readJSON('catalogue/ontology-map.json');
 const slug = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 const items = [];
 const missing = [];
@@ -89,16 +97,25 @@ for (const c of collections) {
 if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED: ${problems.length} problem(s) in the catalogue`); process.exit(1); }
 
 // ---------- the graph: nodes and typed edges, each with its inverse ----------
-const INVERSE = { part_of: 'has_part', about: 'subject_of', published_by: 'publisher_of', records: 'recorded_in', covers: 'covered_by', made_by: 'maker_of', on_shelf: 'shelves' };
+// Each edge is stored once, under its verb; its inverse is read from INVERSE, never stored (ontologist@'s review, 18 Nov).
+// Verbs and inverses follow the main site's ontology where it has them (part_of/includes, about/subject_of,
+// made_by/made, edition_of/has_edition); the library's own: on_shelf/shelves, records/recorded_in,
+// published_by/publisher_of, covers/covered_by.
+const INVERSE = { part_of: 'includes', about: 'subject_of', published_by: 'publisher_of', records: 'recorded_in', covers: 'covered_by', made_by: 'made', on_shelf: 'shelves', edition_of: 'has_edition' };
 const edges = [];
-const edge = (from, type, to) => { edges.push({ from, type, to }); edges.push({ from: to, type: INVERSE[type], to: from }); };
-const addNode = (id, type, label) => { if (!nodes.has(id)) nodes.set(id, { id, type, label }); return id; };
-const PLACES = new Map([...nodes.values()].filter((n) => n.type === 'place').map((n) => [n.label.toLowerCase(), n.id]));
+const edgeKeys = new Set();
+const edge = (from, verb, to) => {
+  if (!INVERSE[verb]) return fail(`edge ${from} ${verb} ${to}: verb not in the table`);
+  const k = `${from}\t${verb}\t${to}`;
+  if (edgeKeys.has(k)) return; // the same edge from two routes is one edge
+  edgeKeys.add(k); edges.push({ from, verb, to });
+};
+const addNode = (id, type, label, extra = {}) => { if (!nodes.has(id)) nodes.set(id, { id, type, label, ...extra }); return id; };
 for (const c of collections) {
   addNode(`collection:${c.id}`, 'collection', c.title);
   for (const a of c.about || []) edge(`collection:${c.id}`, 'covers', a);
 }
-for (const n of nodesFile.nodes) if (n.part_of) edge(n.id, 'part_of', n.part_of);
+for (const n of nodesFile.nodes) { if (n.part_of) edge(n.id, 'part_of', n.part_of); if (n.edition_of) edge(n.id, 'edition_of', n.edition_of); }
 for (const it of items) {
   const me = `item:${it.id}`;
   addNode(me, 'item', `${it.call_number} ${it.title}`);
@@ -106,20 +123,23 @@ for (const it of items) {
   if (it.summit_day && nodes.has(`day:${it.summit_day}`)) edge(me, it.kind === 'replay-day' ? 'records' : 'about', `day:${it.summit_day}`);
   for (const a of it.about || []) if (!(it.summit_day && a === `day:${it.summit_day}`)) edge(me, 'about', a);
   if (it.publisher_node) edge(me, 'published_by', it.publisher_node);
-  if (it.made_by) edge(me, 'made_by', addNode(`agent:${slug(it.made_by)}`, 'agent', it.made_by));
+  if (it.made_by) edge(me, 'made_by', addNode(`agent:${slug(it.made_by)}`, 'agent', it.made_by, { match: (omap.agents[it.made_by] || {}).match || 'local' }));
   for (const t of it.tags || []) {
     if (/^(web summit( 2026| lisbon)?|the summit)$/i.test(t)) continue;
-    const place = PLACES.get(t.toLowerCase());
-    edge(me, 'about', place || addNode(`topic:${slug(t)}`, 'topic', t));
+    const m = omap.tags[t];
+    if (!m) { fail(`${me}: tag "${t}" is not in catalogue/ontology-map.json (run scripts/map-ontology.mjs)`); continue; }
+    if (!/^(place|topic):[a-z0-9][a-z0-9-]{0,60}$/.test(m.id)) { fail(`${me}: mapped id ${m.id} not allowed`); continue; }
+    edge(me, 'about', addNode(m.id, m.id.split(':')[0], t.replace(/^\[|\]$/g, ''), { match: m.match }));
   }
 }
 const nodeList = [...nodes.values()];
 // the graph's own check: every edge's ends exist, every edge has its inverse, no orphan item
-for (const e of edges) if (!nodes.has(e.from) || !nodes.has(e.to)) fail(`edge ${e.from} ${e.type} ${e.to}: an end is not a node`);
-const deg = new Map(); for (const e of edges) deg.set(e.from, (deg.get(e.from) || 0) + 1);
+for (const e of edges) if (!nodes.has(e.from) || !nodes.has(e.to)) fail(`edge ${e.from} ${e.verb} ${e.to}: an end is not a node`);
+const deg = new Map(); for (const e of edges) { deg.set(e.from, (deg.get(e.from) || 0) + 1); deg.set(e.to, (deg.get(e.to) || 0) + 1); }
 for (const n of nodeList) if (!deg.get(n.id)) fail(`graph: ${n.id} is an orphan`);
 if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED: ${problems.length} problem(s) in the graph`); process.exit(1); }
-const neighbours = (id) => edges.filter((e) => e.from === id);
+// an item's or node's connections, both ways: stored edges read forwards, and backwards under their inverse
+const neighbours = (id) => [...edges.filter((e) => e.from === id).map((e) => ({ from: id, verb: e.verb, to: e.to })), ...edges.filter((e) => e.to === id).map((e) => ({ from: id, verb: INVERSE[e.verb], to: e.from, inverse_of: e.verb }))];
 
 // ---------- output helpers ----------
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -229,8 +249,8 @@ json('api/v1/items/index.json', {
 const collectionJSON = (c) => ({ id: c.id, prefix: c.prefix, title: c.title, scope: c.scope, about: c.about, opened: c.opened, keeper: c.keeper, count: byCollection(c.id).length, rule: c.rule, page: `/collections/${c.id}/`, api: `/api/v1/collections/${c.id}.json` });
 json('api/v1/collections/index.json', { about: 'The collections (shelves) of the library.', collections: collections.map(collectionJSON) });
 for (const c of collections) json(`api/v1/collections/${c.id}.json`, { collection: collectionJSON(c), items: byCollection(c.id).map((i) => ({ id: i.id, call_number: i.call_number, title: i.title, kind: i.kind, api: `/api/v1/items/${i.id}.json` })), missing: missing.filter((m) => m.collection === c.id), history: c.history });
-json('api/v1/graph/index.json', { about: 'The library as a graph: every node, and every typed edge with its inverse (each relation appears in both directions).', inverses: INVERSE, counts: { nodes: nodeList.length, edges: edges.length }, nodes: nodeList, edges });
-const index = { place: {}, topic: {}, organisation: {}, event: {}, person: {}, agent: {}, date: {}, kind: {}, call_number: {} };
+json('api/v1/graph/index.json', { about: 'The library as a graph: every node, and every typed edge stored once under its verb. Read an edge backwards with the inverses table (an inverse is never stored). Aligned with PrompTugal.news\'s ontology (data/ontology.json) on 18 November 2026. Nodes with match "local" are the library\'s own ids; wikidata ids are proposed, unverified, read by ontologist@.', changed: '2026-11-18: edges stored once (they were stored both ways) and keyed verb (was type); days typed day; inverse of made_by is made; part_of\'s inverse is includes. See /api/.', inverses: INVERSE, counts: { nodes: nodeList.length, edges: edges.length }, nodes: nodeList, edges });
+const index = { place: {}, topic: {}, organisation: {}, event: {}, day: {}, person: {}, agent: {}, date: {}, kind: {}, call_number: {} };
 for (const it of items) {
   for (const e of neighbours(`item:${it.id}`)) {
     const n = nodes.get(e.to); const k = n.type === 'collection' || n.type === 'item' ? null : n.type;
@@ -350,8 +370,8 @@ const counts = { items: held.length, replays: held.filter((i) => i.kind === 'rep
 for (const it of items) {
   const c = it.shelf;
   const same = byCollection(c.id).filter((x) => x.id !== it.id && x.kind === it.kind).slice(0, 5);
-  const conn = neighbours(`item:${it.id}`).filter((e) => e.type !== 'on_shelf').map((e) => ({ type: e.type, n: nodes.get(e.to) }));
-  const nodeLink = (n) => n.type === 'topic' || n.type === 'place' || n.type === 'organisation' || n.type === 'event' || n.type === 'agent' ? `/index/${n.type}/#${anchor(n.id)}` : null;
+  const conn = neighbours(`item:${it.id}`).filter((e) => e.verb !== 'on_shelf').map((e) => ({ type: e.verb, n: nodes.get(e.to) }));
+  const nodeLink = (n) => ['topic', 'place', 'organisation', 'event', 'agent', 'day'].includes(n.type) ? `/index/${n.type}/#${anchor(n.id)}` : null;
   const lic = it.licence;
   const isOurs = lic.name === 'CC BY 4.0' && /^https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/?$/.test(lic.url);
   const card = `<aside class="card" aria-label="Catalogue card"><span class="redline"></span><div class="cn"><span>${esc(it.call_number)}</span><span>${esc(c.prefix)}</span></div>
@@ -380,7 +400,7 @@ ${card}
 }
 
 // the indexes
-const INDEX_TITLES = { place: 'By place', topic: 'By topic', organisation: 'By organisation', event: 'By event', agent: 'By agent', date: 'By date', kind: 'By kind' };
+const INDEX_TITLES = { place: 'By place', topic: 'By topic', organisation: 'By organisation', event: 'By event', day: 'By summit day', agent: 'By agent', date: 'By date', kind: 'By kind' };
 for (const [k, t] of Object.entries(INDEX_TITLES)) {
   const entries = Object.entries(index[k]).sort((a, b) => (k === 'date' ? b[0].localeCompare(a[0]) : a[1].label.localeCompare(b[1].label)));
   const it = (id) => items.find((x) => x.id === id);
@@ -396,12 +416,14 @@ page({ path: '/missing/', title: 'What is not here: PrompTugal.news Library', de
 // the graph page
 {
   const types = {}; for (const n of nodeList) types[n.type] = (types[n.type] || 0) + 1;
-  const etypes = {}; for (const e of edges) etypes[e.type] = (etypes[e.type] || 0) + 1;
+  const etypes = {}; for (const e of edges) etypes[e.verb] = (etypes[e.verb] || 0) + 1;
   const hubs = nodeList.filter((n) => n.type !== 'item').map((n) => [n, deg.get(n.id) || 0]).sort((a, b) => b[1] - a[1]).slice(0, 15);
   const body = `<section class="page wide"><p class="crumb"><a href="/">Library</a> › The graph</p><p class="k">The graph is the product</p><h1>The graph</h1>
-<p>Every item, collection, event, day, organisation, place, topic and agent is a node; every connection is a typed edge, stored in both directions with its named inverse, so the graph can be walked from either end. ${nodeList.length} nodes and ${edges.length} edges. We do not draw the whole graph (a picture of everything is rarely useful): each reading room shows one item and its neighbours, and the whole graph is JSON at <a href="/api/v1/graph/index.json">/api/v1/graph/index.json</a>.</p>
+<p>Every item, collection, event, day, organisation, place, topic and agent is a node; every connection is a typed edge, stored once under its verb; its named inverse lets the graph be walked from either end. ${nodeList.length} nodes and ${edges.length} edges, aligned with PrompTugal.news's own ontology. We do not draw the whole graph (a picture of everything is rarely useful): each reading room shows one item and its neighbours, and the whole graph is JSON at <a href="/api/v1/graph/index.json">/api/v1/graph/index.json</a>.</p>
 <h2>Nodes by type</h2><table><thead><tr><th>Type</th><th>Nodes</th></tr></thead><tbody>${Object.entries(types).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table>
-<h2>Edges and their inverses</h2><table><thead><tr><th>Edge</th><th>Inverse</th><th>Count each way</th></tr></thead><tbody>${Object.entries(INVERSE).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td><td>${etypes[k] || 0}</td></tr>`).join('')}</tbody></table>
+<h2>Verbs and their inverses</h2><table><thead><tr><th>Verb</th><th>Inverse</th><th>Edges</th></tr></thead><tbody>${Object.entries(INVERSE).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td><td>${etypes[k] || 0}</td></tr>`).join('')}</tbody></table>
+<h2>The anchors</h2><p>The nodes other graphs link to. Wikidata ids were read by ontologist@PrompTugal.dinis on 18 November and are not yet checked by the library; Wikidata is linked, never read by machine here.</p><table><thead><tr><th>Node</th><th>Id</th><th>Wikidata</th></tr></thead><tbody>${nodesFile.nodes.map((n) => `<tr><td>${esc(n.label)}</td><td><code>${esc(n.id)}</code></td><td>${n.wikidata ? `<a href="https://www.wikidata.org/wiki/${esc(n.wikidata.id)}" rel="noopener noreferrer">${esc(n.wikidata.id)}</a> <span class="kind">proposed</span>` : 'none'}</td></tr>`).join('')}</tbody></table>
+<h2>Matched to the main site</h2><table><thead><tr><th>Kind</th><th>Matched to a promptugal.news id</th><th>The library's own</th></tr></thead><tbody>${['place', 'topic', 'agent'].map((t) => { const ns = nodeList.filter((n) => n.type === t && n.match); return `<tr><td>${t}</td><td>${ns.filter((n) => n.match !== 'local').length}</td><td>${ns.filter((n) => n.match === 'local').length}</td></tr>`; }).join('')}</tbody></table>
 <h2>The best-connected nodes</h2><table><thead><tr><th>Node</th><th>Type</th><th>Edges out</th></tr></thead><tbody>${hubs.map(([n, d]) => `<tr><td>${esc(n.label)}</td><td>${esc(n.type)}</td><td>${d}</td></tr>`).join('')}</tbody></table>
 <p class="note">Anchor ids match the main site's where one exists (event:web-summit-lisbon-2026, organisation:web-summit), so this graph and promptugal.news's meet at the same nodes. The schema is being agreed with ontologist@PrompTugal.dinis and data.b@PrompTugal.dinis.</p></section>`;
   page({ path: '/graph/', title: 'The graph: PrompTugal.news Library', description: 'The library as a graph: nodes and typed edges, each with its inverse.', body, md: `# The graph\n\n${nodeList.length} nodes, ${edges.length} edges. JSON: /api/v1/graph/index.json\n\n## Edges and inverses\n\n${Object.entries(INVERSE).map(([k, v]) => `- ${k} / ${v}`).join('\n')}` });

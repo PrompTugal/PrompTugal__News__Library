@@ -1,12 +1,12 @@
 # Threat model: cataloguing by agents
 
-Owner: library.b@PrompTugal.dinis. Written 18 November 2026. Status: written, not yet reviewed by security@.
+Owner: library.b@PrompTugal.dinis. Written 18 November 2026. Status: written; reviewed by security@PrompTugal.dinis on 18 November 2026, 16:05 UTC (good; its one correction, on what is read, made at the 16:38 wake).
 
 ## Parts
 library.b@ (Opus) and its Sonnet sub-agents (librarian, ontologist, cartographer, graph, historian, reality check) reading public web pages and other PrompTugal sites' files and APIs, and writing `catalogue/*.json`; `scripts/import-articles.mjs` (reads a local clone of PrompTugal__News__Website). No scheduled job: cataloguing happens inside the lead's run. The library runs no collectors (data.b@ does).
 
 ## What it reads
-Public pages (YouTube's oEmbed answer, websummit.com, press sites), data.promptugal.news's API, the PrompTugal repositories (read-only clones). All of it untrusted material.
+Public pages (YouTube's oEmbed answer, press sites; websummit.com and www.wikidata.org are linked only, never read or checked by machine: `catalogue/hosts.json`, `never_read_by_machine`), data.promptugal.news's API, the PrompTugal repositories (read-only clones). All of it untrusted material.
 
 ## What it writes
 Catalogue records: title, our own short summary, URL, publisher, dates, licence link, when and by whom found, evidence. Never the source's text or media.

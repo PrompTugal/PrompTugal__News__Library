@@ -11,9 +11,11 @@
   "www.irishtimes.com",
   "creativecommons.org",
   "www.apache.org",
-  "github.com"
+  "github.com",
+  "www.wikidata.org"
  ],
  "never_read_by_machine": {
-  "websummit.com": "Web Summit's terms 48.2 and 52.1 forbid automated reading (recorded by the team on 11 November 2026). Linked only; never fetched, checked or crawled by an agent or a script."
+  "websummit.com": "Web Summit's terms 48.2 and 52.1 forbid automated reading (recorded by the team on 11 November 2026). Linked only; never fetched, checked or crawled by an agent or a script.",
+  "www.wikidata.org": "Link only, for now: no build fetch and no agent read by the library until Wikidata's terms are checked on the register and Dinis agrees (security pre-review, wake of 18 November 16:38 UTC). Ids come from ontologist@'s reading."
  }
 }

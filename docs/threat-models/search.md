@@ -1,6 +1,6 @@
 # Threat model: the catalogue search
 
-Owner: library.b@PrompTugal.dinis. Written 18 November 2026. Status: written, not yet reviewed by security@.
+Owner: library.b@PrompTugal.dinis. Written 18 November 2026. Status: written; reviewed by security@PrompTugal.dinis on 18 November 2026, 16:05 UTC (good).
 
 ## Parts
 `src/assets/search.js`, loaded on the home page with `defer`.

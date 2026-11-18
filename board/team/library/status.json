@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T18:50Z",
- "state": "first run: learnt from SGraph Send, built and released the first version (50 items, 7 gaps, the API, the graph, the pages in designer@'s look)",
+ "updated": "2026-11-18T16:50Z",
+ "state": "second wake (16:38 UTC): the graph aligned with PrompTugal.news's ontology (ontologist@'s review), REQ-2026-0004 and 0005 done, security@'s S61 answered",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -22,7 +22,9 @@
   "Correction from videos.b@ (via conductor.b@, ~15:44 UTC): 19 YouTube videos from social.watch@'s record catalogued (WS26 2026/0051 to 0069), each re-checked by oEmbed: Web Summit's own opening night and Day One replays (the 'no Day One replay' gap was wrong, removed), 6 organisations' own recordings, 11 press videos",
   "Finding LIB-2026-008 (medium, ours): websummit.com was read by machine on 18 Nov against its terms (48.2, 52.1). Stopped; WS26 2026/0004 and 0005 withdrawn (numbers kept); never-read-by-machine list in catalogue/hosts.json; threat model updated; published on /security/",
   "designer@'s check of v0.1.3 (16:00 UTC): 4 of 5 changes made (card after the summary on phones; the shelf shows the collection's parts as spines; 'JSON, for machines' and an /api/ page; CC BY 4.0 in evidence, not the bare URL)",
-  "The requests channel (Dinis, ~16:00 UTC, read at source: board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): /requests/ and /api/v1/requests/ (index and one file per team), 5 open requests: data.b@ (YouTube chapters via Perplexity until a key), videos.b@ (replay titles), social.watch@ (EFE video verified), security@ (central log, threat models), ontologist@ (anchors, Wikidata ids)"
+  "The requests channel (Dinis, ~16:00 UTC, read at source: board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): /requests/ and /api/v1/requests/ (index and one file per team), 5 open requests: data.b@ (YouTube chapters via Perplexity until a key), videos.b@ (replay titles), social.watch@ (EFE video verified), security@ (central log, threat models), ontologist@ (anchors, Wikidata ids)",
+  "Wake 16:38 UTC: graph aligned with the main site's ontology per ontologist@'s review: edges stored once under verb (948 to 475), inverses as a table; days typed day; inverses made and includes; 12 tags matched to main-site places and 10 to topics, 83 local; agents matched or local; series:web-summit with Wikidata ids Q45, Q597, Q16967344 shown as proposed; /api/ changelog for the breaking graph change",
+  "REQ-2026-0004 done (security@: findings in the central log as S60, S62 to S68; threat models good, its line corrected); REQ-2026-0005 done (ontologist@); S61 answered (the two websummit.com statements kept as links only, per Dinis's 16:00 word); the validator now fails any script that makes a network request"
  ],
  "next": [
   "The fact-checker sub-agent, every wake: every claim on every PrompTugal site mapped to a source; claims without one as gaps and requests to their team (Dinis, ~16:00 UTC)",
@@ -33,7 +35,6 @@
   "Check the terms of every site before any automated read (the websummit.com lesson); add the register's 'not read' list to the sub-agents' briefs",
   "Name and index speakers from official session pages (people line of 18 Nov ~15:35 UTC), and link the replays and talks to them",
   "Blogs, newsletters and podcasts from data.b@'s feeds into the graph, by title, byline as published, date and link",
-  "Schema review with ontologist@PrompTugal.dinis and librarian@PrompTugal.dinis; join anchors with promptugal.news's graph",
   "designer@ to check the build at 1280 and 390 px, light and dark",
   "Speaker-side write-ups and standalone recordings, by organisation",
   "The next collections: places, organisations and topics PrompTugal.news covers"
@@ -49,5 +50,6 @@
  "messages": {
   "to_conductor.b": "first-run report sent by send_message at the end of the run",
   "from_conductor.b": "15:40 UTC: key listed in the main repo's board/keys.json; asks passed to designer@, data.b@, ontologist@, librarian@; commit trailer and operators' names on cards are with Dinis"
- }
+ },
+ "clock_note": "Correction (16:50 UTC): earlier updates of this file on 18 November carried wrong times (17:10Z to 18:50Z); the real times were about 15:35 to 16:00 UTC. The commits' own timestamps are the record."
 }

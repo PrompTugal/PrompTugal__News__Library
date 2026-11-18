@@ -1,0 +1,465 @@
+{
+ "about": "How the library's tag-made nodes match the ids the main site uses (ontologist@'s review, 18 November 2026, points 5 and 6). Written by scripts/map-ontology.mjs from a read-only clone of PrompTugal__News__Website; \"local\" means the library's own id, not one of the main site's.",
+ "made": "2026-11-18T16:40:21Z",
+ "from": "PrompTugal__News__Website, ref: refs/heads/dev",
+ "tags": {
+  "3WX": {
+   "id": "topic:3wx",
+   "match": "local"
+  },
+  "AI": {
+   "id": "topic:ai",
+   "match": "promptugal.news topic"
+  },
+  "AI agents": {
+   "id": "topic:ai-agents",
+   "match": "promptugal.news topic"
+  },
+  "AICEP": {
+   "id": "topic:aicep",
+   "match": "local"
+  },
+  "Algarve": {
+   "id": "place:algarve",
+   "match": "promptugal.news place"
+  },
+  "ApexBrasil": {
+   "id": "topic:apexbrasil",
+   "match": "local"
+  },
+  "Azores": {
+   "id": "topic:azores",
+   "match": "local"
+  },
+  "Best Number One": {
+   "id": "topic:best-number-one",
+   "match": "local"
+  },
+  "Braga": {
+   "id": "place:braga",
+   "match": "promptugal.news place"
+  },
+  "Brazil": {
+   "id": "place:brazil",
+   "match": "promptugal.news place"
+  },
+  "Discord": {
+   "id": "topic:discord",
+   "match": "local"
+  },
+  "Europe": {
+   "id": "topic:europe",
+   "match": "promptugal.news topic"
+  },
+  "European Commission": {
+   "id": "topic:european-commission",
+   "match": "local"
+  },
+  "Galp": {
+   "id": "topic:galp",
+   "match": "local"
+  },
+  "Humanos": {
+   "id": "topic:humanos",
+   "match": "local"
+  },
+  "IBM": {
+   "id": "topic:ibm",
+   "match": "local"
+  },
+  "IPMA": {
+   "id": "topic:ipma",
+   "match": "local"
+  },
+  "Lisbon": {
+   "id": "place:lisbon",
+   "match": "promptugal.news place"
+  },
+  "Loulé": {
+   "id": "place:loule",
+   "match": "promptugal.news place"
+  },
+  "Madeira]": {
+   "id": "place:madeira",
+   "match": "promptugal.news place"
+  },
+  "Pavilion 1": {
+   "id": "topic:pavilion-1",
+   "match": "local"
+  },
+  "Porto": {
+   "id": "place:porto",
+   "match": "promptugal.news place"
+  },
+  "Portugal": {
+   "id": "place:portugal",
+   "match": "promptugal.news place"
+  },
+  "Portugal Stand": {
+   "id": "topic:portugal-stand",
+   "match": "local"
+  },
+  "PrompTugal.news": {
+   "id": "topic:promptugal-news",
+   "match": "local"
+  },
+  "Quarteira": {
+   "id": "place:quarteira",
+   "match": "promptugal.news place"
+  },
+  "RiskMandate": {
+   "id": "topic:riskmandate",
+   "match": "local"
+  },
+  "Road 2 Web Summit": {
+   "id": "topic:road-2-web-summit",
+   "match": "local"
+  },
+  "Sebrae": {
+   "id": "topic:sebrae",
+   "match": "local"
+  },
+  "Startup Portugal": {
+   "id": "topic:startup-portugal",
+   "match": "local"
+  },
+  "Storm Charles": {
+   "id": "topic:storm-charles",
+   "match": "local"
+  },
+  "Unicorn Factory Lisboa": {
+   "id": "place:unicorn-factory-lisboa",
+   "match": "promptugal.news place"
+  },
+  "Web Summit": {
+   "id": "topic:web-summit",
+   "match": "local"
+  },
+  "Web Summit 2026": {
+   "id": "topic:web-summit-2026",
+   "match": "local"
+  },
+  "Web Summit]": {
+   "id": "topic:web-summit",
+   "match": "local"
+  },
+  "[Portugal": {
+   "id": "place:portugal",
+   "match": "promptugal.news place"
+  },
+  "agents at work": {
+   "id": "topic:agents-at-work",
+   "match": "local"
+  },
+  "ai": {
+   "id": "topic:ai",
+   "match": "promptugal.news topic"
+  },
+  "ai agents": {
+   "id": "topic:ai-agents",
+   "match": "promptugal.news topic"
+  },
+  "ai and robotics": {
+   "id": "topic:ai-and-robotics",
+   "match": "local"
+  },
+  "announcements": {
+   "id": "topic:announcements",
+   "match": "promptugal.news topic"
+  },
+  "brazil": {
+   "id": "place:brazil",
+   "match": "promptugal.news place"
+  },
+  "coding agents": {
+   "id": "topic:coding-agents",
+   "match": "local"
+  },
+  "connections": {
+   "id": "topic:connections",
+   "match": "local"
+  },
+  "counts": {
+   "id": "topic:counts",
+   "match": "local"
+  },
+  "delegations": {
+   "id": "topic:delegations",
+   "match": "local"
+  },
+  "delivery": {
+   "id": "topic:delivery",
+   "match": "local"
+  },
+  "diagnostics": {
+   "id": "topic:diagnostics",
+   "match": "local"
+  },
+  "eDynamics": {
+   "id": "topic:edynamics",
+   "match": "local"
+  },
+  "economy": {
+   "id": "topic:economy",
+   "match": "local"
+  },
+  "engineering": {
+   "id": "topic:engineering",
+   "match": "local"
+  },
+  "fintech": {
+   "id": "topic:fintech",
+   "match": "local"
+  },
+  "funding": {
+   "id": "topic:funding",
+   "match": "local"
+  },
+  "getting there": {
+   "id": "topic:getting-there",
+   "match": "local"
+  },
+  "getvocal": {
+   "id": "topic:getvocal",
+   "match": "local"
+  },
+  "glovo": {
+   "id": "topic:glovo",
+   "match": "local"
+  },
+  "health": {
+   "id": "topic:health",
+   "match": "local"
+  },
+  "healthtech": {
+   "id": "topic:healthtech",
+   "match": "local"
+  },
+  "history": {
+   "id": "topic:history",
+   "match": "local"
+  },
+  "how this newsroom is made": {
+   "id": "topic:how-this-newsroom-is-made",
+   "match": "promptugal.news topic"
+  },
+  "investment": {
+   "id": "topic:investment",
+   "match": "local"
+  },
+  "jira": {
+   "id": "topic:jira",
+   "match": "local"
+  },
+  "jobs": {
+   "id": "topic:jobs",
+   "match": "local"
+  },
+  "lovable": {
+   "id": "topic:lovable",
+   "match": "local"
+  },
+  "manus ai": {
+   "id": "topic:manus-ai",
+   "match": "local"
+  },
+  "maps": {
+   "id": "topic:maps",
+   "match": "local"
+  },
+  "mastra": {
+   "id": "topic:mastra",
+   "match": "local"
+  },
+  "minimax": {
+   "id": "topic:minimax",
+   "match": "local"
+  },
+  "modelbest": {
+   "id": "topic:modelbest",
+   "match": "local"
+  },
+  "music": {
+   "id": "topic:music",
+   "match": "local"
+  },
+  "past events": {
+   "id": "topic:past-events",
+   "match": "local"
+  },
+  "pitch": {
+   "id": "topic:pitch",
+   "match": "local"
+  },
+  "planning": {
+   "id": "topic:planning",
+   "match": "local"
+  },
+  "practical": {
+   "id": "topic:practical",
+   "match": "local"
+  },
+  "practical guide": {
+   "id": "topic:practical-guide",
+   "match": "local"
+  },
+  "practical]": {
+   "id": "topic:practical",
+   "match": "local"
+  },
+  "press conferences": {
+   "id": "topic:press-conferences",
+   "match": "local"
+  },
+  "prizes]": {
+   "id": "topic:prizes",
+   "match": "local"
+  },
+  "product launch": {
+   "id": "topic:product-launch",
+   "match": "local"
+  },
+  "refunds": {
+   "id": "topic:refunds",
+   "match": "local"
+  },
+  "regions": {
+   "id": "topic:regions",
+   "match": "local"
+  },
+  "registration": {
+   "id": "topic:registration",
+   "match": "local"
+  },
+  "replit": {
+   "id": "topic:replit",
+   "match": "local"
+  },
+  "road closures": {
+   "id": "topic:road-closures",
+   "match": "local"
+  },
+  "robotics": {
+   "id": "topic:robotics",
+   "match": "local"
+  },
+  "schedule": {
+   "id": "topic:schedule",
+   "match": "local"
+  },
+  "security": {
+   "id": "topic:security",
+   "match": "promptugal.news topic"
+  },
+  "software delivery": {
+   "id": "topic:software-delivery",
+   "match": "local"
+  },
+  "speakers": {
+   "id": "topic:speakers",
+   "match": "local"
+  },
+  "sports tech": {
+   "id": "topic:sports-tech",
+   "match": "local"
+  },
+  "startups": {
+   "id": "topic:startups",
+   "match": "promptugal.news topic"
+  },
+  "survey": {
+   "id": "topic:survey",
+   "match": "local"
+  },
+  "telemedicine": {
+   "id": "topic:telemedicine",
+   "match": "local"
+  },
+  "the summit": {
+   "id": "topic:the-summit",
+   "match": "promptugal.news topic"
+  },
+  "tickets": {
+   "id": "topic:tickets",
+   "match": "local"
+  },
+  "transport": {
+   "id": "topic:transport",
+   "match": "local"
+  },
+  "universities": {
+   "id": "topic:universities",
+   "match": "local"
+  },
+  "video": {
+   "id": "topic:video",
+   "match": "local"
+  },
+  "weather": {
+   "id": "topic:weather",
+   "match": "local"
+  },
+  "web summit speakers": {
+   "id": "topic:web-summit-speakers",
+   "match": "local"
+  },
+  "web tools": {
+   "id": "topic:web-tools",
+   "match": "local"
+  },
+  "whatsapp": {
+   "id": "topic:whatsapp",
+   "match": "local"
+  },
+  "women in tech": {
+   "id": "topic:women-in-tech",
+   "match": "local"
+  },
+  "wpp": {
+   "id": "topic:wpp",
+   "match": "local"
+  },
+  "you.com": {
+   "id": "topic:you-com",
+   "match": "local"
+  }
+ },
+ "agents": {
+  "journalist-ai@PrompTugal.vicky": {
+   "match": "local"
+  },
+  "journalist-ai@web-summit.vicky": {
+   "match": "local"
+  },
+  "journalist-connections@PrompTugal.vicky": {
+   "match": "local"
+  },
+  "journalist-connections@web-summit.vicky": {
+   "match": "local"
+  },
+  "journalist-europe@web-summit.vicky": {
+   "match": "local"
+  },
+  "journalist-portugal@PrompTugal.vicky": {
+   "match": "local"
+  },
+  "journalist-portugal@web-summit.vicky": {
+   "match": "local"
+  },
+  "journalist@PrompTugal.dinis": {
+   "match": "promptugal.news agent"
+  },
+  "journalist@PrompTugal.vicky": {
+   "match": "local"
+  },
+  "journalist@web-summit.vicky": {
+   "match": "local"
+  },
+  "place.loule@PrompTugal.dinis": {
+   "match": "local"
+  },
+  "writer@PrompTugal.angelo": {
+   "match": "local"
+  }
+ }
+}

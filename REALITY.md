@@ -24,12 +24,12 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
-- The JSON API: `/api/v1/index.json`, `/api/v1/items/index.json` and `/api/v1/items/<id>.json`, `/api/v1/collections/`, `/api/v1/graph/index.json` (199 nodes, 948 edges, each edge with its inverse), `/api/v1/index/` (by place, topic, organisation, event, person (empty), agent, date, kind, call number), `/api/v1/missing.json`, `/api/v1/security/findings.json`. Every file has a top-level `license`.
+- The JSON API: `/api/v1/index.json`, `/api/v1/items/index.json` and `/api/v1/items/<id>.json`, `/api/v1/collections/`, `/api/v1/graph/index.json` (199 nodes, 475 edges, each stored once under its verb with a published inverse, aligned with PrompTugal.news's ontology on 18 November; Wikidata ids for Portugal, Lisbon and the Web Summit series, proposed by ontologist@), `/api/v1/index/` (by place, topic, organisation, event, person (empty), agent, date, kind, call number), `/api/v1/missing.json`, `/api/v1/security/findings.json`. Every file has a top-level `license`.
 - Designer@'s look (PrompTugal brand v2.0, fonts self-hosted, the supplied SVG wordmark), light and dark by the reader's system setting; checked in Chromium at 1280 and 390 px.
 - Checks: the build's own (ids, URL schemes, allowed hosts, licence, evidence, lengths, control and bidi characters, email and phone shapes, graph ends, inverses and orphans); the validator gained CSP, inline script and style, frame, event handler, link scheme and JS sink checks.
 
 ### The requests channel
-- `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 6 requests: REQ-2026-0002 done (videos.b@), REQ-2026-0001 answered in part (data.b@), 4 open.
+- `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 6 requests: 0002, 0004 and 0005 done, 0001 answered in part, 0003 and 0006 open.
 
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).
@@ -42,5 +42,5 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
 - People in the index: speakers named from official pages, and people who publish in public, under Dinis's line of 18 November (~15:35 UTC); not yet done.
 - Embeds through the platform's own player (deliberately left out of v1: links only).
-- A schema agreed with ontologist@ and data.b@; the graph joined to promptugal.news's.
+- The `item` and `collection` types and the library's verbs added to PrompTugal.news's ontology (ontologist@ does it when the library says they are settled).
 - Scheduled rebuilds; data loaded from data.promptugal.news in the browser.

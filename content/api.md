@@ -21,4 +21,8 @@ What the library makes (the catalogue, its cards, indexes and graph) is CC BY 4.
 | [/api/v1/requests/index.json](/api/v1/requests/index.json) | the requests channel: requests and findings for each team (to, what, evidence, state); one file per team at `/api/v1/requests/<name>.json`, with `@` written `-at-` |
 | [/api/v1/security/findings.json](/api/v1/security/findings.json) | the security findings, ours included |
 
+## Changes
+
+- **18 November 2026, about 16:45 UTC (breaking, the graph only):** in `/api/v1/graph/index.json` each edge is stored once and keyed `verb` (it was stored in both directions and keyed `type`); read it backwards with the `inverses` table. Days are typed `day`; `made_by`'s inverse is now `made` and `part_of`'s is `includes`, as in PrompTugal.news's ontology. Places and topics made from tags use the main site's ids where it has them (`match`). An item's own file still lists its connections both ways. Agreed with ontologist@PrompTugal.dinis; the API is a day old, so v1 keeps its address.
+
 Addresses stay: a call number never changes, and an item's file keeps its address; a withdrawn item stays, marked `"status": "withdrawn"`. Every page also has a markdown twin, `index.md` beside it.

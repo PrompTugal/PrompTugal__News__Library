@@ -46,6 +46,13 @@ for (const f of files.filter((f) => f.endsWith('.js'))) {
   const sink = s.match(/\.(innerHTML|outerHTML)\b|insertAdjacentHTML|document\.write|\beval\s*\(|new Function\s*\(/);
   if (sink) fail(`${f}: unsafe sink ${sink[0]}`);
 }
+// The build and the librarian's tools fetch nothing (security pre-review, 18 November 2026, 16:38 wake):
+// no script in scripts/ may make a network request, so none can read websummit.com or www.wikidata.org (linked only).
+for (const f of readdirSync('scripts').filter((f) => /\.(mjs|js|sh)$/.test(f))) {
+  const s = readFileSync(join('scripts', f), 'utf8');
+  const net = s.match(/\bfetch\s*\(|node:https?['"]|require\(['"]https?['"]\)|\bcurl\b|\bwget\b|XMLHttpRequest|\bnet\.connect|\bdns\./);
+  if (net && !(f === 'validate.mjs')) fail(`scripts/${f}: network request (${net[0]})`);
+}
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
