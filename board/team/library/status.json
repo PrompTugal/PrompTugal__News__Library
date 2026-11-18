@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T22:40Z",
+ "updated": "2026-11-18T23:30Z",
  "state": "fourth wake (22:38 UTC): withdrawn articles corrected across the catalogue and the fact-checker",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -31,7 +31,8 @@
   "AppSec post-review of the 19:39 wake: no high; 1 low-medium (slow URL trimming) and 4 low, 1 info, all fixed before the push, published as LIB-2026-014 to 019",
   "Sites bar, part 1 (Dinis ~22:00 UTC, read at source: board/guidance/2026-11-18-the-sites-bar.md): /preview.svg built from the library's own live numbers at every build, with /api/v1/preview.json saying where each number comes from; /preview.png for social cards (rendered locally by scripts/render-preview.cjs and committed, so it may lag the SVG); og:image on every page; /version.json as before. AppSec post-review: 2 low fixed (LIB-2026-020, 021).",
   "Wake 22:38 UTC: correction. promptugal.news withdrew 10 articles on 11 November (data/site/withdrawn.json); the library had catalogued them as held and fact-checked them. Now: the 10 cards are withdrawn (numbers kept), the fact-checker and the importer read the withdrawn list (fail closed if it is missing). Re-run: 87 live articles, 13 claim by claim (224 of 224 claims resolve), 39 story-level, 35 text-only; 0 claims on websummit.com. REQ-2026-0008 done (the library's error); REQ-2026-0007 answered in part (S7, S4).",
-  "AppSec post-review of the 22:38 wake: no high or medium; 2 low fixed before the push (importer reads the withdrawn list safely; withdrawn pages labelled), LIB-2026-022 and 023"
+  "AppSec post-review of the 22:38 wake: no high or medium; 2 low fixed before the push (importer reads the withdrawn list safely; withdrawn pages labelled), LIB-2026-022 and 023",
+  "Dinis (23:29 UTC, in this session): the commit check accepts @PrompTugal names; operators' first names stay on cards"
  ],
  "next": [
   "Sites bar, part 2: when dev@ and designer@ publish it (conductor.b@ will say), vendor its code pinned by version and sha256, render promptugal.news/api/v1/sites.json with escaping and only https links to *.promptugal.news; the library has no sites rail of its own to replace",
@@ -48,18 +49,28 @@
   "Speaker-side write-ups and standalone recordings, by organisation",
   "The next collections: places, organisations and topics PrompTugal.news covers"
  ],
- "blocked": [
-  "scripts/check-commits.mjs accepts only role@agenticcells.person: commits carry Agent: library.b@AgentiCCells.dinis (as data.b@ does), subject library.b@PrompTugal.dinis"
- ],
+ "blocked": [],
  "asks": [
-  "Dinis: confirm the commit trailer: the commit check accepts only @agenticcells names, so commits say Agent: library.b@AgentiCCells.dinis while the work is signed library.b@PrompTugal.dinis.",
-  "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on.",
-  "Dinis: agent names carry operators' first names (journalist@web-summit.vicky, writer@PrompTugal.angelo); they are shown on cards as each article's maker. Keep them, or show only the role?"
+  "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on."
  ],
  "messages": {
   "to_conductor.b": "first-run report sent by send_message at the end of the run",
   "from_conductor.b": "15:40 UTC: key listed in the main repo's board/keys.json; asks passed to designer@, data.b@, ontologist@, librarian@; commit trailer and operators' names on cards are with Dinis"
  },
  "clock_note": "Correction (16:50 UTC): earlier updates of this file on 18 November carried wrong times (17:10Z to 18:50Z); the real times were about 15:35 to 16:00 UTC. The commits' own timestamps are the record.",
- "when_the_google_key_arrives": "From conductor.b@ (17:53 UTC), checked by videos.b@ against Google's pages (videos.promptugal.news/how/google-api-key/): Books API results need 'powered by Google' attribution and a link on each result, and no fees without an agreement; Knowledge Graph Search is being migrated and is 'not suitable for production-critical' use, so Wikidata stays the primary entity layer and Google's ids are secondary; Fact Check Tools feeds the fact-checker. Read Google's own terms before the first call."
+ "when_the_google_key_arrives": "From conductor.b@ (17:53 UTC), checked by videos.b@ against Google's pages (videos.promptugal.news/how/google-api-key/): Books API results need 'powered by Google' attribution and a link on each result, and no fees without an agreement; Knowledge Graph Search is being migrated and is 'not suitable for production-critical' use, so Wikidata stays the primary entity layer and Google's ids are secondary; Fact Check Tools feeds the fact-checker. Read Google's own terms before the first call.",
+ "dinis_answers": [
+  {
+   "at": "2026-11-18T23:29Z",
+   "where": "library.b@'s own session",
+   "words": "yes, accept @PrompTugal.dinis in check-commits.mjs",
+   "done": "scripts/check-commits.mjs accepts role@PrompTugal.person as well as role@AgentiCCells.person; commits from now on carry Agent: library.b@PrompTugal.dinis"
+  },
+  {
+   "at": "2026-11-18T23:29Z",
+   "where": "library.b@'s own session",
+   "words": "yes keep operators' first names on cards",
+   "done": "Agent names such as journalist@web-summit.vicky stay on the cards; LIB-2026-007 (S68) confirmed as accepted"
+  }
+ ]
 }

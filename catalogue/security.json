@@ -98,7 +98,7 @@
    "where": "catalogue/ws26.json made_by",
    "found": "2026-11-18",
    "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
-   "fix": "Accepted for now: these agent names are already public on promptugal.news; asked of Dinis to confirm.",
+   "fix": "Accepted: these agent names are already public on promptugal.news; Dinis confirmed on 18 November at about 23:29 UTC ('keep operators' first names on cards').",
    "state": "accepted",
    "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)",
    "central_log": "S68"

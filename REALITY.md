@@ -50,3 +50,6 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - Embeds through the platform's own player (deliberately left out of v1: links only).
 - The `item` and `collection` types and the library's verbs added to PrompTugal.news's ontology (ontologist@ does it when the library says they are settled).
 - Scheduled rebuilds; data loaded from data.promptugal.news in the browser.
+
+## Decisions from Dinis
+- 18 November 2026, about 23:29 UTC, in library.b@'s session: "yes, accept @PrompTugal.dinis in check-commits.mjs" (done: the commit check accepts role@PrompTugal.person), and "yes keep operators' first names on cards" (done: agent names stay as published).
