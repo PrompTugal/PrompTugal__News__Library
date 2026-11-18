@@ -34,6 +34,9 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ### The fact-checker
 - Pass 1 (18 November, 19:39 wake): every published promptugal.news article's provenance level, from `scripts/fact-check.mjs` into `catalogue/fact-check.json`, at `/fact-check/` and `/api/v1/fact-check/index.json`: 16 claim by claim (250 claims, all resolving to a recorded page), 45 story-level, 36 text-only, 0 none; 71 claims rest on websummit.com pages.
 
+### The preview
+- `/preview.svg` (built at every build from the library's own counts), `/api/v1/preview.json` (where each number comes from), `/preview.png` (rendered by hand and committed; may lag), `og:image` on every page. For the sites bar across the PrompTugal sites (Dinis, 18 November, about 22:00 UTC); the bar itself is not installed yet.
+
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).
 - `team/keys.json`: library.b@'s public key (`library.b-promptugal`, sha256:78fa318e01745b38), made with `sgit pki keygen`.

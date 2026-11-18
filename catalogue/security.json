@@ -223,6 +223,28 @@
    "fix": "Trailing dot stripped; CRLF normalised",
    "state": "fixed",
    "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
+  },
+  {
+   "id": "LIB-2026-020",
+   "severity": "low",
+   "title": "The no-network tripwire did not cover Playwright or a page.goto call, so a later change to the preview renderer could fetch unnoticed",
+   "where": "scripts/validate.mjs",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), preview work at about 22:10 UTC, before the push",
+   "fix": "Playwright allowed only in scripts/render-preview.cjs; .goto( and request.get/post/fetch( fail the check; the renderer blocks every non-data request and service workers",
+   "state": "fixed",
+   "fixed_in": "the preview commit of 18 November 2026"
+  },
+  {
+   "id": "LIB-2026-021",
+   "severity": "low",
+   "title": "The SVG safety checks run on escaped output and can trip on plain text; they are backstops, not sanitisers",
+   "where": "scripts/build.mjs, scripts/render-preview.cjs",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), preview work at about 22:10 UTC, before the push",
+   "fix": "Said so in the code; every value is escaped by esc() before it reaches the SVG",
+   "state": "fixed",
+   "fixed_in": "the preview commit of 18 November 2026"
   }
  ],
  "from_the_central_log": [

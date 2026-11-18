@@ -46,17 +46,20 @@ for (const f of files.filter((f) => f.endsWith('.js'))) {
   const sink = s.match(/\.(innerHTML|outerHTML)\b|insertAdjacentHTML|document\.write|\beval\s*\(|new Function\s*\(/);
   if (sink) fail(`${f}: unsafe sink ${sink[0]}`);
 }
-// A tripwire, not a guarantee (AppSec post-review, 18 November 2026, 16:38 wake): no script in scripts/ (walked
+// A tripwire, not a guarantee; the build's and the renderer's SVG checks are backstops, not sanitisers (AppSec post-review, 18 November 2026, 16:38 wake): no script in scripts/ (walked
 // recursively) may make a network request, so none can read websummit.com or www.wikidata.org (linked only).
 // Naming a host in a link is allowed; calling one is not. child_process is allowed only where every call runs git,
 // in the files listed here with that reason.
 const GIT_ONLY = new Set(['scripts/check-commits.mjs', 'scripts/leak-scan.mjs']);
-const NET = /\bfetch\s*\(|globalThis\s*\[|from\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|require\(\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|\bimport\s*\(|\bWebSocket\b|\bundici\b|XMLHttpRequest|^\s*(?:curl|wget)\b/m;
+// Playwright only in the hand-run preview renderer, which loads a local file and blocks every other request.
+const PLAYWRIGHT_LOCAL = new Set(['scripts/render-preview.cjs']);
+const NET = /\bfetch\s*\(|globalThis\s*\[|from\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|require\(\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|\bimport\s*\(|\bWebSocket\b|\bundici\b|XMLHttpRequest|\.goto\s*\(|\brequest\.(?:get|post|fetch)\s*\(|^\s*(?:curl|wget)\b/m;
 for (const f of walk('scripts').filter((f) => /\.(mjs|js|cjs|sh)$/.test(f))) {
   if (f === 'scripts/validate.mjs') continue; // this file holds the patterns themselves
   const s = readFileSync(f, 'utf8');
   const net = s.match(NET);
   if (net) fail(`${f}: network request (${net[0].trim()})`);
+  if (/['"]playwright['"]/.test(s) && !PLAYWRIGHT_LOCAL.has(f)) fail(`${f}: playwright outside the local-render list`);
   if (/child_process/.test(s)) {
     if (!GIT_ONLY.has(f)) fail(`${f}: child_process outside the git-only list`);
     else for (const m of s.matchAll(/exec(?:File)?Sync\(\s*([^,)]+)/g)) if (m[1].trim() !== "'git'") fail(`${f}: child_process runs ${m[1].trim()}, not git`);

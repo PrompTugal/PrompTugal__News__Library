@@ -172,6 +172,8 @@ function page({ path, title, description, body, md, scripts = [] }) {
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<meta property="og:image" content="${SITE}/preview.png">
+<meta property="og:title" content="${esc(title)}">
 <link rel="stylesheet" href="/assets/library.css">
 ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</head>
 <body>
@@ -483,6 +485,36 @@ for (const f of walk('content').filter((f) => f.endsWith('.md'))) {
 }
 
 if (mdLinkProblems.length) { console.error(mdLinkProblems.map((u) => `content link not allowed (https to a host in catalogue/hosts.json, or a same-site path): ${u}`).join('\n')); process.exit(1); }
+
+// ---------- /preview.svg: the library's own live numbers, for the sites bar (Dinis, 18 Nov ~22:00 UTC) ----------
+{
+  const fc = readJSON('catalogue/fact-check.json');
+  const openReqs = reqs.requests.filter((q) => q.state === 'open' || q.state === 'answered').length;
+  const built = new Date().toISOString().slice(0, 10);
+  const figs = [
+    [held.length, 'items catalogued'],
+    [held.filter((i) => i.kind === 'replay-day').length + held.filter((i) => ['talk-video', 'recording', 'press-video'].includes(i.kind)).length, 'videos, linked never copied'],
+    [missing.length, 'gaps said plainly'],
+    [fc.counts.articles, 'articles fact-checked'],
+    [openReqs, 'requests to the teams'],
+  ];
+  const x = (s) => esc(s);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="PrompTugal.news Library: ${x(figs.map((f) => `${f[0]} ${f[1]}`).join(', '))}">
+<title>PrompTugal.news Library, ${x(built)}</title>
+<rect width="1200" height="630" fill="#f6f3ec"/>
+<rect x="0" y="0" width="1200" height="12" fill="#0a3a14"/>
+<text x="64" y="104" font-family="IBM Plex Mono, monospace" font-size="22" letter-spacing="3" fill="#006600">LIBRARY.PROMPTUGAL.NEWS · THE CATALOGUE</text>
+<text x="64" y="176" font-family="Newsreader, Georgia, serif" font-size="60" font-weight="500" fill="#121317">Everything we found, catalogued,</text>
+<text x="64" y="246" font-family="Newsreader, Georgia, serif" font-size="60" font-weight="500" fill="#121317">sourced and linked.</text>
+<line x1="64" y1="290" x2="1136" y2="290" stroke="#121317" stroke-width="3"/><line x1="64" y1="297" x2="1136" y2="297" stroke="#121317" stroke-width="1"/>
+${figs.map((f, i) => `<g transform="translate(${64 + i * 216} 330)"><text y="80" font-family="Newsreader, Georgia, serif" font-size="88" fill="${i === 2 ? '#c52830' : '#121317'}">${x(f[0])}</text><text y="124" font-family="IBM Plex Sans, Arial, sans-serif" font-size="21" fill="#666860">${x(f[1].split(', ')[0])}</text>${f[1].includes(', ') ? `<text y="152" font-family="IBM Plex Sans, Arial, sans-serif" font-size="21" fill="#666860">${x(f[1].split(', ')[1])}</text>` : ''}</g>`).join('')}
+<text x="64" y="584" font-family="IBM Plex Mono, monospace" font-size="17" fill="#666860">From library.promptugal.news/api/v1/ · built ${x(built)} · version ${x(version)} · CC BY 4.0, PrompTugal.news Library</text>
+</svg>
+`;
+  if (/<script|foreignObject|\son[a-z]+=/i.test(svg)) { console.error('preview.svg: unsafe content'); process.exit(1); }
+  write('preview.svg', svg);
+  json('api/v1/preview.json', { about: 'The numbers on /preview.svg, with where each comes from.', built, figures: figs.map(([n, label]) => ({ n, label })), from: { items: '/api/v1/items/index.json (status held)', videos: 'items of kind replay-day, talk-video, recording, press-video', gaps: '/api/v1/missing.json', fact_checked: '/api/v1/fact-check/index.json counts.articles', requests: '/api/v1/requests/index.json (open or answered in part)' }, svg: '/preview.svg', png: '/preview.png (rendered by scripts/render-preview.cjs, committed; may lag the SVG)' });
+}
 
 // ---------- the template's own steps ----------
 for (const f of walk('_site')) {
