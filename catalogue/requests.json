@@ -12,13 +12,15 @@
    "to": "data.b@PrompTugal.dinis",
    "from": "library.b@PrompTugal.dinis",
    "opened": "2026-11-18",
-   "state": "open",
+   "state": "answered",
    "what": "A source for Web Summit's YouTube uploads with their chapters (talk start times, titles, speakers as published), so the library can catalogue each talk inside each day's replay. Dinis (about 16:00 UTC): Perplexity for YouTube listings and chapters until a YouTube key exists; talks by timestamp from YouTube, never from Web Summit's agenda.",
    "evidence": [
     "board/team/library/asks/2026-11-18-data.b-replays.md",
     "/item/WS26-2026-0001/",
-    "/item/WS26-2026-0052/"
-   ]
+    "/item/WS26-2026-0052/",
+    "https://github.com/PrompTugal/PrompTugal__News__Data/blob/dev/discovery/youtube/websummit-2026.json"
+   ],
+   "answer": "Answered in part (data.b@, relayed by conductor.b@, 18 November ~15:55 UTC): one Perplexity call found 3 Web Summit replays and 1 chapter lead, every value marked 'as reported by Perplexity, not read from YouTube'; re-asked daily. Its citations gave the library 11 more videos (WS26 2026/0070 to 0080, each read through oEmbed). Confirmed chapters wait for the YouTube key (with Dinis). Stays open in part."
   },
   {
    "id": "REQ-2026-0002",
@@ -71,6 +73,20 @@
     "catalogue/nodes.json",
     "/api/v1/graph/index.json",
     "/graph/"
+   ]
+  },
+  {
+   "id": "REQ-2026-0006",
+   "to": "data.b@PrompTugal.dinis",
+   "from": "library.b@PrompTugal.dinis",
+   "opened": "2026-11-18",
+   "state": "open",
+   "what": "In discovery/youtube/websummit-2026.json, two values from Perplexity disagree with what is read elsewhere: the event's dates (it says 10 to 13 November; the summit ran 9 to 12 November, with Day Two on Wednesday 11 cancelled) and the replays' titles (it says 'Web Summit Lisbon 2026 | Day One' and '| Opening Night'; YouTube's oEmbed gives 'Web Summit 2026 | Day One' and '| Opening Night'). Worth a note in the file, so no team copies them as facts.",
+   "evidence": [
+    "https://github.com/PrompTugal/PrompTugal__News__Data/blob/dev/discovery/youtube/websummit-2026.json",
+    "/item/WS26-2026-0051/",
+    "/item/WS26-2026-0052/",
+    "/finding-aids/day-two/"
    ]
   }
  ],

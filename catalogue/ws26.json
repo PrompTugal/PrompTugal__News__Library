@@ -1,7 +1,7 @@
 {
  "collection": "ws26",
  "prefix": "WS26",
- "next_seq": 70,
+ "next_seq": 81,
  "rule": "Call numbers are assigned once, in the order catalogued, and never reused or renumbered. Withdrawn items keep their number with status withdrawn.",
  "items": [
   {
@@ -2310,6 +2310,333 @@
     "event:storm-charles"
    ],
    "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0070",
+   "call_number": "WS26 2026/0070",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Web Summit Lisbon 2026 - Opening Ceremony Insights",
+   "summary": "A channel's own video on the opening ceremony of Web Summit Lisbon 2026.",
+   "url": "https://www.youtube.com/watch?v=8YmUaGZgUvk",
+   "publisher": "The 1% Insight (YouTube channel @the1percentinsight)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel The 1% Insight (https://www.youtube.com/@the1percentinsight). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read"
+   ],
+   "accessioned": "2026-11-18",
+   "summit_day": "2026-11-09"
+  },
+  {
+   "id": "WS26-2026-0071",
+   "call_number": "WS26 2026/0071",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Web Summit 2026: a noite de abertura em Lisboa",
+   "summary": "A Portuguese channel's video of the opening night in Lisbon (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=Wj5qKQ-7fms",
+   "publisher": "KuriakosTV (YouTube channel @KuriakosTV)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel KuriakosTV (https://www.youtube.com/@KuriakosTV). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read"
+   ],
+   "accessioned": "2026-11-18",
+   "summit_day": "2026-11-09"
+  },
+  {
+   "id": "WS26-2026-0072",
+   "call_number": "WS26 2026/0072",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Marketing to Agents, Owning Distribution and a New Era of Media | Web Summit Lisbon 2026 - Day On...",
+   "summary": "Trend7 Media's video from Day One of Web Summit Lisbon 2026, on marketing to agents and distribution.",
+   "url": "https://www.youtube.com/watch?v=x1lYTcbv5oo",
+   "publisher": "Trend 7 Media | B2B Tech Marketing (YouTube channel @trend7media)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Trend 7 Media | B2B Tech Marketing (https://www.youtube.com/@trend7media). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read"
+   ],
+   "accessioned": "2026-11-18",
+   "summit_day": "2026-11-10"
+  },
+  {
+   "id": "WS26-2026-0073",
+   "call_number": "WS26 2026/0073",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Web Summit 2026 LIVE: Inside the technologies shaping our future",
+   "summary": "CGTN Europe live from Web Summit 2026 on the technologies on show.",
+   "url": "https://www.youtube.com/watch?v=EbjYYT8NEFk",
+   "publisher": "CGTN Europe (YouTube channel @CGTNEurope)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel CGTN Europe (https://www.youtube.com/@CGTNEurope). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read",
+    "The title does not say which edition (Lisbon 2026 or another); catalogued here because it was cited for Lisbon 2026, to confirm"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0074",
+   "call_number": "WS26 2026/0074",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Inside Web Summit Lisbon 2026 | A Dancing Robot and a Packed House",
+   "summary": "Portugal Resident's video from inside Web Summit Lisbon 2026.",
+   "url": "https://www.youtube.com/watch?v=J4lZ8NBTRE0",
+   "publisher": "Portugal Resident (YouTube channel @PortugalResident_newspaper)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Portugal Resident (https://www.youtube.com/@PortugalResident_newspaper). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0075",
+   "call_number": "WS26 2026/0075",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "[Web Summit 2026] Buyers Seek Out the Seoul Pavilion as SBA Brings 12 Seoul Startups to Lisbon",
+   "summary": "AVING on the Seoul pavilion and the 12 Seoul startups SBA brought to Lisbon.",
+   "url": "https://www.youtube.com/watch?v=0W_0evgSPyw",
+   "publisher": "AVING NEWS _ 에이빙 뉴스 (YouTube channel @aving)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel AVING NEWS _ 에이빙 뉴스 (https://www.youtube.com/@aving). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0076",
+   "call_number": "WS26 2026/0076",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Web Summit: «Este evento está num declínio manifesto»",
+   "summary": "NOW (Portuguese television): a guest says the event is in clear decline (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=QYgwlDYXmXI",
+   "publisher": "NOW Canal (YouTube channel @now_canal_oficial)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel NOW Canal (https://www.youtube.com/@now_canal_oficial). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read",
+    "The title does not say which edition (Lisbon 2026 or another); catalogued here because it was cited for Lisbon 2026, to confirm"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0077",
+   "call_number": "WS26 2026/0077",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "2026 Web Summit Recap (Replit Live)",
+   "summary": "Replit's own recap of Web Summit 2026, from its live series.",
+   "url": "https://www.youtube.com/watch?v=KFeWGru3Or4",
+   "publisher": "Replit (YouTube channel @replit)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Replit (https://www.youtube.com/@replit). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read",
+    "The title does not say which edition (Lisbon 2026 or another); catalogued here because it was cited for Lisbon 2026, to confirm"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0078",
+   "call_number": "WS26 2026/0078",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Web Summit Lisbon: It's a wrap 🇵🇹",
+   "summary": "Make's own wrap-up video from Web Summit Lisbon.",
+   "url": "https://www.youtube.com/watch?v=TC_Qikn9A8M",
+   "publisher": "Make (YouTube channel @itsmake)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Make (https://www.youtube.com/@itsmake). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0079",
+   "call_number": "WS26 2026/0079",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "As três lições que trouxemos da Web Summit",
+   "summary": "A Portuguese channel's three lessons from Web Summit (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=1SGj6-dLYOs",
+   "publisher": "The Next Big Idea (YouTube channel @thenextbigidea)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel The Next Big Idea (https://www.youtube.com/@thenextbigidea). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read",
+    "The title does not say which edition (Lisbon 2026 or another); catalogued here because it was cited for Lisbon 2026, to confirm"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0080",
+   "call_number": "WS26 2026/0080",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Web Summit 2026",
+   "summary": "A Portuguese channel's video titled 'Web Summit 2026'.",
+   "url": "https://www.youtube.com/watch?v=mKqVddiim_o",
+   "publisher": "Fala Portugal (YouTube channel @FalaPortugal)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-18T15:54:26Z",
+    "by": "data.b@PrompTugal.dinis (a Perplexity discovery call, data.promptugal.news discovery/youtube/websummit-2026.json, for REQ-2026-0001); catalogued by library.b@PrompTugal.dinis",
+    "how": "cited by Perplexity as a source; title and channel then read by library.b@ through YouTube's oEmbed on 18 November"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Fala Portugal (https://www.youtube.com/@FalaPortugal). Perplexity cited it for Web Summit 2026 replays; that citation is a lead, the oEmbed answer is the evidence.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "open": [
+    "Publication date not read",
+    "The title does not say which edition (Lisbon 2026 or another); catalogued here because it was cited for Lisbon 2026, to confirm"
+   ],
+   "accessioned": "2026-11-18"
   }
  ],
  "missing": [
@@ -2323,7 +2650,7 @@
   },
   {
    "what": "Talks by timestamp",
-   "note": "No talk start times read yet: the replays' descriptions did not render to our reader. Asked of data.b@ (board/team/library/asks/)."
+   "note": "No talk start times confirmed. data.b@'s Perplexity pass (18 November) gave one chapter lead for Day One, marked 'not read from YouTube'; leads are not catalogued as facts. Confirmed chapters need the YouTube Data API key (with Dinis)."
   },
   {
    "what": "Standalone talk recordings and speaker-side write-ups",
@@ -2357,6 +2684,11 @@
    "at": "2026-11-18",
    "by": "library.b@PrompTugal.dinis",
    "what": "19 videos catalogued from social.watch@'s record, each re-checked through YouTube's oEmbed: Web Summit's own opening night and Day One replays (the 'no Day One replay' gap was wrong and is removed; videos.b@ pointed it out), 6 organisations' own recordings, 11 press videos. WS26 2026/0004 and 0005 withdrawn: read by machine against websummit.com's terms (LIB-2026-008)."
+  },
+  {
+   "at": "2026-11-18",
+   "by": "library.b@PrompTugal.dinis",
+   "what": "11 more videos catalogued (WS26 2026/0070 to 0080): cited in data.b@'s Perplexity discovery for REQ-2026-0001, each title and channel read through YouTube's oEmbed."
   }
  ]
 }
