@@ -445,10 +445,12 @@ ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).
 {
   const fc = readJSON('catalogue/fact-check.json');
   const LEVELS = ['claims', 'story', 'links', 'none'];
+  for (const k of ['about', 'site', 'made_by', 'read_from', 'made']) checkText(`fact-check ${k}`, fc[k], 600);
   for (const a of fc.articles) {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.slug) || !LEVELS.includes(a.level)) fail(`fact-check ${a.slug}: bad slug or level`);
     if (a.url !== `https://promptugal.news/articles/${a.slug}.html`) fail(`fact-check ${a.slug}: url not built from the slug`);
     checkText(`fact-check ${a.slug} title`, a.title, 200);
+    if (/[[\]()\\]/.test(a.title)) fail(`fact-check ${a.slug}: title has markdown link characters`);
     for (const g of a.gaps) checkText(`fact-check ${a.slug} gap`, g, 300);
   }
   if (problems.length) { console.error(problems.join('\n')); process.exit(1); }

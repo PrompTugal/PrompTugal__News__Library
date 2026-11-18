@@ -27,7 +27,8 @@
   "REQ-2026-0004 done (security@: findings in the central log as S60, S62 to S68; threat models good, its line corrected); REQ-2026-0005 done (ontologist@); S61 answered (the two websummit.com statements kept as links only, per Dinis's 16:00 word); the validator now fails any script that makes a network request",
   "AppSec post-review of the 16:38 wake: no high or medium; 5 low fixed before the push (network tripwire widened and tested, graph label, match whitelist, match on existing nodes, realpath containment), published as LIB-2026-009 to 013",
   "Wake 19:39 UTC: the fact-checker's first pass (Dinis, 16:00 and 19:00 UTC): scripts/fact-check.mjs (offline, read-only clone) to catalogue/fact-check.json, /fact-check/ and /api/v1/fact-check/. Of 97 published promptugal.news articles: 16 map every claim to a recorded source (250 of 250 resolve), 45 name sources for the story only, 36 only in the text, 0 with none (the fact-checker sub-agent corrected my first count of 10 'none': they have Sources sections of bare URLs). 71 claims in 2 articles rest only on websummit.com pages, not in websummit-only.json.",
-  "REQ-2026-0006 done (data.b@, 2777758); REQ-2026-0007 (claim-level provenance) and REQ-2026-0008 (two articles resting on websummit.com) opened to journalist@"
+  "REQ-2026-0006 done (data.b@, 2777758); REQ-2026-0007 (claim-level provenance) and REQ-2026-0008 (two articles resting on websummit.com) opened to journalist@",
+  "AppSec post-review of the 19:39 wake: no high; 1 low-medium (slow URL trimming) and 4 low, 1 info, all fixed before the push, published as LIB-2026-014 to 019"
  ],
  "next": [
   "Fact-checker pass 2: the library's own cards, then data.promptugal.news, events, videos and the other PrompTugal sites; Google Fact Check Tools once the key exists",

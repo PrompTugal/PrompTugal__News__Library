@@ -6,7 +6,7 @@
 // Reads only content/articles/*.md and data/stories/<id>/{claims.json,story.json,sources/*.json}; nothing in the clone
 // is run or followed; symlinks are refused; no network. Outputs counts, levels and gap codes only: no claim quotes,
 // no source titles or URLs (security pre-review, 19:39 wake). Titles are PrompTugal.news's own (CC BY 4.0).
-import { readFileSync, writeFileSync, readdirSync, realpathSync, lstatSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, realpathSync, lstatSync, existsSync, statSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 
 const root = process.argv[2];
@@ -23,7 +23,7 @@ function path(p) {
   if (!real.startsWith(base + sep)) throw new Error(`outside the clone: ${p}`);
   return real;
 }
-function text(p) { const f = path(p); if (!f) return null; const s = readFileSync(f, 'utf8'); if (s.length > MAX) throw new Error(`too large: ${p}`); return s; }
+function text(p) { const f = path(p); if (!f) return null; if (statSync(f).size > MAX) throw new Error(`too large: ${p}`); return readFileSync(f, 'utf8').replace(/\r\n/g, '\n'); }
 function json(p) { const s = text(p); if (s == null) return null; try { return JSON.parse(s); } catch { return { __bad: true }; } }
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -45,21 +45,23 @@ for (const f of readdirSync(path('content/articles')).sort()) {
   const story = storyRaw && STORY.test(storyRaw) ? storyRaw : null;
   const body = t.slice(fm.length + 8);
   // links in the text: markdown links and bare or angle-bracketed URLs (a "Sources" section is often written that way)
-  const links = new Set((body.match(/https?:\/\/[^\s)>\]"']+/g) || []).map((u) => u.replace(/[.,;:]+$/, ''))).size;
+  const trim = (u) => { let e = u.length; while (e > 0 && '.,;:'.includes(u[e - 1])) e--; return u.slice(0, e); };
+  const links = new Set((body.match(/https?:\/\/[^\s)>\]"']{1,2048}/g) || []).map(trim)).size;
   const sourcesSection = /^#{1,4}\s*(sources|fontes|references)\b/im.test(body);
   const rec = { slug, title, url: ORIGIN + slug + '.html', published: field('date'), story, level: 'none', claims: 0, claims_resolved: 0, claims_on_websummit: 0, story_sources: 0, links, sources_section: sourcesSection, gaps: [] };
   if (storyRaw && !story) rec.gaps.push('story id not readable');
   const claims = story ? json(`data/stories/${story}/claims.json`) : null;
   const st = story ? json(`data/stories/${story}/story.json`) : null;
-  if (claims && !claims.__bad && Array.isArray(claims.claims)) {
+  if (claims && !claims.__bad && Array.isArray(claims.claims) && claims.claims.some((c) => c && typeof c === 'object')) {
     rec.level = 'claims';
     for (const c of claims.claims) {
+      if (!c || typeof c !== 'object') continue;
       rec.claims++;
       const sid = typeof c.source === 'string' && STORY.test(c.source.replace(/\./g, '-')) ? c.source : null;
       const src = sid ? json(`data/stories/${story}/sources/${sid}.json`) : null;
       if (src && !src.__bad && src.url && (src.read_on || src.read_at)) {
         rec.claims_resolved++;
-        let h = ''; try { h = new URL(src.url).hostname.replace(/^www\./, ''); } catch { /* not a URL */ }
+        let h = ''; try { h = new URL(src.url).hostname.replace(/\.$/, '').replace(/^www\./, ''); } catch { /* not a URL */ }
         if (h === 'websummit.com' || h.endsWith('.websummit.com')) rec.claims_on_websummit++;
       }
     }
@@ -81,13 +83,14 @@ const count = (l) => out.filter((r) => r.level === l).length;
 const head = (() => {
   try {
     const h = readFileSync(path('.git/HEAD'), 'utf8').trim();
-    const ref = h.match(/^ref: (refs\/heads\/[A-Za-z0-9._\/-]{1,100})$/);
+    const ref = h.match(/^ref: (refs\/heads\/[A-Za-z0-9_\/-]{1,100})$/);
+    if (ref && ref[1].includes('..')) return 'unknown';
     if (!ref) return /^[0-9a-f]{40}$/.test(h) ? h.slice(0, 7) : 'unknown';
     const f = path(`.git/${ref[1]}`);
-    if (f) return `${ref[1].slice(11)} ${readFileSync(f, 'utf8').trim().slice(0, 7)}`;
+    if (f) { const sha = readFileSync(f, 'utf8').trim(); return /^[0-9a-f]{40}$/.test(sha) ? `${ref[1].slice(11)} ${sha.slice(0, 7)}` : ref[1].slice(11); }
     const packed = text('.git/packed-refs') || '';
     const m = packed.split('\n').find((l) => l.endsWith(' ' + ref[1]));
-    return m ? `${ref[1].slice(11)} ${m.slice(0, 7)}` : ref[1].slice(11);
+    return m && /^[0-9a-f]{40} /.test(m) ? `${ref[1].slice(11)} ${m.slice(0, 7)}` : ref[1].slice(11);
   } catch { return 'unknown'; }
 })();
 const res = {

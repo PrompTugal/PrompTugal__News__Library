@@ -157,6 +157,72 @@
    "fix": "Both paths resolved with realpath before comparing; the script refuses to run outside the library's root",
    "state": "fixed",
    "fixed_in": "the commit of 18 November 2026 after 8323f5b (AppSec post-review fixes of the 16:38 wake)"
+  },
+  {
+   "id": "LIB-2026-014",
+   "severity": "low-medium",
+   "title": "A long run of trailing punctuation in a URL made the fact-checker's tool slow (quadratic); a 2 MB article could hang it",
+   "where": "scripts/fact-check.mjs, link counting",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 19:39 wake, before the push",
+   "fix": "URL matches capped at 2048 characters; trailing punctuation stripped in a loop; worst case now about 1 ms",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
+  },
+  {
+   "id": "LIB-2026-015",
+   "severity": "low",
+   "title": "An article title with link characters could add a link to the fact-check page's markdown twin",
+   "where": "scripts/build.mjs, /fact-check/ twin",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 19:39 wake, before the push",
+   "fix": "The build fails on a fact-check title holding [ ] ( ) or a backslash",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
+  },
+  {
+   "id": "LIB-2026-016",
+   "severity": "low",
+   "title": "The git ref read for 'read from' allowed '..' segments and unchecked contents",
+   "where": "scripts/fact-check.mjs, read_from",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 19:39 wake, before the push",
+   "fix": "'..' refused; commit ids must be 40 hex characters; the build checks every top-level text field",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
+  },
+  {
+   "id": "LIB-2026-017",
+   "severity": "low",
+   "title": "Files were read in full before the size check, counted in characters",
+   "where": "scripts/fact-check.mjs, text()",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 19:39 wake, before the push",
+   "fix": "Size checked in bytes before reading",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
+  },
+  {
+   "id": "LIB-2026-018",
+   "severity": "low",
+   "title": "A non-object claim would crash the tool; an empty claims list would read as fully mapped",
+   "where": "scripts/fact-check.mjs, claims",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 19:39 wake, before the push",
+   "fix": "Non-objects skipped; at least one claim needed for the 'claims' level",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
+  },
+  {
+   "id": "LIB-2026-019",
+   "severity": "info",
+   "title": "A host with a trailing dot escaped the websummit.com count; CRLF front matter was skipped",
+   "where": "scripts/fact-check.mjs",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), 19:39 wake, before the push",
+   "fix": "Trailing dot stripped; CRLF normalised",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 after b53d101 (AppSec post-review fixes of the 19:39 wake)"
   }
  ],
  "from_the_central_log": [
