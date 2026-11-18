@@ -77,6 +77,8 @@ for (const c of collections) {
     if (!it.licence || !it.licence.url || !it.licence.name) fail(`${w}: no licence link`); else { checkUrl(`${w} licence`, it.licence.url); if (/CC BY/.test(it.licence.name) !== /^https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/?$/.test(it.licence.url)) fail(`${w}: licence name and link disagree`); }
     if (!it.found || !it.found.at || !it.found.by) fail(`${w}: no found (when and by whom)`);
     if (!it.evidence) fail(`${w}: no evidence`);
+    if (it.status && !['held', 'withdrawn'].includes(it.status)) fail(`${w}: status must be held or withdrawn`);
+    if (it.status === 'withdrawn') { if (!it.withdrawn || !it.withdrawn.at || !it.withdrawn.why) fail(`${w}: withdrawn needs at and why`); else checkText(`${w} withdrawn why`, it.withdrawn.why, 500); }
     for (const a of it.about || []) if (!nodes.has(a)) fail(`${w}: about ${a} is not a node`);
     if (it.publisher_node && !nodes.has(it.publisher_node)) fail(`${w}: publisher_node ${it.publisher_node} is not a node`);
     for (const t of it.tags || []) checkText(`${w} tag`, t, 80);
@@ -132,7 +134,7 @@ const json = (rel, obj) => write(rel, JSON.stringify({ license: CC, ...obj }, nu
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const day = (d) => { if (!d) return ''; const [y, m, dd] = d.slice(0, 10).split('-').map(Number); return `${dd} ${MONTHS[m - 1]} ${y}`; };
 const host = (u) => new URL(u).hostname.replace(/^www\./, '');
-const KIND = { 'replay-day': 'official replay, a day', 'talk-video': 'talk video', recording: 'recording', 'organiser-statement': 'organiser statement', 'organiser-page': 'organiser page', 'press-recap': 'press report', 'write-up': 'write-up', article: 'article', 'data-set': 'data set' };
+const KIND = { 'replay-day': 'official replay, a day', 'talk-video': 'talk video', recording: 'recording', 'organiser-statement': 'organiser statement', 'organiser-page': 'organiser page', 'press-recap': 'press report', 'write-up': 'write-up', article: 'article', 'data-set': 'data set', 'press-video': 'press video' };
 const kindLabel = (k) => KIND[k] || k;
 
 const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'";
@@ -222,7 +224,7 @@ for (const it of items) json(`api/v1/items/${it.id}.json`, { item: pub(it), conn
 json('api/v1/items/index.json', {
   about: 'Every item in the library, one line each: enough to search and to find its card. The full record is at each item\'s api address.',
   count: items.length,
-  items: items.map((it) => ({ id: it.id, call_number: it.call_number, title: it.title, kind: it.kind, publisher: it.publisher, published: it.published, collection: it.collection, url: it.url, licence: it.licence.url, tags: it.tags || [], about: it.about || [], page: `/item/${it.id}/`, api: `/api/v1/items/${it.id}.json` })),
+  items: items.map((it) => ({ id: it.id, call_number: it.call_number, title: it.title, kind: it.kind, publisher: it.publisher, published: it.published, collection: it.collection, url: it.url, licence: it.licence.url, tags: it.tags || [], about: it.about || [], status: it.status || 'held', page: `/item/${it.id}/`, api: `/api/v1/items/${it.id}.json` })),
 });
 const collectionJSON = (c) => ({ id: c.id, prefix: c.prefix, title: c.title, scope: c.scope, about: c.about, opened: c.opened, keeper: c.keeper, count: byCollection(c.id).length, rule: c.rule, page: `/collections/${c.id}/`, api: `/api/v1/collections/${c.id}.json` });
 json('api/v1/collections/index.json', { about: 'The collections (shelves) of the library.', collections: collections.map(collectionJSON) });
@@ -253,9 +255,10 @@ const findings = readJSON('catalogue/security.json');
 json('api/v1/security/findings.json', findings);
 
 // ---------- the pages ----------
-const cardLine = (it) => `<li><span class="cn">${esc(it.call_number)}</span><a href="/item/${it.id}/">${esc(it.title)}</a><span class="m">${esc([day(it.published), it.publisher, kindLabel(it.kind)].filter(Boolean).join(' · '))}</span></li>`;
+const cardLine = (it) => `<li><span class="cn">${esc(it.call_number)}</span><a href="/item/${it.id}/">${esc(it.title)}</a><span class="m">${esc([it.status === 'withdrawn' ? 'WITHDRAWN' : '', day(it.published), it.publisher, kindLabel(it.kind)].filter(Boolean).join(' · '))}</span></li>`;
 const mdLine = (it) => `- ${it.call_number}: [${it.title}](/item/${it.id}/) (${[day(it.published), it.publisher, kindLabel(it.kind)].filter(Boolean).join(', ')})`;
-const counts = { items: items.length, replays: items.filter((i) => ['replay-day', 'talk-video', 'recording'].includes(i.kind)).length, organiser: items.filter((i) => i.kind.startsWith('organiser')).length, articles: items.filter((i) => i.kind === 'article').length, gaps: missing.length };
+const held = items.filter((i) => i.status !== 'withdrawn');
+const counts = { items: held.length, replays: held.filter((i) => i.kind === 'replay-day').length, videos: held.filter((i) => ['talk-video', 'recording', 'press-video'].includes(i.kind)).length, organiser: held.filter((i) => i.kind.startsWith('organiser')).length, articles: held.filter((i) => i.kind === 'article').length, gaps: missing.length };
 
 // home: the hall
 {
@@ -267,7 +270,7 @@ const counts = { items: items.length, replays: items.filter((i) => ['replay-day'
 <form class="search" id="search" action="/catalogue/" method="get" role="search"><input id="q" name="q" aria-label="Search the catalogue" placeholder="Search the catalogue: a title, a publisher, a call number" autocomplete="off"><button type="submit">Search</button></form>
 <ul class="results" id="results" aria-live="polite"></ul>
 <p class="by">Browse by <a href="/index/place/">place</a><a href="/index/topic/">topic</a><a href="/index/organisation/">organisation</a><a href="/index/event/">event</a><a href="/index/date/">date</a><a href="/index/kind/">kind</a><a href="/catalogue/">call number</a></p>
-<p class="counts"><span><b>${counts.items}</b>items</span><span><b>${counts.replays}</b>official replay${counts.replays === 1 ? '' : 's'}</span><span><b>${counts.organiser}</b>organiser pages</span><span><b>${counts.articles}</b>PrompTugal.news articles</span><span><b>${counts.gaps}</b>gaps recorded</span><span><b>${collections.length}</b>collection${collections.length === 1 ? '' : 's'} being built</span></p></section>
+<p class="counts"><span><b>${counts.items}</b>items</span><span><b>${counts.replays}</b>official replay${counts.replays === 1 ? '' : 's'}</span><span><b>${counts.videos}</b>other recordings</span><span><b>${counts.organiser}</b>organiser items</span><span><b>${counts.articles}</b>PrompTugal.news articles</span><span><b>${counts.gaps}</b>gaps recorded</span><span><b>${collections.length}</b>collection${collections.length === 1 ? '' : 's'} being built</span></p></section>
 <h2 class="sh">The shelves <a href="/collections/">All collections →</a></h2>
 <div class="shelf">${spines}<a class="sp f" href="/librarians/"><small>+</small>Your collection here</a></div>
 <div class="cols"><div><h2 class="sh">New on the shelves <a href="/catalogue/">Accessions →</a></h2><ol class="acc">${recent.map(cardLine).join('')}</ol></div>
@@ -298,7 +301,8 @@ const counts = { items: items.length, replays: items.filter((i) => ['replay-day'
   for (const c of collections) {
     const its = byCollection(c.id);
     const groups = [
-      ['The official replays', (i) => ['replay-day', 'talk-video', 'recording'].includes(i.kind)],
+      ['The official replays', (i) => i.kind === 'replay-day'],
+      ['Other recordings: organisations and media', (i) => ['talk-video', 'recording', 'press-video'].includes(i.kind)],
       ['The organiser\'s own statements and pages', (i) => i.kind.startsWith('organiser')],
       ['Speaker-side write-ups', (i) => i.kind === 'write-up'],
       ['Press reports', (i) => i.kind === 'press-recap'],
@@ -342,7 +346,7 @@ for (const it of items) {
   const body = `<div class="rr"><p class="crumb"><a href="/">Library</a> › <a href="/collections/${c.id}/">${esc(c.title)}</a> › ${esc(it.call_number)}</p><div class="rr-g"><div>
 <p class="k">The reading room · ${esc(kindLabel(it.kind))}</p><h1>${esc(it.title)}</h1>
 ${it.summary ? `<p class="sum">${esc(it.summary)}</p>` : `<p class="sum">${esc(it.publisher)}${it.published ? `, ${esc(day(it.published))}` : ''}. The text stays at its source: we catalogue the title and the link only.</p>`}
-<a class="open" href="${esc(it.url)}" rel="noopener noreferrer">Read it at its source →</a>
+${it.status === 'withdrawn' ? `<p class="gap"><strong>Withdrawn ${esc(day(it.withdrawn.at))}.</strong> ${esc(it.withdrawn.why)} The call number stays with this item and is never reused.</p>` : `<a class="open" href="${esc(it.url)}" rel="noopener noreferrer">Read it at its source →</a>`}
 <p class="note">At ${esc(host(it.url))}. Linked, never copied: ${isOurs ? 'PrompTugal.news\'s own, CC BY 4.0' : `under <a href="${esc(lic.url)}" rel="noopener noreferrer">the source's terms</a>`}${lic.note ? `. ${esc(lic.note.replace(/\.$/, ''))}` : ''}.</p>
 <dl class="ev"><dt>Evidence</dt><dd>${esc(it.evidence)}</dd><dt>Found</dt><dd>${esc(it.found.at)} by ${esc(it.found.by)}${it.found.how ? `: ${esc(it.found.how)}` : ''}</dd>${(it.open || []).length ? `<dt>Still open</dt><dd>${it.open.map(esc).join('; ')}</dd>` : ''}<dt id="cite">Cite</dt><dd>${esc(cite)}</dd></dl>
 <div class="rel"><h3>On the same shelf</h3><ul>${same.map((x) => `<li><i>${esc(x.call_number)}</i><a href="/item/${x.id}/">${esc(x.title)}</a></li>`).join('') || '<li>Nothing else of this kind yet.</li>'}</ul>
@@ -390,7 +394,7 @@ for (const f of walk('content').filter((f) => f.endsWith('.md'))) {
   const rel = f.slice('content/'.length, -3);
   const path = rel === 'index' ? '/' : `/${rel.replace(/\/index$/, '')}/`;
   const ftable = `| Id | Severity | Finding | Fix | State |\n|---|---|---|---|---|\n${findings.findings.map((x) => `| ${x.id} | ${x.severity} | ${x.title.replace(/\|/g, '/')} | ${x.fix.replace(/\|/g, '/')} | ${x.state} |`).join('\n')}`;
-  const text = m[2].replaceAll('__ITEMS__', String(items.length)).replaceAll('__GAPS__', String(missing.length)).replaceAll('__FINDINGS__', ftable);
+  const text = m[2].replaceAll('__ITEMS__', String(held.length)).replaceAll('__GAPS__', String(missing.length)).replaceAll('__FINDINGS__', ftable);
   page({ path, title: `${fm.title}: PrompTugal.news Library`, description: fm.description, body: `<section class="page"><p class="crumb"><a href="/">Library</a> › ${esc(fm.title)}</p>${fm.kicker ? `<p class="k">${esc(fm.kicker)}</p>` : ''}${md2html(text)}</section>`, md: text });
 }
 

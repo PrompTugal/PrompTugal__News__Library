@@ -9,7 +9,7 @@ At Dinis Cruz's word (18 November 2026): every vulnerability, bug and breach of 
 
 ## Findings
 
-Seven, all from the AppSec review of the first release's code (an inner pass run by the lead agent on 18 November 2026, before anything was published): six fixed before the release, one accepted. None was ever live.
+Eight, all from 18 November 2026. Seven came from the AppSec review of the first release's code (an inner pass run by the lead agent before anything was published): six fixed before the release, one accepted; none was ever live. One is a breach of a source's terms by us: our agents read websummit.com by machine, which its terms forbid; it is stopped and the two items read that way are withdrawn.
 
 __FINDINGS__
 

@@ -12,5 +12,8 @@
   "creativecommons.org",
   "www.apache.org",
   "github.com"
- ]
+ ],
+ "never_read_by_machine": {
+  "websummit.com": "Web Summit's terms 48.2 and 52.1 forbid automated reading (recorded by the team on 11 November 2026). Linked only; never fetched, checked or crawled by an agent or a script."
+ }
 }

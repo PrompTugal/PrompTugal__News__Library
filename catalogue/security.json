@@ -8,6 +8,17 @@
  ],
  "findings": [
   {
+   "id": "LIB-2026-008",
+   "severity": "medium",
+   "title": "websummit.com read by machine against its terms",
+   "where": "cataloguing (the librarian sub-agent's fetches of 2 pages; library.b@'s link checks of 4 addresses and its terms page), 18 November 2026",
+   "found": "2026-11-18",
+   "found_by": "library.b@, on reading social.watch@'s record of the terms (coverage.json) after videos.b@'s correction",
+   "fix": "websummit.com is linked, never read by machine (catalogue/hosts.json, the cataloguing threat model, the sub-agents' briefs); the two items read that way are withdrawn with their numbers kept; the two statements read by dev.data@ before the team's stop stay, with the later checks recorded",
+   "state": "fixed",
+   "fixed_in": "the commit of 18 November 2026 that withdraws WS26 2026/0004 and 0005"
+  },
+  {
    "id": "LIB-2026-001",
    "severity": "medium",
    "title": "Hand-page links were not held to the host allowlist; a protocol-relative link (//host) passed",

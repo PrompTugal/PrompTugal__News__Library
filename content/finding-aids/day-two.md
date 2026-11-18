@@ -13,11 +13,17 @@ So there is no replay of Day Two, and there will not be one. Here is what the li
 
 - [WS26 2026/0002](/item/WS26-2026-0002/): Important event update (Web Summit, 10 November 2026)
 - [WS26 2026/0003](/item/WS26-2026-0003/): Arrive early tomorrow: stage talks start at 9am (Web Summit, 11 November 2026)
-- [WS26 2026/0004](/item/WS26-2026-0004/): the programme for Thursday 12 November
 
-## The recording of the day the talks moved to
+## The organiser's recordings of the days that did happen
 
-- [WS26 2026/0001](/item/WS26-2026-0001/): Web Summit 2026, Day Three, the organiser's own recording
+- [WS26 2026/0051](/item/WS26-2026-0051/): Web Summit 2026, Opening Night (Monday 9 November)
+- [WS26 2026/0052](/item/WS26-2026-0052/): Web Summit 2026, Day One (Tuesday 10 November)
+- [WS26 2026/0001](/item/WS26-2026-0001/): Web Summit 2026, Day Three (Thursday 12 November), the day the talks moved to
+
+## On television, as the storm came
+
+- [WS26 2026/0068](/item/WS26-2026-0068/): NOW, a guest argues the summit should be suspended
+- [WS26 2026/0069](/item/WS26-2026-0069/): NOW, the response to the storm
 
 ## The storm's data
 

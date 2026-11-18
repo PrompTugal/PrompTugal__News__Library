@@ -12,18 +12,19 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ## What exists (18 November 2026, first version by library.b@)
 
 ### The catalogue (JSON, in `catalogue/`)
-- **One collection: Web Summit Lisbon 2026 (`WS26`), 50 items**, call numbers `WS26 2026/0001` to `WS26 2026/0050`, each with source URL, licence link, when and by whom found, and evidence:
-  - 1 official replay: "Web Summit 2026 | Day Three" on Web Summit's YouTube channel (title and channel confirmed by YouTube's oEmbed; stage, date and talk timestamps not yet read).
-  - 4 organiser items: the two statements on Day Two's cancellation and Thursday's plan, the 12 November programme page, the PITCH semi-final session page.
+- **One collection: Web Summit Lisbon 2026 (`WS26`), 69 call numbers, 67 items held, 2 withdrawn**, `WS26 2026/0001` to `WS26 2026/0069`, each with source URL, licence link, when and by whom found, and evidence:
+  - 3 official replays on Web Summit's YouTube channel: Opening Night, Day One, Day Three (titles and channel confirmed by YouTube's oEmbed; stages and talk timestamps not yet read).
+  - 17 other recordings: 6 by organisations themselves, 11 by media (from social.watch@'s record, each re-checked through oEmbed).
+  - 2 organiser statements on Day Two's cancellation and Thursday's plan (read by dev.data@ on 10 and 11 November). Withdrawn: the 12 November programme page and the PITCH semi-final page (WS26 2026/0004 and 0005), read by machine on 18 November against websummit.com's terms (LIB-2026-008).
   - 2 press reports (The Next Web, The Irish Times), titles and links only.
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit, catalogued from their front matter (every URL checked: HTTP 200).
-- **7 gaps recorded** (`missing[]`): no Day One replay found; Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 7 findings from the AppSec review, 6 fixed before release, 1 accepted).
+- **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 8 findings: 7 from the AppSec review (6 fixed before release, 1 accepted) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
-- The JSON API: `/api/v1/index.json`, `/api/v1/items/index.json` and `/api/v1/items/<id>.json`, `/api/v1/collections/`, `/api/v1/graph/index.json` (169 nodes, 796 edges, each edge with its inverse), `/api/v1/index/` (by place, topic, organisation, event, person (empty), agent, date, kind, call number), `/api/v1/missing.json`, `/api/v1/security/findings.json`. Every file has a top-level `license`.
+- The JSON API: `/api/v1/index.json`, `/api/v1/items/index.json` and `/api/v1/items/<id>.json`, `/api/v1/collections/`, `/api/v1/graph/index.json` (188 nodes, 898 edges, each edge with its inverse), `/api/v1/index/` (by place, topic, organisation, event, person (empty), agent, date, kind, call number), `/api/v1/missing.json`, `/api/v1/security/findings.json`. Every file has a top-level `license`.
 - Designer@'s look (PrompTugal brand v2.0, fonts self-hosted, the supplied SVG wordmark), light and dark by the reader's system setting; checked in Chromium at 1280 and 390 px.
 - Checks: the build's own (ids, URL schemes, allowed hosts, licence, evidence, lengths, control and bidi characters, email and phone shapes, graph ends, inverses and orphans); the validator gained CSP, inline script and style, frame, event handler, link scheme and JS sink checks.
 

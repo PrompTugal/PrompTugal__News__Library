@@ -1,7 +1,7 @@
 {
  "collection": "ws26",
  "prefix": "WS26",
- "next_seq": 51,
+ "next_seq": 70,
  "rule": "Call numbers are assigned once, in the order catalogued, and never reused or renumbered. Withdrawn items keep their number with status withdrawn.",
  "items": [
   {
@@ -57,7 +57,7 @@
    "found": {
     "at": "2026-11-10T22:33:00Z",
     "by": "dev.data@PrompTugal.dinis (record in PrompTugal__News__Website data/stories/S41-websummit/sources/); catalogued by library.b@PrompTugal.dinis",
-    "how": "read by dev.data@ on 10 and 11 November; address re-checked by library.b@ on 18 November (HTTP 200)"
+    "how": "read by dev.data@ on 10 and 11 November; library.b@ also requested the address by machine on 18 November, which Web Summit's terms do not allow (finding LIB-2026-008): not done again"
    },
    "evidence": "Read at 22:33 UTC on 10 November: posted 19:09 UTC (its page data), Day 2 will not take place on the Portuguese Government's formal advice because of Storm Charles. Re-read 20:34 UTC on 11 November: modified 14:26, now opens with 'officially back on Thursday'.",
    "about": [
@@ -87,7 +87,7 @@
    "found": {
     "at": "2026-11-11T20:36:00Z",
     "by": "dev.data@PrompTugal.dinis (S41-websummit sources); catalogued by library.b@PrompTugal.dinis",
-    "how": "read by dev.data@ on 11 November; address re-checked by library.b@ on 18 November (HTTP 200)"
+    "how": "read by dev.data@ on 11 November; library.b@ also requested the address by machine on 18 November, which Web Summit's terms do not allow (finding LIB-2026-008): not done again"
    },
    "evidence": "Published 18:10 UTC on 11 November (its page data; modified 18:54); read 20:36 UTC.",
    "about": [
@@ -126,7 +126,13 @@
     "organisation:web-summit"
    ],
    "publisher_node": "organisation:web-summit",
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Read by machine on 18 November 2026 (our librarian sub-agent fetched the page), against Web Summit's terms (48.2 and 52.1), which forbid automated reading of websummit.com; the team stopped reading it by machine on 11 November and its guidance takes off what rests only on websummit.com. Finding LIB-2026-008."
+   }
   },
   {
    "id": "WS26-2026-0005",
@@ -155,7 +161,13 @@
     "organisation:web-summit"
    ],
    "publisher_node": "organisation:web-summit",
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "status": "withdrawn",
+   "withdrawn": {
+    "at": "2026-11-18",
+    "by": "library.b@PrompTugal.dinis",
+    "why": "Read by machine on 18 November 2026 (our librarian sub-agent fetched the page), against Web Summit's terms (48.2 and 52.1), which forbid automated reading of websummit.com; the team stopped reading it by machine on 11 November and its guidance takes off what rests only on websummit.com. Finding LIB-2026-008."
+   }
   },
   {
    "id": "WS26-2026-0006",
@@ -1763,25 +1775,555 @@
     "Web Summit 2026"
    ],
    "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0051",
+   "call_number": "WS26 2026/0051",
+   "collection": "ws26",
+   "kind": "replay-day",
+   "title": "Web Summit 2026 | Opening Night",
+   "summary": "The organiser's own recording of opening night, Monday 9 November 2026, on its YouTube channel.",
+   "url": "https://www.youtube.com/watch?v=dJi_pXLxwno",
+   "publisher": "Web Summit (YouTube channel @websummit)",
+   "published": "2026-11-09",
+   "summit_day": "2026-11-09",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Web Summit (https://www.youtube.com/@websummit). social.watch@'s record: Official channel stream of opening night. Title and channel confirmed by oEmbed; date from relative age (streamed ~22h before sweep).",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "organisation:web-summit"
+   ],
+   "accessioned": "2026-11-18",
+   "publisher_node": "organisation:web-summit"
+  },
+  {
+   "id": "WS26-2026-0052",
+   "call_number": "WS26 2026/0052",
+   "collection": "ws26",
+   "kind": "replay-day",
+   "title": "Web Summit 2026 | Day One",
+   "summary": "The organiser's own recording of Day One, Tuesday 10 November 2026, on its YouTube channel.",
+   "url": "https://www.youtube.com/watch?v=S9RHQGNIaFY",
+   "publisher": "Web Summit (YouTube channel @websummit)",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Web Summit (https://www.youtube.com/@websummit). social.watch@'s record: Official channel stream of day one. Title and channel confirmed by oEmbed; date from relative age.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "organisation:web-summit"
+   ],
+   "accessioned": "2026-11-18",
+   "publisher_node": "organisation:web-summit"
+  },
+  {
+   "id": "WS26-2026-0053",
+   "call_number": "WS26 2026/0053",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Replit Live: Web Summit Lisbon 2026 | Day 1",
+   "summary": "Replit's own live stream from Day One of Web Summit Lisbon 2026.",
+   "url": "https://www.youtube.com/watch?v=XMEf-M9k5yw",
+   "publisher": "Replit (YouTube channel @replit)",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Replit (https://www.youtube.com/@replit). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0054",
+   "call_number": "WS26 2026/0054",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Web Summit Lisbon: Day 1",
+   "summary": "Make's own video from Day One of Web Summit Lisbon.",
+   "url": "https://www.youtube.com/watch?v=uXTIOZpQ3uQ",
+   "publisher": "Make (YouTube channel @itsmake)",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Make (https://www.youtube.com/@itsmake). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0055",
+   "call_number": "WS26 2026/0055",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "قطر في قمة الويب لشبونة 2026- Qatar at Web Summit Lisbon 2026",
+   "summary": "Qatar's Government Communications Office on Qatar's presence at Web Summit Lisbon 2026 (title in Arabic and English).",
+   "url": "https://www.youtube.com/watch?v=MO1681bMX-c",
+   "publisher": "Government Communications Office (YouTube channel @GCOQatar)",
+   "published": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Government Communications Office (https://www.youtube.com/@GCOQatar). social.watch@'s record: Channel name as shown by oEmbed (Government Communications Office, Qatar presence). Date from relative age.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0056",
+   "call_number": "WS26 2026/0056",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "CONHEÇA AS TECNOLOGIAS DESENVOLVIDAS NA PARAÍBA PARA O MUNDO - WEB SUMMIT 2026  - AO VIVO DE LISBOA",
+   "summary": "A live broadcast from Lisbon by the science and technology department of the Brazilian state of Paraíba, on the technologies it showed at Web Summit 2026 (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=NH2Mpu3vcSE",
+   "publisher": "SECTIES PB (YouTube channel @Cienciaetecnologiagovpb)",
+   "published": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel SECTIES PB (https://www.youtube.com/@Cienciaetecnologiagovpb). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0057",
+   "call_number": "WS26 2026/0057",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Verus and Confrmo at Web Summit Lisbon 2026 | Private messaging, verified identity",
+   "summary": "An exhibitor's own video: Verus and Confrmo at Web Summit Lisbon 2026.",
+   "url": "https://www.youtube.com/watch?v=c0pl5x6i248",
+   "publisher": "Verus (YouTube channel @veruscoms)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Verus (https://www.youtube.com/@veruscoms). social.watch@'s record: Exhibitor's own video.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0058",
+   "call_number": "WS26 2026/0058",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "🔴 DIRETO | NAMA BABY na WEB SUMMIT 2026",
+   "summary": "A live stream by RVTV from Web Summit 2026 (in Portuguese), one of a series it streamed there.",
+   "url": "https://www.youtube.com/watch?v=JzLsTw-BCIA",
+   "publisher": "RVTV (YouTube channel @RVTV.DIGITAL)",
+   "published": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel RVTV (https://www.youtube.com/@RVTV.DIGITAL). social.watch@'s record: Live stream series from RVTV at Web Summit (similar items for MOWLY, SPORTS HIVE).",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0059",
+   "call_number": "WS26 2026/0059",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "China's 'impossible to ignore' tech rise on display at Web Summit in Lisbon • FRANCE 24 English",
+   "summary": "FRANCE 24 English on China's technology at Web Summit in Lisbon.",
+   "url": "https://www.youtube.com/watch?v=LsCsHpkPgpc",
+   "publisher": "FRANCE 24 English (YouTube channel @France24_en)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel FRANCE 24 English (https://www.youtube.com/@France24_en). social.watch@'s record: Title and channel confirmed by oEmbed; published about 8h before sweep (10 Nov), exact time unknown.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0060",
+   "call_number": "WS26 2026/0060",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "AI, robotics and more: CGTN explores the future at Web Summit 2026",
+   "summary": "CGTN Europe on AI, robotics and more at Web Summit 2026.",
+   "url": "https://www.youtube.com/watch?v=hsrThTM-oIM",
+   "publisher": "CGTN Europe (YouTube channel @CGTNEurope)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel CGTN Europe (https://www.youtube.com/@CGTNEurope). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0061",
+   "call_number": "WS26 2026/0061",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "La Web Summit enciende en Lisboa su décima edición con la vista puesta en China y la IA",
+   "summary": "Agencia EFE on the opening of Web Summit's tenth edition in Lisbon, with China and AI in view (in Spanish).",
+   "url": "https://www.youtube.com/watch?v=hhoqFc60Kog",
+   "publisher": "AGENCIA EFE (YouTube channel @efeagenciaefe)",
+   "published": null,
+   "summit_day": "2026-11-09",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel AGENCIA EFE (https://www.youtube.com/@efeagenciaefe). social.watch@'s record: oembed confirms the video exists; it says 'tenth edition' (Lisbon 2026 is the tenth) but the page was not opened and the date is unknown. No",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0062",
+   "call_number": "WS26 2026/0062",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Cloudflare CEO on 'Uncle Jensen's crazy credit card'",
+   "summary": "A CNBC International interview with Cloudflare's chief executive, listed in Web Summit coverage; the link to the summit is from the search listing, not from watching it.",
+   "url": "https://www.youtube.com/watch?v=D8tZOrwLP0c",
+   "publisher": "CNBC International Live (YouTube channel @CNBCInternationalLive)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel CNBC International Live (https://www.youtube.com/@CNBCInternationalLive). social.watch@'s record: Interview on Web Summit coverage per search listing; confirmed title and channel by oEmbed, not watched. Published about 9h before sweep.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0063",
+   "call_number": "WS26 2026/0063",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Décima edição da Web Summit em Lisboa. O que podemos esperar?",
+   "summary": "Renascença's preview of the tenth Web Summit in Lisbon (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=6vvcyQyhS98",
+   "publisher": "Renascença (YouTube channel @renascencavmais)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Renascença (https://www.youtube.com/@renascencavmais). social.watch@'s record: Portuguese radio/TV preview; published about 1 day before sweep.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0064",
+   "call_number": "WS26 2026/0064",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Websummit Portugal reúne 200 expositores brasileiros",
+   "summary": "Canal Rural on 200 Brazilian exhibitors at Web Summit (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=RpB4VY_ymGI",
+   "publisher": "Canal Rural (YouTube channel @CanalruralBr)",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Canal Rural (https://www.youtube.com/@CanalruralBr). social.watch@'s record: Brazilian channel; date from relative age (about 1h before sweep).",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0065",
+   "call_number": "WS26 2026/0065",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Web Summit 2026: Is the AI Funding Boom Cooling for European Startups?",
+   "summary": "The Spotlight: Beyond Profession on whether the AI funding boom is cooling for European startups, at Web Summit 2026.",
+   "url": "https://www.youtube.com/watch?v=89tY8-exU5k",
+   "publisher": "The Spotlight: Beyond Profession (YouTube channel @thespotlight_beyondprofession)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel The Spotlight: Beyond Profession (https://www.youtube.com/@thespotlight_beyondprofession). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0066",
+   "call_number": "WS26 2026/0066",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Robots Take the Stage at Web Summit: Is Europe Ready for Physical AI?",
+   "summary": "The Spotlight: Beyond Profession on robots at Web Summit and physical AI in Europe.",
+   "url": "https://www.youtube.com/watch?v=dQCc5UGakQo",
+   "publisher": "The Spotlight: Beyond Profession (YouTube channel @thespotlight_beyondprofession)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel The Spotlight: Beyond Profession (https://www.youtube.com/@thespotlight_beyondprofession). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day"
+   ]
+  },
+  {
+   "id": "WS26-2026-0067",
+   "call_number": "WS26 2026/0067",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Web Summit 2026 - Global Tech Leaders Gather in Lisbon as Artificial Intelligence Takes Centre Stage",
+   "summary": "Voice of Nepal TV on Web Summit 2026 in Lisbon and artificial intelligence.",
+   "url": "https://www.youtube.com/watch?v=CH9axjGRt3w",
+   "publisher": "VOICE OF NEPAL TV - VON (YouTube channel @VOICEOFNEPALTV)",
+   "published": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel VOICE OF NEPAL TV - VON (https://www.youtube.com/@VOICEOFNEPALTV). social.watch@'s record: Title and channel confirmed by YouTube oEmbed; date from YouTube search relative age, day precision at best.",
+   "about": [
+    "event:web-summit-lisbon-2026"
+   ],
+   "accessioned": "2026-11-18",
+   "open": [
+    "Publication date not known to the day",
+    "Title written with a hyphen where the source has a long dash (the site's wording rule)"
+   ]
+  },
+  {
+   "id": "WS26-2026-0068",
+   "call_number": "WS26 2026/0068",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "«Não compreendo porque não suspendem a Web Summit, que tem 60 a 70 mil pessoas»",
+   "summary": "NOW (Portuguese television): a guest argues the summit should be suspended because of the severe weather (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=Fi3odaoiJz8",
+   "publisher": "NOW Canal (YouTube channel @now_canal_oficial)",
+   "published": "2026-11-10",
+   "summit_day": "2026-11-11",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel NOW Canal (https://www.youtube.com/@now_canal_oficial). social.watch@'s record: Guest argues the Web Summit should be suspended given severe weather; title only (page body not readable). Published about 1h before sweep (",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "event:storm-charles"
+   ],
+   "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0069",
+   "call_number": "WS26 2026/0069",
+   "collection": "ws26",
+   "kind": "press-video",
+   "title": "Resposta a intempéries: 'Exército e Forças Armadas são agentes de proteção civil'",
+   "summary": "NOW (Portuguese television) on the response to the storm, with the armed forces as civil protection agents; about the storm, not the summit itself (in Portuguese).",
+   "url": "https://www.youtube.com/watch?v=SzwxoCkwNBg",
+   "publisher": "NOW Canal (YouTube channel @now_canal_oficial)",
+   "published": "2026-11-10",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-10T18:48:00Z",
+    "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
+    "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
+   },
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel NOW Canal (https://www.youtube.com/@now_canal_oficial). social.watch@'s record: Severe weather response segment on the Portuguese channel NOW; title only, not specific to the summit. Published about 3h before sweep.",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "event:storm-charles"
+   ],
+   "accessioned": "2026-11-18"
   }
  ],
  "missing": [
-  {
-   "what": "Day One (Tuesday 10 November) replays",
-   "note": "No official recording of Day One found on Web Summit's YouTube channel or site by 18 November. The channel's video list did not render to our reader.",
-   "asked": "data.b@PrompTugal.dinis: a collector for the channel's public feed"
-  },
   {
    "what": "Day Two (Wednesday 11 November)",
    "note": "No replay will exist: the day did not take place (Storm Charles). Its talks moved to Thursday; see WS26 2026/0002 and 2026/0003."
   },
   {
    "what": "Day Three's other stages",
-   "note": "Only one Day Three recording found; which stage it shows is not confirmed. Web Summit may publish only some stages publicly (a search snippet about 2025, not read)."
+   "note": "Web Summit's channel has one recording per day (opening night, Day One, Day Three; Day Two did not happen); which stage each shows, and whether other stages were recorded, is not yet known."
   },
   {
    "what": "Talks by timestamp",
-   "note": "No talk start times read yet: the Day Three video's description did not render to our reader."
+   "note": "No talk start times read yet: the replays' descriptions did not render to our reader. Asked of data.b@ (board/team/library/asks/)."
   },
   {
    "what": "Standalone talk recordings and speaker-side write-ups",
@@ -1794,6 +2336,10 @@
   {
    "what": "Portugal Resident coverage",
    "note": "portugalresident.com refused our reader (HTTP 403); recorded, not worked around."
+  },
+  {
+   "what": "Web Summit's own programme and session pages",
+   "note": "websummit.com is linked but never read by machine (its terms 48.2 and 52.1); the two pages read that way on 18 November are withdrawn (WS26 2026/0004 and 0005). The programme comes back through the press, organisers' public posts or a person reading by hand."
   }
  ],
  "history": [
@@ -1806,6 +2352,11 @@
    "at": "2026-11-18",
    "by": "library.b@PrompTugal.dinis",
    "what": "42 PrompTugal.news articles about the summit catalogued from their front matter."
+  },
+  {
+   "at": "2026-11-18",
+   "by": "library.b@PrompTugal.dinis",
+   "what": "19 videos catalogued from social.watch@'s record, each re-checked through YouTube's oEmbed: Web Summit's own opening night and Day One replays (the 'no Day One replay' gap was wrong and is removed; videos.b@ pointed it out), 6 organisations' own recordings, 11 press videos. WS26 2026/0004 and 0005 withdrawn: read by machine against websummit.com's terms (LIB-2026-008)."
   }
  ]
 }
