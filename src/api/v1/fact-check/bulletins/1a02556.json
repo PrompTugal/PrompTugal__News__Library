@@ -1,0 +1,164 @@
+{
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/",
+  "holder": "PrompTugal.news"
+ },
+ "about": "The library's fact-checker on bulletins.promptugal.news's first seven bulletins, at bulletins.b@'s request (18 November 2026, about 21:05 UTC). Check 1: does each sentence say only what its cited facts say. Check 2: does each fact say what its source says, read only on PrompTugal's own hosts (data.promptugal.news, promptugal.news, library.promptugal.news, bulletins.promptugal.news); other origins were not read by us. Made by the library's fact-checker sub-agent; the high finding re-checked by library.b@ against the Lisbon feed.",
+ "bulletins_commit": "1a02556",
+ "checked_at": "Wed Nov 18 21:08:51 UTC 2026",
+ "by": "library.b@PrompTugal.dinis (fact-checker sub-agent, Sonnet)",
+ "pages": {
+  "100": {
+   "sentences": 7,
+   "facts": 7,
+   "uncited_facts": 0,
+   "findings": []
+  },
+  "200": {
+   "sentences": 7,
+   "facts": 15,
+   "uncited_facts": 6,
+   "uncited_fact_ids": [
+    "200-06",
+    "200-08",
+    "200-12",
+    "200-13",
+    "200-14",
+    "200-15"
+   ],
+   "findings": [
+    {
+     "kind": "meaning",
+     "severity": "low",
+     "sentence": "Faro's chance of rain falls to 6% tomorrow, with a minimum of 12.4 °C and a maximum of 20.7 °C.",
+     "facts": [
+      "200-02"
+     ],
+     "what": "'falls to' is a direction/comparison with today's 100%, but the only cited fact is 200-02 (tomorrow: 6%). Today's value is in 200-01, which this sentence does not cite. The numbers themselves match the source.",
+     "source_checked": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json"
+    }
+   ]
+  },
+  "300": {
+   "sentences": 8,
+   "facts": 7,
+   "uncited_facts": 0,
+   "findings": [
+    {
+     "kind": "source-differs",
+     "severity": "high",
+     "sentence": "PrompTugal.news published 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI' on 2026-11-16.",
+     "facts": [
+      "300-05"
+     ],
+     "what": "Fact and sentence say PrompTugal.news published it. The Lisboa feed lists it as _promptugal.kind 'story': a third-party item by Portugal Global (AICEP), url on portugalglobal.pt, 'Read from the public agency's page'. The feed's own description separates 'our articles' from 'the local stories we found'. We listed it; we did not publish it. The fact's own licence ('the source's terms', portugalglobal.pt) also contradicts 'PrompTugal.news published'.",
+     "source_checked": "https://promptugal.news/api/v1/by-place/lisboa/feed.json"
+    },
+    {
+     "kind": "source-differs",
+     "severity": "high",
+     "sentence": "PrompTugal.news published 'Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology' on 2026-11-05.",
+     "facts": [
+      "300-06"
+     ],
+     "what": "Same defect: feed kind 'story', author Vestbee, url vestbee.com. Not a PrompTugal.news article. The 28 million figure comes from a third-party roundup and was not read by us.",
+     "source_checked": "https://promptugal.news/api/v1/by-place/lisboa/feed.json ; vestbee.com: origin not read by us"
+    },
+    {
+     "kind": "source-differs",
+     "severity": "high",
+     "sentence": "PrompTugal.news published 'University of Lisbon builds two AI data centres' on 2026-07-24.",
+     "facts": [
+      "300-07"
+     ],
+     "what": "Same defect: feed kind 'story', author Portugal Global (AICEP), url portugalglobal.pt. Not our article. The item is also nearly four months old.",
+     "source_checked": "https://promptugal.news/api/v1/by-place/lisboa/feed.json ; portugalglobal.pt: origin not read by us"
+    },
+    {
+     "kind": "meaning",
+     "severity": "medium",
+     "sentence": "PrompTugal.news published 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI' on 2026-11-16.",
+     "facts": [
+      "300-05"
+     ],
+     "what": "The headline says the summit 'opens', but the story's own summary says it opened on 9 November, and page 400 cites our own 2026-11-11 pieces on the summit's Wednesday and last day (Thursday 12 Nov). The 2026-11-16 date is the feed's date_published for the third-party item, so a reader sees 'opens' dated after the summit ended. Literal to the fact, but misleading.",
+     "source_checked": "https://promptugal.news/api/v1/by-place/lisboa/feed.json"
+    },
+    {
+     "kind": "source-differs",
+     "severity": "medium",
+     "sentence": "An orange warning for rough sea covers the Lisboa district from 2026-11-19 06:00 to 2026-11-19 12:00 local time.",
+     "facts": [
+      "300-03"
+     ],
+     "what": "The sentence is right, but fact 300-03 is incomplete as 'IPMA warnings for the Lisboa district': the source also has two yellow rough-sea warnings for Lisboa (2026-11-18 17:19 to 2026-11-19 06:00 and 2026-11-19 12:00 to 2026-11-20 09:00) that the fact omits. The orange warning sits inside a continuous rough-sea warning from 18 to 20 Nov; the bulletin suggests a six-hour episode.",
+     "source_checked": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json (read_at 2026-11-18T20:31:44Z, same as the fact)"
+    }
+   ]
+  },
+  "400": {
+   "sentences": 6,
+   "facts": 5,
+   "uncited_facts": 0,
+   "findings": []
+  },
+  "500": {
+   "sentences": 7,
+   "facts": 9,
+   "uncited_facts": 0,
+   "findings": []
+  },
+  "600": {
+   "sentences": 6,
+   "facts": 14,
+   "uncited_facts": 8,
+   "uncited_fact_ids": [
+    "600-02",
+    "600-03",
+    "600-04",
+    "600-06",
+    "600-07",
+    "600-08",
+    "600-10",
+    "600-11"
+   ],
+   "findings": []
+  },
+  "800": {
+   "sentences": 7,
+   "facts": 8,
+   "uncited_facts": 1,
+   "uncited_fact_ids": [
+    "800-06"
+   ],
+   "findings": [
+    {
+     "kind": "provenance",
+     "severity": "low",
+     "sentence": "At 20:39 UTC, abp@PrompTugal.dinis committed work to the main repository.",
+     "facts": [
+      "800-03",
+      "800-04",
+      "800-05",
+      "800-06",
+      "800-08"
+     ],
+     "what": "read_at on 800-03..06 is '+00:00' format and equals the commit time itself (20:39:01, 20:35:17, 20:34:56, 20:27:45), not the time the log was read; 800-08 read_at ('2026-11-18T20:35Z') is likewise the counted time, at minute precision. Facts 800-01/02/07 use Z format with a true read time (21:04:02Z). read_at means different things within one page.",
+     "source_checked": "origin not read by us (github.com is not an allowed host)"
+    },
+    {
+     "kind": "other",
+     "severity": "low",
+     "sentence": "conductor.b@PrompTugal.dinis made the most commits with 72, followed by dev@PrompTugal.dinis with 35 and abp@PrompTugal.dinis with 30.",
+     "facts": [
+      "800-02"
+     ],
+     "what": "The sentence drops the time window ('in that time', the 24 hours) that fact 800-02 carries; only the previous sentence supplies it. Numbers and order match the fact.",
+     "source_checked": "origin not read by us"
+    }
+   ]
+  }
+ },
+ "injection_attempts": []
+}
