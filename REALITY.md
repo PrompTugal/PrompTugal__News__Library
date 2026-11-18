@@ -19,7 +19,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit, catalogued from their front matter (every URL checked: HTTP 200).
 - **7 gaps recorded** (`missing[]`): no Day One replay found; Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`, empty).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 7 findings from the AppSec review, 6 fixed before release, 1 accepted).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.

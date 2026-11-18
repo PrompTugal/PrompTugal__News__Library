@@ -1,6 +1,88 @@
 {
  "about": "Security findings for library.promptugal.news: every vulnerability, bug and breach, ours included, with its severity, where, when found and by which pass, the fix and its state (Dinis, 18 November 2026, board/guidance/2026-11-18-security-findings-published.md in PrompTugal__News__Website). An open finding is shown as its title, severity and state only, until it is fixed.",
  "central_log": "https://promptugal.news/security/ (being built by dev@PrompTugal.dinis)",
- "threat_models": ["docs/threat-models/build.md", "docs/threat-models/cataloguing.md", "docs/threat-models/search.md"],
- "findings": []
+ "threat_models": [
+  "docs/threat-models/build.md",
+  "docs/threat-models/cataloguing.md",
+  "docs/threat-models/search.md"
+ ],
+ "findings": [
+  {
+   "id": "LIB-2026-001",
+   "severity": "medium",
+   "title": "Hand-page links were not held to the host allowlist; a protocol-relative link (//host) passed",
+   "where": "scripts/build.mjs, inline()",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "Links in content/*.md must be same-site paths, anchors, or https to a host in catalogue/hosts.json; the build fails otherwise. github.com added to the allowlist deliberately.",
+   "state": "fixed",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  },
+  {
+   "id": "LIB-2026-002",
+   "severity": "medium",
+   "title": "Any address ending in a team domain (e.g. someone@web-summit.com) passed the email check as an agent name",
+   "where": "scripts/build.mjs, AGENT",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "Agent names must be role@(PrompTugal|web-summit|AgentiCCells).(dinis|vicky|angelo); anything else email-shaped fails the build.",
+   "state": "fixed",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  },
+  {
+   "id": "LIB-2026-003",
+   "severity": "low",
+   "title": "Line breaks in one-line fields could inject structure into the markdown twins",
+   "where": "scripts/build.mjs, checkText()",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "Line breaks and tabs fail the build in every checked field.",
+   "state": "fixed",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  },
+  {
+   "id": "LIB-2026-004",
+   "severity": "low",
+   "title": "A licence named CC BY 4.0 was shown as ours whatever its link",
+   "where": "scripts/build.mjs, licence check",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "Name and link must agree; the card shows CC BY 4.0 only for the creativecommons.org by/4.0 link.",
+   "state": "fixed",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  },
+  {
+   "id": "LIB-2026-005",
+   "severity": "low",
+   "title": "http: accepted for item and licence links",
+   "where": "scripts/build.mjs, checkUrl()",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "https only.",
+   "state": "fixed",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  },
+  {
+   "id": "LIB-2026-006",
+   "severity": "low",
+   "title": "A hand page with no title or description would render 'undefined'",
+   "where": "scripts/build.mjs, content pages",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "Front matter title and description are required; the build fails otherwise.",
+   "state": "fixed",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  },
+  {
+   "id": "LIB-2026-007",
+   "severity": "low",
+   "title": "Agent names carry operators' first names (e.g. .vicky, .angelo) on cards and in JSON",
+   "where": "catalogue/ws26.json made_by",
+   "found": "2026-11-18",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), before the first release",
+   "fix": "Accepted for now: these agent names are already public on promptugal.news; asked of Dinis to confirm.",
+   "state": "accepted",
+   "fixed_in": "the release commit of 18 November 2026 (library.b@: AppSec post-review fixes)"
+  }
+ ]
 }

@@ -9,7 +9,11 @@ At Dinis Cruz's word (18 November 2026): every vulnerability, bug and breach of 
 
 ## Findings
 
-None yet. The first release was reviewed before it shipped: a security pre-review of the plan and an AppSec review of the code, both inner passes run by the lead agent on 18 November 2026. What they asked for is built in, and what they found in the code was fixed before the first release (the record is in the repository's history and the lead's status file). As JSON: [/api/v1/security/findings.json](/api/v1/security/findings.json).
+Seven, all from the AppSec review of the first release's code (an inner pass run by the lead agent on 18 November 2026, before anything was published): six fixed before the release, one accepted. None was ever live.
+
+__FINDINGS__
+
+As JSON: [/api/v1/security/findings.json](/api/v1/security/findings.json).
 
 ## What the site does and does not do
 
@@ -17,7 +21,7 @@ None yet. The first release was reviewed before it shipped: a security pre-revie
 - Every page carries a content security policy that allows scripts, styles, fonts and images from this site only, and no frames.
 - The one script, the catalogue search, reads one file from this site and builds its results without interpreting any text as HTML.
 - Catalogued text is untrusted: the build checks it and escapes it; no agent acts on it.
-- The build fetches nothing from the network, and fails on any link to a host not on [its allowlist](https://github.com/PrompTugal/PrompTugal__News__Library/blob/dev/catalogue/hosts.json).
+- The build fetches nothing from the network, and fails on any link, in the catalogue or on these pages, that is not https to a host on [its allowlist](https://github.com/PrompTugal/PrompTugal__News__Library/blob/dev/catalogue/hosts.json).
 
 ## Threat models
 

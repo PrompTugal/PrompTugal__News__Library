@@ -28,10 +28,11 @@ const NODE = /^[a-z]+:[a-z0-9][a-z0-9-]{0,80}$/;
 const CONTROL = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f​-‏‪-‮⁦-⁩﻿]/;
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
 const PHONE = /(?:\+|00)\d[\d\s().-]{7,}\d/;
-const AGENT = /^[a-z0-9.-]+@(?:PrompTugal|web-summit|AgentiCCells)\.[a-z]+$/;  // an agent's name, role@team.person
+const AGENT = /^[a-z0-9][a-z0-9.-]{0,60}@(?:PrompTugal|web-summit|AgentiCCells)\.(?:dinis|vicky|angelo)$/;  // an agent's name, role@team.operator (AppSec post-review finding 2)
 function checkText(where, s, max) {
   if (s == null) return;
   if (typeof s !== 'string') return fail(`${where}: not a string`);
+  if (/[\r\n\t]/.test(s)) fail(`${where}: line break or tab`);
   if (s.length > max) fail(`${where}: longer than ${max} characters`);
   if (CONTROL.test(s)) fail(`${where}: control or bidi character`);
   // an agent's name (role@PrompTugal.person) is allowed; any other email shape is not
@@ -41,7 +42,7 @@ function checkText(where, s, max) {
 function checkUrl(where, u, { allowAnyHost = false } = {}) {
   let x;
   try { x = new URL(u); } catch { return fail(`${where}: not a URL`); }
-  if (x.protocol !== 'https:' && x.protocol !== 'http:') return fail(`${where}: scheme ${x.protocol} not allowed`);
+  if (x.protocol !== 'https:') return fail(`${where}: scheme ${x.protocol} not allowed`);
   if (x.username || x.password) fail(`${where}: credentials in URL`);
   if (!allowAnyHost && !hosts.items.includes(x.hostname)) fail(`${where}: host ${x.hostname} is not in catalogue/hosts.json`);
   return x;
@@ -73,7 +74,7 @@ for (const c of collections) {
     checkText(`${w} publisher`, it.publisher, 200);
     if (!it.title) fail(`${w}: no title`);
     checkUrl(`${w} url`, it.url);
-    if (!it.licence || !it.licence.url || !it.licence.name) fail(`${w}: no licence link`); else checkUrl(`${w} licence`, it.licence.url);
+    if (!it.licence || !it.licence.url || !it.licence.name) fail(`${w}: no licence link`); else { checkUrl(`${w} licence`, it.licence.url); if (/CC BY/.test(it.licence.name) !== /^https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/?$/.test(it.licence.url)) fail(`${w}: licence name and link disagree`); }
     if (!it.found || !it.found.at || !it.found.by) fail(`${w}: no found (when and by whom)`);
     if (!it.evidence) fail(`${w}: no evidence`);
     for (const a of it.about || []) if (!nodes.has(a)) fail(`${w}: about ${a} is not a node`);
@@ -171,6 +172,7 @@ ${scripts.map((s) => `<script src="${s}" defer></script>`).join('\n')}
 }
 
 // a small markdown renderer for the hand pages (headings, paragraphs, lists, tables, links, bold, italics, code)
+const mdLinkProblems = [];
 function inline(s) {
   return esc(s)
     .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -178,7 +180,9 @@ function inline(s) {
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => {
       const raw = u.replace(/&amp;/g, '&');
-      if (!/^(https?:\/\/|\/|#)/.test(raw)) return t;
+      if (/^#|^\/(?![\/\\])/.test(raw)) return `<a href="${u}">${t}</a>`;
+      let x; try { x = new URL(raw); } catch { x = null; }
+      if (!x || x.protocol !== 'https:' || x.username || x.password || !hosts.items.includes(x.hostname)) { mdLinkProblems.push(raw); return t; }
       return `<a href="${u}">${t}</a>`;
     });
 }
@@ -323,7 +327,7 @@ for (const it of items) {
   const conn = neighbours(`item:${it.id}`).filter((e) => e.type !== 'on_shelf').map((e) => ({ type: e.type, n: nodes.get(e.to) }));
   const nodeLink = (n) => n.type === 'topic' || n.type === 'place' || n.type === 'organisation' || n.type === 'event' || n.type === 'agent' ? `/index/${n.type}/#${anchor(n.id)}` : null;
   const lic = it.licence;
-  const isOurs = lic.name === 'CC BY 4.0';
+  const isOurs = lic.name === 'CC BY 4.0' && /^https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/?$/.test(lic.url);
   const card = `<aside class="card" aria-label="Catalogue card"><span class="redline"></span><div class="cn"><span>${esc(it.call_number)}</span><span>${esc(c.prefix)}</span></div>
 <p class="ti">${esc(it.title)}</p><dl>
 <dt>What</dt><dd>${esc(kindLabel(it.kind))}</dd>
@@ -382,11 +386,15 @@ for (const f of walk('content').filter((f) => f.endsWith('.md'))) {
   const m = src.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!m) { console.error(`${f}: no front matter`); process.exit(1); }
   const fm = Object.fromEntries(m[1].split('\n').map((l) => l.match(/^(\w+):\s*(.*)$/)).filter(Boolean).map((x) => [x[1], x[2]]));
+  if (!fm.title || !fm.description) { console.error(`${f}: front matter needs title and description`); process.exit(1); }
   const rel = f.slice('content/'.length, -3);
   const path = rel === 'index' ? '/' : `/${rel.replace(/\/index$/, '')}/`;
-  const text = m[2].replaceAll('__ITEMS__', String(items.length)).replaceAll('__GAPS__', String(missing.length));
+  const ftable = `| Id | Severity | Finding | Fix | State |\n|---|---|---|---|---|\n${findings.findings.map((x) => `| ${x.id} | ${x.severity} | ${x.title.replace(/\|/g, '/')} | ${x.fix.replace(/\|/g, '/')} | ${x.state} |`).join('\n')}`;
+  const text = m[2].replaceAll('__ITEMS__', String(items.length)).replaceAll('__GAPS__', String(missing.length)).replaceAll('__FINDINGS__', ftable);
   page({ path, title: `${fm.title}: PrompTugal.news Library`, description: fm.description, body: `<section class="page"><p class="crumb"><a href="/">Library</a> › ${esc(fm.title)}</p>${fm.kicker ? `<p class="k">${esc(fm.kicker)}</p>` : ''}${md2html(text)}</section>`, md: text });
 }
+
+if (mdLinkProblems.length) { console.error(mdLinkProblems.map((u) => `content link not allowed (https to a host in catalogue/hosts.json, or a same-site path): ${u}`).join('\n')); process.exit(1); }
 
 // ---------- the template's own steps ----------
 for (const f of walk('_site')) {
