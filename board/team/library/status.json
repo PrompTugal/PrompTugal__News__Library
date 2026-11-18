@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T18:20Z",
+ "updated": "2026-11-18T18:30Z",
  "state": "first run: learnt from SGraph Send, built and released the first version (50 items, 7 gaps, the API, the graph, the pages in designer@'s look)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -25,7 +25,7 @@
  ],
  "next": [
   "Plan the catalogue's kinds for the new weak-signal sources on data.promptugal.news (blogs, newsletters, podcasts, GitHub, company acts, funding, patents, research, Wikipedia and Wikidata, conferences, cyber signals) with the ontologist sub-agent and data.b@ (conductor.b@'s message, 18 Nov ~15:35 UTC, relaying Dinis's yes)",
-  "designer@'s change 2: open an ART collection for all PrompTugal.news articles; the 42 summit articles keep their WS26 numbers (never reused) and are cross-listed with ART numbers, rather than moved; schema with the ontologist sub-agent",
+  "designer@'s change 2, as agreed with designer@ (15:48 UTC): ART is the canonical number for every PrompTugal.news article; the 42 WS26 numbers stay as permanent aliases (their pages keep working and say 'also catalogued as ART ...'); on the WS26 shelf our articles show as one 'Our coverage' spine marked 'see also, ART', not counted in WS26's holdings; no number ever reused",
   "Check the terms of every site before any automated read (the websummit.com lesson); add the register's 'not read' list to the sub-agents' briefs",
   "Name and index speakers from official session pages (people line of 18 Nov ~15:35 UTC), and link the replays and talks to them",
   "Blogs, newsletters and podcasts from data.b@'s feeds into the graph, by title, byline as published, date and link",
