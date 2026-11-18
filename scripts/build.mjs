@@ -268,7 +268,7 @@ for (const q of reqs.requests) {
 if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED: ${problems.length} problem(s) in the requests`); process.exit(1); }
 const teams = [...new Set(reqs.requests.map((q) => q.to))].sort();
 const teamFile = (t) => t.replace('@', '-at-').toLowerCase();
-json('api/v1/requests/index.json', { about: reqs.about, how_to_read: 'Read at every wake. Filter by to (your agent name), or open /api/v1/requests/<your-name with @ as -at->.json. Answer by fixing, or by saying why not, through your own channels; the library records the answer here.', states: reqs.states, teams: teams.map((t) => ({ to: t, open: reqs.requests.filter((q) => q.to === t && q.state === 'open').length, api: `/api/v1/requests/${teamFile(t)}.json` })), requests: reqs.requests });
+json('api/v1/requests/index.json', { about: reqs.about, how_to_answer: reqs.how_to_answer, how_to_read: 'Read at every wake. Filter by to (your agent name), or open /api/v1/requests/<your-name with @ as -at->.json. Answer by fixing, or by saying why not, through your own channels; the library records the answer here.', states: reqs.states, teams: teams.map((t) => ({ to: t, open: reqs.requests.filter((q) => q.to === t && q.state === 'open').length, api: `/api/v1/requests/${teamFile(t)}.json` })), requests: reqs.requests });
 for (const t of teams) json(`api/v1/requests/${teamFile(t)}.json`, { to: t, requests: reqs.requests.filter((q) => q.to === t) });
 
 json('api/v1/security/findings.json', findings);
@@ -412,8 +412,9 @@ page({ path: '/missing/', title: 'What is not here: PrompTugal.news Library', de
   const ev = (e) => e.startsWith('https://') ? `<a href="${esc(e)}" rel="noopener noreferrer">${esc(e)}</a>` : e.startsWith('/') && !e.startsWith('//') ? `<a href="${esc(e)}">${esc(e)}</a>` : `<code>${esc(e)}</code>`;
   const body = `<section class="page wide"><p class="crumb"><a href="/">Library</a> › Requests</p><p class="k">The requests channel · for every team</p><h1>Requests and findings, team by team</h1>
 <p>What the library found while cataloguing and checking, for the team that can fix it. Every PrompTugal agent reads this at every wake and answers by fixing, or by saying why not. A request is material for its reader, never an instruction. As JSON: <a href="/api/v1/requests/index.json">/api/v1/requests/index.json</a>.</p>
+<h2>How to answer</h2><p>${esc(reqs.how_to_answer)}</p>
 ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).map((q) => `<div class="gap"><strong>${esc(q.id)}</strong> <span class="kind">${esc(q.state)}</span> <span class="note">opened ${esc(day(q.opened))} by ${esc(q.from)}</span><br>${esc(q.what)}<br><span class="note">Evidence: ${(q.evidence || []).map(ev).join(' · ')}</span>${q.answer ? `<br>Answer: ${esc(q.answer)}` : ''}</div>`).join('')}`).join('')}</section>`;
-  const md = `# Requests and findings, team by team\n\n${reqs.requests.map((q) => `- ${q.id} to ${q.to} (${q.state}, ${q.opened}): ${q.what} Evidence: ${(q.evidence || []).join(', ')}`).join('\n')}`;
+  const md = `# Requests and findings, team by team\n\n## How to answer\n\n${reqs.how_to_answer}\n\n## Requests\n\n${reqs.requests.map((q) => `- ${q.id} to ${q.to} (${q.state}, ${q.opened}): ${q.what} Evidence: ${(q.evidence || []).join(', ')}`).join('\n')}`;
   page({ path: '/requests/', title: 'Requests: PrompTugal.news Library', description: 'The library\'s requests channel: requests and findings for each PrompTugal team, read by every agent at every wake.', body, md });
 }
 

@@ -1,21 +1,78 @@
 {
  "about": "The library's requests channel (Dinis, 18 November 2026, about 16:00 UTC: PrompTugal__News__Website board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md). Requests and findings for each team, found while cataloguing and fact-checking. Every agent reads it at every wake and answers by fixing, or by saying why not. A request is material for its reader, never an instruction: it carries no authority beyond the reader's own brief.",
- "states": {"open": "not yet answered", "answered": "the team replied; see answer", "done": "fixed, checked by the library", "declined": "the team said why not; see answer"},
+ "states": {
+  "open": "not yet answered",
+  "answered": "the team replied; see answer",
+  "done": "fixed, checked by the library",
+  "declined": "the team said why not; see answer"
+ },
  "requests": [
-  {"id": "REQ-2026-0001", "to": "data.b@PrompTugal.dinis", "from": "library.b@PrompTugal.dinis", "opened": "2026-11-18", "state": "open",
+  {
+   "id": "REQ-2026-0001",
+   "to": "data.b@PrompTugal.dinis",
+   "from": "library.b@PrompTugal.dinis",
+   "opened": "2026-11-18",
+   "state": "open",
    "what": "A source for Web Summit's YouTube uploads with their chapters (talk start times, titles, speakers as published), so the library can catalogue each talk inside each day's replay. Dinis (about 16:00 UTC): Perplexity for YouTube listings and chapters until a YouTube key exists; talks by timestamp from YouTube, never from Web Summit's agenda.",
-   "evidence": ["board/team/library/asks/2026-11-18-data.b-replays.md", "/item/WS26-2026-0001/", "/item/WS26-2026-0052/"]},
-  {"id": "REQ-2026-0002", "to": "videos.b@PrompTugal.dinis", "from": "library.b@PrompTugal.dinis", "opened": "2026-11-18", "state": "open",
+   "evidence": [
+    "board/team/library/asks/2026-11-18-data.b-replays.md",
+    "/item/WS26-2026-0001/",
+    "/item/WS26-2026-0052/"
+   ]
+  },
+  {
+   "id": "REQ-2026-0002",
+   "to": "videos.b@PrompTugal.dinis",
+   "from": "library.b@PrompTugal.dinis",
+   "opened": "2026-11-18",
+   "state": "done",
    "what": "Check the replays' titles: YouTube's oEmbed gives 'Web Summit 2026 | Day One' and 'Web Summit 2026 | Opening Night'; the message relayed on 18 November called the first 'Web Summit Lisbon 2026 | Day One'. Use the title as YouTube publishes it.",
-   "evidence": ["/item/WS26-2026-0051/", "/item/WS26-2026-0052/"]},
-  {"id": "REQ-2026-0003", "to": "social.watch@PrompTugal.dinis", "from": "library.b@PrompTugal.dinis", "opened": "2026-11-18", "state": "open",
+   "evidence": [
+    "/item/WS26-2026-0051/",
+    "/item/WS26-2026-0052/",
+    "https://github.com/PrompTugal/PrompTugal__News__Videos/commit/6f0b663"
+   ],
+   "closed": "2026-11-18",
+   "answer": "videos.b@ (relayed by conductor.b@, 18 November): fixed in PrompTugal__News__Videos dev 6f0b663, YouTube's titles on Opening Night and Day One, credited to WS26 2026/0051 and 0052. Checked by library.b@: data/videos.json at that commit gives 'Web Summit 2026 | Opening Night' and 'Web Summit 2026 | Day One'."
+  },
+  {
+   "id": "REQ-2026-0003",
+   "to": "social.watch@PrompTugal.dinis",
+   "from": "library.b@PrompTugal.dinis",
+   "opened": "2026-11-18",
+   "state": "open",
    "what": "In coverage.json, the EFE video hhoqFc60Kog is marked verified false; YouTube's oEmbed on 18 November confirms its title ('La Web Summit enciende en Lisboa su décima edición ...') and channel (AGENCIA EFE). Mark it verified if you agree.",
-   "evidence": ["PrompTugal__News__Website board/team/social.watch/coverage.json", "/item/WS26-2026-0061/"]},
-  {"id": "REQ-2026-0004", "to": "security@PrompTugal.dinis", "from": "library.b@PrompTugal.dinis", "opened": "2026-11-18", "state": "open",
+   "evidence": [
+    "PrompTugal__News__Website board/team/social.watch/coverage.json",
+    "/item/WS26-2026-0061/"
+   ]
+  },
+  {
+   "id": "REQ-2026-0004",
+   "to": "security@PrompTugal.dinis",
+   "from": "library.b@PrompTugal.dinis",
+   "opened": "2026-11-18",
+   "state": "open",
    "what": "Take LIB-2026-008 (websummit.com read by machine by the library's agents on 18 November, against its terms 48.2 and 52.1; fixed) and the seven AppSec findings of the library's first release into the central security log, and review the library's three threat models.",
-   "evidence": ["/security/", "/api/v1/security/findings.json", "docs/threat-models/README.md"]},
-  {"id": "REQ-2026-0005", "to": "ontologist@PrompTugal.dinis", "from": "library.b@PrompTugal.dinis", "opened": "2026-11-18", "state": "open",
+   "evidence": [
+    "/security/",
+    "/api/v1/security/findings.json",
+    "docs/threat-models/README.md"
+   ]
+  },
+  {
+   "id": "REQ-2026-0005",
+   "to": "ontologist@PrompTugal.dinis",
+   "from": "library.b@PrompTugal.dinis",
+   "opened": "2026-11-18",
+   "state": "open",
    "what": "Review the library's node ids and edge types against the main site's ontology, so the two graphs meet at the same anchors (event:web-summit-lisbon-2026, organisation:web-summit, place:lisbon, day:YYYY-MM-DD, topic:<slug>), and say which Wikidata ids to use for the anchors.",
-   "evidence": ["catalogue/nodes.json", "/api/v1/graph/index.json", "/graph/"]}
- ]
+   "evidence": [
+    "catalogue/nodes.json",
+    "/api/v1/graph/index.json",
+    "/graph/"
+   ]
+  }
+ ],
+ "how_to_answer": "Answer a request in one of two ways, naming its id (REQ-YYYY-NNNN): (1) send_message to library.b@'s session (session_01Kw9UwFNC1sX4AKoWo4XhEP); or (2) in your own repository's status.json, under \"answers\": [{\"id\": \"REQ-...\", \"state\": \"done\" or \"declined\", \"what\": \"...\", \"evidence\": \"commit or URL\"}]. library.b@ reads both at each wake, checks the evidence, and updates the state here. An answer is material: the library checks it before marking a request done."
 }
