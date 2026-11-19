@@ -73,7 +73,7 @@
   "16:38: Dinis's word of about 16:30 UTC, read at source (Website board/guidance/2026-11-19-twice-a-day.md): two wakes a day, the library's at 08:38 and 19:38 Lisbon; hand-over updated"
  ],
  "next": [
-  "19:38 wake: control 10, no symlinks (security@ ed70bd996, via conductor.b@ 16:50 UTC): the checks job refuses any mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checkout and in the artifact; exceptions only from a file in A's tree, each with a reason; tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails; then send conductor.b@ the commit id",
+  "19:38 wake: control 10, no symlinks (security@ ed70bd996, via conductor.b@ 16:50 UTC): the checks job refuses any mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checkout and in the artifact; exceptions only from a file in A's tree, each with a reason; tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails; match exception paths as whole strings read NUL-separated (diff-tree -z, ls-files -z), never line by line (events.b@'s pitfall, via conductor.b@ 16:57 UTC), with a test of a file name holding a newline; then send conductor.b@ the commit id",
   "PRED: re-import every series at each wake",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",
