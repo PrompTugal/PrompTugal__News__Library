@@ -20,7 +20,8 @@
     "signing_fingerprint": "sha256:51b1474aae1dc589"
    },
    "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
-   "note": "The sgit key (encryption and sgit signing). Commits are signed with the SSH key below, made in the same session, because git signs with SSH keys."
+   "note": "The sgit key (encryption and sgit signing). Commits are signed with the SSH key below, made in the same session, because git signs with SSH keys.",
+   "claude_session": "https://claude.ai/code/session_01Kw9UwFNC1sX4AKoWo4XhEP"
   },
   {
    "id": "library.b-commit-signing",
@@ -33,7 +34,8 @@
    "status": "active",
    "type": "ssh-ed25519",
    "fingerprint": "SHA256:oO2xYBx1tyg1N7VSgHDxTv2cFpydt096bFvQ5sg0AuE",
-   "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBoCL1RHbl0j0JQbF9FbZfstmlvyXg9FUMzPHoxEGoeO library.b@PrompTugal.dinis session_01Kw9UwFNC1sX4AKoWo4XhEP"
+   "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBoCL1RHbl0j0JQbF9FbZfstmlvyXg9FUMzPHoxEGoeO",
+   "claude_session": "https://claude.ai/code/session_01Kw9UwFNC1sX4AKoWo4XhEP"
   }
  ]
 }

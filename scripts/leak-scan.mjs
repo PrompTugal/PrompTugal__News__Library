@@ -104,8 +104,9 @@ export function scanText(path, text) {
     // Blank the allowed public key blocks, keeping line numbers.
     body = text.replace(PUBLIC_BLOCK, (b) => b.replace(/[^\n]/g, ' '));
     // OpenSSH ed25519 public keys and their SHA256 fingerprints, as commit signing keys are published (Dinis, 19 Nov
-    // 2026: every agent publishes its key in the repository it maintains). Public halves only, and only in these files; the key's comment is still scanned (LIB-2026-034).
-    body = body.replace(/("ssh_public_key": ")(ssh-ed25519 AAAAC3NzaC1lZDI1NTE5[A-Za-z0-9+\/]{48})(?=[ "])/g, (b, k, v) => k + v.replace(/[^\n]/g, ' '))
+    // 2026: every agent publishes its key in the repository it maintains). Public halves only, and only in these files, by field and exact pattern (security@, 19 Nov 01:30): the key line without its comment, fingerprints, the full Claude session URL; everything else is still scanned.
+    body = body.replace(/("ssh_public_key": ")(ssh-ed25519 AAAAC3NzaC1lZDI1NTE5[A-Za-z0-9+\/]{48})(?=")/g, (b, k, v) => k + v.replace(/[^\n]/g, ' '))
+      .replace(/"claude_session": "https:\/\/claude\.ai\/code\/session_[A-Za-z0-9]{24}"/g, (b) => b.replace(/[^\n]/g, ' '))
       .replace(/"fingerprint": "SHA256:[A-Za-z0-9+\/]{43}"/g, (b) => b.replace(/[^\n]/g, ' '));
   }
   body.split('\n').forEach((line, i) => {

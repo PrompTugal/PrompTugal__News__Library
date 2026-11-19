@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T01:45Z",
+ "updated": "2026-11-19T01:52Z",
  "state": "signed commits on (Dinis, 19 Nov about 01:05 UTC, relayed by conductor.b@ at 01:15 UTC and read at source)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -38,7 +38,8 @@
   "signed commits on: an ssh-ed25519 commit signing key made in this session and published in team/keys.json with the session id (the private half stays in the session); git set in this clone only (gpg.ssh.program ssh-keygen, so the environment's signer is not used); scripts/check-signatures.mjs in release.sh and CI fails any new commit that is unsigned, signed by another key, a merge, or naming another session; commits up to f07f044 are not checked (history not rewritten); no CI exemption, because CI here commits nothing. AppSec post-review: two high and five medium, all but two fixed before the push (LIB-2026-028 to 037)",
   "signed commits, conductor.b@'s correction of 01:16 UTC: no CI exemption by name (already so); keys now read from each commit's parent, never the commit itself (LIB-2026-032 reopened and fixed); d1f81f7, the first-key commit, pinned",
   "data in the browser (Dinis, 19 Nov about 01:13 UTC, read at source): checked; the library has no figures that change between builds (its counts change only when the catalogue is committed, and every push rebuilds), so nothing waits on a schedule and there is nothing to load yet. The sites bar already reads each site's version.json in the browser. Applies when the library shows figures from data.promptugal.news (the YouTube replays file first)",
-  "what was said, and what happened: the WS26 block and /api/v1/predictions/ws26.json, built to designer@'s PF spec; AppSec post-review: no high or medium, four low fixed (LIB-2026-038 to 041)"
+  "what was said, and what happened: the WS26 block and /api/v1/predictions/ws26.json, built to designer@'s PF spec; AppSec post-review: no high or medium, four low fixed (LIB-2026-038 to 041)",
+  "security@'s five controls for signed-commit checks (review of 19 Nov about 01:30 UTC, read at source): met and tested. Exact match on the full Claude-Session: URL, published as claude_session with each key; the ssh key line published without its comment; the leak scan exempts only those fields by exact pattern. LIB-2026-042 and 043 (low) fixed. (01:52 UTC by date -u)"
  ],
  "next": [
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",

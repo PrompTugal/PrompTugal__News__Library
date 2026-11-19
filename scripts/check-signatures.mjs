@@ -26,8 +26,9 @@ const BEFORE_THE_CHECK = 'f07f044bbeea547909be0c41c31be008287f02eb';
 // its key at Dinis's word of 19 Nov about 01:05 UTC (LIB-2026-032, reopened and fixed).
 const BOOTSTRAP = new Set(['d1f81f798d87b2d99ae80ae9bdd04fac97ed28c3']);
 const AGENT = /^[a-z0-9]+(?:[.-][a-z0-9]+)*@[A-Za-z0-9]+(?:\.[A-Za-z0-9-]+)+$/;
-const SESSION = /^(?:https:\/\/claude\.ai\/code\/)?(session_[A-Za-z0-9]{10,64})$/;
-const SSHKEY = /^ssh-ed25519 [A-Za-z0-9+/]{68}(?:={0,2})(?: [^\n"]{0,200})?$/;
+const SESSION = /^https:\/\/claude\.ai\/code\/(session_[A-Za-z0-9]{10,64})$/; // the full session URL only (security@, 19 Nov 01:20 and 01:30)
+// the public-key line; keys files before 19 Nov 01:55 UTC carried a comment after it, which is ignored (only the two key fields are used)
+const SSHKEY = /^ssh-ed25519 AAAAC3NzaC1lZDI1NTE5[A-Za-z0-9+/]{48}(?: [A-Za-z0-9@._ -]{0,100})?$/;
 
 const [beforeArg, afterArg] = process.argv.slice(2);
 const sha = (r) => (typeof r === 'string' && !r.startsWith('-') ? tryGit('rev-parse', '--verify', '--quiet', '--end-of-options', `${r}^{commit}`) : null);
@@ -48,8 +49,8 @@ try {
   for (const c of added) {
     const short = c.slice(0, 7);
     checked++;
-    const agents = lines(git('log', '-1', '--format=%(trailers:key=Agent,valueonly)', c)).map((s) => s.trim());
-    const sessions = lines(git('log', '-1', '--format=%(trailers:key=Claude-Session,valueonly)', c)).map((s) => s.trim());
+    const agents = lines(git('log', '-1', '--format=%(trailers:key=Agent,valueonly)', c));
+    const sessions = lines(git('log', '-1', '--format=%(trailers:key=Claude-Session,valueonly)', c)); // compared exactly, untrimmed
     if (agents.length !== 1) { problems.push(`${short}: needs exactly one Agent: trailer`); continue; }
     if (sessions.length !== 1 || !SESSION.test(sessions[0])) { problems.push(`${short}: needs exactly one readable Claude-Session: trailer`); continue; }
     const agent = agents[0];
@@ -58,7 +59,11 @@ try {
     let keys;
     const from = BOOTSTRAP.has(c) ? c : `${c}^`;
     try { keys = JSON.parse(git('show', `${from}:team/keys.json`)).keys; } catch { problems.push(`${short}: team/keys.json missing or not JSON in ${BOOTSTRAP.has(c) ? 'this commit' : 'its parent'}`); continue; }
-    const mine = (Array.isArray(keys) ? keys : []).filter((k) => k && k.agent === agent && k.session === session && typeof k.ssh_public_key === 'string' && SSHKEY.test(k.ssh_public_key) && k.status === 'active');
+    // the full Claude-Session: URL must equal the one published with the key (claude_session; older entries give the bare id)
+    const url = sessions[0];
+    // a keys file from before claude_session existed (none of its entries has it) gives the URL from the bare id; once any entry has it, every key needs it
+    const legacy = Array.isArray(keys) && !keys.some((k) => k && 'claude_session' in k);
+    const mine = (Array.isArray(keys) ? keys : []).filter((k) => k && k.agent === agent && (legacy ? `https://claude.ai/code/${k.session}` : k.claude_session) === url && k.session === session && typeof k.ssh_public_key === 'string' && SSHKEY.test(k.ssh_public_key) && k.status === 'active');
     if (!mine.length) { problems.push(`${short}: no signing key for ${agent} with ${session} in ${BOOTSTRAP.has(c) ? 'this commit' : 'its parent'}'s team/keys.json`); continue; }
     const allowed = join(dir, `${short}.allowed`);
     writeFileSync(allowed, mine.map((k) => `${agent} namespaces="git" ${k.ssh_public_key.split(' ').slice(0, 2).join(' ')}`).join('\n') + '\n');

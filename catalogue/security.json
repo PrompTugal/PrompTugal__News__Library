@@ -462,6 +462,28 @@
    "where": "scripts/build.mjs, predictions",
    "state": "fixed",
    "fixed_in": "the predictions commit"
+  },
+  {
+   "id": "LIB-2026-042",
+   "title": "A key with no published session URL still passed, from a URL built out of its bare session id",
+   "fix": "The bare id counts only in keys files from before the field existed; otherwise every key must publish its full URL",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), security@'s five controls, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "state": "fixed",
+   "fixed_in": "the full-session-URL commit"
+  },
+  {
+   "id": "LIB-2026-043",
+   "title": "Trailer values were trimmed before the exact match",
+   "fix": "Compared exactly, untrimmed",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), security@'s five controls, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "state": "fixed",
+   "fixed_in": "the full-session-URL commit"
   }
  ],
  "from_the_central_log": [
