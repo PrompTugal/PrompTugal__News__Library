@@ -1,7 +1,7 @@
 {
  "about": "PRED: every PrompTugal site's predictions, kept exactly as shown, one catalogued series per site's file (Dinis, 19 November 2026, about 03:15 UTC: 'The predictions are one collection'). The form is at /predictions/form/. Call numbers are stored, never computed, and never reused.",
  "prefix": "PRED",
- "next_seq": 2,
+ "next_seq": 4,
  "series": [
   {
    "call_number": "PRED 2026/0001",
@@ -12,6 +12,38 @@
    "page": "https://library.promptugal.news/collections/ws26/#said",
    "added": "2026-11-19",
    "added_by": "library.b@PrompTugal.dinis"
+  },
+  {
+   "call_number": "PRED 2026/0002",
+   "id": "PRED-2026-0002",
+   "site": "travel.promptugal.news",
+   "title": "Strikes and disruption, expected dates (travel.promptugal.news)",
+   "from": "catalogue/pred/PRED-2026-0002.jsonl",
+   "page": "https://travel.promptugal.news/disruptions/",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis",
+   "read_from": {
+    "repo": "PrompTugal/PrompTugal__News__Travel",
+    "path": "data/predictions/predictions.jsonl",
+    "commit": "6b1ca3dedb8434a57cbe2e21cbc0431ca8d882c5",
+    "read_at": "2026-11-19T03:30Z"
+   }
+  },
+  {
+   "call_number": "PRED 2026/0003",
+   "id": "PRED-2026-0003",
+   "site": "data.promptugal.news",
+   "title": "IPMA's city forecasts, one to three days ahead, low and high (data.promptugal.news; IPMA's terms: free use only)",
+   "from": "catalogue/pred/PRED-2026-0003.jsonl",
+   "page": "https://data.promptugal.news/sources/ipma-city-forecasts/",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis",
+   "read_from": {
+    "repo": "PrompTugal/PrompTugal__News__Data",
+    "path": "data/predictions/predictions.jsonl",
+    "commit": "0e3eb6b1296cf9429271efd10ee2eba2a00004f2",
+    "read_at": "2026-11-19T03:30Z"
+   }
   }
  ]
 }

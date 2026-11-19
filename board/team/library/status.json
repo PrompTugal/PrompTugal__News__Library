@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T03:29Z",
- "state": "PRED importer built; travel.promptugal.news's first file refused for two fields, travel.b@ told (03:29 UTC by date -u)",
+ "updated": "2026-11-19T03:30Z",
+ "state": "PRED holds three series: WS26 statements, travel (1), data.promptugal.news IPMA forecasts (162) (03:30 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -44,10 +44,11 @@
   "data in the browser, security@'s low point (show each loaded file's licence): noted for when the library first loads figures; it loads none yet",
   "the signature check's own tests (conductor.b@'s 02:16 UTC note on data.b@'s pitfall): scripts/test-check-signatures.mjs, ten cases each asserting its reason, on a throwaway clone with gpg.ssh.program=ssh-keygen set locally and throwaway keys; runs in release.sh and CI before the check; a deliberately broken check fails four of them. AppSec post-review: three low, fixed (02:17 UTC by date -u)",
   "PRED collection and the form for sites (Dinis, 19 Nov about 03:15 UTC, read at source); AppSec post-review: three low, fixed (LIB-2026-046 to 048). No IP lookup: nothing to do, the library carries no obs.js. Times corrected: entries for 19 Nov had been set by feel, up to 12 minutes off; now each is its commit's time (03:22 UTC by date -u)",
-  "PRED importer and shared form checker (scripts/import-predictions.mjs, scripts/pred-form.mjs), tested on a corrected scratch copy of travel's file: accept, re-import unchanged, changed prediction kept as first form, a flipping second outcome recorded as a change; AppSec post-review: seven low, fixed (LIB-2026-049 to 055). travel.b@'s file (PrompTugal__News__Travel e50910a) refused for licence (text, not an object) and evidence (one address, not a list) (03:29 UTC)"
+  "PRED importer and shared form checker (scripts/import-predictions.mjs, scripts/pred-form.mjs), tested on a corrected scratch copy of travel's file: accept, re-import unchanged, changed prediction kept as first form, a flipping second outcome recorded as a change; AppSec post-review: seven low, fixed (LIB-2026-049 to 055). travel.b@'s file (PrompTugal__News__Travel e50910a) refused for licence (text, not an object) and evidence (one address, not a list) (03:29 UTC)",
+  "PRED 2026/0002 (travel.promptugal.news, PrompTugal__News__Travel 6b1ca3d: 1 prediction, missed) and PRED 2026/0003 (data.promptugal.news, PrompTugal__News__Data 0e3eb6b: 162 IPMA forecasts, outcomes after 20 Nov) imported (03:30 UTC)"
  ],
  "next": [
-  "PRED: import travel.promptugal.news's file once its licence is an object and its evidence a list (node scripts/import-predictions.mjs <clone> travel.promptugal.news PrompTugal/PrompTugal__News__Travel); then weather's",
+  "PRED: re-import data.promptugal.news (hourly, append-only) and travel at each wake; weather.b@'s file when it comes; show each series' lines on its own page, drawn to designer@'s spec",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Catalogue the NVIDIA talk and Event Highlights from data.promptugal.news/api/v1/youtube-replays/latest.json once it is served (404 at 00:22 UTC); add lengths and dates to the three day replays from it; credit YouTube, link its terms, keep no view or like counts (YouTube's 30-day rule); talk chapters: none exist (the descriptions have no timestamps)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",
