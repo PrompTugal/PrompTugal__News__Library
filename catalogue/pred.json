@@ -57,8 +57,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Civic",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "a1763f7c4d2dfb1cab776a2883bffad537a783aa",
-    "read_at": "2026-11-19T10:39Z"
+    "commit": "0ef97a83407896f27e26aee882981cfa2d15d737",
+    "read_at": "2026-11-19T13:28Z"
    }
   },
   {

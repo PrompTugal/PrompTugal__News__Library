@@ -380,7 +380,7 @@ for (const se of pred.series || []) {
 }
 json('api/v1/predictions/index.json', { license: 'CC BY 4.0', about: pred.about, form: '/predictions/form/', series: predSeries.map((se) => ({ call_number: se.call_number, id: se.id, site: se.site, title: se.title, page: se.page, added: se.added, track: se.track, api: `/api/v1/predictions/series/${se.id}.json`, library_page: `/predictions/${se.id}/` })) });
 json('api/v1/predictions/form.json', { license: 'CC BY 4.0', about: 'The form every PrompTugal site uses to send its predictions to the library: append-only JSON Lines in data/predictions/predictions.jsonl in the site\'s own repository. Read the page /predictions/form/ for the rules.',
-  prediction: { required: ['type', 'id', 'site', 'page', 'shown_at', 'said_by', 'source', 'licence', 'kind', 'subject', 'due', 'said'], optional: ['value', 'corrects'], type: 'prediction', kind: ['forecast', 'warning', 'countdown', 'score', 'expected-date', 'statement'] },
+  prediction: { required: ['type', 'id', 'site', 'page', 'shown_at', 'said_by', 'source', 'licence', 'kind', 'subject', 'due', 'said'], optional: ['value', 'corrects', 'backfilled'], type: 'prediction', kind: ['forecast', 'warning', 'countdown', 'score', 'expected-date', 'statement'] },
   outcome: { required: ['type', 'of', 'checked_at', 'result'], required_unless_gap: ['happened', 'evidence'], required_if_gap: ['gap'], optional: ['value', 'difference'], type: 'outcome', result: ['held', 'missed', 'gap'] },
   times: 'UTC, YYYY-MM-DDTHH:MMZ; due may be a day, YYYY-MM-DD', addresses: 'https only' });
 json('api/v1/missing.json', { about: 'What is not here: gaps in each collection, said plainly, so a gap is never mistaken for a holding.', missing });
@@ -611,7 +611,7 @@ ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).
   for (const se of predSeries) {
     const outOf = new Map(); for (const l of se.lines) if (l.type === 'outcome' && !outOf.has(l.of)) outOf.set(l.of, l);
     const preds = se.lines.filter((l) => l.type === 'prediction');
-    const retro = (p) => (p.due.length === 10 ? p.shown_at.slice(0, 10) > p.due : p.shown_at > p.due);
+    const retro = (p) => p.backfilled === true || (p.due.length === 10 ? p.shown_at.slice(0, 10) > p.due : p.shown_at > p.due) || (outOf.has(p.id) && outOf.get(p.id).checked_at <= p.shown_at);
     const verdict = (o) => (!o ? 'open' : o.result === 'held' ? '✓ held' : o.result === 'missed' ? 'missed' : 'no source yet');
     const li = (p) => { const o = outOf.get(p.id); return `<li><span class="pf-due">due ${esc(p.due.length === 10 ? day(p.due) : p.due.replace('T', ' ').replace('Z', ' UTC'))}</span><span class="pf-said">${esc(p.said)}<br><small>${esc(p.said_by)}, shown ${esc(p.shown_at.replace('T', ' ').replace('Z', ''))} UTC</small></span>${!o ? '<span class="pf-gap">not yet due or not yet checked</span>' : o.result === 'gap' ? `<span class="pf-gap">${esc(o.gap)}</span>` : `<span class="pf-done">${esc(o.happened)}${o.difference ? `<br><small>${esc(o.difference)}</small>` : ''}</span>`}<span class="pf-v">${verdict(o)}</span></li>`; };
     const fwd = preds.filter((p) => !retro(p)).reverse().slice(0, 50), back = preds.filter(retro).reverse().slice(0, 20);

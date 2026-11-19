@@ -41,7 +41,8 @@ export function checkLine(line, site) {
   const errs = [];
   if (!line || typeof line !== 'object' || Array.isArray(line)) return ['not a JSON object'];
   if (line.type === 'prediction') {
-    only(errs, line, ['type', 'id', 'site', 'page', 'shown_at', 'said_by', 'source', 'licence', 'kind', 'subject', 'due', 'said', 'value', 'corrects']);
+    only(errs, line, ['type', 'id', 'site', 'page', 'shown_at', 'said_by', 'source', 'licence', 'kind', 'subject', 'due', 'said', 'value', 'corrects', 'backfilled']);
+    if (line.backfilled !== undefined && line.backfilled !== true) errs.push('backfilled: true, or left out');
     if (!ID.test(line.id || '')) errs.push('id: at most 100 of A-Z a-z 0-9 . _ -');
     if (line.site !== site) errs.push(`site: must be ${site}`);
     https(errs, 'page', line.page, site);
@@ -86,7 +87,8 @@ export function track(lines) {
   for (const o of lines.filter((l) => l.type === 'outcome')) if (!last.has(o.of)) last.set(o.of, o);
   // A prediction first shown after it was due is a retrospective record: its outcome could be known when it was shown,
   // so it is counted apart and never in the track record (library.b@, 19 Nov 2026, on civic's first file).
-  const retro = (p) => (p.due.length === 10 ? p.shown_at.slice(0, 10) > p.due : p.shown_at > p.due);
+  // also retrospective: a line marked backfilled, or one whose first outcome was checked no later than it was first shown
+  const retro = (p) => p.backfilled === true || (p.due.length === 10 ? p.shown_at.slice(0, 10) > p.due : p.shown_at > p.due) || (last.has(p.id) && last.get(p.id).checked_at <= p.shown_at);
   const t = { predictions: preds.length, held: 0, missed: 0, gap: 0, open: 0, changed: lines.filter((l) => l.type === 'change').length, retrospective: { predictions: 0, held: 0, missed: 0, gap: 0, open: 0 } };
   for (const p of preds) { const o = last.get(p.id); const b = retro(p) ? t.retrospective : t; if (b !== t) b.predictions++; if (!o) b.open++; else b[o.result]++; }
   t.predictions -= t.retrospective.predictions;

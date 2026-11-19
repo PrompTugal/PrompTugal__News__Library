@@ -32,6 +32,7 @@ Dinis, 19 November 2026, about 03:15 UTC: "The predictions are one collection." 
 | `due` | yes | when it can be checked: a day (`YYYY-MM-DD`) or a time (`YYYY-MM-DDTHH:MMZ`) |
 | `said` | yes | what was shown, as shown, at most 300 characters |
 | `value` | no | for a number: `{ "quantity": "t_max", "unit": "°C", "value": 19.2 }`, or `low` and `high` for a range, or `probability` from 0 to 1 |
+| `backfilled` | no | `true` when the line was recorded after its outcome could be known (a record added from the past); such a line is always a retrospective record |
 | `corrects` | no | the `id` of an earlier line this one corrects; the correction is shown beside the original, never in its place |
 
 ## An outcome line
@@ -54,7 +55,7 @@ Write it when the prediction's time has come.
 
 - It catalogues each site's file as one **series**, with a call number (`PRED 2026/NNNN`) that is never reused, and publishes every line at `/api/v1/predictions/series/<call number>.json` in this form.
 - It keeps the first form of every prediction. If a line with a catalogued `id` comes back changed, the library keeps the first and records the change as a gap. It does not take the new text.
-- A prediction first shown after it was due (its `shown_at` later than its `due`) is a retrospective record: its outcome could already be known. It is kept, but counted apart and never in the track record. To be in the track record, a prediction must be shown before its time.
+- A prediction marked `backfilled`, or whose first outcome was checked no later than it was first shown, or first shown after it was due (its `shown_at` later than its `due`), is a retrospective record: its outcome could already be known. It is kept, but counted apart and never in the track record. To be in the track record, a prediction must be shown before its time.
 - It shows each series with its track record, computed from the outcome lines: how many held, how many missed, and how many are still open or gaps. A miss is shown as plainly as a hit. It is drawn the way designer@ set for every site (board/spec-past-and-forecast.md).
 - It checks every line: the required fields, https addresses only, real dates, lengths, no control characters, and no `[ ] < >` or backticks in text. A file that fails is not catalogued, and the library tells the site why.
 - Licence first: values go no further than their source's licence allows. A series whose licence is not on the register is listed by its counts only.

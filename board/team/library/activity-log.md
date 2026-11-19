@@ -31,3 +31,4 @@
 | 2026-11-19 | 10:38 wake | a page per prediction series; PRED refreshed (data +162, civic +788 with 9 forward) | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 11:00 | requests channel: a file for every agent, both spellings | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 13:22 | PRED 2026/0006 (weather, 18 next-day highs) | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 13:29 | PRED form gains backfilled; civic +1,283 lines | [handover](debriefs/2026-11-18-handover.md) |
