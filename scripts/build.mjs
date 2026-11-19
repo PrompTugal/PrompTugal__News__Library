@@ -7,7 +7,7 @@
 import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
-import { render as renderBar } from '../src/assets/sites-bar/1.1.0/sites-bar-render.mjs';
+import { render as renderBar } from '../src/assets/sites-bar/1.1.1/sites-bar-render.mjs';
 
 const version = process.env.SITE_VERSION || 'dev';
 const SITE = 'https://library.promptugal.news';
@@ -20,17 +20,21 @@ const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return
 const problems = [];
 const fail = (m) => problems.push(m);
 
-// ---------- the PrompTugal sites bar 1.1.0 (Dinis, 18 Nov ~22:00 UTC; dev@'s files, security@'s go 90dfdd3baf) ----------
+// ---------- the PrompTugal sites bar 1.1.1 (Dinis, 18 Nov ~22:00 UTC; dev@'s files, security@'s go 90dfdd3baf) ----------
 // Vendored, pinned by version and sha256 (checked here at every build); the registry is a committed copy of
 // promptugal.news/api/v1/sites.json (catalogue/sites-registry.json, refreshed by hand: the build fetches nothing).
-const BAR = 'src/assets/sites-bar/1.1.0';
-// the pins (sha256sum format), one file kept for the leak scan's narrow allowance
-const BAR_SHA = Object.fromEntries(readFileSync('catalogue/sites-bar.sha256', 'utf8').trim().split('\n').map((l) => { const m = l.match(/^([0-9a-f]{64})  ([a-z.-]+)$/); if (!m) { console.error('catalogue/sites-bar.sha256: bad line'); process.exit(1); } return [m[2], m[1]]; }));
-if (Object.keys(BAR_SHA).sort().join() !== 'sites-bar-render.mjs,sites-bar.css,sites-bar.js') { console.error('catalogue/sites-bar.sha256: must pin exactly the three bar files'); process.exit(1); }
-if (readdirSync(BAR).sort().join() !== 'sites-bar-render.mjs,sites-bar.css,sites-bar.js') { console.error(`${BAR}: must hold exactly the three pinned files`); process.exit(1); }
-for (const [f, h] of Object.entries(BAR_SHA)) { const got = createHash('sha256').update(readFileSync(join(BAR, f))).digest('hex'); if (got !== h) { console.error(`sites bar: ${f} sha256 ${got} is not the pinned ${h}`); process.exit(1); } }
+const BAR_VERSION = '1.1.1';
+const BAR = `src/assets/sites-bar/${BAR_VERSION}`;
+const REGISTRY = JSON.parse(readFileSync('catalogue/sites-registry.json', 'utf8'));
+// the pins: bar.integrity in the registry, SRI form (sha256-<base64> of the whole file), compared in full (security@, 19 Nov about 01:30 UTC)
+const PIN = { 'sites-bar-render.mjs': 'render', 'sites-bar.js': 'js', 'sites-bar.css': 'css' };
+const integ = REGISTRY.bar && REGISTRY.bar.version === BAR_VERSION && REGISTRY.bar.integrity;
+if (!integ || Object.keys(integ).sort().join() !== 'css,js,render') { console.error(`catalogue/sites-registry.json: bar must be version ${BAR_VERSION} with integrity pins for render, js and css`); process.exit(1); }
+if (readdirSync(BAR).sort().join() !== Object.keys(PIN).sort().join()) { console.error(`${BAR}: must hold exactly the three pinned files`); process.exit(1); }
+if (readdirSync('src/assets/sites-bar').join() !== BAR_VERSION) { console.error('src/assets/sites-bar: must hold only the pinned version'); process.exit(1); }
+for (const [f, k] of Object.entries(PIN)) { const got = 'sha256-' + createHash('sha256').update(readFileSync(join(BAR, f))).digest('base64'); if (typeof integ[k] !== 'string' || got !== integ[k]) { console.error(`sites bar: ${f} is ${got}, not the pinned ${integ[k]}`); process.exit(1); } }
 // renderBar is imported statically (top of file): the hash check above runs before it is ever called
-const barHtml = renderBar(JSON.parse(readFileSync('catalogue/sites-registry.json', 'utf8')), { here: 'library.promptugal.news' });
+const barHtml = renderBar(REGISTRY, { here: 'library.promptugal.news' });
 if (!barHtml) { console.error('sites bar: the registry was refused (catalogue/sites-registry.json); fix the copy, never ship without the bar'); process.exit(1); }
 
 // ---------- read and check the catalogue ----------
@@ -194,7 +198,7 @@ function page({ path, title, description, body, md, scripts = [] }) {
 <meta property="og:image" content="${SITE}/preview.png">
 <meta property="og:title" content="${esc(title)}">
 <link rel="stylesheet" href="/assets/library.css">
-${barHtml ? '<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">\n' : ''}
+${barHtml ? `<link rel="stylesheet" href="/assets/sites-bar/${BAR_VERSION}/sites-bar.css">\n` : ''}
 ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</head>
 <body>
 ${barHtml}
@@ -209,7 +213,7 @@ ${body}
 <p>Free: no billing, no meter, no adverts here (only promptugal.news bills). Independent: not an official site of any event or organisation listed. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Version ${esc(version)}${twin ? ' · <a href="index.md">this page as markdown</a>' : ''} · code Apache-2.0, text CC BY 4.0 · <a href="${REPO}">source</a></p>
 </footer>
 </main>
-${[...(barHtml ? ['/assets/sites-bar/1.1.0/sites-bar.js'] : []), ...scripts].map((s) => `<script src="${s}" defer></script>`).join('\n')}
+${[...(barHtml ? [`/assets/sites-bar/${BAR_VERSION}/sites-bar.js`] : []), ...scripts].map((s) => `<script src="${s}" defer></script>`).join('\n')}
 </body>
 </html>
 `;

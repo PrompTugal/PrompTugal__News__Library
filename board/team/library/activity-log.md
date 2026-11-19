@@ -13,3 +13,4 @@
 | 2026-11-19 | 01:35 | show the past and predictions: the library's named in status.json; first planned on the WS26 finding aid | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 01:45 | what was said / what happened on WS26 (3 of Web Summit's statements: 2 held, 1 a gap); /api/v1/predictions/ws26.json; LIB-2026-038 to 041 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 01:52 | signed-commit check meets security@'s five controls (full session URL, comment-free key); LIB-2026-042, 043 | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 01:53 | sites bar 1.1.1 installed, checked against the registry's full SRI pins; LIB-2026-026 fixed upstream; 044, 045 | [handover](debriefs/2026-11-18-handover.md) |

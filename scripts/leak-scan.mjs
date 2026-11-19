@@ -88,7 +88,6 @@ function highEntropy(line) {
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
   // sha256 pins of the vendored PrompTugal sites bar files (public hashes, not secrets), library.b@, 19 Nov 2026
-  ['catalogue/sites-bar.sha256', 'long high-entropy string', 'sha256 pins of the three vendored sites bar 1.1.0 files'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 
@@ -109,6 +108,9 @@ export function scanText(path, text) {
       .replace(/"claude_session": "https:\/\/claude\.ai\/code\/session_[A-Za-z0-9]{24}"/g, (b) => b.replace(/[^\n]/g, ' '))
       .replace(/"fingerprint": "SHA256:[A-Za-z0-9+\/]{43}"/g, (b) => b.replace(/[^\n]/g, ' '));
   }
+  // The sites bar's SRI pins (public sha256 hashes of public files), in the registry copy only, by field and exact pattern
+  // (security@, 19 Nov about 01:30 UTC: the registry pins each file as sha256-<base64>).
+  if (path === 'catalogue/sites-registry.json') body = body.replace(/^   "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?$/gm, (b) => b.replace(/[^\n]/g, ' ')); // bar.integrity's depth only
   body.split('\n').forEach((line, i) => {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);

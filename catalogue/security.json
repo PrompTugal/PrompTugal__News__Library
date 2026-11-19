@@ -296,9 +296,10 @@
    "title": "The vendored sites-bar.js follows redirects on its version.json reads and does not refuse user info in its same-host check",
    "where": "src/assets/sites-bar/1.1.0/sites-bar.js (vendored, not ours to patch)",
    "fix": "Not exploitable here: the build refuses such URLs and the CSP limits where a redirect can go. Reported to the bar's makers through the library's asks",
-   "state": "accepted",
+   "state": "fixed",
    "found": "2026-11-19",
-   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push"
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push",
+   "fixed_in": "sites bar 1.1.1 (its makers refuse redirects and user info; security@ go, 19 Nov about 01:30 UTC)"
   },
   {
    "id": "LIB-2026-027",
@@ -484,6 +485,27 @@
    "where": "scripts/check-signatures.mjs",
    "state": "fixed",
    "fixed_in": "the full-session-URL commit"
+  },
+  {
+   "id": "LIB-2026-044",
+   "title": "The bar's renderer is imported before its pin is checked, so a tampered renderer's top-level code would run first",
+   "where": "scripts/build.mjs",
+   "fix": "Accepted: a dynamic import after the check would trip the library's no-network check; the 1.1.1 renderer has no top-level side effects (checked), and the build stops before rendering on any pin mismatch",
+   "state": "accepted",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.1, before the push"
+  },
+  {
+   "id": "LIB-2026-045",
+   "title": "The leak scan's exemption for the bar's SRI pins matched those keys anywhere in the registry copy",
+   "where": "scripts/leak-scan.mjs",
+   "fix": "Only at bar.integrity's exact depth",
+   "state": "fixed",
+   "fixed_in": "the sites bar 1.1.1 commit",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.1, before the push"
   }
  ],
  "from_the_central_log": [
