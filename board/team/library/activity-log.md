@@ -23,3 +23,4 @@
 | 2026-11-19 | 05:10 | a newer bar in the registry ships no bar instead of failing; release chains checked | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 05:14 | key rules tested (34 tests; ECDSA gap found and fixed, LIB-2026-060); a newer bar leaves its files out | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 07:16 | sites bar 1.2.0 installed; registry copy leaves out bar.versions and obs_tz (asked of security@) | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 07:31 | PRED 2026/0004 (civic, 7,663 retrospective records); retrospective rule for every series; importer indexed | [handover](debriefs/2026-11-18-handover.md) |

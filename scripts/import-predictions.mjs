@@ -50,16 +50,22 @@ if (!series) {
 }
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const out = [...kept];
+// indexes, so a large file is checked in one pass (civic's 15,326 lines)
+const firstPred = new Map(kept.filter((k) => k.type === 'prediction').map((k) => [k.id, k]));
+const changedIds = new Set(kept.filter((k) => k.type === 'change').map((k) => k.of));
+const seenLines = new Set(kept.map((k) => JSON.stringify(k)));
+const outcomeOf = new Set(kept.filter((k) => k.type === 'outcome').map((k) => k.of));
 let added = 0, changed = 0;
 for (const { l } of lines) {
   if (l.type === 'prediction') {
-    const first = kept.find((k) => k.type === 'prediction' && k.id === l.id);
-    if (!first) { out.push(l); added++; }
-    else if (!same(first, l) && !kept.some((k) => k.type === 'change' && k.of === l.id)) { out.push({ type: 'change', of: l.id, seen_at: now, note: 'This prediction came back changed after it was catalogued; the first form is kept.', by: 'library.b@PrompTugal.dinis' }); changed++; }
-  } else if (!out.some((k) => same(k, l))) {
+    const first = firstPred.get(l.id);
+    if (!first) { out.push(l); firstPred.set(l.id, l); added++; }
+    else if (!same(first, l) && !changedIds.has(l.id)) { changedIds.add(l.id); out.push({ type: 'change', of: l.id, seen_at: now, note: 'This prediction came back changed after it was catalogued; the first form is kept.', by: 'library.b@PrompTugal.dinis' }); changed++; }
+  } else if (!seenLines.has(JSON.stringify(l))) {
+    seenLines.add(JSON.stringify(l));
     // a second, different outcome for one prediction is kept as a change: the first outcome still counts
-    if (out.some((k) => k.type === 'outcome' && k.of === l.of)) { out.push(l); out.push({ type: 'change', of: l.of, seen_at: now, note: `A further outcome (${l.result}, checked ${l.checked_at}) came after the first; the first still counts.`, by: 'library.b@PrompTugal.dinis' }); changed++; }
-    else { out.push(l); added++; }
+    if (outcomeOf.has(l.of)) { out.push(l); out.push({ type: 'change', of: l.of, seen_at: now, note: `A further outcome (${l.result}, checked ${l.checked_at}) came after the first; the first still counts.`, by: 'library.b@PrompTugal.dinis' }); changed++; }
+    else { out.push(l); outcomeOf.add(l.of); added++; }
   }
 }
 if (!series.page) series.page = (lines.find((x) => x.l.type === 'prediction') || {}).l?.page || `https://${site}/`;

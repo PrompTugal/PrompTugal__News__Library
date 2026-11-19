@@ -84,8 +84,12 @@ export function track(lines) {
   const last = new Map();
   // the first outcome catalogued counts; a later one for the same prediction is recorded as a change, never a silent flip
   for (const o of lines.filter((l) => l.type === 'outcome')) if (!last.has(o.of)) last.set(o.of, o);
-  const t = { predictions: preds.length, held: 0, missed: 0, gap: 0, open: 0, changed: lines.filter((l) => l.type === 'change').length };
-  for (const p of preds) { const o = last.get(p.id); if (!o) t.open++; else t[o.result]++; }
+  // A prediction first shown after it was due is a retrospective record: its outcome could be known when it was shown,
+  // so it is counted apart and never in the track record (library.b@, 19 Nov 2026, on civic's first file).
+  const retro = (p) => (p.due.length === 10 ? p.shown_at.slice(0, 10) > p.due : p.shown_at > p.due);
+  const t = { predictions: preds.length, held: 0, missed: 0, gap: 0, open: 0, changed: lines.filter((l) => l.type === 'change').length, retrospective: { predictions: 0, held: 0, missed: 0, gap: 0, open: 0 } };
+  for (const p of preds) { const o = last.get(p.id); const b = retro(p) ? t.retrospective : t; if (b !== t) b.predictions++; if (!o) b.open++; else b[o.result]++; }
+  t.predictions -= t.retrospective.predictions;
   return t;
 }
 

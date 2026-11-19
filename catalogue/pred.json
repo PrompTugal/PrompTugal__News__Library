@@ -1,7 +1,7 @@
 {
  "about": "PRED: every PrompTugal site's predictions, kept exactly as shown, one catalogued series per site's file (Dinis, 19 November 2026, about 03:15 UTC: 'The predictions are one collection'). The form is at /predictions/form/. Call numbers are stored, never computed, and never reused.",
  "prefix": "PRED",
- "next_seq": 4,
+ "next_seq": 5,
  "series": [
   {
    "call_number": "PRED 2026/0001",
@@ -43,6 +43,22 @@
     "path": "data/predictions/predictions.jsonl",
     "commit": "0e3eb6b1296cf9429271efd10ee2eba2a00004f2",
     "read_at": "2026-11-19T03:30Z"
+   }
+  },
+  {
+   "call_number": "PRED 2026/0004",
+   "id": "PRED-2026-0004",
+   "site": "civic.promptugal.news",
+   "title": "Algarve councils' contract base prices beside the contracted price (civic.promptugal.news; retrospective records)",
+   "from": "catalogue/pred/PRED-2026-0004.jsonl",
+   "page": "https://civic.promptugal.news/money/estimates/",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis",
+   "read_from": {
+    "repo": "PrompTugal/PrompTugal__News__Civic",
+    "path": "data/predictions/predictions.jsonl",
+    "commit": "43383cfadd80e187fcc190f49a7e91d30e25c469",
+    "read_at": "2026-11-19T07:31Z"
    }
   }
  ]
