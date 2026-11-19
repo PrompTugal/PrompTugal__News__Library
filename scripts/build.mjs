@@ -8,7 +8,7 @@ import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkd
 import { join, dirname, resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
 import { checkLine, checkSeries, track as predTrack, realTime as realTimeF } from './pred-form.mjs';
-import { render as renderBar } from '../src/assets/sites-bar/1.2.0/sites-bar-render.mjs';
+import { render as renderBar } from '../src/assets/sites-bar/1.2.1/sites-bar-render.mjs';
 
 const version = process.env.SITE_VERSION || 'dev';
 const SITE = 'https://library.promptugal.news';
@@ -21,10 +21,10 @@ const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return
 const problems = [];
 const fail = (m) => problems.push(m);
 
-// ---------- the PrompTugal sites bar 1.2.0 (Dinis, 18 Nov ~22:00 UTC; dev@'s files, security@'s go 90dfdd3baf) ----------
+// ---------- the PrompTugal sites bar 1.2.1 (Dinis, 18 Nov ~22:00 UTC; dev@'s files, security@'s go 90dfdd3baf) ----------
 // Vendored, pinned by version and sha256 (checked here at every build); the registry is a committed copy of
 // promptugal.news/api/v1/sites.json (catalogue/sites-registry.json, refreshed by hand: the build fetches nothing).
-const BAR_VERSION = '1.2.0';
+const BAR_VERSION = '1.2.1';
 const BAR = `src/assets/sites-bar/${BAR_VERSION}`;
 const REGISTRY = JSON.parse(readFileSync('catalogue/sites-registry.json', 'utf8'));
 // the pins: bar.integrity in the registry, SRI form (sha256-<base64> of the whole file), compared in full (security@, 19 Nov about 01:30 UTC)
