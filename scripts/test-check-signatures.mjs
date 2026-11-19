@@ -123,7 +123,7 @@ try {
     let ok = false;
     try { execFileSync('git', ['-C', repo, 'show', `${git('rev-list', '--max-parents=0', 'HEAD').split('\n')[0]}:scripts/check-signatures.mjs`], { stdio: 'pipe' }); } catch { ok = true; }
     const files = ['scripts/release.sh', '.github/workflows/pages.yml'].map((f) => readFileSync(f, 'utf8'));
-    ok = ok && files.every((t) => !/git show "\$(last|trusted):scripts\/\$f" > "[^"]+" *\|\|/.test(t) && !/check-signatures\.mjs[^\n]*\|\|/.test(t));
+    ok = ok && files.every((t) => !/git (?:show|cat-file blob) "\$(last|trusted):scripts\/\$f" > "[^"]+" *\|\|/.test(t) && !/check-signatures\.mjs[^\n]*\|\|/.test(t));
     if (!ok) failed++;
     results.push(`${ok ? 'ok  ' : 'FAIL'} a missing release copy fails, with no fallback`);
   }
@@ -135,7 +135,7 @@ try {
     if (!ok) failed++;
     results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${file} must run the checks from the anchor's copy, never from the tree, and CI must not take a tag`}`);
   };
-  wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$last:scripts/$f" > "$trusted/$f"; done', 'node "$trusted/leak-scan.mjs"', 'node "$trusted/check-signatures.mjs" origin/dev HEAD', 'node "$trusted/check-commits.mjs" origin/dev HEAD "$last"']);
+  wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git cat-file blob "$last:scripts/$f" > "$trusted/$f"; done', 'node "$trusted/leak-scan.mjs"', 'node "$trusted/check-signatures.mjs" origin/dev HEAD', 'node "$trusted/check-commits.mjs" origin/dev HEAD "$last"']);
   // security@'s fourth and fifth rulings (14:17 and 14:20 UTC): CI anchors on the last successful deployment, never a
   // tag, and control 9: the checks run in their own job, which runs no pushed code and sees the built site only as data
   {
@@ -147,8 +147,8 @@ try {
       ['CI takes no tag for the checks', !/describe --tags/.test(yml) && !/git show "\$(trusted|last):/.test(yml)],
       // security@'s sixth ruling (14:26 UTC): the anchor is the head of the latest successful push run on dev
       ['CI anchors on the latest successful push run of this workflow on dev', !/deployments\?environment/.test(checks) && ['actions/workflows/pages.yml/runs?branch=dev&event=push&status=success', 'select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")', '.head_sha // empty', '[ -n "$A" ] || {', 'git merge-base --is-ancestor "$A" "$AFTER" ||'].every((u) => checks.includes(u))],
-      ['the checks come from A, as regular files, with no fallback', ['cut -c1-6)" = 100644 ] || {', 'git show "$A:scripts/$f" > "$RUNNER_TEMP/$f"', '"$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"', '"$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"', '"$NODE" "$RUNNER_TEMP/leak-scan.mjs"'].every((u) => checks.includes(u)) && !/git show "\$A:[^\n]*\|\|/.test(checks)],
-      ['the checks job runs no pushed code', checks.length > 0 && !/\bnode\s+(?!"\$RUNNER_TEMP)\S|\bnpm\b|\bnpx\b|\bbash\s+\S|\bsh\s+\S|\.\/scripts\/|scripts\/[\w.-]+\.(?:mjs|js|sh|py)(?!")|uses:\s*\.\//.test(checks.replace(/git show "\$A:scripts\/\$f"/g, '').replace(/git ls-tree "\$A" "scripts\/\$f"/g, '').replace(/"scripts\/\$f in \$A/g, ''))],
+      ['the checks come from A, as regular files, with no fallback', ['cut -c1-6)" = 100644 ] || {', 'git cat-file blob "$A:scripts/$f" > "$RUNNER_TEMP/$f"', '"$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"', '"$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"', '"$NODE" "$RUNNER_TEMP/leak-scan.mjs"'].every((u) => checks.includes(u)) && !/git (?:show|cat-file blob) "\$A:[^\n]*\|\|/.test(checks) && !/git show "\$A:/.test(checks)],
+      ['the checks job runs no pushed code', checks.length > 0 && !/\bnode\s+(?!"\$RUNNER_TEMP)\S|\bnpm\b|\bnpx\b|\bbash\s+\S|\bsh\s+\S|\.\/scripts\/|scripts\/[\w.-]+\.(?:mjs|js|sh|py)(?!")|uses:\s*\.\//.test(checks.replace(/git cat-file blob "\$A:scripts\/\$f"/g, '').replace(/git ls-tree "\$A" "scripts\/\$f"/g, '').replace(/"scripts\/\$f in \$A/g, ''))],
       ['the checks job hardens node and git', ["NODE_OPTIONS: ''", "GIT_NO_REPLACE_OBJECTS: '1'", 'case "$NODE" in /*)'].every((u) => checks.includes(u))],
       ['the site deployed is the one scanned', /uses: actions\/upload-pages-artifact/.test(checks) && !/upload-pages-artifact/.test(build) && checks.indexOf('"$NODE" "$RUNNER_TEMP/leak-scan.mjs"') < checks.indexOf('upload-pages-artifact') && /include-hidden-files: true/.test(build)],
       // a pushed build step that writes GITHUB_ENV or GITHUB_PATH cannot change the result: those are per job, and the

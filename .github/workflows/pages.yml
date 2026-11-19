@@ -104,7 +104,7 @@ jobs:
           # every security check comes from A's copy, a regular file there; a missing copy or a symlink fails, with no fallback
           for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do
             [ "$(git ls-tree "$A" "scripts/$f" | cut -c1-6)" = 100644 ] || { echo "scripts/$f in $A is missing or not a regular file" >&2; exit 1; }
-            git show "$A:scripts/$f" > "$RUNNER_TEMP/$f"
+            git cat-file blob "$A:scripts/$f" > "$RUNNER_TEMP/$f"
           done
           "$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
           "$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"

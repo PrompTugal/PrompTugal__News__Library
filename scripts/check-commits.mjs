@@ -37,7 +37,7 @@ const exempt = new Map();
 const EX = 'scripts/commit-exemptions.json';
 const from = releaseArg ? tryGit('rev-parse', '--verify', '--quiet', `${releaseArg}^{commit}`) : before;
 if (releaseArg && !from) { console.error(`check-commits: unknown release ${releaseArg}`); process.exit(1); }
-const exText = from ? tryGit('show', `${from}:${EX}`) : null;
+const exText = from ? tryGit('cat-file', 'blob', `${from}:${EX}`) : null;
 if (exText !== null) {
   let list;
   try { list = JSON.parse(exText); } catch (e) { console.error(`${EX}: not JSON (${e.message})`); process.exit(1); }

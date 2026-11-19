@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T14:27Z",
+ "updated": "2026-11-19T14:31Z",
  "state": "13:38 wake: PRED refreshed; hand-over written (13:39 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -66,7 +66,8 @@
   "14:14: PRED 2026/0007 bulletins imported (27 lines, b56b63c); security@'s third ruling: CI fails with no BEFORE, the release tag must be an ancestor of BEFORE; tests for a backdated orphan and a missing release copy (19 cases)",
   "14:19: security@'s fourth ruling: CI anchors on the last successful github-pages deployment (deployments: read), range A..AFTER from A's copies, no tags; dropped-run test (20 cases); LIB-2026-065",
   "14:26: control 9 (security@'s fifth ruling, 14:20 UTC): checks job runs no pushed code, deploys the bytes it scanned, anchor only from github-actions[bot] deployments; leak scan searches binaries and refuses symlinks; 26 signing and 38 leak tests; LIB-2026-066, 067",
-  "14:27: security@'s sixth ruling: CI anchors on the head of the latest successful push run of pages.yml on dev (actions: read), not a deployment"
+  "14:27: security@'s sixth ruling: CI anchors on the head of the latest successful push run of pages.yml on dev (actions: read), not a deployment",
+  "14:31: peers' findings (conductor.b@, 14:30): trusted files read with git cat-file blob; the artifact symlink race does not apply (zip, unpacked before the trusted copies)"
  ],
  "next": [
   "PRED: re-import every series at each wake",

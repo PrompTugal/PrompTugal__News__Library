@@ -66,7 +66,7 @@ try {
     const session = sessions[0].match(SESSION)[1];
     let keys;
     const from = BOOTSTRAP.has(c) ? c : `${c}^`;
-    try { keys = JSON.parse(git('show', `${from}:team/keys.json`)).keys; } catch { problems.push(`${short}: team/keys.json missing or not JSON in ${BOOTSTRAP.has(c) ? 'this commit' : 'its parent'}`); continue; }
+    try { keys = JSON.parse(git('cat-file', 'blob', `${from}:team/keys.json`)).keys; } catch { problems.push(`${short}: team/keys.json missing or not JSON in ${BOOTSTRAP.has(c) ? 'this commit' : 'its parent'}`); continue; }
     // the full Claude-Session: URL must equal the one published with the key (claude_session; older entries give the bare id)
     const url = sessions[0];
     // a keys file from before claude_session existed (none of its entries has it) gives the URL from the bare id; once any entry has it, every key needs it
