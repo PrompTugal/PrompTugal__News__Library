@@ -734,7 +734,7 @@
    "where": ".github/workflows/pages.yml",
    "found": "2026-11-19",
    "found_by": "security@'s fifth ruling (control 9, from civic), via conductor.b@ at 14:20 UTC; AppSec post-review (Sonnet inner pass of library.b@)",
-   "fix": "A checks job runs no pushed code: it takes each check from A as a regular file, runs it with Node.js at an absolute path, NODE_OPTIONS cleared and replace refs off, and scans the built site, received as data with hidden files included. It then makes the pages artifact itself, so the bytes deployed are the bytes scanned; deploy and tag need it. Only deployments and success statuses made by github-actions[bot] can be A. Still open: a pushed workflow could create such a record; branch protection, Dinis's, closes that",
+   "fix": "A checks job runs no pushed code: it takes each check from A as a regular file, runs it with Node.js at an absolute path, NODE_OPTIONS cleared and replace refs off, and scans the built site, received as data with hidden files included. It then makes the pages artifact itself, so the bytes deployed are the bytes scanned; deploy and tag need it. From security@'s sixth ruling (14:26 UTC), A is the head of the latest successful push run of this workflow on dev, read with actions: read; anyone with write access can create a deployment, but only GitHub Actions creates runs. Still open: a pushed rewrite of the workflow file, which branch protection, Dinis's, closes. The first run with the deployment anchor (9e02fa4, 14:27 UTC) failed closed and deployed nothing: it read only each deployment's latest status, which deploy-pages marks inactive (videos.b@'s finding), so the switch to the run anchor followed at once",
    "state": "fixed",
    "fixed_in": "the 14:26 commit"
   },
