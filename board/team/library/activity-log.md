@@ -20,3 +20,4 @@
 | 2026-11-19 | 03:29 | PRED importer built; travel's first file refused for two fields (travel.b@ told); LIB-2026-049 to 055 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 03:30 | PRED 2026/0002 (travel, 1) and 0003 (data.promptugal.news, 162 IPMA forecasts) imported | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 04:58 | leak-scan exemptions match security@'s pins ruling; 13 tests in release.sh and CI; LIB-2026-056 to 059 | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 05:10 | a newer bar in the registry ships no bar instead of failing; release chains checked | [handover](debriefs/2026-11-18-handover.md) |
