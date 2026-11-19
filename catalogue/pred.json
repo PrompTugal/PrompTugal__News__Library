@@ -1,7 +1,7 @@
 {
  "about": "PRED: every PrompTugal site's predictions, kept exactly as shown, one catalogued series per site's file (Dinis, 19 November 2026, about 03:15 UTC: 'The predictions are one collection'). The form is at /predictions/form/. Call numbers are stored, never computed, and never reused.",
  "prefix": "PRED",
- "next_seq": 7,
+ "next_seq": 8,
  "series": [
   {
    "call_number": "PRED 2026/0001",
@@ -91,6 +91,22 @@
     "path": "data/predictions/predictions.jsonl",
     "commit": "d20148e9cf87cf239498b86c971c2e44db2e9102",
     "read_at": "2026-11-19T13:39Z"
+   }
+  },
+  {
+   "call_number": "PRED 2026/0007",
+   "id": "PRED-2026-0007",
+   "site": "bulletins.promptugal.news",
+   "title": "Predictions shown on bulletins.promptugal.news",
+   "from": "catalogue/pred/PRED-2026-0007.jsonl",
+   "page": "https://bulletins.promptugal.news/200/",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis",
+   "read_from": {
+    "repo": "PrompTugal/PrompTugal__News__Bulletins",
+    "path": "data/predictions/predictions.jsonl",
+    "commit": "b56b63cf71e46eb588561f75dd8e3bd3bb38c2ca",
+    "read_at": "2026-11-19T14:13Z"
    }
   }
  ]

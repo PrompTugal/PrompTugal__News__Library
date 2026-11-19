@@ -73,6 +73,8 @@ try {
     }, false, 'a merge commit'],
     // control 6 (conductor.b@, 19 Nov 2026 14:01 UTC, from videos.b@'s pre-review): an orphan would trust its own keys
     ['an orphan commit fails', () => { git('checkout', '-q', '--orphan', 'orphan'); commit('orphan' + trailers()); }, false, 'a commit with no parent'],
+    // control 8 (security@'s third ruling, 14:11 UTC): a backdated orphan is refused by ancestry, not by its date
+    ['a backdated orphan fails', () => { git('checkout', '-q', '--orphan', 'orphan'); commit('old' + trailers(), ['-c', 'user.name=tester']); execFileSync('git', ['-C', repo, 'commit', '-q', '--amend', '--no-edit', '--date=2020-01-01T00:00:00Z'], { env: { ...process.env, GIT_COMMITTER_DATE: '2020-01-01T00:00:00Z' } }); }, false, 'a commit with no parent'],
     ['an orphan signed with its own key fails', () => {
       git('checkout', '-q', '--orphan', 'orphan');
       const k = JSON.parse(readFileSync(keysFile, 'utf8'));
@@ -114,6 +116,15 @@ try {
     if (!ok) failed++;
     results.push(`${ok ? 'ok  ' : 'FAIL'} a shallow checkout fails${ok ? '' : `: ${out.trim() || 'it passed'}`}`);
   }
+  // control 7: a release with no copy of the check fails closed (git show refuses; nothing falls back)
+  {
+    let ok = false;
+    try { execFileSync('git', ['-C', repo, 'show', `${git('rev-list', '--max-parents=0', 'HEAD').split('\n')[0]}:scripts/check-signatures.mjs`], { stdio: 'pipe' }); } catch { ok = true; }
+    const files = ['scripts/release.sh', '.github/workflows/pages.yml'].map((f) => readFileSync(f, 'utf8'));
+    ok = ok && files.every((t) => !/git show "\$(last|trusted):scripts\/\$f" > "[^"]+" *\|\|/.test(t) && !/check-signatures\.mjs[^\n]*\|\|/.test(t));
+    if (!ok) failed++;
+    results.push(`${ok ? 'ok  ' : 'FAIL'} a missing release copy fails, with no fallback`);
+  }
   // control 7's wiring: the gates run a release tag's copy of the check, never scripts/check-signatures.mjs from the tree
   const wired = (name, file, uses) => {
     const t = readFileSync(file, 'utf8');
@@ -123,7 +134,7 @@ try {
     results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${file} must run the release copy (git show "<tag>:scripts/check-signatures.mjs") and never node scripts/check-signatures.mjs`}`);
   };
   wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$last:scripts/$f" > "$trusted/$f"; done', 'node "$trusted/leak-scan.mjs"', 'node "$trusted/check-signatures.mjs" origin/dev HEAD', 'node "$trusted/check-commits.mjs" origin/dev HEAD "$last"']);
-  wired('CI runs the release copy, found from dev before the push', '.github/workflows/pages.yml', ['describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE"', 'for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done', 'node "$RUNNER_TEMP/leak-scan.mjs"', 'node "$RUNNER_TEMP/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-commits.mjs"']);
+  wired('CI runs the release copy, found from dev before the push', '.github/workflows/pages.yml', ['describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE"', 'git merge-base --is-ancestor "$BEFORE" "$AFTER"', 'git merge-base --is-ancestor "$trusted" "$BEFORE"', 'no commit before this push', 'for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done', 'node "$RUNNER_TEMP/leak-scan.mjs"', 'node "$RUNNER_TEMP/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-commits.mjs"']);
 } finally { rmSync(dir, { recursive: true, force: true }); }
 console.log(results.join('\n'));
 if (failed) { console.error(`FAILED: ${failed} of ${results.length} signature-check tests`); process.exit(1); }
