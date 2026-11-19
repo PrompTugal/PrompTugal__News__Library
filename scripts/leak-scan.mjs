@@ -110,11 +110,14 @@ export function scanText(path, text) {
   }
   // The sites bar's SRI pins (public sha256 hashes of public files), in the registry copy only, by field and exact pattern
   // (security@, 19 Nov about 01:30 UTC: the registry pins each file as sha256-<base64>).
-  if (path === 'catalogue/sites-registry.json') body = body.replace(/^   "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?$/gm, (b) => b.replace(/[^\n]/g, ' ')); // bar.integrity's depth only
+  // Only inside an "integrity" object (its parent key checked, not only its depth), each value the whole pin (LIB-2026-056).
+  if (path === 'catalogue/sites-registry.json') body = body.replace(/^  "integrity": \{\n((?:   "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?\n){1,3})  \}/gm, (blk, inner) => blk.replace(inner, inner.replace(/[^\n]/g, ' ')));
   body.split('\n').forEach((line, i) => {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
     if (PUBLIC_BEGIN.test(line)) add(n, 'public key outside team/keys');
+    // an OpenSSH public key is held to the same place as a PEM one (its own exemption, by field, is in team/keys files only)
+    if (/\bssh-(?:ed25519|rsa|dss|ecdsa-sha2-nistp\d+) AAAA[A-Za-z0-9+\/]{40,}/.test(line)) add(n, 'ssh public key outside its published field');
     if (vaultPair(line)) add(n, 'sgit vault key shape (passphrase:vault_id)');
     for (const m of line.matchAll(ASSIGN)) {
       const v = m[1];

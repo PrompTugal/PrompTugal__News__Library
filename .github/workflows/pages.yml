@@ -67,6 +67,8 @@ jobs:
       - run: node scripts/validate.mjs
       - name: Leak scan (tracked files and the built site)
         run: node scripts/leak-scan.mjs
+      - name: The leak scan's exemptions still catch a key-shaped string beside them
+        run: node scripts/test-leak-scan.mjs
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
       - if: steps.mode.outputs.deploy == 'true'

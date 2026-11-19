@@ -616,6 +616,50 @@
    "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
    "state": "fixed",
    "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-056",
+   "severity": "medium",
+   "title": "The registry pins exemption checked the depth of a line, not that its parent is the integrity object",
+   "fix": "It now matches only inside \"integrity\", each value the whole pin; a test puts the same pin under another parent and it is flagged",
+   "where": "scripts/leak-scan.mjs",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), security@'s pins ruling of 04:51 UTC, before the push",
+   "state": "fixed",
+   "fixed_in": "the leak-scan tests commit"
+  },
+  {
+   "id": "LIB-2026-057",
+   "severity": "medium",
+   "title": "The first test of the ssh-key rule would have passed without the rule (the entropy rule flags most keys)",
+   "fix": "Tests now assert the rule's own finding, and an explicit rule flags every OpenSSH public key outside its published field",
+   "where": "scripts/test-leak-scan.mjs, scripts/leak-scan.mjs",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), security@'s pins ruling of 04:51 UTC, before the push",
+   "state": "fixed",
+   "fixed_in": "the leak-scan tests commit"
+  },
+  {
+   "id": "LIB-2026-058",
+   "severity": "low",
+   "title": "The ssh rule's label said outside team/keys even inside them",
+   "fix": "Labelled: outside its published field",
+   "where": "scripts/leak-scan.mjs",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), security@'s pins ruling of 04:51 UTC, before the push",
+   "state": "fixed",
+   "fixed_in": "the leak-scan tests commit"
+  },
+  {
+   "id": "LIB-2026-059",
+   "severity": "low",
+   "title": "No test put a key-shaped value on an exempt pin's own line",
+   "fix": "Added",
+   "where": "scripts/test-leak-scan.mjs",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), security@'s pins ruling of 04:51 UTC, before the push",
+   "state": "fixed",
+   "fixed_in": "the leak-scan tests commit"
   }
  ],
  "from_the_central_log": [

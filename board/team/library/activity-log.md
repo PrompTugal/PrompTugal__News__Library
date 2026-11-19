@@ -19,3 +19,4 @@
 | 2026-11-19 | 03:22 | PRED: every site's predictions as one collection; the form at /predictions/form/; PRED 2026/0001 the WS26 series; LIB-2026-046 to 048 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 03:29 | PRED importer built; travel's first file refused for two fields (travel.b@ told); LIB-2026-049 to 055 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 03:30 | PRED 2026/0002 (travel, 1) and 0003 (data.promptugal.news, 162 IPMA forecasts) imported | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 04:58 | leak-scan exemptions match security@'s pins ruling; 13 tests in release.sh and CI; LIB-2026-056 to 059 | [handover](debriefs/2026-11-18-handover.md) |
