@@ -748,6 +748,17 @@
    "fix": "A binary file is still searched for every exact token shape; a symlink in the tree or the site fails the scan; both tested in a throwaway repository. In force one release after this commit, when the checks job's anchor holds it",
    "state": "fixed",
    "fixed_in": "the 14:26 commit"
+  },
+  {
+   "id": "LIB-2026-068",
+   "severity": "high",
+   "title": "A pushed _site could redirect the site download; a run that dropped the checks job could become the anchor; a manual run on another branch could deploy",
+   "where": ".github/workflows/pages.yml",
+   "found": "2026-11-19",
+   "found_by": "live.b@'s review of its own CI (a4c6fce), passed on by conductor.b@ at 16:15 UTC",
+   "fix": "The checks job refuses a pushed _site, removes every pushed .gitattributes, downloads the site into RUNNER_TEMP, refuses anything but plain files and directories, then moves it into place. A is the head of the latest successful push run on dev whose own job named checks passed. The checks, deploy and tag jobs run only for refs/heads/dev. Still open: a workflow that keeps the job's name but weakens it, which branch protection, Dinis's, closes",
+   "state": "fixed",
+   "fixed_in": "the 16:16 commit"
   }
  ],
  "from_the_central_log": [

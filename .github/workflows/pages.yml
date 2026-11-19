@@ -64,6 +64,8 @@ jobs:
   # site only as data. Deploy needs this job. A pushed build step cannot reach it: GITHUB_ENV and GITHUB_PATH are per job.
   checks:
     needs: build
+    # only for dev: a manual run on another branch neither checks, deploys nor tags (live.b@'s review, 16:15 UTC)
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     env:
       NODE_OPTIONS: ''
@@ -77,11 +79,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: The built site, as data
+      # The site is downloaded outside the checkout, vetted there, then moved in: a pushed _site (a symlink into .git,
+      # say) is refused first, and every pushed .gitattributes is removed (live.b@'s review, 16:15 UTC)
+      - name: Refuse a pushed _site, and remove pushed .gitattributes
+        run: |
+          if [ -e _site ] || [ -L _site ]; then echo "the pushed tree holds _site" >&2; exit 1; fi
+          git ls-files -z -- '.gitattributes' '**/.gitattributes' | xargs -0 -r rm -f --
+          rm -f .git/info/attributes
+      - name: The built site, as data, outside the checkout
         uses: actions/download-artifact@v4
         with:
           name: site-for-checks
-          path: _site
+          path: ${{ runner.temp }}/site
+      - name: Vet the site, then move it into place
+        run: |
+          site="$RUNNER_TEMP/site"
+          [ -d "$site" ] && [ ! -L "$site" ] || { echo "no site downloaded" >&2; exit 1; }
+          [ -z "$(find "$site" ! -type f ! -type d)" ] || { echo "the site holds something other than plain files and directories" >&2; exit 1; }
+          if [ -e _site ] || [ -L _site ]; then echo "_site appeared in the checkout" >&2; exit 1; fi
+          mv "$site" _site
       - name: Every commit since the last verified run carries an Agent trailer, is signed by its agent's published key, and leaks nothing
         # Dinis, 19 Nov 2026 (board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2).
         # security@'s fourth and fifth rulings: A is CI's own record of a passed run, which a pusher cannot write; tags
@@ -95,8 +111,14 @@ jobs:
           A=""
           # security@'s sixth ruling (14:26 UTC): A is the head of the latest successful push run of this workflow on dev.
           # Only GitHub Actions creates runs; anyone with write access can create a deployment, so deployments are not used.
-          A=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=20" \
-            --jq '[.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")][0].head_sha // empty')
+          # and the run's own checks job passed: a pushed workflow that dropped the job cannot become A (live.b@, 16:15 UTC)
+          A=""
+          for run in $(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=20" \
+            --jq '.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success") | "\(.id):\(.head_sha)"'); do
+            if [ "$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/${run%%:*}/jobs?per_page=50" --jq '[.jobs[] | select(.name == "checks" and .conclusion == "success")] | length')" = 1 ]; then
+              A="${run#*:}"; break
+            fi
+          done
           [ -n "$A" ] || { echo "no successful run of this workflow on dev to anchor the check" >&2; exit 1; }
           printf %s "$A" | grep -qE '^[0-9a-f]{40}$' || { echo "the run's head is not a commit id" >&2; exit 1; }
           git merge-base --is-ancestor "$A" "$AFTER" || { echo "the last verified run's head $A is not an ancestor of $AFTER" >&2; exit 1; }
@@ -118,7 +140,7 @@ jobs:
           path: _site
   deploy:
     needs: [build, checks]
-    if: needs.build.outputs.deploy == 'true'
+    if: github.ref == 'refs/heads/dev' && needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -131,7 +153,7 @@ jobs:
         uses: actions/deploy-pages@v4
   tag:
     needs: [build, checks, deploy]
-    if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    if: ${{ always() && github.ref == 'refs/heads/dev' && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
