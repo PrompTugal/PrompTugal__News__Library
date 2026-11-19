@@ -38,3 +38,4 @@
 | 2026-11-19 | 14:12 | Controls 7 widened and 8: trailer check from the release copy; leak scan next | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 14:14 | PRED 2026/0007 (bulletins); security@'s third ruling met | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 14:19 | Signing anchor: the last successful deployment, not a tag | [handover](debriefs/2026-11-19-handover.md) |
+| 2026-11-19 | 14:26 | Control 9: the checks in their own job; the deployed site is the scanned one | [handover](debriefs/2026-11-19-handover.md) |

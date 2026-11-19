@@ -52,7 +52,7 @@ for (const f of files.filter((f) => f.endsWith('.js'))) {
 // in the files listed here with that reason.
 const GIT_ONLY = new Set(['scripts/check-commits.mjs', 'scripts/check-signatures.mjs', 'scripts/leak-scan.mjs']);
 // The signature check's tests also run that check with this same node (process.execPath), on a throwaway clone.
-const GIT_AND_NODE = new Set(['scripts/test-check-signatures.mjs']);
+const GIT_AND_NODE = new Set(['scripts/test-check-signatures.mjs', 'scripts/test-leak-scan.mjs']);
 // Playwright only in the hand-run preview renderer, which loads a local file and blocks every other request.
 const PLAYWRIGHT_LOCAL = new Set(['scripts/render-preview.cjs']);
 const NET = /\bfetch\s*\(|globalThis\s*\[|from\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|require\(\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|\bimport\s*\(|\bWebSocket\b|\bundici\b|XMLHttpRequest|\.goto\s*\(|\brequest\.(?:get|post|fetch)\s*\(|^\s*(?:curl|wget)\b/m;

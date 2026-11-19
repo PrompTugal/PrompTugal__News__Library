@@ -726,6 +726,28 @@
    "fix": "CI anchors on A, the commit of the last successful github-pages deployment, read with the run's own read token; A must be an ancestor of the pushed head; the range A..head is checked, by A's copy of each check, and the run fails if A or a copy is missing. CI takes no tag. release.sh, a local gate before the push, still takes the last release tag on origin/dev; CI is the authority. Tests: an unsigned commit from a dropped run fails; the wiring asserts the anchor and no tag",
    "state": "fixed",
    "fixed_in": "the 14:19 commit"
+  },
+  {
+   "id": "LIB-2026-066",
+   "severity": "high",
+   "title": "The security checks ran in the job that runs pushed code; the deployed site was not the one scanned; any deployment record could anchor the check",
+   "where": ".github/workflows/pages.yml",
+   "found": "2026-11-19",
+   "found_by": "security@'s fifth ruling (control 9, from civic), via conductor.b@ at 14:20 UTC; AppSec post-review (Sonnet inner pass of library.b@)",
+   "fix": "A checks job runs no pushed code: it takes each check from A as a regular file, runs it with Node.js at an absolute path, NODE_OPTIONS cleared and replace refs off, and scans the built site, received as data with hidden files included. It then makes the pages artifact itself, so the bytes deployed are the bytes scanned; deploy and tag need it. Only deployments and success statuses made by github-actions[bot] can be A. Still open: a pushed workflow could create such a record; branch protection, Dinis's, closes that",
+   "state": "fixed",
+   "fixed_in": "the 14:26 commit"
+  },
+  {
+   "id": "LIB-2026-067",
+   "severity": "medium",
+   "title": "The leak scan skipped any file with a NUL byte in its first 8,000 bytes, and followed symlinks",
+   "where": "scripts/leak-scan.mjs",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), pre-existing",
+   "fix": "A binary file is still searched for every exact token shape; a symlink in the tree or the site fails the scan; both tested in a throwaway repository. In force one release after this commit, when the checks job's anchor holds it",
+   "state": "fixed",
+   "fixed_in": "the 14:26 commit"
   }
  ],
  "from_the_central_log": [

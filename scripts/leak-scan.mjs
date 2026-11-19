@@ -19,7 +19,7 @@
 // Public keys are allowed only in team/keys.json and team/keys/*.json, and only
 // when those files hold no private part. Any change to the allowlist below must
 // be narrow (one path, one kind) and say why.
-import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, lstatSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -159,8 +159,10 @@ function scanTree() {
     if (p.startsWith('.sg_vault/bare/')) { skipped++; continue; } // ciphertext, protected by the vault key
     const full = join(root, p);
     if (!existsSync(full) || statSync(full).isDirectory()) continue; // deleted in the working tree
+    if (lstatSync(full).isSymbolicLink()) { errors.push(`${p}: a symlink (refused: the scan does not follow links)`); continue; }
     const buf = readFileSync(full);
-    if (isBinary(buf)) { skipped++; continue; }
+    // a binary file is still searched for exact token shapes, so a leading NUL byte cannot hide a key (AppSec, 19 Nov 14:2x)
+    if (isBinary(buf)) { skipped++; const b = buf.toString('latin1'); for (const [kind, re] of SHAPES) if (re.test(b)) errors.push(`${p}: ${kind} (in a binary file)`); for (const x of secrets) if (x && x.length >= 8 && b.includes(x)) errors.push(`${p}: holds this checkout's vault key or token`); continue; }
     count++;
     const t = buf.toString('utf8');
     for (const f of scanText(p, t)) errors.push(`${p}:${f.line}: ${f.kind}`);

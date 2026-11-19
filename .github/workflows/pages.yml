@@ -44,19 +44,59 @@ jobs:
           node-version: 22
       - name: The signature check's own tests (each failing case asserts its reason)
         run: node scripts/test-check-signatures.mjs
-      - name: Every commit since the last verified deployment carries an Agent trailer and is signed by its agent's published key
+      - run: node scripts/build.mjs
+        env:
+          SITE_VERSION: ${{ steps.version.outputs.version }}
+      - run: node scripts/validate.mjs
+      - name: The leak scan's exemptions still catch a key-shaped string beside them
+        run: node scripts/test-leak-scan.mjs
+      - name: The built site, for the checks job to scan as data
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-for-checks
+          path: _site
+          retention-days: 1
+          if-no-files-found: error
+          include-hidden-files: true
+  # Control 9 (security@'s fifth ruling, from civic, via conductor.b@ 14:20 UTC): the signature, trailer and leak
+  # checks run in their own job, which runs no pushed code. It takes each check from A, the commit of the last
+  # successful github-pages deployment (read from GitHub's API, never from git), checks A..HEAD, and sees the built
+  # site only as data. Deploy needs this job. A pushed build step cannot reach it: GITHUB_ENV and GITHUB_PATH are per job.
+  checks:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: ''
+      GIT_NO_REPLACE_OBJECTS: '1'
+      GIT_GRAFT_FILE: /dev/null
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: The built site, as data
+        uses: actions/download-artifact@v4
+        with:
+          name: site-for-checks
+          path: _site
+      - name: Every commit since the last verified deployment carries an Agent trailer, is signed by its agent's published key, and leaks nothing
         # Dinis, 19 Nov 2026 (board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2).
-        # security@'s fourth ruling (via conductor.b@, 14:17 UTC): the anchor A is the commit of the last successful
-        # github-pages deployment, CI's own record of a passed run, which a pusher cannot write. Tags are not used.
-        # The range A..AFTER covers commits from dropped runs; the checks and their config come from A's tree.
+        # security@'s fourth and fifth rulings: A is CI's own record of a passed run, which a pusher cannot write; tags
+        # are not used; the range A..AFTER covers commits from dropped runs; the checks and their config come from A.
         env:
           AFTER: ${{ github.sha }}
           GH_TOKEN: ${{ github.token }}
         run: |
+          NODE=$(command -v node); case "$NODE" in /*) ;; *) echo "no absolute path to Node.js" >&2; exit 1;; esac
           [ "$(git rev-parse --is-shallow-repository)" = false ] || { echo "a shallow checkout cannot be checked" >&2; exit 1; }
           A=""
-          for id in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[].id'); do
-            if [ "$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=1" --jq '.[0].state')" = success ]; then
+          # only deployments that GitHub Actions made, with a success status that GitHub Actions set, count (AppSec: a
+          # person's token can create a deployment; a pushed workflow could too, the YAML limit branch protection closes)
+          for id in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[] | select(.creator.login == "github-actions[bot]") | .id'); do
+            if [ "$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=1" --jq '.[0] | select(.creator.login == "github-actions[bot]") | .state')" = success ]; then
               A=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id" --jq '.sha'); break
             fi
           done
@@ -64,26 +104,23 @@ jobs:
           printf %s "$A" | grep -qE '^[0-9a-f]{40}$' || { echo "the deployment's commit is not a commit id" >&2; exit 1; }
           git merge-base --is-ancestor "$A" "$AFTER" || { echo "the last verified deployment $A is not an ancestor of $AFTER" >&2; exit 1; }
           echo "anchor: $A (last successful github-pages deployment)"
-          # every security check comes from A's copy; a missing copy fails the step, with no fallback
-          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$A:scripts/$f" > "$RUNNER_TEMP/$f"; done
-          node "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
-          node "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"
-      - run: node scripts/build.mjs
-        env:
-          SITE_VERSION: ${{ steps.version.outputs.version }}
-      - run: node scripts/validate.mjs
-      - name: Leak scan (tracked files and the built site), from the release copy written by the signature step
-        run: node "$RUNNER_TEMP/leak-scan.mjs"
-      - name: The leak scan's exemptions still catch a key-shaped string beside them
-        run: node scripts/test-leak-scan.mjs
-      - if: steps.mode.outputs.deploy == 'true'
+          # every security check comes from A's copy, a regular file there; a missing copy or a symlink fails, with no fallback
+          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do
+            [ "$(git ls-tree "$A" "scripts/$f" | cut -c1-6)" = 100644 ] || { echo "scripts/$f in $A is missing or not a regular file" >&2; exit 1; }
+            git show "$A:scripts/$f" > "$RUNNER_TEMP/$f"
+          done
+          "$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
+          "$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"
+          "$NODE" "$RUNNER_TEMP/leak-scan.mjs"
+      # the site deployed is the one scanned: the pages artifact is made here, after the scan, never in the build job
+      - if: needs.build.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
-      - if: steps.mode.outputs.deploy == 'true'
+      - if: needs.build.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
   deploy:
-    needs: build
+    needs: [build, checks]
     if: needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     permissions:
@@ -96,8 +133,8 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
   tag:
-    needs: [build, deploy]
-    if: ${{ always() && needs.build.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    needs: [build, checks, deploy]
+    if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

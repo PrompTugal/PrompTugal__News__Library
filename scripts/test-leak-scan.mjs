@@ -4,6 +4,10 @@
 // Runs in release.sh and CI. Secret-shaped strings are built at run time, so this file holds none.
 import { randomBytes, generateKeyPairSync } from 'node:crypto';
 import { scanText } from './leak-scan.mjs';
+import { mkdtempSync, writeFileSync, mkdirSync, symlinkSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const b64 = (n) => randomBytes(n).toString('base64');
 const pin = () => 'sha256-' + randomBytes(32).toString('base64'); // 43 characters and one '='
@@ -39,6 +43,23 @@ cases.push(['an ssh-ed25519 public key in a status file fails', 'board/team/libr
 cases.push(['an ecdsa public key in a status file fails', 'board/team/library/status.json', `{\n "note": "${ecdsaPub()}"\n}`, true, 'ssh public key outside its published field']);
 cases.push(['an ssh-rsa public key in a status file fails', 'board/team/library/status.json', `{\n "note": "${rsaPub()}"\n}`, true, 'ssh public key outside its published field']);
 let failed = 0;
+// The whole scan, run in a throwaway repository: a key behind a leading NUL byte, and a symlink, each fail (AppSec, 19 Nov)
+{
+  const scan = resolve('scripts/leak-scan.mjs');
+  const trial = (name, setup, reason) => {
+    const d = mkdtempSync(join(tmpdir(), 'leak-trial-'));
+    try {
+      execFileSync('git', ['init', '-q', d]); mkdirSync(join(d, '_site')); writeFileSync(join(d, '_site/index.html'), 'ok\n');
+      setup(d);
+      let out = '', ok = false;
+      try { execFileSync(process.execPath, [scan], { cwd: d, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); out = 'it passed'; } catch (e) { out = `${e.stdout || ''}${e.stderr || ''}`; ok = out.includes(reason); }
+      if (!ok) failed++;
+      console.log(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${out.trim().split('\n').slice(-1)[0]}`}`);
+    } finally { rmSync(d, { recursive: true, force: true }); }
+  };
+  trial('a private-key header behind a leading NUL byte fails', (d) => writeFileSync(join(d, '_site/hidden.txt'), Buffer.concat([Buffer.from([0]), Buffer.from(header('OPENSSH'))])), 'private key block (in a binary file)');
+  trial('a symlink in the site fails', (d) => symlinkSync('/etc/hostname', join(d, '_site/link.txt')), 'a symlink');
+}
 for (const [name, path, text, expect, kind] of cases) { const got = flagged(path, text, kind); const ok = got === expect; if (!ok) failed++; console.log(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: expected ${expect ? 'flagged' : 'clean'}, got ${got ? 'flagged' : 'clean'}`}`); }
-if (failed) { console.error(`FAILED: ${failed} of ${cases.length} leak-scan tests`); process.exit(1); }
-console.log(`OK (${cases.length} leak-scan tests)`);
+if (failed) { console.error(`FAILED: ${failed} of ${cases.length + 2} leak-scan tests`); process.exit(1); }
+console.log(`OK (${cases.length + 2} leak-scan tests)`);
