@@ -25,6 +25,17 @@ const cases = [
   ['an ssh key outside team/keys.json fails, by the ssh rule itself', 'catalogue/ws26.json', `{\n "ssh_public_key": "${sshPub()}"\n}`, true, 'ssh public key outside its published field'],
   ['an ssh key in team/keys.json outside its field fails, by the ssh rule itself', 'team/keys.json', `{\n "note": "${sshPub()}"\n}`, true, 'ssh public key outside its published field'],
 ];
+// security@'s ruling of 05:09 UTC (Website 1acd10498): a private-key header fails everywhere, with no exemption; a public
+// key in a status file fails; the published field passes. Headers are built from parts, so this file holds none.
+const header = (kind) => `${'-'.repeat(5)}BEGIN ${kind ? kind + ' ' : ''}${['PRIVATE', 'KEY'].join(' ')}${'-'.repeat(5)}`;
+for (const kind of ['OPENSSH', 'RSA', 'EC', 'DSA', 'ENCRYPTED', '']) {
+  for (const path of ['board/team/library/status.json', 'team/keys.json', 'catalogue/sites-registry.json']) cases.push([`a ${kind || 'plain'} private-key header in ${path} fails`, path, `{\n "x": "${header(kind)}"\n}`, true, 'private key block']);
+}
+const ecdsaPub = () => 'ecdsa-sha2-nistp256 AAAA' + randomBytes(100).toString('base64').replace(/=+$/, '');
+const rsaPub = () => 'ssh-rsa AAAA' + randomBytes(270).toString('base64').replace(/=+$/, '');
+cases.push(['an ssh-ed25519 public key in a status file fails', 'board/team/library/status.json', `{\n "note": "${sshPub()}"\n}`, true, 'ssh public key outside its published field']);
+cases.push(['an ecdsa public key in a status file fails', 'board/team/library/status.json', `{\n "note": "${ecdsaPub()}"\n}`, true, 'ssh public key outside its published field']);
+cases.push(['an ssh-rsa public key in a status file fails', 'board/team/library/status.json', `{\n "note": "${rsaPub()}"\n}`, true, 'ssh public key outside its published field']);
 let failed = 0;
 for (const [name, path, text, expect, kind] of cases) { const got = flagged(path, text, kind); const ok = got === expect; if (!ok) failed++; console.log(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: expected ${expect ? 'flagged' : 'clean'}, got ${got ? 'flagged' : 'clean'}`}`); }
 if (failed) { console.error(`FAILED: ${failed} of ${cases.length} leak-scan tests`); process.exit(1); }

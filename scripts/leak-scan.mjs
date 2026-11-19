@@ -117,7 +117,7 @@ export function scanText(path, text) {
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
     if (PUBLIC_BEGIN.test(line)) add(n, 'public key outside team/keys');
     // an OpenSSH public key is held to the same place as a PEM one (its own exemption, by field, is in team/keys files only)
-    if (/\bssh-(?:ed25519|rsa|dss|ecdsa-sha2-nistp\d+) AAAA[A-Za-z0-9+\/]{40,}/.test(line)) add(n, 'ssh public key outside its published field');
+    if (/\b(?:ssh-ed25519|ssh-rsa|ssh-dss|ecdsa-sha2-nistp(?:256|384|521)) AAAA[A-Za-z0-9+\/]{40,}/.test(line)) add(n, 'ssh public key outside its published field');
     if (vaultPair(line)) add(n, 'sgit vault key shape (passphrase:vault_id)');
     for (const m of line.matchAll(ASSIGN)) {
       const v = m[1];

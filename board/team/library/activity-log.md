@@ -21,3 +21,4 @@
 | 2026-11-19 | 03:30 | PRED 2026/0002 (travel, 1) and 0003 (data.promptugal.news, 162 IPMA forecasts) imported | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 04:58 | leak-scan exemptions match security@'s pins ruling; 13 tests in release.sh and CI; LIB-2026-056 to 059 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 05:10 | a newer bar in the registry ships no bar instead of failing; release chains checked | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 05:14 | key rules tested (34 tests; ECDSA gap found and fixed, LIB-2026-060); a newer bar leaves its files out | [handover](debriefs/2026-11-18-handover.md) |

@@ -37,7 +37,9 @@ const cmp = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
 const regVer = ver(REGISTRY.bar && REGISTRY.bar.version);
 if (!regVer || cmp(regVer, ver(BAR_VERSION)) < 0) { console.error(`catalogue/sites-registry.json: bar version ${REGISTRY.bar && REGISTRY.bar.version} is missing, malformed or older than the vendored ${BAR_VERSION}`); process.exit(1); }
 const BAR_NEWER = cmp(regVer, ver(BAR_VERSION)) > 0;
-if (BAR_NEWER) console.warn(`sites bar: the registry names ${REGISTRY.bar.version}, newer than the vendored ${BAR_VERSION}; publishing without the bar until it is vendored`);
+// security@, 05:09 UTC: say it in these words, and leave the vendored files out of the site (never served unchecked)
+if (BAR_NEWER) console.warn(`sites bar ${BAR_VERSION} off: the registry names ${REGISTRY.bar.version}`);
+if (BAR_NEWER) rmSync('_site/assets/sites-bar', { recursive: true, force: true });
 const integ = BAR_NEWER ? null : REGISTRY.bar.integrity;
 if (!BAR_NEWER && (!integ || Object.keys(integ).sort().join() !== 'css,js,render')) { console.error(`catalogue/sites-registry.json: bar must be version ${BAR_VERSION} with integrity pins for render, js and css`); process.exit(1); }
 if (readdirSync(BAR).sort().join() !== Object.keys(PIN).sort().join()) { console.error(`${BAR}: must hold exactly the three pinned files`); process.exit(1); }
