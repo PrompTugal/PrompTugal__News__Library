@@ -1,7 +1,7 @@
 {
  "about": "PRED: every PrompTugal site's predictions, kept exactly as shown, one catalogued series per site's file (Dinis, 19 November 2026, about 03:15 UTC: 'The predictions are one collection'). The form is at /predictions/form/. Call numbers are stored, never computed, and never reused.",
  "prefix": "PRED",
- "next_seq": 5,
+ "next_seq": 6,
  "series": [
   {
    "call_number": "PRED 2026/0001",
@@ -59,6 +59,22 @@
     "path": "data/predictions/predictions.jsonl",
     "commit": "edea8460ccc3bba3ac1c54907a946efab67a4ed5",
     "read_at": "2026-11-19T07:38Z"
+   }
+  },
+  {
+   "call_number": "PRED 2026/0005",
+   "id": "PRED-2026-0005",
+   "site": "startups.promptugal.news",
+   "title": "Open calls' closing dates, as their sources state them (startups.promptugal.news)",
+   "from": "catalogue/pred/PRED-2026-0005.jsonl",
+   "page": "https://startups.promptugal.news/calls/#braga-global-health-accelerator-2026-2027-startup-braga",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis",
+   "read_from": {
+    "repo": "PrompTugal/PrompTugal__News__Startups",
+    "path": "data/predictions/predictions.jsonl",
+    "commit": "8b69337bbcd47fcd1454d7cfeedd2fe3bcba1aa9",
+    "read_at": "2026-11-19T07:49Z"
    }
   }
  ]
