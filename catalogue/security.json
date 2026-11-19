@@ -715,6 +715,17 @@
    "fix": "check-commits skips no commit (it came with the first commit, 1af3014), reads its exemptions from the last release, ignores replace refs and grafts, and runs from the release copy. The leak scan finds the repository from where it is run, so the next release runs it from the release copy too. Transition, one release each: the copies tagged before this fix still read exemptions from the tree and locate the leak scan by its own path; signatures still block an unsigned commit meanwhile",
    "state": "fixed",
    "fixed_in": "68e05ec (the trailer check) and the commit after it (the leak scan)"
+  },
+  {
+   "id": "LIB-2026-065",
+   "severity": "medium",
+   "title": "CI's signing check anchored on a release tag, which a pusher can write, and a dropped run's commits could fall outside the range",
+   "where": ".github/workflows/pages.yml",
+   "found": "2026-11-19",
+   "found_by": "the dropped-run gap raised by several sites; security@'s fourth ruling, passed on by conductor.b@ at 14:17 UTC",
+   "fix": "CI anchors on A, the commit of the last successful github-pages deployment, read with the run's own read token; A must be an ancestor of the pushed head; the range A..head is checked, by A's copy of each check, and the run fails if A or a copy is missing. CI takes no tag. release.sh, a local gate before the push, still takes the last release tag on origin/dev; CI is the authority. Tests: an unsigned commit from a dropped run fails; the wiring asserts the anchor and no tag",
+   "state": "fixed",
+   "fixed_in": "the 14:19 commit"
   }
  ],
  "from_the_central_log": [

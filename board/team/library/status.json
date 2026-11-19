@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T14:14Z",
+ "updated": "2026-11-19T14:19Z",
  "state": "13:38 wake: PRED refreshed; hand-over written (13:39 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -63,7 +63,8 @@
   "14:04 (d641b20): signing controls 6 and 7 (conductor.b@, 14:01 UTC): orphan commits refused by name; release.sh and CI run the last release tag's copy of the check; two tests; LIB-2026-062, 063",
   "14:07 (e00ce80): security@'s ruling on controls 6 and 7 (14:07 UTC): shallow checkouts refused in the check and CI; tests for an orphan signed with its own key and a shallow clone (16 cases)",
   "14:12: security@'s second ruling (14:08 UTC), first of two releases: check-commits runs from the release copy, skips no commit, takes exemptions from the release; control 8 test (17 cases); leak scan made runnable from a copy, moved at the next release (LIB-2026-064)",
-  "14:14: PRED 2026/0007 bulletins imported (27 lines, b56b63c); security@'s third ruling: CI fails with no BEFORE, the release tag must be an ancestor of BEFORE; tests for a backdated orphan and a missing release copy (19 cases)"
+  "14:14: PRED 2026/0007 bulletins imported (27 lines, b56b63c); security@'s third ruling: CI fails with no BEFORE, the release tag must be an ancestor of BEFORE; tests for a backdated orphan and a missing release copy (19 cases)",
+  "14:19: security@'s fourth ruling: CI anchors on the last successful github-pages deployment (deployments: read), range A..AFTER from A's copies, no tags; dropped-run test (20 cases); LIB-2026-065"
  ],
  "next": [
   "PRED: re-import every series at each wake",

@@ -71,6 +71,8 @@ try {
       git('checkout', '-q', '-b', 'side'); commit('side' + trailers()); git('checkout', '-q', '-');
       git('merge', '-q', '--no-ff', '-m', 'merge' + trailers(), 'side');
     }, false, 'a merge commit'],
+    // security@'s fourth ruling: an unsigned commit from a dropped run (between the anchor and BEFORE) still fails
+    ['an unsigned commit from a dropped run fails', () => { commit('dropped' + trailers(), ['-c', 'commit.gpgsign=false']); commit('later' + trailers()); }, false, 'signature missing'],
     // control 6 (conductor.b@, 19 Nov 2026 14:01 UTC, from videos.b@'s pre-review): an orphan would trust its own keys
     ['an orphan commit fails', () => { git('checkout', '-q', '--orphan', 'orphan'); commit('orphan' + trailers()); }, false, 'a commit with no parent'],
     // control 8 (security@'s third ruling, 14:11 UTC): a backdated orphan is refused by ancestry, not by its date
@@ -128,13 +130,14 @@ try {
   // control 7's wiring: the gates run a release tag's copy of the check, never scripts/check-signatures.mjs from the tree
   const wired = (name, file, uses) => {
     const t = readFileSync(file, 'utf8');
-    const direct = /node\s+scripts\/(check-signatures|check-commits|leak-scan)\.mjs/.test(t);
+    const direct = /node\s+scripts\/(check-signatures|check-commits|leak-scan)\.mjs/.test(t) || (file.endsWith('.yml') && /describe --tags/.test(t)) || (file.endsWith('.yml') && /git show "\$(trusted|last):/.test(t));
     const ok = !direct && uses.every((u) => t.includes(u));
     if (!ok) failed++;
-    results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${file} must run the release copy (git show "<tag>:scripts/check-signatures.mjs") and never node scripts/check-signatures.mjs`}`);
+    results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${file} must run the checks from the anchor's copy, never from the tree, and CI must not take a tag`}`);
   };
   wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$last:scripts/$f" > "$trusted/$f"; done', 'node "$trusted/leak-scan.mjs"', 'node "$trusted/check-signatures.mjs" origin/dev HEAD', 'node "$trusted/check-commits.mjs" origin/dev HEAD "$last"']);
-  wired('CI runs the release copy, found from dev before the push', '.github/workflows/pages.yml', ['describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE"', 'git merge-base --is-ancestor "$BEFORE" "$AFTER"', 'git merge-base --is-ancestor "$trusted" "$BEFORE"', 'no commit before this push', 'for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done', 'node "$RUNNER_TEMP/leak-scan.mjs"', 'node "$RUNNER_TEMP/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-commits.mjs"']);
+  // security@'s fourth ruling (14:17 UTC): CI anchors on the last successful github-pages deployment, never a tag
+  wired('CI anchors on the last verified deployment, from its copy', '.github/workflows/pages.yml', ['deployments?environment=github-pages', ".[0].state')\" = success", '[ -n "$A" ] || {', 'git merge-base --is-ancestor "$A" "$AFTER" ||', 'for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$A:scripts/$f" > "$RUNNER_TEMP/$f"; done', 'node "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"', 'node "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"', 'node "$RUNNER_TEMP/leak-scan.mjs"', 'node "$RUNNER_TEMP/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-commits.mjs"']);
 } finally { rmSync(dir, { recursive: true, force: true }); }
 console.log(results.join('\n'));
 if (failed) { console.error(`FAILED: ${failed} of ${results.length} signature-check tests`); process.exit(1); }

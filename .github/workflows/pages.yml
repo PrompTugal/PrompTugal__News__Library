@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  deployments: read  # to read the last successful github-pages deployment, the signing check's anchor
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -43,28 +44,30 @@ jobs:
           node-version: 22
       - name: The signature check's own tests (each failing case asserts its reason)
         run: node scripts/test-check-signatures.mjs
-      - name: Every commit since the last release carries an Agent trailer and is signed by its agent's published key
-        # From a release tag, not github.event.before alone: GitHub drops a pending run when a newer one queues
-        # (specialist.code@ finding 3b), so the range runs from the last release dev had before this push.
-        # Dinis, 19 Nov 2026 (board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2)
+      - name: Every commit since the last verified deployment carries an Agent trailer and is signed by its agent's published key
+        # Dinis, 19 Nov 2026 (board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2).
+        # security@'s fourth ruling (via conductor.b@, 14:17 UTC): the anchor A is the commit of the last successful
+        # github-pages deployment, CI's own record of a passed run, which a pusher cannot write. Tags are not used.
+        # The range A..AFTER covers commits from dropped runs; the checks and their config come from A's tree.
         env:
-          BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # Control 7 (conductor.b@, 19 Nov 14:01 UTC): run the last release's copy of the check, never the pushed tree's.
-          # The release is found from dev as it was before this push, so a tag pushed with these commits is not chosen;
-          # the range runs from that tag, so every commit since it is checked by it.
           [ "$(git rev-parse --is-shallow-repository)" = false ] || { echo "a shallow checkout cannot be checked" >&2; exit 1; }
-          # security@'s third ruling (14:11 UTC): no BEFORE (a run by hand, a new branch, a zero id) or a force push fails
-          [ -n "$BEFORE" ] && ! printf %s "$BEFORE" | grep -qE '^0+$' || { echo "no commit before this push to take the check from" >&2; exit 1; }
-          git merge-base --is-ancestor "$BEFORE" "$AFTER" || { echo "dev was not fast-forwarded" >&2; exit 1; }
-          # the last release that is an ancestor of BEFORE (a tag counts only there): it ran, was checked and was deployed
-          trusted=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE")
-          git merge-base --is-ancestor "$trusted" "$BEFORE"
-          # every security check comes from that release's copy; a missing copy fails the step (security@, 19 Nov 14:08 UTC)
-          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done
-          node "$RUNNER_TEMP/check-commits.mjs" "$trusted" "$AFTER"
-          node "$RUNNER_TEMP/check-signatures.mjs" "$trusted" "$AFTER"
+          A=""
+          for id in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[].id'); do
+            if [ "$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=1" --jq '.[0].state')" = success ]; then
+              A=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id" --jq '.sha'); break
+            fi
+          done
+          [ -n "$A" ] || { echo "no successful github-pages deployment to anchor the check" >&2; exit 1; }
+          printf %s "$A" | grep -qE '^[0-9a-f]{40}$' || { echo "the deployment's commit is not a commit id" >&2; exit 1; }
+          git merge-base --is-ancestor "$A" "$AFTER" || { echo "the last verified deployment $A is not an ancestor of $AFTER" >&2; exit 1; }
+          echo "anchor: $A (last successful github-pages deployment)"
+          # every security check comes from A's copy; a missing copy fails the step, with no fallback
+          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$A:scripts/$f" > "$RUNNER_TEMP/$f"; done
+          node "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
+          node "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
