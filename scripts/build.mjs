@@ -7,6 +7,7 @@
 import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
+import { checkLine, checkSeries, track as predTrack, realTime as realTimeF } from './pred-form.mjs';
 import { render as renderBar } from '../src/assets/sites-bar/1.1.1/sites-bar-render.mjs';
 
 const version = process.env.SITE_VERSION || 'dev';
@@ -330,6 +331,7 @@ for (const c of collections) {
 const pred = readJSON('catalogue/pred.json');
 if (pred.prefix !== 'PRED' || !Number.isInteger(pred.next_seq) || !Array.isArray(pred.series)) fail('catalogue/pred.json: needs prefix PRED, next_seq and series');
 const predSeries = [];
+{ const ids = (pred.series || []).map((x) => x.id), sites = (pred.series || []).filter((x) => /\.jsonl$/.test(x.from || '')).map((x) => x.site); if (new Set(ids).size !== ids.length || new Set(sites).size !== sites.length) fail('catalogue/pred.json: a series id or a site appears twice'); }
 for (const se of pred.series || []) {
   const m = /^PRED (\d{4})\/(\d{4})$/.exec(se.call_number || '');
   if (!m || se.id !== `PRED-${m[1]}-${m[2]}` || Number(m[2]) >= pred.next_seq) fail(`catalogue/pred.json: bad call number ${se.call_number}`);
@@ -337,6 +339,18 @@ for (const se of pred.series || []) {
   if (!/^[a-z0-9.-]+\.promptugal\.news$|^promptugal\.news$/.test(se.site || '')) fail(`${se.id}: site must be a PrompTugal host`);
   let pu = null; try { pu = new URL(se.page); } catch { /* refused below */ }
   if (!pu || pu.protocol !== 'https:' || pu.username || pu.password || se.page.length > 300 || /\s/.test(se.page) || pu.hostname !== se.site) fail(`${se.id}: page must be an https address on its own site, at most 300 characters`);
+  // a site's series: lines imported by scripts/import-predictions.mjs, checked again here against the form
+  if (/^catalogue\/pred\/PRED-\d{4}-\d{4}\.jsonl$/.test(se.from || '') && se.from === `catalogue/pred/${se.id}.jsonl`) {
+    const lines = []; let bad = 0;
+    readFileSync(se.from, 'utf8').split('\n').filter(Boolean).forEach((s, i) => { let l; try { l = JSON.parse(s); } catch { fail(`${se.from}:${i + 1}: not JSON`); bad++; return; } const e = checkLine(l, se.site); if (e.length) { fail(`${se.from}:${i + 1}: ${e.join('; ')}`); bad++; } lines.push(l); });
+    if (!se.read_from || !/^PrompTugal\/[A-Za-z0-9_.-]+$/.test(se.read_from.repo || '') || !/^([0-9a-f]{40}|unknown)$/.test(se.read_from.commit || '') || !realTimeF(se.read_from.read_at)) fail(`${se.id}: read_from must name the repository, commit and time`);
+    for (const e of checkSeries(lines)) { fail(`${se.from}: ${e}`); bad++; }
+    if (bad) continue;
+    const t = predTrack(lines);
+    predSeries.push({ ...se, track: t });
+    json(`api/v1/predictions/series/${se.id}.json`, { license: 'CC BY 4.0 for the library\'s record; each line\'s values stay under its own licence', series: { ...se, track: t }, form: '/api/v1/predictions/form.json', lines });
+    continue;
+  }
   // series from the library's own collections are made from their predictions files, in the form
   const src = predictions.find((p) => `catalogue/predictions-${p.collection}.json` === se.from);
   if (!src) { fail(`${se.id}: from ${se.from} is not a predictions file the build read`); continue; }
@@ -569,7 +583,7 @@ ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).
 
 // PRED: the collection of every site's predictions
 {
-  const row = (se) => { const t = se.track; return `<li><span class="cn">${esc(se.call_number)}</span> <a href="${esc(se.page)}">${esc(se.title)}</a> <span class="kind">${esc(se.site)}</span><br><span class="note">${t.predictions} predictions: ${t.held} held, ${t.missed} missed, ${t.gap} not yet checkable${t.open ? `, ${t.open} still open` : ''} · <a href="/api/v1/predictions/series/${esc(se.id)}.json">the lines, in the form</a></span></li>`; };
+  const row = (se) => { const t = se.track; return `<li><span class="cn">${esc(se.call_number)}</span> <a href="${esc(se.page)}">${esc(se.title)}</a> <span class="kind">${esc(se.site)}</span><br><span class="note">${t.predictions} predictions: ${t.held} held, ${t.missed} missed, ${t.gap} not yet checkable${t.open ? `, ${t.open} still open` : ''}${t.changed ? `, ${t.changed} came back changed after cataloguing (first form kept)` : ''} · <a href="/api/v1/predictions/series/${esc(se.id)}.json">the lines, in the form</a></span></li>`; };
   const body = `<section class="page"><p class="crumb"><a href="/">Library</a> › Predictions</p><p class="k">Collection · PRED · ${predSeries.length} series</p><h1>Predictions, kept as shown</h1><p>Every PrompTugal site's predictions in one collection (Dinis, 19 November 2026: "The predictions are one collection"): forecasts, warnings, countdowns, scores and expected dates, each kept exactly as it was shown and never overwritten, beside what then happened. A miss is shown as plainly as a hit. Each site sends its file in <a href="/predictions/form/">the form</a>; each file is one series with its own call number.</p><h2>Series</h2><ol class="acc">${predSeries.map(row).join('')}</ol><p class="note">Waiting for: the other sites' files (weather.promptugal.news's forecasts first). JSON: <a href="/api/v1/predictions/index.json">/api/v1/predictions/index.json</a>.</p></section>`;
   const md = `# Predictions, kept as shown\n\nEvery PrompTugal site's predictions in one collection, PRED. The form: /predictions/form/.\n\n${predSeries.map((se) => `- ${se.call_number} ${se.title} (${se.site}): ${se.track.predictions} predictions, ${se.track.held} held, ${se.track.missed} missed, ${se.track.gap} not yet checkable. /api/v1/predictions/series/${se.id}.json`).join('\n')}\n`;
   page({ path: '/predictions/', title: 'Predictions: PrompTugal.news Library', description: 'Every PrompTugal site\'s predictions, kept exactly as shown, beside what happened: one collection, PRED.', body, md });

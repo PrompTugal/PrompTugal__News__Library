@@ -539,6 +539,83 @@
    "where": "content/predictions/form.md",
    "state": "fixed",
    "fixed_in": "the PRED commit"
+  },
+  {
+   "id": "LIB-2026-049",
+   "title": "The importer trusted a series' file path from pred.json",
+   "fix": "The path must be catalogue/pred/<series id>.jsonl, as the build requires",
+   "where": "scripts/import-predictions.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-050",
+   "title": "A special file or an oversized .git/HEAD in the clone could hang the importer",
+   "fix": "Regular files only; HEAD and refs capped at 4 KB",
+   "where": "scripts/import-predictions.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-051",
+   "title": "A later outcome could silently flip a held prediction to missed",
+   "fix": "The first outcome counts; a later one is kept and recorded as a change",
+   "where": "scripts/pred-form.mjs, scripts/import-predictions.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-052",
+   "title": "Some invisible and line-separator characters passed the text check",
+   "fix": "C1 controls, soft hyphen, line and paragraph separators and invisible operators are refused",
+   "where": "scripts/pred-form.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-053",
+   "title": "Repeated prediction ids and orphan outcomes were checked only on import",
+   "fix": "The build checks each series again, and refuses a series id or site listed twice",
+   "where": "scripts/build.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-054",
+   "title": "A crash between the importer's two writes could let a call number be reused",
+   "fix": "pred.json is written first, each file through a temporary file and a rename",
+   "where": "scripts/import-predictions.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
+  },
+  {
+   "id": "LIB-2026-055",
+   "title": "Addresses in a predictions file could name an IP address or a local host",
+   "fix": "Only named public hosts",
+   "where": "scripts/pred-form.mjs",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the predictions importer, before the push",
+   "state": "fixed",
+   "fixed_in": "the importer commit"
   }
  ],
  "from_the_central_log": [
