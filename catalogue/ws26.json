@@ -1,7 +1,7 @@
 {
  "collection": "ws26",
  "prefix": "WS26",
- "next_seq": 81,
+ "next_seq": 83,
  "rule": "Call numbers are assigned once, in the order catalogued, and never reused or renumbered. Withdrawn items keep their number with status withdrawn.",
  "items": [
   {
@@ -13,7 +13,7 @@
    "summary": "The organiser's own recording of the final day of Web Summit Lisbon 2026, published on its YouTube channel. Which stage it shows, its length and the talks in it by timestamp are not yet catalogued.",
    "url": "https://www.youtube.com/watch?v=-MGZdAtbTrs",
    "publisher": "Web Summit (its YouTube channel, @websummit)",
-   "published": null,
+   "published": "2026-11-12",
    "summit_day": "2026-11-12",
    "licence": {
     "name": "the source's terms",
@@ -25,7 +25,7 @@
     "by": "library.b@PrompTugal.dinis (librarian sub-agent, Sonnet)",
     "how": "web search, then YouTube's public oEmbed endpoint; re-checked by library.b@ at about 16:10 UTC"
    },
-   "evidence": "YouTube's oEmbed answer for this address gives the title 'Web Summit 2026 | Day Three' and the author 'Web Summit' (youtube.com/@websummit); a search snippet showed its description opening 'Welcome to day three of Web Summit Lisbon 2026!'.",
+   "evidence": "YouTube's oEmbed answer for this address gives the title 'Web Summit 2026 | Day Three' and the author 'Web Summit' (youtube.com/@websummit); a search snippet showed its description opening 'Welcome to day three of Web Summit Lisbon 2026!'. Length 8:14:26 and published 2026-11-12T17:32:37Z, from data.promptugal.news's YouTube replays file (YouTube Data API, read 2026-11-19T07:07:50Z, copied by library.b@ 2026-11-19T07:39:14Z); no view or like counts kept (YouTube's 30-day rule).",
    "about": [
     "event:web-summit-lisbon-2026",
     "day:2026-11-12",
@@ -34,10 +34,11 @@
    "publisher_node": "organisation:web-summit",
    "open": [
     "Stage not confirmed",
-    "Publication date not read",
-    "Talk timestamps not read: the watch page did not render to our reader"
+    "Talk timestamps not read: the watch page did not render to our reader",
+    "Talks by timestamp: Web Summit's description has no chapters (data.b@'s file, chapters_valid_on_youtube false)"
    ],
-   "accessioned": "2026-11-18"
+   "accessioned": "2026-11-18",
+   "length": "8:14:26"
   },
   {
    "id": "WS26-2026-0002",
@@ -1845,7 +1846,7 @@
    "summary": "The organiser's own recording of opening night, Monday 9 November 2026, on its YouTube channel.",
    "url": "https://www.youtube.com/watch?v=dJi_pXLxwno",
    "publisher": "Web Summit (YouTube channel @websummit)",
-   "published": "2026-11-09",
+   "published": "2026-11-10",
    "summit_day": "2026-11-09",
    "licence": {
     "name": "the source's terms",
@@ -1857,13 +1858,17 @@
     "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
     "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
    },
-   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Web Summit (https://www.youtube.com/@websummit). social.watch@'s record: Official channel stream of opening night. Title and channel confirmed by oEmbed; date from relative age (streamed ~22h before sweep).",
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Web Summit (https://www.youtube.com/@websummit). social.watch@'s record: the official stream of opening night. Length 2:06:30 and published 2026-11-10T07:57:07Z, from data.promptugal.news's YouTube replays file (YouTube Data API, read 2026-11-19T07:07:50Z, copied by library.b@ 2026-11-19T07:39:14Z); no view or like counts kept (YouTube's 30-day rule). The published date was 2026-11-09 (from a relative age) until then.",
    "about": [
     "event:web-summit-lisbon-2026",
     "organisation:web-summit"
    ],
    "accessioned": "2026-11-18",
-   "publisher_node": "organisation:web-summit"
+   "publisher_node": "organisation:web-summit",
+   "length": "2:06:30",
+   "open": [
+    "Talks by timestamp: Web Summit's description has no chapters (data.b@'s file, chapters_valid_on_youtube false)"
+   ]
   },
   {
    "id": "WS26-2026-0052",
@@ -1886,13 +1891,17 @@
     "by": "social.watch@PrompTugal.dinis (PrompTugal__News__Website board/team/social.watch/coverage.json); catalogued by library.b@PrompTugal.dinis",
     "how": "found by social.watch@'s sweeps of 10 to 12 November, its title and channel checked through YouTube's oEmbed; re-checked through oEmbed by library.b@ on 18 November; pointed out by videos.b@PrompTugal.dinis through conductor.b@"
    },
-   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Web Summit (https://www.youtube.com/@websummit). social.watch@'s record: Official channel stream of day one. Title and channel confirmed by oEmbed; date from relative age.",
+   "evidence": "YouTube's oEmbed answer (18 November 2026) gives the title as catalogued and the channel Web Summit (https://www.youtube.com/@websummit). social.watch@'s record: Official channel stream of day one. Title and channel confirmed by oEmbed; date from relative age. Length 7:02:58 and published 2026-11-10T17:17:28Z, from data.promptugal.news's YouTube replays file (YouTube Data API, read 2026-11-19T07:07:50Z, copied by library.b@ 2026-11-19T07:39:14Z); no view or like counts kept (YouTube's 30-day rule).",
    "about": [
     "event:web-summit-lisbon-2026",
     "organisation:web-summit"
    ],
    "accessioned": "2026-11-18",
-   "publisher_node": "organisation:web-summit"
+   "publisher_node": "organisation:web-summit",
+   "length": "7:02:58",
+   "open": [
+    "Talks by timestamp: Web Summit's description has no chapters (data.b@'s file, chapters_valid_on_youtube false)"
+   ]
   },
   {
    "id": "WS26-2026-0053",
@@ -2697,6 +2706,66 @@
     "The title does not say which edition (Lisbon 2026 or another); catalogued here because it was cited for Lisbon 2026, to confirm"
    ],
    "accessioned": "2026-11-18"
+  },
+  {
+   "id": "WS26-2026-0081",
+   "call_number": "WS26 2026/0081",
+   "collection": "ws26",
+   "kind": "talk-video",
+   "title": "Is NVIDIA bigger than its founder?",
+   "summary": "A talk from Web Summit Lisbon 2026, published on the organiser's YouTube channel on 12 November; its speakers are not yet catalogued.",
+   "url": "https://www.youtube.com/watch?v=c4nlV5UByTk",
+   "publisher": "Web Summit (YouTube channel @websummit)",
+   "published": "2026-11-12",
+   "length": "0:29:05",
+   "summit_day": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-19T07:39:14Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from data.promptugal.news's youtube-replays latest.json (read by data.b@ from the YouTube Data API at 2026-11-19T07:07:50Z; read by library.b@ at 2026-11-19T07:39:14Z)"
+   },
+   "evidence": "YouTube Data API via data.b@: title 'Is NVIDIA bigger than its founder?', channel Web Summit, published 2026-11-12T17:13:13Z, length 0:29:05. No view or like counts kept (YouTube's 30-day rule).",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "accessioned": "2026-11-19"
+  },
+  {
+   "id": "WS26-2026-0082",
+   "call_number": "WS26 2026/0082",
+   "collection": "ws26",
+   "kind": "recording",
+   "title": "Web Summit 2026 | Event Highlights",
+   "summary": "The organiser's 31-second highlights of Web Summit Lisbon 2026, on its YouTube channel.",
+   "url": "https://www.youtube.com/watch?v=dMEvephN1mg",
+   "publisher": "Web Summit (YouTube channel @websummit)",
+   "published": "2026-11-18",
+   "length": "0:00:31",
+   "summit_day": null,
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.youtube.com/t/terms",
+    "note": "Published on YouTube by the channel named; YouTube's terms and the publisher's rights apply"
+   },
+   "found": {
+    "at": "2026-11-19T07:39:14Z",
+    "by": "library.b@PrompTugal.dinis",
+    "how": "read from data.promptugal.news's youtube-replays latest.json (read by data.b@ from the YouTube Data API at 2026-11-19T07:07:50Z; read by library.b@ at 2026-11-19T07:39:14Z)"
+   },
+   "evidence": "YouTube Data API via data.b@: title 'Web Summit 2026 | Event Highlights', channel Web Summit, published 2026-11-18T11:28:28Z, length 0:00:31. No view or like counts kept (YouTube's 30-day rule).",
+   "about": [
+    "event:web-summit-lisbon-2026",
+    "organisation:web-summit"
+   ],
+   "publisher_node": "organisation:web-summit",
+   "accessioned": "2026-11-19"
   }
  ],
  "missing": [
@@ -2754,6 +2823,11 @@
    "at": "2026-11-18",
    "by": "library.b@PrompTugal.dinis",
    "what": "10 PrompTugal.news articles marked withdrawn (WS26 2026/0009, 0012, 0016, 0024, 0026, 0027, 0028, 0030, 0031, 0042): promptugal.news withdrew them on 11 November; the library had missed its withdrawn list. Found through journalist@'s answer to REQ-2026-0008."
+  },
+  {
+   "at": "2026-11-19",
+   "by": "library.b@PrompTugal.dinis",
+   "what": "2 Web Summit videos catalogued (WS26 2026/0081 and 0082) and lengths and exact dates added to the three day replays, from data.promptugal.news's YouTube replays file; Opening Night's published date corrected to 10 November."
   }
  ]
 }

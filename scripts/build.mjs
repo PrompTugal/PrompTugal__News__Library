@@ -118,6 +118,7 @@ for (const c of collections) {
     if (!it.licence || !it.licence.url || !it.licence.name) fail(`${w}: no licence link`); else { checkUrl(`${w} licence`, it.licence.url); if (/CC BY/.test(it.licence.name) !== /^https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/?$/.test(it.licence.url)) fail(`${w}: licence name and link disagree`); }
     if (!it.found || !it.found.at || !it.found.by) fail(`${w}: no found (when and by whom)`);
     if (!it.evidence) fail(`${w}: no evidence`);
+    if (it.length !== undefined && !(typeof it.length === 'string' && /^\d{1,2}:\d{2}:\d{2}$/.test(it.length))) fail(`${w}: length must be H:MM:SS`);
     if (it.status && !['held', 'withdrawn'].includes(it.status)) fail(`${w}: status must be held or withdrawn`);
     if (it.status === 'withdrawn') { if (!it.withdrawn || !it.withdrawn.at || !it.withdrawn.why) fail(`${w}: withdrawn needs at and why`); else checkText(`${w} withdrawn why`, it.withdrawn.why, 500); }
     for (const a of it.about || []) if (!nodes.has(a)) fail(`${w}: about ${a} is not a node`);
@@ -503,7 +504,7 @@ for (const it of items) {
 <p class="ti">${esc(it.title)}</p><dl>
 <dt>What</dt><dd>${esc(kindLabel(it.kind))}</dd>
 <dt>Who</dt><dd title="${esc(it.publisher)}">${esc(it.made_by ? `${it.publisher}, by ${it.made_by}` : it.publisher)}</dd>
-<dt>When</dt><dd>${esc(day(it.published) || (it.summit_day ? `covers ${day(it.summit_day)}` : 'not given'))}</dd>
+<dt>When</dt><dd>${esc(day(it.published) || (it.summit_day ? `covers ${day(it.summit_day)}` : 'not given'))}</dd>${it.length ? `<dt>Length</dt><dd>${esc(it.length)}</dd>` : ''}
 <dt>Where</dt><dd>${esc(c.id === 'ws26' ? 'Lisbon, Portugal' : '')}</dd>
 <dt>Source</dt><dd><a href="${esc(it.url)}" rel="noopener noreferrer">${esc(host(it.url))}</a></dd>
 <dt>Licence</dt><dd><a class="lic" href="${esc(lic.url)}" rel="noopener noreferrer">${esc(isOurs ? 'CC BY 4.0' : 'source\'s terms')}</a></dd>

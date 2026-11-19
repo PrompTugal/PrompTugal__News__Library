@@ -671,6 +671,17 @@
    "fix": "The rule names ssh-ed25519, ssh-rsa, ssh-dss and ecdsa-sha2-nistp256/384/521; a test for each",
    "state": "fixed",
    "fixed_in": "the key-rules tests commit"
+  },
+  {
+   "id": "LIB-2026-061",
+   "severity": "low",
+   "title": "A new item field, length, was published without a format check",
+   "where": "scripts/build.mjs",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the 07:38 wake, before the push",
+   "fix": "Length must be H:MM:SS; it is shown on the card, escaped",
+   "state": "fixed",
+   "fixed_in": "the 07:38 wake's commit"
   }
  ],
  "from_the_central_log": [

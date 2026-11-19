@@ -12,15 +12,16 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ## What exists (18 November 2026, first version by library.b@)
 
 ### The catalogue (JSON, in `catalogue/`)
-- **One collection: Web Summit Lisbon 2026 (`WS26`), 80 call numbers, 68 items held, 12 withdrawn** (2 read by machine against websummit.com's terms; 10 articles promptugal.news withdrew on 11 November), `WS26 2026/0001` to `WS26 2026/0080`, each with source URL, licence link, when and by whom found, and evidence:
-  - 3 official replays on Web Summit's YouTube channel: Opening Night, Day One, Day Three (titles and channel confirmed by YouTube's oEmbed; stages and talk timestamps not yet read).
+- **One collection: Web Summit Lisbon 2026 (`WS26`), 82 call numbers, 70 items held, 12 withdrawn** (2 read by machine against websummit.com's terms; 10 articles promptugal.news withdrew on 11 November), `WS26 2026/0001` to `WS26 2026/0080`, each with source URL, licence link, when and by whom found, and evidence:
+  - 3 official replays on Web Summit's YouTube channel: Opening Night (2:06:30), Day One (7:02:58), Day Three (8:14:26), with their lengths and exact publishing dates from data.promptugal.news's YouTube replays file (19 November); Web Summit published no talk chapters.
+  - 2 more of Web Summit's own uploads from the same file: a talk, 'Is NVIDIA bigger than its founder?' (0:29:05, WS26 2026/0081), and Event Highlights (0:00:31, WS26 2026/0082). No view or like counts are kept.
   - 28 other recordings by organisations and media: 17 from social.watch@'s record, 11 cited in data.b@'s Perplexity discovery; each title and channel read through oEmbed.
   - 2 organiser statements on Day Two's cancellation and Thursday's plan (read by dev.data@ on 10 and 11 November). Withdrawn: the 12 November programme page and the PITCH semi-final page (WS26 2026/0004 and 0005), read by machine on 18 November against websummit.com's terms (LIB-2026-008).
   - 2 press reports (The Next Web, The Irish Times), titles and links only.
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit catalogued from their front matter; 10 of them were withdrawn by the site on 11 November and are now marked withdrawn here (32 held).
 - **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 60 findings: 59 from reviews and tests (55 fixed, 4 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 61 findings: 60 from reviews and tests (56 fixed, 4 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
