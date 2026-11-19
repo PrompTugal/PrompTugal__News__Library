@@ -20,11 +20,12 @@
 // when those files hold no private part. Any change to the allowlist below must
 // be narrow (one path, one kind) and say why.
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+// the repository scanned is the one the scan is run in, so the gates can run the last release's copy (control 7)
+const root = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
 
 // Built from parts so that this file does not match its own patterns.
 const DASHES = '-'.repeat(5);

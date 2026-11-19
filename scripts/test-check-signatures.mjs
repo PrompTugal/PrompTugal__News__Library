@@ -87,6 +87,12 @@ try {
       if (!pushed.ok) throw new Error('the tampered copy should pass, or this case proves nothing');
       writeFileSync(trusted, git('show', `${base}:scripts/check-signatures.mjs`) + '\n');
     }, false, 'signature missing', () => trusted],
+    // control 8 (security@, 19 Nov 2026 14:08 UTC): deleting the checker never skips a commit
+    ['a commit that removes the check and adds an unsigned change fails', () => {
+      rmSync(join(repo, 'scripts/check-signatures.mjs'));
+      commit('remove the check' + trailers(), ['-c', 'commit.gpgsign=false']);
+      writeFileSync(trusted, git('show', `${base}:scripts/check-signatures.mjs`) + '\n');
+    }, false, 'signature missing', () => trusted],
   ];
   const trusted = join(dir, 'trusted-check-signatures.mjs');
   for (const [name, make, pass, reason, check] of cases) {
@@ -111,13 +117,13 @@ try {
   // control 7's wiring: the gates run a release tag's copy of the check, never scripts/check-signatures.mjs from the tree
   const wired = (name, file, uses) => {
     const t = readFileSync(file, 'utf8');
-    const direct = /node\s+scripts\/check-signatures\.mjs/.test(t);
+    const direct = /node\s+scripts\/(check-signatures|check-commits)\.mjs/.test(t);
     const ok = !direct && uses.every((u) => t.includes(u));
     if (!ok) failed++;
     results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${file} must run the release copy (git show "<tag>:scripts/check-signatures.mjs") and never node scripts/check-signatures.mjs`}`);
   };
-  wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['git show "$last:scripts/check-signatures.mjs"', 'node "$trusted/check-signatures.mjs" origin/dev HEAD']);
-  wired('CI runs the release copy, found from dev before the push', '.github/workflows/pages.yml', ['describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE"', 'git show "$trusted:scripts/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-signatures.mjs"']);
+  wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['for f in check-signatures.mjs check-commits.mjs; do git show "$last:scripts/$f" > "$trusted/$f"; done', 'node "$trusted/check-signatures.mjs" origin/dev HEAD', 'node "$trusted/check-commits.mjs" origin/dev HEAD "$last"']);
+  wired('CI runs the release copy, found from dev before the push', '.github/workflows/pages.yml', ['describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE"', 'for f in check-signatures.mjs check-commits.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done', 'node "$RUNNER_TEMP/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-commits.mjs"']);
 } finally { rmSync(dir, { recursive: true, force: true }); }
 console.log(results.join('\n'));
 if (failed) { console.error(`FAILED: ${failed} of ${results.length} signature-check tests`); process.exit(1); }

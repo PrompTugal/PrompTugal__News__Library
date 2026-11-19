@@ -35,3 +35,4 @@
 | 2026-11-19 | 13:38 wake | PRED refreshed (data +162); hand-over written | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 14:04 | Signing controls 6 and 7: orphans refused; the gate runs the last release's check | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 14:07 | Control 6 completed: shallow checkouts refused; 16 signing tests | [handover](debriefs/2026-11-19-handover.md) |
+| 2026-11-19 | 14:12 | Controls 7 widened and 8: trailer check from the release copy; leak scan next | [handover](debriefs/2026-11-19-handover.md) |

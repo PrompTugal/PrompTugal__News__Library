@@ -704,6 +704,17 @@
    "fix": "The gate runs a release tag's copy of scripts/check-signatures.mjs, never the pushed tree's. CI finds that tag from dev as it was before the push, so a tag pushed with the commits is not chosen; release.sh finds it from origin/dev. Replace refs and grafts are ignored. Tests show a tampered copy passing and the release copy failing it, and assert that release.sh and pages.yml are wired this way. Still open, and Dinis's: the workflow file is in the pushed tree, and tags are not protected; branch and tag protection close both",
    "state": "fixed",
    "fixed_in": "the 14:01 fix commit"
+  },
+  {
+   "id": "LIB-2026-064",
+   "severity": "medium",
+   "title": "The Agent-trailer check and the leak scan ran from the pushed tree; the trailer check skipped commits by what a tree held and read its exemptions from the pushed tree",
+   "where": "scripts/check-commits.mjs, scripts/leak-scan.mjs, scripts/release.sh, .github/workflows/pages.yml",
+   "found": "2026-11-19",
+   "found_by": "security@'s second ruling (controls 7 widened and 8), passed on by conductor.b@ at 14:08 UTC; AppSec post-review (Sonnet inner pass of library.b@)",
+   "fix": "check-commits skips no commit (it came with the first commit, 1af3014), reads its exemptions from the last release, ignores replace refs and grafts, and runs from the release copy. The leak scan finds the repository from where it is run, so the next release runs it from the release copy too. Transition, one release each: the copies tagged before this fix still read exemptions from the tree and locate the leak scan by its own path; signatures still block an unsigned commit meanwhile",
+   "state": "fixing",
+   "fixed_in": "this commit and the next release"
   }
  ],
  "from_the_central_log": [

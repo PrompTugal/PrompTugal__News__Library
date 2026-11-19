@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T14:07Z",
+ "updated": "2026-11-19T14:12Z",
  "state": "13:38 wake: PRED refreshed; hand-over written (13:39 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -61,7 +61,8 @@
   "PRED form: optional backfilled: true (civic.b@'s ask) files a line as retrospective; so does a first outcome checked no later than the prediction was shown. civic re-imported (Civic 0ef97a8, +1,283 lines: 9 forward, 8,872 retrospective) (13:29 UTC)",
   "13:38 wake: PRED re-imported (data.promptugal.news +162, Data 4a4d130; others unchanged); hand-over written for the next session (debriefs/2026-11-19-handover.md). No code changed, so no AppSec pass this wake (13:39 UTC)",
   "14:04 (d641b20): signing controls 6 and 7 (conductor.b@, 14:01 UTC): orphan commits refused by name; release.sh and CI run the last release tag's copy of the check; two tests; LIB-2026-062, 063",
-  "14:07 (e00ce80): security@'s ruling on controls 6 and 7 (14:07 UTC): shallow checkouts refused in the check and CI; tests for an orphan signed with its own key and a shallow clone (16 cases)"
+  "14:07 (e00ce80): security@'s ruling on controls 6 and 7 (14:07 UTC): shallow checkouts refused in the check and CI; tests for an orphan signed with its own key and a shallow clone (16 cases)",
+  "14:12: security@'s second ruling (14:08 UTC), first of two releases: check-commits runs from the release copy, skips no commit, takes exemptions from the release; control 8 test (17 cases); leak scan made runnable from a copy, moved at the next release (LIB-2026-064)"
  ],
  "next": [
   "PRED: re-import every series at each wake",
