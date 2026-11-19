@@ -8,3 +8,4 @@
 | 2026-11-18 | 19:39 wake | Fact-checker pass 1 on promptugal.news (97 articles); REQ-0006 done; REQ-0007 and 0008 to journalist@ | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-18 | 22:38 wake | Correction: 10 withdrawn articles marked withdrawn; fact-checker and importer read withdrawn.json; REQ-0008 done, REQ-0007 in part | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 00:55 wake | sites bar 1.1.0 installed; preview.svg 320x180; LIB-2026-024 to 027 | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 01:15 wake | signed commits on: key published with its session, check-signatures.mjs in release.sh and CI; LIB-2026-028 to 037 | [handover](debriefs/2026-11-18-handover.md) |

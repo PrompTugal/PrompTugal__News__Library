@@ -309,6 +309,114 @@
    "state": "accepted",
    "found": "2026-11-19",
    "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push"
+  },
+  {
+   "id": "LIB-2026-028",
+   "severity": "high",
+   "title": "The signature check exempted commits by their author email, which anyone can set",
+   "fix": "Exemption removed: CI commits nothing here (it only pushes tags)",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-029",
+   "severity": "high",
+   "title": "Commits on a branch started before the check, then merged, would have been skipped as old",
+   "fix": "Only ancestors of a pinned commit (dev's head when the check was added) are skipped; everything else is checked",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-030",
+   "severity": "medium",
+   "title": "Merge commits were not checked",
+   "fix": "Merge commits fail; release.sh keeps dev linear",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-031",
+   "severity": "medium",
+   "title": "The check's starting point was found from the file's history, which a side branch could change",
+   "fix": "The starting point is a pinned commit id",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-032",
+   "severity": "medium",
+   "title": "Keys are read from the commit's own tree, so a commit can publish the key it is signed with",
+   "fix": "Accepted: publishing to the repository is the authorisation (Dinis, 18 Nov), and a new session must be able to publish its key; anyone able to push could also edit the check",
+   "state": "accepted",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs"
+  },
+  {
+   "id": "LIB-2026-033",
+   "severity": "medium",
+   "title": "Superseded keys were still accepted for new commits",
+   "fix": "Only active keys count; old commits keep passing from their own tree",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-034",
+   "severity": "medium",
+   "title": "The leak scan's new allowance blanked a key's comment too, where a secret could hide",
+   "fix": "Only the key itself is blanked; the comment is still scanned",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/leak-scan.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-035",
+   "severity": "low",
+   "title": "The Agent: name went unchecked into the allowed-signers line",
+   "fix": "The name must have an agent's shape",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-036",
+   "severity": "low",
+   "title": "Commit arguments were passed to git as given",
+   "fix": "Resolved to commit ids first, with --end-of-options",
+   "state": "fixed",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the signed commits commit"
+  },
+  {
+   "id": "LIB-2026-037",
+   "severity": "low",
+   "title": "A rebase by anyone but the signing agent leaves commits that fail the check",
+   "fix": "Accepted: it fails closed",
+   "state": "accepted",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
+   "where": "scripts/release.sh"
   }
  ],
  "from_the_central_log": [

@@ -20,7 +20,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit catalogued from their front matter; 10 of them were withdrawn by the site on 11 November and are now marked withdrawn here (32 held).
 - **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 27 findings, none high: 26 from AppSec reviews (23 fixed before release, 3 accepted) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 37 findings: 36 from AppSec reviews (31 fixed before release, 5 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
@@ -41,9 +41,12 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - Sites bar 1.1.0 installed on every page (Dinis, 18 November, about 22:00 UTC; installed at conductor.b@'s word of 00:55 UTC). Three files vendored in `src/assets/sites-bar/1.1.0/`, pinned by sha256 in `catalogue/sites-bar.sha256`; the build checks them and stops on any difference.
 - The registry is a copy, `catalogue/sites-registry.json`, of promptugal.news/api/v1/sites.json, refreshed by hand (the build fetches nothing). In the browser the bar reads each site's own `version.json` and `preview.svg`, so the policy allows images and reads from https://*.promptugal.news; scripts and styles stay the library's own.
 
+### Signed commits (19 November, about 01:20 UTC)
+- Signed commits on (Dinis, 19 November, about 01:05 UTC, board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md in PrompTugal__News__Website). library.b@'s commit signing key (ssh-ed25519, `library.b-commit-signing`) is in `team/keys.json` with its session; git signs with it in this clone only. `scripts/check-signatures.mjs` runs in `scripts/release.sh` and in CI and fails any new commit that is unsigned, signed by another key, a merge, or names another session. Commits up to f07f044 predate it.
+
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).
-- `team/keys.json`: library.b@'s public key (`library.b-promptugal`, sha256:78fa318e01745b38), made with `sgit pki keygen`.
+- `team/keys.json`: library.b@'s public keys, both with session_01Kw9UwFNC1sX4AKoWo4XhEP: the sgit key (`library.b-promptugal`, sha256:78fa318e01745b38, made with `sgit pki keygen`) and the commit signing key (`library.b-commit-signing`).
 - `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
 
 ## PROPOSED (not built)

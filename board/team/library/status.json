@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T00:58Z",
- "state": "sites bar 1.1.0 installed (wake of 00:55 UTC, conductor.b@'s word)",
+ "updated": "2026-11-19T01:25Z",
+ "state": "signed commits on (Dinis, 19 Nov about 01:05 UTC, relayed by conductor.b@ at 01:15 UTC and read at source)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -34,7 +34,8 @@
   "AppSec post-review of the 22:38 wake: no high or medium; 2 low fixed before the push (importer reads the withdrawn list safely; withdrawn pages labelled), LIB-2026-022 and 023",
   "Dinis (23:29 UTC, in this session): the commit check accepts @PrompTugal names; operators' first names stay on cards",
   "Billing only on promptugal.news (Dinis ~23:45 UTC, read at source: board/guidance/2026-11-18-billing-only-on-the-main-site.md): the library has no billing, meter or adverts; every footer now says so; one piece of work per push, as before",
-  "sites bar 1.1.0 installed: the three files vendored from PrompTugal__News__Website assets/sites-bar/1.1.0, pinned by sha256 in catalogue/sites-bar.sha256 and checked at every build (the build stops on a mismatch, an extra file or a refused registry); bar first in <body> on every page, CSS in <head>, sites-bar.js deferred; CSP img-src and connect-src widened to https://*.promptugal.news; /preview.svg is now the 320x180 bar template (the 1200x630 card moved to /preview-card.svg); AppSec post-review: no high or medium, four low (LIB-2026-024 to 027: two fixed, two accepted)"
+  "sites bar 1.1.0 installed: the three files vendored from PrompTugal__News__Website assets/sites-bar/1.1.0, pinned by sha256 in catalogue/sites-bar.sha256 and checked at every build (the build stops on a mismatch, an extra file or a refused registry); bar first in <body> on every page, CSS in <head>, sites-bar.js deferred; CSP img-src and connect-src widened to https://*.promptugal.news; /preview.svg is now the 320x180 bar template (the 1200x630 card moved to /preview-card.svg); AppSec post-review: no high or medium, four low (LIB-2026-024 to 027: two fixed, two accepted)",
+  "signed commits on: an ssh-ed25519 commit signing key made in this session and published in team/keys.json with the session id (the private half stays in the session); git set in this clone only (gpg.ssh.program ssh-keygen, so the environment's signer is not used); scripts/check-signatures.mjs in release.sh and CI fails any new commit that is unsigned, signed by another key, a merge, or naming another session; commits up to f07f044 are not checked (history not rewritten); no CI exemption, because CI here commits nothing. AppSec post-review: two high and five medium, all but two fixed before the push (LIB-2026-028 to 037)"
  ],
  "next": [
   "Catalogue the NVIDIA talk and Event Highlights from data.promptugal.news/api/v1/youtube-replays/latest.json once it is served (404 at 00:22 UTC); add lengths and dates to the three day replays from it; credit YouTube, link its terms, keep no view or like counts (YouTube's 30-day rule); talk chapters: none exist (the descriptions have no timestamps)",
@@ -57,7 +58,8 @@
   "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on.",
   "Dinis (through conductor.b@): the sites bar step 2 says to fetch promptugal.news/api/v1/sites.json at build. The library's build fetches nothing (its no-network check in scripts/validate.mjs), so the registry is a committed copy, catalogue/sites-registry.json, refreshed by hand at each wake. It can lag a new site by up to a wake. Is that acceptable, or should the bar's makers publish the registry beside the vendored files?",
   "Dinis (through conductor.b@): GitHub Pages cannot send an X-Content-Type-Options: nosniff header, so the library cannot serve one for the bar's files; nothing to do here unless the sites move off Pages.",
-  "dev@ and designer@ (through conductor.b@), for the next bar version, not patched here: sites-bar.js follows redirects on its version.json reads (redirect:'error' would stop that) and its same-host check does not refuse user info; neither is exploitable on the library, because the build refuses such URLs (LIB-2026-026)."
+  "dev@ and designer@ (through conductor.b@), for the next bar version, not patched here: sites-bar.js follows redirects on its version.json reads (redirect:'error' would stop that) and its same-host check does not refuse user info; neither is exploitable on the library, because the build refuses such URLs (LIB-2026-026).",
+  "Dinis (through conductor.b@): openssh-client was not installed in this environment; I installed it for this session with apt. A new session must install it again before it can sign (or the environment's setup script could). The check itself can be switched off by anyone who can push (it lives in the repository); branch protection on scripts/ and .github/ would close that, and is Dinis's to set."
  ],
  "messages": {
   "to_conductor.b": "first-run report sent by send_message at the end of the run",

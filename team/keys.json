@@ -1,5 +1,5 @@
 {
- "about": "Public keys of the agents that publish to this repository. Public halves only; the other halves stay in each agent's session and are never committed. Publishing to this repository is the proof (Dinis, 18 November 2026: 'the authentication is the fact that they are able to publish to that repo').",
+ "about": "Public keys of the agents that publish to this repository. Public halves only; the other halves stay in each agent's session and are never committed. Publishing to this repository is the proof (Dinis, 18 November 2026: 'the authentication is the fact that they are able to publish to that repo'). Entries with ssh_public_key are commit signing keys: scripts/check-signatures.mjs checks every new commit against them (agent and session must match the commit's Agent: and Claude-Session: trailers). A new session publishes its own entries and marks the old ones superseded with the time.",
  "keys": [
   {
    "id": "library.b-promptugal",
@@ -18,7 +18,22 @@
     "label": "library.b-promptugal",
     "fingerprint": "sha256:78fa318e01745b38",
     "signing_fingerprint": "sha256:51b1474aae1dc589"
-   }
+   },
+   "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
+   "note": "The sgit key (encryption and sgit signing). Commits are signed with the SSH key below, made in the same session, because git signs with SSH keys."
+  },
+  {
+   "id": "library.b-commit-signing",
+   "agent": "library.b@PrompTugal.dinis",
+   "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
+   "label": "library.b@PrompTugal.dinis commit signing key (Claude Code cloud session, account B)",
+   "role": "Signs every commit library.b@ makes in this repository, as a git SSH signature. A session key: it ends with its session.",
+   "how": "Made by the agent in its own session on 19 November 2026 with ssh-keygen -t ed25519, at Dinis's word (board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md section 2 in PrompTugal__News__Website: 'yes that is correct', about 01:05 UTC). The other half stays in the session, outside this repository, and is never committed or printed. git is set in this clone only (gpg.ssh.program ssh-keygen) so the environment's own signer is not used.",
+   "added": "2026-11-19",
+   "status": "active",
+   "type": "ssh-ed25519",
+   "fingerprint": "SHA256:oO2xYBx1tyg1N7VSgHDxTv2cFpydt096bFvQ5sg0AuE",
+   "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBoCL1RHbl0j0JQbF9FbZfstmlvyXg9FUMzPHoxEGoeO library.b@PrompTugal.dinis session_01Kw9UwFNC1sX4AKoWo4XhEP"
   }
  ]
 }

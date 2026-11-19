@@ -103,6 +103,10 @@ export function scanText(path, text) {
     if (/private|passphrase|secret|seed/i.test(text)) add(0, 'public key file mentions a private part');
     // Blank the allowed public key blocks, keeping line numbers.
     body = text.replace(PUBLIC_BLOCK, (b) => b.replace(/[^\n]/g, ' '));
+    // OpenSSH ed25519 public keys and their SHA256 fingerprints, as commit signing keys are published (Dinis, 19 Nov
+    // 2026: every agent publishes its key in the repository it maintains). Public halves only, and only in these files; the key's comment is still scanned (LIB-2026-034).
+    body = body.replace(/("ssh_public_key": ")(ssh-ed25519 AAAAC3NzaC1lZDI1NTE5[A-Za-z0-9+\/]{48})(?=[ "])/g, (b, k, v) => k + v.replace(/[^\n]/g, ' '))
+      .replace(/"fingerprint": "SHA256:[A-Za-z0-9+\/]{43}"/g, (b) => b.replace(/[^\n]/g, ' '));
   }
   body.split('\n').forEach((line, i) => {
     const n = i + 1;
