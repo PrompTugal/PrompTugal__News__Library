@@ -25,8 +25,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Travel",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "533226115d7c2a8779cd03021e3d891ebb889a3b",
-    "read_at": "2026-11-19T10:39Z"
+    "commit": "ebfdbe93aa024f2387615fef977e68e80edaa10f",
+    "read_at": "2026-11-19T13:39Z"
    }
   },
   {
@@ -41,8 +41,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Data",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "1460f87e59532acd781b90ca10f34d7f5f1f6e79",
-    "read_at": "2026-11-19T10:39Z"
+    "commit": "4a4d13005725f1c24d6cd12ebee2d66ee2f2df91",
+    "read_at": "2026-11-19T13:39Z"
    }
   },
   {
@@ -57,8 +57,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Civic",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "0ef97a83407896f27e26aee882981cfa2d15d737",
-    "read_at": "2026-11-19T13:28Z"
+    "commit": "517abd389609ef6fc799de8a4761a56cb014441a",
+    "read_at": "2026-11-19T13:39Z"
    }
   },
   {
@@ -73,8 +73,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Startups",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "346ea13ef29d56f7febd7f4f662b5aa9c425984b",
-    "read_at": "2026-11-19T10:39Z"
+    "commit": "350960fde24f164a52b5743f2740af3ddfc05395",
+    "read_at": "2026-11-19T13:39Z"
    }
   },
   {
@@ -90,7 +90,7 @@
     "repo": "PrompTugal/PrompTugal__News__Weather",
     "path": "data/predictions/predictions.jsonl",
     "commit": "d20148e9cf87cf239498b86c971c2e44db2e9102",
-    "read_at": "2026-11-19T13:21Z"
+    "read_at": "2026-11-19T13:39Z"
    }
   }
  ]

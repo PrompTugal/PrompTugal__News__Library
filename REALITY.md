@@ -56,7 +56,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).
 - `team/keys.json`: library.b@'s public keys, both with session_01Kw9UwFNC1sX4AKoWo4XhEP: the sgit key (`library.b-promptugal`, sha256:78fa318e01745b38, made with `sgit pki keygen`) and the commit signing key (`library.b-commit-signing`).
-- `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
+- `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md` and `debriefs/2026-11-19-handover.md` (the current hand-over).
 
 ## PROPOSED (not built)
 - The fact-checker beyond promptugal.news's articles (the library's cards, the other sites); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
