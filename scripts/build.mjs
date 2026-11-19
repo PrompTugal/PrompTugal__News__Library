@@ -175,6 +175,7 @@ const anchor = (id) => String(id).toLowerCase().replace(/[^a-z0-9-]+/g, '_');
 const json = (rel, obj) => write(rel, JSON.stringify({ license: CC, ...obj }, null, 1) + '\n');
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const day = (d) => { if (!d) return ''; const [y, m, dd] = d.slice(0, 10).split('-').map(Number); return `${dd} ${MONTHS[m - 1]} ${y}`; };
+const c_title = (id) => (collections.find((c) => c.id === id) || {}).prefix || id;
 const callOf = (id) => (items.find((i) => i.id === id) || {}).call_number || id;
 const host = (u) => new URL(u).hostname.replace(/^www\./, '');
 const KIND = { 'replay-day': 'official replay, a day', 'talk-video': 'talk video', recording: 'recording', 'organiser-statement': 'organiser statement', 'organiser-page': 'organiser page', 'press-recap': 'press report', 'write-up': 'write-up', article: 'article', 'data-set': 'data set', 'press-video': 'press video' };
@@ -294,7 +295,7 @@ json('api/v1/index.json', {
   about: 'library.promptugal.news, JSON first: the catalogue and the graph at the heart of PrompTugal.news. Every page of the site is built from these files.',
   api: 'v1', version, built_at: new Date().toISOString(), site: SITE, repository: REPO,
   licence: { catalogue: 'CC BY 4.0', items: 'each item keeps its source\'s licence (its licence.url)', code: 'Apache-2.0' },
-  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', fact_check: '/api/v1/fact-check/index.json', predictions: '/api/v1/predictions/{collection}.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
+  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', fact_check: '/api/v1/fact-check/index.json', predictions: '/api/v1/predictions/index.json', predictions_series: '/api/v1/predictions/series/{id}.json', predictions_form: '/api/v1/predictions/form.json', predictions_by_collection: '/api/v1/predictions/{collection}.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
   counts: { items: items.length, collections: collections.length, nodes: nodeList.length, edges: edges.length, missing: missing.length },
   reads_from: ['https://data.promptugal.news/api/v1/ (by hand, at catalogue time; the site itself fetches nothing)'],
 });
@@ -314,7 +315,7 @@ for (const c of collections) {
   for (const x of pr.predictions || []) {
     if (!/^[A-Z0-9]{2,8}-P\d{1,4}$/.test(x.id || '') || seen.has(x.id)) fail(`${f}: bad or repeated id ${x.id}`); seen.add(x.id);
     if (!['held', 'missed', 'gap'].includes(x.result)) fail(`${f} ${x.id}: result must be held, missed or gap`);
-    for (const k of ['said_at', 'read_at']) if (!realTime(x[k])) fail(`${f} ${x.id}: ${k} must be a real UTC time`);
+    for (const k of ['said_at', 'read_at', 'checked_at']) if (!realTime(x[k])) fail(`${f} ${x.id}: ${k} must be a real UTC time`);
     if (!realDay(x.due) || x.due < pr.record_begins) fail(`${f} ${x.id}: due must be a real day in the record`);
     for (const id of [x.said_in, ...(x.evidence || [])]) { const it = items.find((i) => i.id === id); if (!it || it.collection !== c.id) fail(`${f} ${x.id}: ${id} is not an item of ${c.id}`); }
     need(`${f} ${x.id} said`, x.said, 300); need(`${f} ${x.id} said_by`, x.said_by, 80);
@@ -322,9 +323,44 @@ for (const c of collections) {
     else { need(`${f} ${x.id} happened`, x.happened, 400); if (!(x.evidence || []).length) fail(`${f} ${x.id}: an outcome needs evidence`); }
   }
   predictions.push(pr);
-  const KEYS = ['id', 'said_by', 'said_at', 'read_at', 'said', 'said_in', 'due', 'result', 'happened', 'gap', 'evidence'];
+  const KEYS = ['id', 'said_by', 'said_at', 'read_at', 'said', 'said_in', 'due', 'result', 'happened', 'gap', 'evidence', 'checked_at'];
   json(`api/v1/predictions/${c.id}.json`, { license: 'CC BY 4.0', about: pr.about, collection: pr.collection, record_begins: pr.record_begins, source: pr.source, predictions: pr.predictions.map((x) => Object.fromEntries(KEYS.filter((k) => k in x).map((k) => [k, x[k]]))) });
 }
+// PRED: every site's predictions as one collection (Dinis, 19 Nov 2026, about 03:15 UTC); the form is content/predictions/form.md
+const pred = readJSON('catalogue/pred.json');
+if (pred.prefix !== 'PRED' || !Number.isInteger(pred.next_seq) || !Array.isArray(pred.series)) fail('catalogue/pred.json: needs prefix PRED, next_seq and series');
+const predSeries = [];
+for (const se of pred.series || []) {
+  const m = /^PRED (\d{4})\/(\d{4})$/.exec(se.call_number || '');
+  if (!m || se.id !== `PRED-${m[1]}-${m[2]}` || Number(m[2]) >= pred.next_seq) fail(`catalogue/pred.json: bad call number ${se.call_number}`);
+  checkText(`${se.id} title`, se.title, 200); if (/[[\]<>`]/.test(se.title || '')) fail(`${se.id} title: no [ ] < > or backticks`);
+  if (!/^[a-z0-9.-]+\.promptugal\.news$|^promptugal\.news$/.test(se.site || '')) fail(`${se.id}: site must be a PrompTugal host`);
+  let pu = null; try { pu = new URL(se.page); } catch { /* refused below */ }
+  if (!pu || pu.protocol !== 'https:' || pu.username || pu.password || se.page.length > 300 || /\s/.test(se.page) || pu.hostname !== se.site) fail(`${se.id}: page must be an https address on its own site, at most 300 characters`);
+  // series from the library's own collections are made from their predictions files, in the form
+  const src = predictions.find((p) => `catalogue/predictions-${p.collection}.json` === se.from);
+  if (!src) { fail(`${se.id}: from ${se.from} is not a predictions file the build read`); continue; }
+  const lines = [];
+  for (const x of src.predictions) {
+    const it = items.find((i) => i.id === x.said_in);
+    if (!it) { fail(`${se.id}: ${x.said_in} is not an item`); continue; }
+    lines.push({ type: 'prediction', id: x.id, site: se.site, page: se.page, shown_at: x.said_at, said_by: x.said_by, source: it.url, licence: it.licence, kind: 'statement', subject: `${c_title(src.collection)}: ${x.due}`, due: x.due, said: x.said });
+    lines.push(x.result === 'gap'
+      ? { type: 'outcome', of: x.id, checked_at: x.checked_at, result: 'gap', gap: x.gap }
+      : { type: 'outcome', of: x.id, checked_at: x.checked_at, result: x.result, happened: x.happened, evidence: x.evidence.map((e) => `https://library.promptugal.news/item/${e}/`) });
+  }
+  const outs = lines.filter((l) => l.type === 'outcome');
+  const preds = lines.filter((l) => l.type === 'prediction');
+  const track = { predictions: preds.length, held: outs.filter((o) => o.result === 'held').length, missed: outs.filter((o) => o.result === 'missed').length, gap: outs.filter((o) => o.result === 'gap').length };
+  track.open = preds.length - outs.length;
+  predSeries.push({ ...se, track });
+  json(`api/v1/predictions/series/${se.id}.json`, { license: 'CC BY 4.0 for the library\'s record; each line\'s values stay under its own licence', series: { ...se, track }, form: '/api/v1/predictions/form.json', lines });
+}
+json('api/v1/predictions/index.json', { license: 'CC BY 4.0', about: pred.about, form: '/predictions/form/', series: predSeries.map((se) => ({ call_number: se.call_number, id: se.id, site: se.site, title: se.title, page: se.page, added: se.added, track: se.track, api: `/api/v1/predictions/series/${se.id}.json` })) });
+json('api/v1/predictions/form.json', { license: 'CC BY 4.0', about: 'The form every PrompTugal site uses to send its predictions to the library: append-only JSON Lines in data/predictions/predictions.jsonl in the site\'s own repository. Read the page /predictions/form/ for the rules.',
+  prediction: { required: ['type', 'id', 'site', 'page', 'shown_at', 'said_by', 'source', 'licence', 'kind', 'subject', 'due', 'said'], optional: ['value', 'corrects'], type: 'prediction', kind: ['forecast', 'warning', 'countdown', 'score', 'expected-date', 'statement'] },
+  outcome: { required: ['type', 'of', 'checked_at', 'result'], required_unless_gap: ['happened', 'evidence'], required_if_gap: ['gap'], optional: ['value', 'difference'], type: 'outcome', result: ['held', 'missed', 'gap'] },
+  times: 'UTC, YYYY-MM-DDTHH:MMZ; due may be a day, YYYY-MM-DD', addresses: 'https only' });
 json('api/v1/missing.json', { about: 'What is not here: gaps in each collection, said plainly, so a gap is never mistaken for a holding.', missing });
 const findings = readJSON('catalogue/security.json');
 // the requests channel: requests and findings for each team (Dinis, 18 Nov 2026, ~16:00 UTC)
@@ -375,6 +411,7 @@ const counts = { items: held.length, replays: held.filter((i) => i.kind === 'rep
 <li><a href="/collections/ws26/">Web Summit Lisbon 2026</a><span>replays by day, the organiser's statements, our coverage</span></li>
 <li><a href="/finding-aids/day-two/">The day that did not happen</a><span>Day Two and Storm Charles</span></li>
 <li><a href="/missing/">What is not here</a><span>the gaps, and why</span></li>
+<li><a href="/predictions/">Predictions</a><span>every site's predictions, kept as shown, beside what happened</span></li>
 <li><a href="/finding-aids/call-numbers/">Call numbers explained</a><span>how every item keeps its address</span></li>
 <li><a href="/graph/">The graph</a><span>nodes, typed edges, each with its inverse</span></li>
 <li><a href="/api/v1/index.json">The open data</a><span>every card as JSON</span></li></ul></div></div>
@@ -528,6 +565,14 @@ ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).
 <p class="note">Next passes: the library's own cards, then the other PrompTugal sites (data, events, videos and the rest).</p></section>`;
   const md = `# Is every claim walked back to its source?\n\n${fc.about}\n\nPass ${fc.pass}, ${fc.site}, ${fc.made}. Articles ${c.articles}: claims ${c.claims}, story ${c.story}, links ${c.links}, none ${c.none}. Claims ${c.claims_resolved} of ${c.claims_total} resolved; ${c.claims_on_websummit} on websummit.com pages.\n\n${order.map((a) => `- [${a.title}](${a.url}): ${a.level}; ${a.gaps.join('; ')}`).join('\n')}`;
   page({ path: '/fact-check/', title: 'Fact-check: PrompTugal.news Library', description: 'The library\'s fact-checker: how far each claim on the PrompTugal sites walks back to a recorded source, and the gaps.', body, md });
+}
+
+// PRED: the collection of every site's predictions
+{
+  const row = (se) => { const t = se.track; return `<li><span class="cn">${esc(se.call_number)}</span> <a href="${esc(se.page)}">${esc(se.title)}</a> <span class="kind">${esc(se.site)}</span><br><span class="note">${t.predictions} predictions: ${t.held} held, ${t.missed} missed, ${t.gap} not yet checkable${t.open ? `, ${t.open} still open` : ''} · <a href="/api/v1/predictions/series/${esc(se.id)}.json">the lines, in the form</a></span></li>`; };
+  const body = `<section class="page"><p class="crumb"><a href="/">Library</a> › Predictions</p><p class="k">Collection · PRED · ${predSeries.length} series</p><h1>Predictions, kept as shown</h1><p>Every PrompTugal site's predictions in one collection (Dinis, 19 November 2026: "The predictions are one collection"): forecasts, warnings, countdowns, scores and expected dates, each kept exactly as it was shown and never overwritten, beside what then happened. A miss is shown as plainly as a hit. Each site sends its file in <a href="/predictions/form/">the form</a>; each file is one series with its own call number.</p><h2>Series</h2><ol class="acc">${predSeries.map(row).join('')}</ol><p class="note">Waiting for: the other sites' files (weather.promptugal.news's forecasts first). JSON: <a href="/api/v1/predictions/index.json">/api/v1/predictions/index.json</a>.</p></section>`;
+  const md = `# Predictions, kept as shown\n\nEvery PrompTugal site's predictions in one collection, PRED. The form: /predictions/form/.\n\n${predSeries.map((se) => `- ${se.call_number} ${se.title} (${se.site}): ${se.track.predictions} predictions, ${se.track.held} held, ${se.track.missed} missed, ${se.track.gap} not yet checkable. /api/v1/predictions/series/${se.id}.json`).join('\n')}\n`;
+  page({ path: '/predictions/', title: 'Predictions: PrompTugal.news Library', description: 'Every PrompTugal site\'s predictions, kept exactly as shown, beside what happened: one collection, PRED.', body, md });
 }
 
 // the hand pages (content/*.md and content/finding-aids/*.md)

@@ -1,0 +1,17 @@
+{
+ "about": "PRED: every PrompTugal site's predictions, kept exactly as shown, one catalogued series per site's file (Dinis, 19 November 2026, about 03:15 UTC: 'The predictions are one collection'). The form is at /predictions/form/. Call numbers are stored, never computed, and never reused.",
+ "prefix": "PRED",
+ "next_seq": 2,
+ "series": [
+  {
+   "call_number": "PRED 2026/0001",
+   "id": "PRED-2026-0001",
+   "site": "library.promptugal.news",
+   "title": "Web Summit's statements about Day Two and Day Three (WS26)",
+   "from": "catalogue/predictions-ws26.json",
+   "page": "https://library.promptugal.news/collections/ws26/#said",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis"
+  }
+ ]
+}

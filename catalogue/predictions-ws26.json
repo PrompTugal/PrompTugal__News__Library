@@ -14,7 +14,11 @@
    "due": "2026-11-11",
    "result": "held",
    "happened": "Day Two did not take place: no replay exists, and the press reported a cancelled Wednesday.",
-   "evidence": ["WS26-2026-0007", "WS26-2026-0006"]
+   "evidence": [
+    "WS26-2026-0007",
+    "WS26-2026-0006"
+   ],
+   "checked_at": "2026-11-19T01:33Z"
   },
   {
    "id": "WS26-P2",
@@ -26,7 +30,10 @@
    "due": "2026-11-12",
    "result": "held",
    "happened": "Day Three took place: Web Summit published its replay on its YouTube channel.",
-   "evidence": ["WS26-2026-0001"]
+   "evidence": [
+    "WS26-2026-0001"
+   ],
+   "checked_at": "2026-11-19T01:33Z"
   },
   {
    "id": "WS26-P3",
@@ -39,7 +46,8 @@
    "result": "gap",
    "happened": null,
    "gap": "No source read for when Thursday's talks began: the replays carry no chapters or start times. Shown as a gap until one is found.",
-   "evidence": []
+   "evidence": [],
+   "checked_at": "2026-11-19T01:33Z"
   }
  ]
 }

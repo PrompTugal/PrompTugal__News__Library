@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T02:17Z",
- "state": "sites bar 1.1.1 installed (01:53 UTC by date -u)",
+ "updated": "2026-11-19T03:22Z",
+ "state": "PRED, every site's predictions, is a collection; the form is set (03:22 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -42,9 +42,11 @@
   "security@'s five controls for signed-commit checks (review of 19 Nov about 01:30 UTC, read at source): met and tested. Exact match on the full Claude-Session: URL, published as claude_session with each key; the ssh key line published without its comment; the leak scan exempts only those fields by exact pattern. LIB-2026-042 and 043 (low) fixed. (01:52 UTC by date -u)",
   "sites bar 1.1.1 installed (security@'s go, review of 19 Nov about 01:30 UTC, read at source): files match security@'s sha256 and the registry's SRI pins; the build checks the full pins from the registry copy's bar.integrity; the hex pins file and its leak-scan allowance are gone; LIB-2026-026 fixed by the bar's makers; LIB-2026-044 accepted, 045 fixed",
   "data in the browser, security@'s low point (show each loaded file's licence): noted for when the library first loads figures; it loads none yet",
-  "the signature check's own tests (conductor.b@'s 02:16 UTC note on data.b@'s pitfall): scripts/test-check-signatures.mjs, ten cases each asserting its reason, on a throwaway clone with gpg.ssh.program=ssh-keygen set locally and throwaway keys; runs in release.sh and CI before the check; a deliberately broken check fails four of them. AppSec post-review: three low, fixed (02:17 UTC by date -u)"
+  "the signature check's own tests (conductor.b@'s 02:16 UTC note on data.b@'s pitfall): scripts/test-check-signatures.mjs, ten cases each asserting its reason, on a throwaway clone with gpg.ssh.program=ssh-keygen set locally and throwaway keys; runs in release.sh and CI before the check; a deliberately broken check fails four of them. AppSec post-review: three low, fixed (02:17 UTC by date -u)",
+  "PRED collection and the form for sites (Dinis, 19 Nov about 03:15 UTC, read at source); AppSec post-review: three low, fixed (LIB-2026-046 to 048). No IP lookup: nothing to do, the library carries no obs.js. Times corrected: entries for 19 Nov had been set by feel, up to 12 minutes off; now each is its commit's time (03:22 UTC by date -u)"
  ],
  "next": [
+  "PRED: build the importer (scripts/import-predictions.mjs, offline, read-only clone, append-only, first form kept) when the first site sends data/predictions/predictions.jsonl; weather.b@ first (its data/history/forecasts.jsonl and observations.jsonl map onto the form)",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Catalogue the NVIDIA talk and Event Highlights from data.promptugal.news/api/v1/youtube-replays/latest.json once it is served (404 at 00:22 UTC); add lengths and dates to the three day replays from it; credit YouTube, link its terms, keep no view or like counts (YouTube's 30-day rule); talk chapters: none exist (the descriptions have no timestamps)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",
@@ -96,7 +98,7 @@
    "Operators' warnings in PrompTugal.news's Storm Charles coverage (catalogued articles): for example a rail operator saying it would stop trains on the bridge above a wind threshold. Whether it happened needs a source; a gap until one is found.",
    "Every prediction in PrompTugal.news's articles about the summit (the fact-checker's claims): kept as the article stated it, with the article's own date."
   ],
-  "first": "BUILT 19 Nov about 01:45 UTC: /collections/ws26/#said and /api/v1/predictions/ws26.json, after designer@'s PF spec (PF5 gap dashed, PF6 record begins, PF7 what was said in green outline beside what happened solid, PF8 a computed track record). 2 of 2 checked held, 1 a gap (Thursday's 9am start: no source yet).",
-  "later": "PROPOSED: the library as the keeper of every site's predictions as shown (a PRED collection with call numbers, each prediction catalogued once with its page and time, and its check linked when its time comes), if the leads and Dinis want one place for them."
+  "first": "BUILT 19 Nov 01:33 UTC (commit e6b2c00): /collections/ws26/#said and /api/v1/predictions/ws26.json, after designer@'s PF spec (PF5 gap dashed, PF6 record begins, PF7 what was said in green outline beside what happened solid, PF8 a computed track record). 2 of 2 checked held, 1 a gap (Thursday's 9am start: no source yet).",
+  "later": "DONE in part: PRED is the collection (Dinis, about 03:15 UTC: 'The predictions are one collection'); /predictions/, /predictions/form/; PRED 2026/0001 is the WS26 series. The importer for sites' files waits for the first file."
  }
 }

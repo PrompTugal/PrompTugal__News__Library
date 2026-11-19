@@ -506,6 +506,39 @@
    "severity": "low",
    "found": "2026-11-19",
    "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.1, before the push"
+  },
+  {
+   "id": "LIB-2026-046",
+   "title": "A series title could carry a markdown link into the markdown twin",
+   "fix": "Brackets, angle brackets and backticks are refused in series titles",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the PRED collection, before the push",
+   "where": "scripts/build.mjs, PRED",
+   "state": "fixed",
+   "fixed_in": "the PRED commit"
+  },
+  {
+   "id": "LIB-2026-047",
+   "title": "A series page address was checked only for its https prefix",
+   "fix": "It must parse, be https on the series' own site, carry no user info or spaces, and be at most 300 characters",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the PRED collection, before the push",
+   "where": "scripts/build.mjs, PRED",
+   "state": "fixed",
+   "fixed_in": "the PRED commit"
+  },
+  {
+   "id": "LIB-2026-048",
+   "title": "The form did not say that sources and evidence are never fetched, that a site sends only for itself, or what its limits are",
+   "fix": "The form now says all three, with limits on lines, size, nesting and text",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the PRED collection, before the push",
+   "where": "content/predictions/form.md",
+   "state": "fixed",
+   "fixed_in": "the PRED commit"
   }
  ],
  "from_the_central_log": [

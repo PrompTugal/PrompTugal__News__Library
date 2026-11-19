@@ -20,7 +20,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit catalogued from their front matter; 10 of them were withdrawn by the site on 11 November and are now marked withdrawn here (32 held).
 - **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 45 findings: 44 from AppSec reviews (40 fixed, 4 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 48 findings: 47 from AppSec reviews (43 fixed, 4 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
@@ -28,8 +28,11 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - Designer@'s look (PrompTugal brand v2.0, fonts self-hosted, the supplied SVG wordmark), light and dark by the reader's system setting; checked in Chromium at 1280 and 390 px.
 - Checks: the build's own (ids, URL schemes, allowed hosts, licence, evidence, lengths, control and bidi characters, email and phone shapes, graph ends, inverses and orphans); the validator gained CSP, inline script and style, frame, event handler, link scheme and JS sink checks.
 
-### What was said, and what happened (19 November, about 01:45 UTC)
+### What was said, and what happened (19 November, 01:33 UTC by its commit)
 - On `/collections/ws26/#said` and at `/api/v1/predictions/ws26.json`, from `catalogue/predictions-ws26.json` (Dinis, 19 November about 01:22 UTC; drawn after designer@'s PF spec: what was said in a green outline, what happened solid, a gap dashed). Three of Web Summit's statements: Day Two would not take place (held), back on Thursday (held), talks from 9am (a gap: no source for the start time). The track-record line is computed: 2 of 2 checked held, 1 not yet checkable. Record begins 10 November.
+
+### PRED: every site's predictions (19 November, 03:22 UTC by date -u)
+- One collection, at Dinis's word (about 03:15 UTC, board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md in the main site's repository): `/predictions/`, `/api/v1/predictions/index.json`, one series per site's file at `/api/v1/predictions/series/<id>.json`, from `catalogue/pred.json` (call numbers `PRED 2026/NNNN`, stored, never reused). The form every site sends in: `/predictions/form/` and `/api/v1/predictions/form.json` (append-only JSON Lines, prediction and outcome lines, first form kept). One series so far: PRED 2026/0001, Web Summit's statements (3 predictions: 2 held, 1 gap). No site has sent a file yet.
 
 ### The requests channel
 - `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 8 requests: 0002, 0004, 0005 and 0006 done, 0001 answered in part, 0003, 0007 and 0008 open.
@@ -40,11 +43,11 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ### The preview
 - `/preview.svg` (built at every build from the library's own counts), `/api/v1/preview.json` (where each number comes from), `/preview.png` (rendered by hand and committed; may lag), `og:image` on every page. `/preview.svg` is the 320 by 180 picture the sites bar shows; the larger card is `/preview-card.svg`.
 
-### The sites bar (19 November, 1.1.0 about 01:00 UTC, 1.1.1 about 01:53 UTC by date -u)
+### The sites bar (19 November, 1.1.0 00:54 UTC, 1.1.1 about 01:53 UTC by date -u)
 - Sites bar 1.1.1 on every page (Dinis, 18 November, about 22:00 UTC; 1.1.0 at conductor.b@'s word of 00:55 UTC, 1.1.1 at security@'s go of about 01:30 UTC). Three files vendored in `src/assets/sites-bar/1.1.1/`; the build checks each against the full SRI pin in the registry copy's `bar.integrity` and stops on any difference, any other file or any other version.
 - The registry is a copy, `catalogue/sites-registry.json`, of promptugal.news/api/v1/sites.json (with its pins), refreshed by hand (the build fetches nothing). In the browser the bar reads each site's own `version.json` and `preview.svg`, so the policy allows images and reads from https://*.promptugal.news; scripts and styles stay the library's own.
 
-### Signed commits (19 November, about 01:20 UTC)
+### Signed commits (19 November, 01:13 UTC by its commit)
 - Signed commits on (Dinis, 19 November, about 01:05 UTC, board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md in PrompTugal__News__Website). library.b@'s commit signing key (ssh-ed25519, `library.b-commit-signing`) is in `team/keys.json` with its session; git signs with it in this clone only. `scripts/check-signatures.mjs` runs in `scripts/release.sh` and in CI and fails any new commit that is unsigned, signed by another key, a merge, or names another session; keys are read from each commit's parent, so a new key needs a commit signed by a listed key, or a person; Agent: and the full Claude-Session: URL must equal what is published with the key. It meets security@'s five controls (review of 19 November, about 01:30 UTC), and `scripts/test-check-signatures.mjs` (ten cases, each asserting its reason) runs before it in release.sh and CI. Commits up to f07f044 predate it.
 
 ### The team's files
@@ -53,7 +56,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
 
 ## PROPOSED (not built)
-- Every site's predictions catalogued as shown, as one collection (a proposal to Dinis and the leads).
+- An importer for the sites' prediction files (`data/predictions/predictions.jsonl` in each site's repository), built when the first site sends one (weather.promptugal.news first).
 - The fact-checker beyond promptugal.news's articles (the library's cards, the other sites); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
 - Talks by timestamp inside each day's replay; Day One and other stages' replays (needs a collector by data.b@ or a browser-capable read).
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
