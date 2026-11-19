@@ -25,8 +25,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Travel",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "3d9eb58ba98aca91918baf29c19b94910da5a1cc",
-    "read_at": "2026-11-19T07:38Z"
+    "commit": "533226115d7c2a8779cd03021e3d891ebb889a3b",
+    "read_at": "2026-11-19T10:39Z"
    }
   },
   {
@@ -41,15 +41,15 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Data",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "fe30f0b51fa51c91615100a887f77ab8cba29104",
-    "read_at": "2026-11-19T07:38Z"
+    "commit": "1460f87e59532acd781b90ca10f34d7f5f1f6e79",
+    "read_at": "2026-11-19T10:39Z"
    }
   },
   {
    "call_number": "PRED 2026/0004",
    "id": "PRED-2026-0004",
    "site": "civic.promptugal.news",
-   "title": "Algarve councils' contract base prices beside the contracted price (civic.promptugal.news; retrospective records)",
+   "title": "Algarve councils' base prices beside the contracted price (civic.promptugal.news): procurement notices shown before their deadline, and retrospective records",
    "from": "catalogue/pred/PRED-2026-0004.jsonl",
    "page": "https://civic.promptugal.news/money/estimates/",
    "added": "2026-11-19",
@@ -57,8 +57,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Civic",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "edea8460ccc3bba3ac1c54907a946efab67a4ed5",
-    "read_at": "2026-11-19T07:38Z"
+    "commit": "a1763f7c4d2dfb1cab776a2883bffad537a783aa",
+    "read_at": "2026-11-19T10:39Z"
    }
   },
   {
@@ -73,8 +73,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Startups",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "8b69337bbcd47fcd1454d7cfeedd2fe3bcba1aa9",
-    "read_at": "2026-11-19T07:49Z"
+    "commit": "346ea13ef29d56f7febd7f4f662b5aa9c425984b",
+    "read_at": "2026-11-19T10:39Z"
    }
   }
  ]

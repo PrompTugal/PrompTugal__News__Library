@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T07:54Z",
- "state": "sites bar 1.2.1 installed (07:54 UTC by date -u)",
+ "updated": "2026-11-19T10:41Z",
+ "state": "10:38 wake: a page per prediction series; PRED refreshed (10:41 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -54,10 +54,11 @@
   "07:38 wake: data.promptugal.news's YouTube replays file is served. Catalogued the NVIDIA talk (WS26 2026/0081) and Event Highlights (0082); added lengths and exact dates to the three day replays (Opening Night's date corrected from 9 to 10 November); no counts kept; REQ-2026-0001 done. PRED re-imported: data.promptugal.news +216 lines (Data fe30f0b), travel and civic unchanged. Post-review: one low, fixed (LIB-2026-061). The opening and closing conductor passes and the pre-review were not run as separate sub-agents this wake: a catalogue refresh, with one AppSec pass over the diff (07:40 UTC)",
   "PRED 2026/0005 imported (startups.promptugal.news, Startups 8b69337: 18 closing dates, all open; every line passed) (07:49 UTC)",
   "dev@'s registry reshape (conductor.b@, 07:50 UTC): bar.versions is back in the registry copy, in its .integrity form; the build checks the vendored 1.2.0 against bar.versions['1.2.0'].integrity, so the registry naming 1.2.1 leaves the bar on; off only if 1.2.0 is no longer listed; the leak-scan exemption now accepts an integrity block at any depth (parent key and whole value still checked); 36 tests. Post-review: no high or medium; one low already accepted (LIB-2026-044), its comment corrected. Sites bar 1.2.1 waits for security@'s go (07:52 UTC)",
-  "sites bar 1.2.1 installed (security@'s go, Website 2d812d6da, read at source): the three files match bar.versions['1.2.1'].integrity; at 375 px six pages measure 375 px, no sideways scroll; switch-off rule unchanged (only if the registry stops listing 1.2.1). No sub-agent post-review: the vendored files carry security@'s go and the library's change is the version number (07:54 UTC)"
+  "sites bar 1.2.1 installed (security@'s go, Website 2d812d6da, read at source): the three files match bar.versions['1.2.1'].integrity; at 375 px six pages measure 375 px, no sideways scroll; switch-off rule unchanged (only if the registry stops listing 1.2.1). No sub-agent post-review: the vendored files carry security@'s go and the library's change is the version number (07:54 UTC)",
+  "10:38 wake: PRED re-imported (data.promptugal.news +162, Data 1460f87; civic +788, Civic a1763f7, its first 9 forward predictions from IMPIC notices, the rest retrospective); a page per series at /predictions/<id>/ in designer@'s marks, capped at 50 forward and 20 retrospective lines, checked at 1280 and 390 px. Post-review: no high or medium, one nit (keep the form check ahead of the render). Conductor passes and pre-review not run as separate sub-agents (10:41 UTC)"
  ],
  "next": [
-  "PRED: re-import data.promptugal.news (hourly, append-only) and travel at each wake; weather.b@'s file when it comes; show each series' lines on its own page, drawn to designer@'s spec",
+  "PRED: re-import every series at each wake; weather.b@'s file when it comes",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",
   "Re-render src/preview.png (node scripts/render-preview.cjs after a build) at each wake",

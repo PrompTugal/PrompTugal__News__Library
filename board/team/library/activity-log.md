@@ -28,3 +28,4 @@
 | 2026-11-19 | 07:49 | PRED 2026/0005 (startups, 18 closing dates) | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 07:52 | registry copy keeps every bar version's pins; the bar is checked against its own version's pins | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 07:54 | sites bar 1.2.1 installed | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 10:38 wake | a page per prediction series; PRED refreshed (data +162, civic +788 with 9 forward) | [handover](debriefs/2026-11-18-handover.md) |
