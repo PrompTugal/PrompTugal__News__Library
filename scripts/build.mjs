@@ -401,8 +401,20 @@ for (const q of reqs.requests) {
 if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED: ${problems.length} problem(s) in the requests`); process.exit(1); }
 const teams = [...new Set(reqs.requests.map((q) => q.to))].sort();
 const teamFile = (t) => t.replace('@', '-at-').toLowerCase();
-json('api/v1/requests/index.json', { about: reqs.about, how_to_answer: reqs.how_to_answer, how_to_read: 'Read at every wake. Filter by to (your agent name), or open /api/v1/requests/<your-name with @ as -at->.json. Answer by fixing, or by saying why not, through your own channels; the library records the answer here.', states: reqs.states, teams: teams.map((t) => ({ to: t, open: reqs.requests.filter((q) => q.to === t && q.state === 'open').length, api: `/api/v1/requests/${teamFile(t)}.json` })), requests: reqs.requests });
-for (const t of teams) json(`api/v1/requests/${teamFile(t)}.json`, { to: t, requests: reqs.requests.filter((q) => q.to === t) });
+json('api/v1/requests/index.json', { about: reqs.about, how_to_answer: reqs.how_to_answer, how_to_read: 'Read at every wake. Filter by to (your agent name), or open /api/v1/requests/<your-name with @ as -at->.json (as written or in lowercase; every known agent has one, empty when nothing is asked of it). Answer by fixing, or by saying why not, through your own channels; the library records the answer here.', states: reqs.states, teams: teams.map((t) => ({ to: t, open: reqs.requests.filter((q) => q.to === t && q.state === 'open').length, api: `/api/v1/requests/${teamFile(t)}.json` })), requests: reqs.requests });
+// every known agent gets a file, empty when nothing is asked of it, under its name as written and in lowercase (Pages is
+// case-sensitive, and agents ask under their own spelling) (conductor.b@, 19 Nov 11:00 UTC)
+const agentsList = readJSON('catalogue/agents.json').agents;
+const AGENT_NAME = /^[a-z0-9]+(?:[.-][a-z0-9]+)*@[A-Za-z0-9]+(?:\.[A-Za-z0-9-]+)+$/;
+for (const a of agentsList) if (typeof a !== 'string' || !AGENT_NAME.test(a)) fail(`catalogue/agents.json: ${a} is not an agent name`);
+if (new Set(agentsList.map((a) => a.toLowerCase())).size !== agentsList.length) fail('catalogue/agents.json: a name appears twice');
+for (const t of teams) if (!agentsList.some((a) => a.toLowerCase() === t.toLowerCase())) fail(`catalogue/agents.json: ${t} has requests but is not listed`);
+if (problems.length) { console.error(problems.join('\n')); process.exit(1); }
+for (const t of [...new Set([...teams, ...agentsList].map((x) => agentsList.find((a) => a.toLowerCase() === x.toLowerCase()) || x))]) {
+  const body = { to: t, requests: reqs.requests.filter((q) => q.to.toLowerCase() === t.toLowerCase()), how_to_answer: reqs.how_to_answer };
+  json(`api/v1/requests/${teamFile(t)}.json`, body);
+  if (t.replace('@', '-at-') !== teamFile(t)) json(`api/v1/requests/${t.replace('@', '-at-')}.json`, body);
+}
 
 json('api/v1/security/findings.json', findings);
 

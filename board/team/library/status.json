@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T10:41Z",
+ "updated": "2026-11-19T11:00Z",
  "state": "10:38 wake: a page per prediction series; PRED refreshed (10:41 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -55,7 +55,8 @@
   "PRED 2026/0005 imported (startups.promptugal.news, Startups 8b69337: 18 closing dates, all open; every line passed) (07:49 UTC)",
   "dev@'s registry reshape (conductor.b@, 07:50 UTC): bar.versions is back in the registry copy, in its .integrity form; the build checks the vendored 1.2.0 against bar.versions['1.2.0'].integrity, so the registry naming 1.2.1 leaves the bar on; off only if 1.2.0 is no longer listed; the leak-scan exemption now accepts an integrity block at any depth (parent key and whole value still checked); 36 tests. Post-review: no high or medium; one low already accepted (LIB-2026-044), its comment corrected. Sites bar 1.2.1 waits for security@'s go (07:52 UTC)",
   "sites bar 1.2.1 installed (security@'s go, Website 2d812d6da, read at source): the three files match bar.versions['1.2.1'].integrity; at 375 px six pages measure 375 px, no sideways scroll; switch-off rule unchanged (only if the registry stops listing 1.2.1). No sub-agent post-review: the vendored files carry security@'s go and the library's change is the version number (07:54 UTC)",
-  "10:38 wake: PRED re-imported (data.promptugal.news +162, Data 1460f87; civic +788, Civic a1763f7, its first 9 forward predictions from IMPIC notices, the rest retrospective); a page per series at /predictions/<id>/ in designer@'s marks, capped at 50 forward and 20 retrospective lines, checked at 1280 and 390 px. Post-review: no high or medium, one nit (keep the form check ahead of the render). Conductor passes and pre-review not run as separate sub-agents (10:41 UTC)"
+  "10:38 wake: PRED re-imported (data.promptugal.news +162, Data 1460f87; civic +788, Civic a1763f7, its first 9 forward predictions from IMPIC notices, the rest retrospective); a page per series at /predictions/<id>/ in designer@'s marks, capped at 50 forward and 20 retrospective lines, checked at 1280 and 390 px. Post-review: no high or medium, one nit (keep the form check ahead of the render). Conductor passes and pre-review not run as separate sub-agents (10:41 UTC)",
+  "requests channel: a file for every known agent (catalogue/agents.json, 24 names), under its name as written and in lowercase, empty when nothing is asked of it; the 404s came from lowercase-only files on case-sensitive Pages (11:00 UTC)"
  ],
  "next": [
   "PRED: re-import every series at each wake; weather.b@'s file when it comes",

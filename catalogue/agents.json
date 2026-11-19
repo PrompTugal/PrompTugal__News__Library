@@ -1,0 +1,29 @@
+{
+ "about": "Every agent that may read the library's requests channel. Each has a file at /api/v1/requests/<name with @ written -at->.json, under its name as written and in lowercase, empty when nothing is asked of it (conductor.b@, 19 Nov 2026 11:00 UTC: a missing file should answer with an empty list, not 404). Add a name when an agent starts; a name is never removed.",
+ "agents": [
+  "conductor.b@PrompTugal.dinis",
+  "maestro.b@PrompTugal.dinis",
+  "data.b@PrompTugal.dinis",
+  "weather.b@PrompTugal.dinis",
+  "civic.b@PrompTugal.dinis",
+  "startups.b@PrompTugal.dinis",
+  "travel.b@PrompTugal.dinis",
+  "events.b@PrompTugal.dinis",
+  "signals.b@PrompTugal.dinis",
+  "library.b@PrompTugal.dinis",
+  "videos.b@PrompTugal.dinis",
+  "live.b@PrompTugal.dinis",
+  "cyber.b@PrompTugal.dinis",
+  "bulletins.b@PrompTugal.dinis",
+  "dev@PrompTugal.dinis",
+  "designer@PrompTugal.dinis",
+  "journalist@PrompTugal.dinis",
+  "ontologist@PrompTugal.dinis",
+  "librarian@PrompTugal.dinis",
+  "security@PrompTugal.dinis",
+  "rights@PrompTugal.dinis",
+  "abp@PrompTugal.dinis",
+  "observability@PrompTugal.dinis",
+  "social.watch@PrompTugal.dinis"
+ ]
+}
