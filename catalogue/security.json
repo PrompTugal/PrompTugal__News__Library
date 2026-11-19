@@ -267,6 +267,48 @@
    "fix": "Withdrawn pages say they are kept for the record and that the address may show only a withdrawal notice",
    "state": "fixed",
    "fixed_in": "the commit of the 22:38 wake"
+  },
+  {
+   "id": "LIB-2026-024",
+   "severity": "low",
+   "title": "A refused sites registry only warned, and pages would ship without the bar",
+   "where": "scripts/build.mjs, sites bar",
+   "fix": "The build stops if the registry copy is refused",
+   "state": "fixed",
+   "fixed_in": "the sites bar 1.1.0 commit",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push"
+  },
+  {
+   "id": "LIB-2026-025",
+   "severity": "low",
+   "title": "Unpinned files dropped beside the vendored bar would have been published",
+   "where": "scripts/build.mjs, sites bar",
+   "fix": "The build stops unless the bar folder holds exactly the three pinned files",
+   "state": "fixed",
+   "fixed_in": "the sites bar 1.1.0 commit",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push"
+  },
+  {
+   "id": "LIB-2026-026",
+   "severity": "low",
+   "title": "The vendored sites-bar.js follows redirects on its version.json reads and does not refuse user info in its same-host check",
+   "where": "src/assets/sites-bar/1.1.0/sites-bar.js (vendored, not ours to patch)",
+   "fix": "Not exploitable here: the build refuses such URLs and the CSP limits where a redirect can go. Reported to the bar's makers through the library's asks",
+   "state": "accepted",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push"
+  },
+  {
+   "id": "LIB-2026-027",
+   "severity": "low",
+   "title": "The CSP allows images and reads from any promptugal.news subdomain, not only the sites in the registry",
+   "where": "scripts/build.mjs, content security policy",
+   "fix": "Accepted for now: scripts and styles stay self-only, and the bar renders no HTML from what it reads; narrowing to the registry's hosts is a later change",
+   "state": "accepted",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), sites bar 1.1.0 install, before the push"
   }
  ],
  "from_the_central_log": [

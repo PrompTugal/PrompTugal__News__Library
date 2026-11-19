@@ -20,7 +20,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit catalogued from their front matter; 10 of them were withdrawn by the site on 11 November and are now marked withdrawn here (32 held).
 - **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 8 findings: 7 from the AppSec review (6 fixed before release, 1 accepted) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 27 findings, none high: 26 from AppSec reviews (23 fixed before release, 3 accepted) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
@@ -35,7 +35,11 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - Pass 1 (18 November, re-run at the 22:38 wake): every live promptugal.news article's provenance level (87 live, 10 withdrawn skipped), from `scripts/fact-check.mjs` into `catalogue/fact-check.json`, at `/fact-check/` and `/api/v1/fact-check/index.json`: 13 claim by claim (224 claims, all resolving), 39 story-level, 35 text-only, 0 none.
 
 ### The preview
-- `/preview.svg` (built at every build from the library's own counts), `/api/v1/preview.json` (where each number comes from), `/preview.png` (rendered by hand and committed; may lag), `og:image` on every page. For the sites bar across the PrompTugal sites (Dinis, 18 November, about 22:00 UTC); the bar itself is not installed yet.
+- `/preview.svg` (built at every build from the library's own counts), `/api/v1/preview.json` (where each number comes from), `/preview.png` (rendered by hand and committed; may lag), `og:image` on every page. `/preview.svg` is the 320 by 180 picture the sites bar shows; the larger card is `/preview-card.svg`.
+
+### The sites bar (19 November, about 01:00 UTC)
+- Sites bar 1.1.0 installed on every page (Dinis, 18 November, about 22:00 UTC; installed at conductor.b@'s word of 00:55 UTC). Three files vendored in `src/assets/sites-bar/1.1.0/`, pinned by sha256 in `catalogue/sites-bar.sha256`; the build checks them and stops on any difference.
+- The registry is a copy, `catalogue/sites-registry.json`, of promptugal.news/api/v1/sites.json, refreshed by hand (the build fetches nothing). In the browser the bar reads each site's own `version.json` and `preview.svg`, so the policy allows images and reads from https://*.promptugal.news; scripts and styles stay the library's own.
 
 ### The team's files
 - `docs/learnt-from-sgraph-send.md`; threat models in `docs/threat-models/` (build, cataloguing, search).

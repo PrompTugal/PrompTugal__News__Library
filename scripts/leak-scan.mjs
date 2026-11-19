@@ -87,7 +87,8 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // (none yet)
+  // sha256 pins of the vendored PrompTugal sites bar files (public hashes, not secrets), library.b@, 19 Nov 2026
+  ['catalogue/sites-bar.sha256', 'long high-entropy string', 'sha256 pins of the three vendored sites bar 1.1.0 files'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 

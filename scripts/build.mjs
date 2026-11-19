@@ -6,6 +6,8 @@
 // on output; the build makes no network request. Any problem stops the build.
 import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkdirSync } from 'node:fs';
 import { join, dirname, resolve, sep } from 'node:path';
+import { createHash } from 'node:crypto';
+import { render as renderBar } from '../src/assets/sites-bar/1.1.0/sites-bar-render.mjs';
 
 const version = process.env.SITE_VERSION || 'dev';
 const SITE = 'https://library.promptugal.news';
@@ -17,6 +19,19 @@ const OUT = resolve('_site');
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const problems = [];
 const fail = (m) => problems.push(m);
+
+// ---------- the PrompTugal sites bar 1.1.0 (Dinis, 18 Nov ~22:00 UTC; dev@'s files, security@'s go 90dfdd3baf) ----------
+// Vendored, pinned by version and sha256 (checked here at every build); the registry is a committed copy of
+// promptugal.news/api/v1/sites.json (catalogue/sites-registry.json, refreshed by hand: the build fetches nothing).
+const BAR = 'src/assets/sites-bar/1.1.0';
+// the pins (sha256sum format), one file kept for the leak scan's narrow allowance
+const BAR_SHA = Object.fromEntries(readFileSync('catalogue/sites-bar.sha256', 'utf8').trim().split('\n').map((l) => { const m = l.match(/^([0-9a-f]{64})  ([a-z.-]+)$/); if (!m) { console.error('catalogue/sites-bar.sha256: bad line'); process.exit(1); } return [m[2], m[1]]; }));
+if (Object.keys(BAR_SHA).sort().join() !== 'sites-bar-render.mjs,sites-bar.css,sites-bar.js') { console.error('catalogue/sites-bar.sha256: must pin exactly the three bar files'); process.exit(1); }
+if (readdirSync(BAR).sort().join() !== 'sites-bar-render.mjs,sites-bar.css,sites-bar.js') { console.error(`${BAR}: must hold exactly the three pinned files`); process.exit(1); }
+for (const [f, h] of Object.entries(BAR_SHA)) { const got = createHash('sha256').update(readFileSync(join(BAR, f))).digest('hex'); if (got !== h) { console.error(`sites bar: ${f} sha256 ${got} is not the pinned ${h}`); process.exit(1); } }
+// renderBar is imported statically (top of file): the hash check above runs before it is ever called
+const barHtml = renderBar(JSON.parse(readFileSync('catalogue/sites-registry.json', 'utf8')), { here: 'library.promptugal.news' });
+if (!barHtml) { console.error('sites bar: the registry was refused (catalogue/sites-registry.json); fix the copy, never ship without the bar'); process.exit(1); }
 
 // ---------- read and check the catalogue ----------
 const readJSON = (f) => JSON.parse(readFileSync(f, 'utf8'));
@@ -158,7 +173,8 @@ const host = (u) => new URL(u).hostname.replace(/^www\./, '');
 const KIND = { 'replay-day': 'official replay, a day', 'talk-video': 'talk video', recording: 'recording', 'organiser-statement': 'organiser statement', 'organiser-page': 'organiser page', 'press-recap': 'press report', 'write-up': 'write-up', article: 'article', 'data-set': 'data set', 'press-video': 'press video' };
 const kindLabel = (k) => KIND[k] || k;
 
-const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'";
+// img-src and connect-src also allow the other PrompTugal sites, for the sites bar's previews and version files only
+const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://*.promptugal.news; connect-src 'self' https://*.promptugal.news; base-uri 'none'; form-action 'self'";
 function page({ path, title, description, body, md, scripts = [] }) {
   const twin = md != null;
   const html = `<!doctype html>
@@ -175,8 +191,10 @@ function page({ path, title, description, body, md, scripts = [] }) {
 <meta property="og:image" content="${SITE}/preview.png">
 <meta property="og:title" content="${esc(title)}">
 <link rel="stylesheet" href="/assets/library.css">
+${barHtml ? '<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">\n' : ''}
 ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</head>
 <body>
+${barHtml}
 <a class="skip" href="#main">Skip to the catalogue</a>
 <header class="top"><div class="w"><a class="brand" href="/"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="135" height="22"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="135" height="22"><span>· Library</span></a>
 <nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/fact-check/">Fact-check</a><a href="/requests/">Requests</a><a href="/librarians/">For librarians</a></nav></div></header>
@@ -188,7 +206,7 @@ ${body}
 <p>Free: no billing, no meter, no adverts here (only promptugal.news bills). Independent: not an official site of any event or organisation listed. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Version ${esc(version)}${twin ? ' · <a href="index.md">this page as markdown</a>' : ''} · code Apache-2.0, text CC BY 4.0 · <a href="${REPO}">source</a></p>
 </footer>
 </main>
-${scripts.map((s) => `<script src="${s}" defer></script>`).join('\n')}
+${[...(barHtml ? ['/assets/sites-bar/1.1.0/sites-bar.js'] : []), ...scripts].map((s) => `<script src="${s}" defer></script>`).join('\n')}
 </body>
 </html>
 `;
@@ -512,8 +530,25 @@ ${figs.map((f, i) => `<g transform="translate(${64 + i * 216} 330)"><text y="80"
 </svg>
 `;
   if (/<script|foreignObject|\son[a-z]+=/i.test(svg)) { console.error('preview.svg: unsafe content'); process.exit(1); }
-  write('preview.svg', svg);
-  json('api/v1/preview.json', { about: 'The numbers on /preview.svg, with where each comes from.', built, figures: figs.map(([n, label]) => ({ n, label })), from: { items: '/api/v1/items/index.json (status held)', videos: 'items of kind replay-day, talk-video, recording, press-video', gaps: '/api/v1/missing.json', fact_checked: '/api/v1/fact-check/index.json counts.articles', requests: '/api/v1/requests/index.json (open or answered in part)' }, svg: '/preview.svg', png: '/preview.png (rendered by scripts/render-preview.cjs, committed; may lag the SVG)' });
+  write('preview-card.svg', svg);
+  // the sites bar's preview: designer@'s 320 by 180 template, system fonts only, no script, no external reference
+  const small = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="Library: the catalogue at the heart of everything">
+  <rect width="320" height="180" rx="6" fill="#f6f3ec"/>
+  <rect x="0" y="0" width="320" height="4" fill="#5a5a5a"/>
+  <text x="16" y="30" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" fill="#666860">LIBRARY · NOW</text>
+  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">${x(figs[0][0])}</text>
+  <text x="16" y="104" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#3a3b40">${x(figs[0][1])}</text>
+  <text x="176" y="72" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${x(figs[1][0])}</text>
+  <text x="176" y="88" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">videos, linked</text>
+  <text x="176" y="120" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${x(figs[3][0])}</text>
+  <text x="176" y="136" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">${x(figs[3][1])}</text>
+  <line x1="16" y1="150" x2="304" y2="150" stroke="#d8d4cb"/>
+  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read ${x(built)} · CC BY 4.0</text>
+</svg>
+`;
+  if (/<script|foreignObject|\son[a-z]+=|href=|url\(/i.test(small)) { console.error('preview.svg: unsafe content'); process.exit(1); }
+  write('preview.svg', small);
+  json('api/v1/preview.json', { about: 'The numbers on /preview.svg, with where each comes from.', built, figures: figs.map(([n, label]) => ({ n, label })), from: { items: '/api/v1/items/index.json (status held)', videos: 'items of kind replay-day, talk-video, recording, press-video', gaps: '/api/v1/missing.json', fact_checked: '/api/v1/fact-check/index.json counts.articles', requests: '/api/v1/requests/index.json (open or answered in part)' }, svg: '/preview.svg (320 by 180, for the sites bar)', card: '/preview-card.svg (1200 by 630)', png: '/preview.png (the card, rendered by scripts/render-preview.cjs, committed; may lag)' });
 }
 
 // ---------- the template's own steps ----------

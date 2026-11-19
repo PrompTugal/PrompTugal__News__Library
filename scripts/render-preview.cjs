@@ -1,10 +1,10 @@
-// Librarian's tool, run by hand after a build: render _site/preview.svg to src/preview.png (1200x630) for social
+// Librarian's tool, run by hand after a build: render _site/preview-card.svg to src/preview.png (1200x630) for social
 // cards, with the browser that is installed locally. CI has no browser, so the PNG is committed and may lag the
 // SVG; the SVG itself is rebuilt at every build. Loads only the local file; no network.
 const { chromium } = require('playwright');
 const { readFileSync, writeFileSync } = require('node:fs');
 (async () => {
-  const svg = readFileSync('_site/preview.svg', 'utf8');
+  const svg = readFileSync('_site/preview-card.svg', 'utf8');
   if (/<script|foreignObject|\son[a-z]+=/i.test(svg)) { console.error('unsafe svg'); process.exit(1); }
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1, javaScriptEnabled: false, serviceWorkers: 'block' });
