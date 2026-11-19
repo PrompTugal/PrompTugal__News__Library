@@ -358,11 +358,12 @@
    "id": "LIB-2026-032",
    "severity": "medium",
    "title": "Keys are read from the commit's own tree, so a commit can publish the key it is signed with",
-   "fix": "Accepted: publishing to the repository is the authorisation (Dinis, 18 Nov), and a new session must be able to publish its key; anyone able to push could also edit the check",
-   "state": "accepted",
+   "fix": "Reopened at conductor.b@'s correction (01:16 UTC, from signals.b@'s review of its own check): keys are now read from the commit's parent, so a commit cannot publish the key it is signed with. A new or rotated key is added by a commit signed with a listed key, or by a person; the one first-key commit (d1f81f7) is pinned in the check.",
+   "state": "fixed",
    "found": "2026-11-19",
    "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
-   "where": "scripts/check-signatures.mjs"
+   "where": "scripts/check-signatures.mjs",
+   "fixed_in": "the commit after d1f81f7"
   },
   {
    "id": "LIB-2026-033",
