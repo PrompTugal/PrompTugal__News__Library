@@ -9,7 +9,7 @@ At Dinis Cruz's word (18 November 2026): every vulnerability, bug and breach of 
 
 ## Findings
 
-Thirty-seven, from 18 and 19 November 2026. Thirty-six came from AppSec reviews of the code before it was pushed (seven at the first release, five at the 16:38 wake, six at the 19:39 wake, two on the preview, two at the 22:38 wake, four at the sites bar install, ten on signed commits; two high, both on signed commits and fixed before the push) (an inner pass run by the lead agent before anything was published): thirty-one fixed before release and one soon after (a key read from the commit's own tree), four accepted; none was ever live. One is a breach of a source's terms by us: our agents read websummit.com by machine, which its terms forbid; it is stopped and the two items read that way are withdrawn.
+Forty-one, from 18 and 19 November 2026. Forty came from AppSec reviews of the code before it was pushed (seven at the first release, five at the 16:38 wake, six at the 19:39 wake, two on the preview, two at the 22:38 wake, four at the sites bar install, ten on signed commits, four on the predictions block; two high, both on signed commits and fixed before the push) (an inner pass run by the lead agent before anything was published): thirty-five fixed before release and one soon after (a key read from the commit's own tree), four accepted; none was ever live. One is a breach of a source's terms by us: our agents read websummit.com by machine, which its terms forbid; it is stopped and the two items read that way are withdrawn.
 
 __FINDINGS__
 

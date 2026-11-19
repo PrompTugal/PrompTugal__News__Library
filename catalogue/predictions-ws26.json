@@ -1,0 +1,45 @@
+{
+ "about": "What was said about the summit's future, kept as it was said, beside what happened (Dinis, 19 November 2026, about 01:22 UTC: every prediction kept and checked; drawn after designer@'s board/spec-past-and-forecast.md, PF5, PF7 and PF8). Entries are never overwritten: a correction is a new entry. Each rests on catalogued items, by id.",
+ "collection": "ws26",
+ "record_begins": "2026-11-10",
+ "source": "Web Summit (the organiser), its public statements as catalogued; linked only, never read by machine",
+ "predictions": [
+  {
+   "id": "WS26-P1",
+   "said_by": "Web Summit",
+   "said_at": "2026-11-10T19:09Z",
+   "read_at": "2026-11-10T22:33Z",
+   "said": "Day Two, Wednesday 11 November, will not take place (on the Portuguese Government's formal advice, Storm Charles).",
+   "said_in": "WS26-2026-0002",
+   "due": "2026-11-11",
+   "result": "held",
+   "happened": "Day Two did not take place: no replay exists, and the press reported a cancelled Wednesday.",
+   "evidence": ["WS26-2026-0007", "WS26-2026-0006"]
+  },
+  {
+   "id": "WS26-P2",
+   "said_by": "Web Summit",
+   "said_at": "2026-11-11T14:26Z",
+   "read_at": "2026-11-11T20:34Z",
+   "said": "The summit is officially back on Thursday 12 November for its final day.",
+   "said_in": "WS26-2026-0002",
+   "due": "2026-11-12",
+   "result": "held",
+   "happened": "Day Three took place: Web Summit published its replay on its YouTube channel.",
+   "evidence": ["WS26-2026-0001"]
+  },
+  {
+   "id": "WS26-P3",
+   "said_by": "Web Summit",
+   "said_at": "2026-11-11T18:10Z",
+   "read_at": "2026-11-11T20:36Z",
+   "said": "Stage talks start at 9am on Thursday 12 November.",
+   "said_in": "WS26-2026-0003",
+   "due": "2026-11-12",
+   "result": "gap",
+   "happened": null,
+   "gap": "No source read for when Thursday's talks began: the replays carry no chapters or start times. Shown as a gap until one is found.",
+   "evidence": []
+  }
+ ]
+}

@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T01:35Z",
+ "updated": "2026-11-19T01:45Z",
  "state": "signed commits on (Dinis, 19 Nov about 01:05 UTC, relayed by conductor.b@ at 01:15 UTC and read at source)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -37,10 +37,11 @@
   "sites bar 1.1.0 installed: the three files vendored from PrompTugal__News__Website assets/sites-bar/1.1.0, pinned by sha256 in catalogue/sites-bar.sha256 and checked at every build (the build stops on a mismatch, an extra file or a refused registry); bar first in <body> on every page, CSS in <head>, sites-bar.js deferred; CSP img-src and connect-src widened to https://*.promptugal.news; /preview.svg is now the 320x180 bar template (the 1200x630 card moved to /preview-card.svg); AppSec post-review: no high or medium, four low (LIB-2026-024 to 027: two fixed, two accepted)",
   "signed commits on: an ssh-ed25519 commit signing key made in this session and published in team/keys.json with the session id (the private half stays in the session); git set in this clone only (gpg.ssh.program ssh-keygen, so the environment's signer is not used); scripts/check-signatures.mjs in release.sh and CI fails any new commit that is unsigned, signed by another key, a merge, or naming another session; commits up to f07f044 are not checked (history not rewritten); no CI exemption, because CI here commits nothing. AppSec post-review: two high and five medium, all but two fixed before the push (LIB-2026-028 to 037)",
   "signed commits, conductor.b@'s correction of 01:16 UTC: no CI exemption by name (already so); keys now read from each commit's parent, never the commit itself (LIB-2026-032 reopened and fixed); d1f81f7, the first-key commit, pinned",
-  "data in the browser (Dinis, 19 Nov about 01:13 UTC, read at source): checked; the library has no figures that change between builds (its counts change only when the catalogue is committed, and every push rebuilds), so nothing waits on a schedule and there is nothing to load yet. The sites bar already reads each site's version.json in the browser. Applies when the library shows figures from data.promptugal.news (the YouTube replays file first)"
+  "data in the browser (Dinis, 19 Nov about 01:13 UTC, read at source): checked; the library has no figures that change between builds (its counts change only when the catalogue is committed, and every push rebuilds), so nothing waits on a schedule and there is nothing to load yet. The sites bar already reads each site's version.json in the browser. Applies when the library shows figures from data.promptugal.news (the YouTube replays file first)",
+  "what was said, and what happened: the WS26 block and /api/v1/predictions/ws26.json, built to designer@'s PF spec; AppSec post-review: no high or medium, four low fixed (LIB-2026-038 to 041)"
  ],
  "next": [
-  "Predictions, first: the WS26 'what was said / what happened' block and /api/v1/predictions/ws26.json (see predictions.first), once designer@ sets how to draw it",
+  "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Catalogue the NVIDIA talk and Event Highlights from data.promptugal.news/api/v1/youtube-replays/latest.json once it is served (404 at 00:22 UTC); add lengths and dates to the three day replays from it; credit YouTube, link its terms, keep no view or like counts (YouTube's 30-day rule); talk chapters: none exist (the descriptions have no timestamps)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",
   "Re-render src/preview.png (node scripts/render-preview.cjs after a build) at each wake",
@@ -93,7 +94,7 @@
    "Operators' warnings in PrompTugal.news's Storm Charles coverage (catalogued articles): for example a rail operator saying it would stop trains on the bridge above a wind threshold. Whether it happened needs a source; a gap until one is found.",
    "Every prediction in PrompTugal.news's articles about the summit (the fact-checker's claims): kept as the article stated it, with the article's own date."
   ],
-  "first": "PROPOSED: a 'what was said / what happened' block on the WS26 finding aid for Day Two and Day Three: the organiser's statements with the time each was read, beside the record of what took place (the replays), drawn the way designer@ sets. Data first: /api/v1/predictions/ws26.json, each entry with said_at, source, said, due, happened, evidence, and a gap where the outcome has no source yet. Never overwritten: a correction is a new entry.",
+  "first": "BUILT 19 Nov about 01:45 UTC: /collections/ws26/#said and /api/v1/predictions/ws26.json, after designer@'s PF spec (PF5 gap dashed, PF6 record begins, PF7 what was said in green outline beside what happened solid, PF8 a computed track record). 2 of 2 checked held, 1 a gap (Thursday's 9am start: no source yet).",
   "later": "PROPOSED: the library as the keeper of every site's predictions as shown (a PRED collection with call numbers, each prediction catalogued once with its page and time, and its check linked when its time comes), if the leads and Dinis want one place for them."
  }
 }

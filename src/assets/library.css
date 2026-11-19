@@ -102,3 +102,15 @@ h2.sh a{font-weight:500;letter-spacing:0;text-transform:none;font-family:var(--s
 .ev dt{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:12px}
 .ev dd{margin:2px 0 0}
 @media (max-width:820px){.hall h1{font-size:38px}.cols,.rr-g{grid-template-columns:minmax(0,1fr)}.rr-g{grid-template-areas:'head' 'card' 'body';row-gap:22px}.aids{columns:1}.inv{grid-template-columns:1fr}.nav{gap:4px 12px}.sp{width:50px}.shelf{min-height:200px}.rr h1,.page h1{font-size:32px}.top .w{flex-wrap:wrap}}
+/* What was said / what happened (designer@'s PF spec: what was said in a green outline, what happened solid, a gap dashed) */
+.pf{list-style:none;padding:0;margin:12px 0}
+.pf li{display:grid;grid-template-columns:7.5em minmax(0,1fr) minmax(0,1fr) 8em;gap:10px;align-items:start;margin:0 0 12px}
+.pf-due,.pf-v{font:500 13px var(--sans);color:var(--muted);padding-top:8px}
+.pf-v{color:var(--ink);font-weight:600}
+.pf-said,.pf-done,.pf-gap{display:inline-block;padding:7px 10px;border-radius:4px;font-size:15px}
+.pf-said{border:1.5px solid var(--green)}
+.pf-done{background:var(--ink);color:var(--paper)}
+.pf-done a{color:var(--paper)}
+.pf-gap{border:1.5px dashed var(--muted);color:var(--muted)}
+.pf-key span{font:500 12px var(--sans);padding:3px 8px;margin-right:6px}
+@media (max-width:640px){.pf li{grid-template-columns:minmax(0,1fr)}.pf-due,.pf-v{padding-top:0}}

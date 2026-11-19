@@ -4,7 +4,7 @@
 // catalogue/*.json (the catalogue, JSON first) and content/*.md (the hand pages). Catalogue text is untrusted
 // material: it is checked (ids, URL schemes and hosts, lengths, control characters, contact shapes) and escaped
 // on output; the build makes no network request. Any problem stops the build.
-import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkdirSync } from 'node:fs';
+import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
 import { render as renderBar } from '../src/assets/sites-bar/1.1.0/sites-bar-render.mjs';
@@ -80,6 +80,8 @@ const omap = readJSON('catalogue/ontology-map.json');
 const slug = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 const items = [];
 const missing = [];
+// What was said about the future, beside what happened (Dinis, 19 Nov 2026, about 01:22 UTC; designer@'s PF spec)
+const predictions = [];
 const seen = new Set();
 for (const c of collections) {
   if (!/^[a-z0-9]{2,12}$/.test(c.id)) fail(`collection ${c.id}: bad id`);
@@ -169,6 +171,7 @@ const anchor = (id) => String(id).toLowerCase().replace(/[^a-z0-9-]+/g, '_');
 const json = (rel, obj) => write(rel, JSON.stringify({ license: CC, ...obj }, null, 1) + '\n');
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const day = (d) => { if (!d) return ''; const [y, m, dd] = d.slice(0, 10).split('-').map(Number); return `${dd} ${MONTHS[m - 1]} ${y}`; };
+const callOf = (id) => (items.find((i) => i.id === id) || {}).call_number || id;
 const host = (u) => new URL(u).hostname.replace(/^www\./, '');
 const KIND = { 'replay-day': 'official replay, a day', 'talk-video': 'talk video', recording: 'recording', 'organiser-statement': 'organiser statement', 'organiser-page': 'organiser page', 'press-recap': 'press report', 'write-up': 'write-up', article: 'article', 'data-set': 'data set', 'press-video': 'press video' };
 const kindLabel = (k) => KIND[k] || k;
@@ -287,10 +290,37 @@ json('api/v1/index.json', {
   about: 'library.promptugal.news, JSON first: the catalogue and the graph at the heart of PrompTugal.news. Every page of the site is built from these files.',
   api: 'v1', version, built_at: new Date().toISOString(), site: SITE, repository: REPO,
   licence: { catalogue: 'CC BY 4.0', items: 'each item keeps its source\'s licence (its licence.url)', code: 'Apache-2.0' },
-  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', fact_check: '/api/v1/fact-check/index.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
+  endpoints: { items: '/api/v1/items/index.json', item: '/api/v1/items/{id}.json', collections: '/api/v1/collections/index.json', collection: '/api/v1/collections/{id}.json', graph: '/api/v1/graph/index.json', index: '/api/v1/index/index.json', index_by: '/api/v1/index/{place|topic|organisation|event|person|agent|date|kind|call_number}.json', missing: '/api/v1/missing.json', fact_check: '/api/v1/fact-check/index.json', predictions: '/api/v1/predictions/{collection}.json', requests: '/api/v1/requests/index.json', security: '/api/v1/security/findings.json' },
   counts: { items: items.length, collections: collections.length, nodes: nodeList.length, edges: edges.length, missing: missing.length },
   reads_from: ['https://data.promptugal.news/api/v1/ (by hand, at catalogue time; the site itself fetches nothing)'],
 });
+for (const c of collections) {
+  const f = `catalogue/predictions-${c.id}.json`;
+  if (!existsSync(f)) continue;
+  const pr = readJSON(f);
+  if (pr.collection !== c.id || !/^\d{4}-\d{2}-\d{2}$/.test(pr.record_begins) || !Array.isArray(pr.predictions)) fail(`${f}: needs collection, record_begins and predictions`);
+  // LIB-2026-038 to 041 (AppSec post-review): required strings, no markdown or HTML characters, real dates, only known fields published
+  const need = (w, v, max) => { if (typeof v !== 'string' || !v.trim()) fail(`${w}: required`); else { checkText(w, v, max); if (/[[\]<>`]/.test(v)) fail(`${w}: no [ ] < > or backticks`); } };
+  const iso = (t) => { const n = Date.parse(t); return Number.isNaN(n) ? '' : new Date(n).toISOString(); };
+  const realDay = (d) => /^\d{4}-\d{2}-\d{2}$/.test(d || '') && iso(`${d}T00:00:00Z`).slice(0, 10) === d;
+  const realTime = (t) => /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/.test(t || '') && iso(t).slice(0, 16) + 'Z' === t;
+  if (!realDay(pr.record_begins)) fail(`${f}: record_begins is not a real day`);
+  need(`${f} source`, pr.source, 200); need(`${f} about`, pr.about, 600);
+  const seen = new Set();
+  for (const x of pr.predictions || []) {
+    if (!/^[A-Z0-9]{2,8}-P\d{1,4}$/.test(x.id || '') || seen.has(x.id)) fail(`${f}: bad or repeated id ${x.id}`); seen.add(x.id);
+    if (!['held', 'missed', 'gap'].includes(x.result)) fail(`${f} ${x.id}: result must be held, missed or gap`);
+    for (const k of ['said_at', 'read_at']) if (!realTime(x[k])) fail(`${f} ${x.id}: ${k} must be a real UTC time`);
+    if (!realDay(x.due) || x.due < pr.record_begins) fail(`${f} ${x.id}: due must be a real day in the record`);
+    for (const id of [x.said_in, ...(x.evidence || [])]) { const it = items.find((i) => i.id === id); if (!it || it.collection !== c.id) fail(`${f} ${x.id}: ${id} is not an item of ${c.id}`); }
+    need(`${f} ${x.id} said`, x.said, 300); need(`${f} ${x.id} said_by`, x.said_by, 80);
+    if (x.result === 'gap') { need(`${f} ${x.id} gap`, x.gap, 400); if (x.happened || (x.evidence || []).length) fail(`${f} ${x.id}: a gap has no outcome or evidence`); }
+    else { need(`${f} ${x.id} happened`, x.happened, 400); if (!(x.evidence || []).length) fail(`${f} ${x.id}: an outcome needs evidence`); }
+  }
+  predictions.push(pr);
+  const KEYS = ['id', 'said_by', 'said_at', 'read_at', 'said', 'said_in', 'due', 'result', 'happened', 'gap', 'evidence'];
+  json(`api/v1/predictions/${c.id}.json`, { license: 'CC BY 4.0', about: pr.about, collection: pr.collection, record_begins: pr.record_begins, source: pr.source, predictions: pr.predictions.map((x) => Object.fromEntries(KEYS.filter((k) => k in x).map((k) => [k, x[k]]))) });
+}
 json('api/v1/missing.json', { about: 'What is not here: gaps in each collection, said plainly, so a gap is never mistaken for a holding.', missing });
 const findings = readJSON('catalogue/security.json');
 // the requests channel: requests and findings for each team (Dinis, 18 Nov 2026, ~16:00 UTC)
@@ -379,6 +409,14 @@ const counts = { items: held.length, replays: held.filter((i) => i.kind === 'rep
       const g = its.filter(f);
       body += `<h2${a ? ` id="${a}"` : ''}>${esc(h)}</h2>` + (g.length ? `<ol class="acc">${g.map(cardLine).join('')}</ol>` : '<p class="note">None catalogued yet; see what is missing below.</p>');
       md += `\n## ${h}\n\n${g.length ? g.map(mdLine).join('\n') : 'None catalogued yet.'}\n`;
+    }
+    const pr = predictions.filter((x) => x.collection === c.id)[0];
+    if (pr) {
+      const held = pr.predictions.filter((x) => x.result === 'held').length, missed = pr.predictions.filter((x) => x.result === 'missed').length, open = pr.predictions.filter((x) => x.result === 'gap').length;
+      const track = `${held} of ${held + missed} checked held as said${open ? `; ${open} not yet checkable` : ''} · ${[...new Set(pr.predictions.map((x) => x.said_by))].join(' and ')}'s dates in this collection, every one since ${day(pr.record_begins)}`;
+      const verdict = (x) => (x.result === 'held' ? '✓ as said' : x.result === 'missed' ? 'not as said' : 'no source yet');
+      body += `<h2 id="said">What was said, and what happened</h2><p class="note">Record begins ${esc(day(pr.record_begins))}. Kept as said, never overwritten; a miss would be shown as plainly as a hit. JSON: <a href="/api/v1/predictions/${c.id}.json">/api/v1/predictions/${c.id}.json</a>.</p><p class="pf-key"><span class="pf-said">what was said</span> <span class="pf-done">what happened</span> <span class="pf-gap">no source</span></p><ol class="pf">${pr.predictions.map((x) => `<li><span class="pf-due">due ${esc(day(x.due))}</span><span class="pf-said">${esc(x.said)}<br><small>${esc(x.said_by)}, ${esc(x.said_at.replace('T', ' ').replace('Z', ''))} UTC, <a href="/item/${esc(x.said_in)}/">${esc(callOf(x.said_in))}</a></small></span>${x.result === 'gap' ? `<span class="pf-gap">${esc(x.gap)}</span>` : `<span class="pf-done">${esc(x.happened)}<br><small>${x.evidence.map((e) => `<a href="/item/${esc(e)}/">${esc(callOf(e))}</a>`).join(', ')}</small></span>`}<span class="pf-v">${verdict(x)}</span></li>`).join('')}</ol><p class="note">${esc(track)}</p>`;
+      md += `\n## What was said, and what happened\n\nRecord begins ${pr.record_begins}.\n\n${pr.predictions.map((x) => `- Due ${x.due}: "${x.said}" (${x.said_by}, ${x.said_at}, ${x.said_in}). ${x.result === 'gap' ? `Gap: ${x.gap}` : `${x.happened} (${x.evidence.join(', ')}). ${verdict(x)}.`}`).join('\n')}\n\n${track}\n`;
     }
     body += `<h2 id="missing">What is missing</h2>${gaps.map((m) => `<div class="gap"><strong>${esc(m.what)}</strong><br>${esc(m.note)}${m.asked ? `<br><span class="note">Asked: ${esc(m.asked)}</span>` : ''}</div>`).join('')}`;
     body += `<h2>The record of this collection</h2><ul>${c.history.map((h) => `<li>${esc(day(h.at))}, ${esc(h.by)}: ${esc(h.what)}</li>`).join('')}</ul><p class="note">${esc(c.rule)} JSON: <a href="/api/v1/collections/${c.id}.json">/api/v1/collections/${c.id}.json</a>.</p></section>`;

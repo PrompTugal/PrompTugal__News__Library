@@ -418,6 +418,50 @@
    "found": "2026-11-19",
    "found_by": "AppSec post-review (Sonnet inner pass of library.b@), signed commits, before the push",
    "where": "scripts/release.sh"
+  },
+  {
+   "id": "LIB-2026-038",
+   "title": "Missing text in a prediction passed the checks and printed as 'undefined'",
+   "fix": "Each text field is required",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), predictions block, before the push",
+   "where": "scripts/build.mjs, predictions",
+   "state": "fixed",
+   "fixed_in": "the predictions commit"
+  },
+  {
+   "id": "LIB-2026-039",
+   "title": "Prediction text went into the markdown twin unescaped, so it could carry a link or HTML",
+   "fix": "Brackets, angle brackets and backticks are refused in those fields",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), predictions block, before the push",
+   "where": "scripts/build.mjs, predictions",
+   "state": "fixed",
+   "fixed_in": "the predictions commit"
+  },
+  {
+   "id": "LIB-2026-040",
+   "title": "The predictions file was published whole, unchecked fields included",
+   "fix": "Only named fields are published, and the description is checked",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), predictions block, before the push",
+   "where": "scripts/build.mjs, predictions",
+   "state": "fixed",
+   "fixed_in": "the predictions commit"
+  },
+  {
+   "id": "LIB-2026-041",
+   "title": "Impossible dates (month 13, 30 February) passed the date checks",
+   "fix": "Dates and times must be real; a bad one fails the build instead of crashing it",
+   "severity": "low",
+   "found": "2026-11-19",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), predictions block, before the push",
+   "where": "scripts/build.mjs, predictions",
+   "state": "fixed",
+   "fixed_in": "the predictions commit"
   }
  ],
  "from_the_central_log": [

@@ -20,13 +20,16 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
   - 1 data set: the Storm Charles archive on data.promptugal.news.
   - 42 PrompTugal.news articles about the summit catalogued from their front matter; 10 of them were withdrawn by the site on 11 November and are now marked withdrawn here (32 held).
 - **7 gaps recorded** (`missing[]`): Day Two did not take place; Day Three's other stages; talk timestamps; standalone recordings and speaker write-ups; Euronews (HTTP 406 to our checks); Portugal Resident (HTTP 403); websummit.com's own pages (never read by machine).
-- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 37 findings: 36 from AppSec reviews (32 fixed, 4 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
+- Anchor nodes (`catalogue/nodes.json`), the host allowlist (`catalogue/hosts.json`), the security findings file (`catalogue/security.json`: 41 findings: 40 from AppSec reviews (36 fixed, 4 accepted; two high, both fixed before the push) and LIB-2026-008, websummit.com read by machine against its terms (fixed)).
 
 ### The site (built by `scripts/build.mjs` from the catalogue and `content/`)
 - Home page (the hall, search, holdings counts, the shelf, new accessions, finding aids, the invitation to librarians), `/catalogue/`, `/collections/` and `/collections/ws26/` (its finding aid, with what is missing and its record), a reading room with a catalogue card for every item at `/item/<id>/`, indexes at `/index/<place|topic|organisation|event|agent|date|kind>/`, `/missing/`, `/graph/`, `/finding-aids/` (with `call-numbers/` and `day-two/`), `/librarians/`, `/how/`, `/security/`, `/takedown/`. A markdown twin (`index.md`) beside every page. The take-down line, licences, principles and report links in every footer.
 - The JSON API: `/api/v1/index.json`, `/api/v1/items/index.json` and `/api/v1/items/<id>.json`, `/api/v1/collections/`, `/api/v1/graph/index.json` (199 nodes, 475 edges, each stored once under its verb with a published inverse, aligned with PrompTugal.news's ontology on 18 November; Wikidata ids for Portugal, Lisbon and the Web Summit series, proposed by ontologist@), `/api/v1/index/` (by place, topic, organisation, event, person (empty), agent, date, kind, call number), `/api/v1/missing.json`, `/api/v1/security/findings.json`. Every file has a top-level `license`.
 - Designer@'s look (PrompTugal brand v2.0, fonts self-hosted, the supplied SVG wordmark), light and dark by the reader's system setting; checked in Chromium at 1280 and 390 px.
 - Checks: the build's own (ids, URL schemes, allowed hosts, licence, evidence, lengths, control and bidi characters, email and phone shapes, graph ends, inverses and orphans); the validator gained CSP, inline script and style, frame, event handler, link scheme and JS sink checks.
+
+### What was said, and what happened (19 November, about 01:45 UTC)
+- On `/collections/ws26/#said` and at `/api/v1/predictions/ws26.json`, from `catalogue/predictions-ws26.json` (Dinis, 19 November about 01:22 UTC; drawn after designer@'s PF spec: what was said in a green outline, what happened solid, a gap dashed). Three of Web Summit's statements: Day Two would not take place (held), back on Thursday (held), talks from 9am (a gap: no source for the start time). The track-record line is computed: 2 of 2 checked held, 1 not yet checkable. Record begins 10 November.
 
 ### The requests channel
 - `/requests/` and `/api/v1/requests/` (index and one file per team), from `catalogue/requests.json`: 8 requests: 0002, 0004, 0005 and 0006 done, 0001 answered in part, 0003, 0007 and 0008 open.
@@ -50,7 +53,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
 
 ## PROPOSED (not built)
-- Predictions kept and checked (Dinis, 19 November, about 01:22 UTC): the library shows none of its own; first, a 'what was said / what happened' block on the WS26 finding aid for Day Two and Day Three, and /api/v1/predictions/ws26.json. Later, perhaps, every site's predictions catalogued as shown.
+- Every site's predictions catalogued as shown, as one collection (a proposal to Dinis and the leads).
 - The fact-checker beyond promptugal.news's articles (the library's cards, the other sites); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
 - Talks by timestamp inside each day's replay; Day One and other stages' replays (needs a collector by data.b@ or a browser-capable read).
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
