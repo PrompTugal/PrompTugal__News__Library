@@ -768,8 +768,8 @@
    "found": "2026-11-19",
    "found_by": "security@'s control 10 (ed70bd996), via conductor.b@ at 16:50 UTC; events.b@'s path-matching pitfall (16:57 UTC); AppSec post-review (Sonnet inner pass of library.b@)",
    "fix": "scripts/check-symlinks.mjs refuses any symlink added or changed by any commit in A..AFTER (diff-tree -r --raw -z -m, so a merge's own change is seen), in AFTER's tree, the index, the working tree and the site; exceptions only from A's scripts/symlink-exceptions.json, each with an ASCII path, its target and a reason, compared as whole byte strings. Post-review findings fixed before the push: merges were invisible, a .git link in the site was skipped, non-UTF-8 names could collide, AFTER's tree was not read, an excepted link could be re-pointed. 12 tests. Wired into the checks job at the next release, once a release holds the file",
-   "state": "fixing",
-   "fixed_in": "the 19:42 commit (the check and its tests) and the next release (the wiring)"
+   "state": "fixed",
+   "fixed_in": "5415ef1 (the check and its tests) and the commit after it (the checks job and release.sh run A's copy)"
   }
  ],
  "from_the_central_log": [

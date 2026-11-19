@@ -20,8 +20,9 @@ base=$(sed -n "s/^  VERSION_BASE: '\([0-9.]*\)'$/\1/p" .github/workflows/pages.y
 [ -n "$base" ] || { echo "VERSION_BASE not found in pages.yml" >&2; exit 1; }
 last=$(git describe --tags --abbrev=0 --match "v${base}.*" origin/dev)
 # every security check comes from the release's copy, and a missing copy stops the release (security@, 19 Nov 14:08 UTC)
-for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git cat-file blob "$last:scripts/$f" > "$trusted/$f"; done
+for f in check-signatures.mjs check-commits.mjs leak-scan.mjs check-symlinks.mjs; do git cat-file blob "$last:scripts/$f" > "$trusted/$f"; done
 node "$trusted/leak-scan.mjs"
+node "$trusted/check-symlinks.mjs" "$last" HEAD --site _site
 node "$trusted/check-commits.mjs" origin/dev HEAD "$last"
 node "$trusted/check-signatures.mjs" origin/dev HEAD
 for i in 1 2 3 4 5; do

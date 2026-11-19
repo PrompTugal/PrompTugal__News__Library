@@ -44,7 +44,7 @@ jobs:
           node-version: 22
       - name: The signature check's own tests (each failing case asserts its reason)
         run: node scripts/test-check-signatures.mjs
-      - name: The symlink check's own tests (control 10; wired into the checks job once a release holds it)
+      - name: The symlink check's own tests (control 10)
         run: node scripts/test-check-symlinks.mjs
       - run: node scripts/build.mjs
         env:
@@ -134,13 +134,15 @@ jobs:
           git merge-base --is-ancestor "$A" "$AFTER" || { echo "the last verified run's head $A is not an ancestor of $AFTER" >&2; exit 1; }
           echo "anchor: $A (head of the latest successful push run on dev)"
           # every security check comes from A's copy, a regular file there; a missing copy or a symlink fails, with no fallback
-          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do
+          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs check-symlinks.mjs; do
             [ "$(git ls-tree "$A" "scripts/$f" | cut -c1-6)" = 100644 ] || { echo "scripts/$f in $A is missing or not a regular file" >&2; exit 1; }
             git cat-file blob "$A:scripts/$f" > "$RUNNER_TEMP/$f"
           done
           "$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
           "$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"
           "$NODE" "$RUNNER_TEMP/leak-scan.mjs"
+          # control 10: no symlink in the range, the tree, the checkout or the site (security@ ed70bd996)
+          "$NODE" "$RUNNER_TEMP/check-symlinks.mjs" "$A" "$AFTER" --site _site
       # the site deployed is the one scanned: the pages artifact is made here, after the scan, never in the build job
       - if: needs.build.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
