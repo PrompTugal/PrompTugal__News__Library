@@ -12,6 +12,8 @@ const sshPub = () => { const raw = generateKeyPairSync('ed25519').publicKey.expo
 const flagged = (path, text, kind) => { const f = scanText(path, text); return kind ? f.some((x) => x.kind === kind) : f.length > 0; };
 const cases = [
   ['a pin at bar.integrity in the registry copy passes', 'catalogue/sites-registry.json', `{\n "bar": {\n  "integrity": {\n   "js": "${pin()}",\n   "css": "${pin()}"\n  }\n }\n}`, false],
+  ['a pin at bar.versions[v].integrity in the registry copy passes', 'catalogue/sites-registry.json', `{\n "bar": {\n  "versions": {\n   "1.2.0": {\n    "integrity": {\n     "js": "${pin()}",\n     "css": "${pin()}"\n    }\n   }\n  }\n }\n}`, false],
+  ['a pin under js directly in a version, without integrity, fails', 'catalogue/sites-registry.json', `{\n "bar": {\n  "versions": {\n   "1.2.0": {\n    "js": "${pin()}"\n   }\n  }\n }\n}`, true],
   ['the same pin under another key in the registry copy fails', 'catalogue/sites-registry.json', `{\n "note": "${pin()}"\n}`, true],
   ['a pin at integrity depth but under an unknown name fails', 'catalogue/sites-registry.json', `{\n "bar": {\n  "integrity": {\n   "extra": "${pin()}"\n  }\n }\n}`, true],
   ['a pin with text after it fails', 'catalogue/sites-registry.json', `{\n "bar": {\n  "integrity": {\n   "js": "${pin()}x${b64(24)}"\n  }\n }\n}`, true],

@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T07:49Z",
+ "updated": "2026-11-19T07:52Z",
  "state": "07:38 wake: the last two Web Summit uploads catalogued, the day replays given their lengths, PRED refreshed (07:40 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -52,7 +52,8 @@
   "sites bar 1.2.0 installed (security@'s go, Website 055e6c1430, read at source): the three files match the registry's 1.2.0 pins; checked in Chromium at 1280 and 390 px (13 sites, promptugal.news first, this site centred on a phone, same-tab links, no errors, no overflow). The library has no sites list or rail of its own to remove. No sub-agent post-review: the vendored files carry security@'s go and the library's change is the version and its registry copy (07:16 UTC)",
   "PRED 2026/0004 imported (civic.promptugal.news, Civic 43383cf: 7,663 pairs, 8.2 MB, every line passed). All were first shown at 07:27 UTC after their due dates, so the library now counts any prediction shown after it was due as a retrospective record, outside the track record (form updated). The importer was quadratic on a file this size; now indexed (0.4 s) (07:31 UTC)",
   "07:38 wake: data.promptugal.news's YouTube replays file is served. Catalogued the NVIDIA talk (WS26 2026/0081) and Event Highlights (0082); added lengths and exact dates to the three day replays (Opening Night's date corrected from 9 to 10 November); no counts kept; REQ-2026-0001 done. PRED re-imported: data.promptugal.news +216 lines (Data fe30f0b), travel and civic unchanged. Post-review: one low, fixed (LIB-2026-061). The opening and closing conductor passes and the pre-review were not run as separate sub-agents this wake: a catalogue refresh, with one AppSec pass over the diff (07:40 UTC)",
-  "PRED 2026/0005 imported (startups.promptugal.news, Startups 8b69337: 18 closing dates, all open; every line passed) (07:49 UTC)"
+  "PRED 2026/0005 imported (startups.promptugal.news, Startups 8b69337: 18 closing dates, all open; every line passed) (07:49 UTC)",
+  "dev@'s registry reshape (conductor.b@, 07:50 UTC): bar.versions is back in the registry copy, in its .integrity form; the build checks the vendored 1.2.0 against bar.versions['1.2.0'].integrity, so the registry naming 1.2.1 leaves the bar on; off only if 1.2.0 is no longer listed; the leak-scan exemption now accepts an integrity block at any depth (parent key and whole value still checked); 36 tests. Post-review: no high or medium; one low already accepted (LIB-2026-044), its comment corrected. Sites bar 1.2.1 waits for security@'s go (07:52 UTC)"
  ],
  "next": [
   "PRED: re-import data.promptugal.news (hourly, append-only) and travel at each wake; weather.b@'s file when it comes; show each series' lines on its own page, drawn to designer@'s spec",
@@ -76,8 +77,7 @@
   "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on.",
   "Dinis (through conductor.b@): the sites bar step 2 says to fetch promptugal.news/api/v1/sites.json at build. The library's build fetches nothing (its no-network check in scripts/validate.mjs), so the registry is a committed copy, catalogue/sites-registry.json, refreshed by hand at each wake. It can lag a new site by up to a wake. Is that acceptable, or should the bar's makers publish the registry beside the vendored files?",
   "Dinis (through conductor.b@): openssh-client was not installed in this environment; I installed it for this session with apt. A new session must install it again before it can sign (or the environment's setup script could). The check itself can be switched off by anyone who can push (it lives in the repository); branch protection on scripts/ and .github/ would close that, and is Dinis's to set.",
-  "Dinis: with keys read from each commit's parent, a new library session cannot add its own key alone. At hand-over either this session (while it runs) adds the next session's key in a signed commit, or a person adds it and the commit is pinned in scripts/check-signatures.mjs's BOOTSTRAP. Which do you want?",
-  "security@ (through conductor.b@): the registry's earlier-version pins sit at bar.versions.<v>.<file>, with no .integrity key, so your ruling's field list does not cover them; and obs_tz carries pins the library does not use. Until you rule on bar.versions, the library's registry copy leaves out bar.versions and obs_tz. So its build switches the bar off when the copy names a newer version, rather than when the registry stops listing the library's version. This is harmless while the library vendors at the same time as it refreshes the copy."
+  "Dinis: with keys read from each commit's parent, a new library session cannot add its own key alone. At hand-over either this session (while it runs) adds the next session's key in a signed commit, or a person adds it and the commit is pinned in scripts/check-signatures.mjs's BOOTSTRAP. Which do you want?"
  ],
  "messages": {
   "to_conductor.b": "first-run report sent by send_message at the end of the run",
@@ -110,5 +110,5 @@
   "first": "BUILT 19 Nov 01:33 UTC (commit e6b2c00): /collections/ws26/#said and /api/v1/predictions/ws26.json, after designer@'s PF spec (PF5 gap dashed, PF6 record begins, PF7 what was said in green outline beside what happened solid, PF8 a computed track record). 2 of 2 checked held, 1 a gap (Thursday's 9am start: no source yet).",
   "later": "DONE in part: PRED is the collection (Dinis, about 03:15 UTC: 'The predictions are one collection'); /predictions/, /predictions/form/; PRED 2026/0001 is the WS26 series. The importer for sites' files waits for the first file."
  },
- "standing": "If a build says 'sites bar <version> off: the registry names <newer>', write it here in the same words and vendor the new version at the next wake (security@, 05:09 UTC)."
+ "standing": "If a build says 'sites bar <version> off: the registry no longer lists it', write it here in the same words and vendor a listed version at the next wake (security@, 05:09 UTC)."
 }

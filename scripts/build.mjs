@@ -29,25 +29,21 @@ const BAR = `src/assets/sites-bar/${BAR_VERSION}`;
 const REGISTRY = JSON.parse(readFileSync('catalogue/sites-registry.json', 'utf8'));
 // the pins: bar.integrity in the registry, SRI form (sha256-<base64> of the whole file), compared in full (security@, 19 Nov about 01:30 UTC)
 const PIN = { 'sites-bar-render.mjs': 'render', 'sites-bar.js': 'js', 'sites-bar.css': 'css' };
-// The registry naming a NEWER bar than the vendored one (a release we have not taken yet) ships the site with no bar,
-// and the next wake upgrades; an older, malformed or missing version, or the same version with other bytes, stops the
-// build (conductor.b@, 19 Nov 05:10 UTC, from data.b@'s trap).
-const ver = (v) => (typeof v === 'string' && /^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(v) ? v.split('.').map(Number) : null);
-const cmp = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
-const regVer = ver(REGISTRY.bar && REGISTRY.bar.version);
-if (!regVer || cmp(regVer, ver(BAR_VERSION)) < 0) { console.error(`catalogue/sites-registry.json: bar version ${REGISTRY.bar && REGISTRY.bar.version} is missing, malformed or older than the vendored ${BAR_VERSION}`); process.exit(1); }
-const BAR_NEWER = cmp(regVer, ver(BAR_VERSION)) > 0;
-// security@, 05:09 UTC: say it in these words, and leave the vendored files out of the site (never served unchecked)
-if (BAR_NEWER) console.warn(`sites bar ${BAR_VERSION} off: the registry names ${REGISTRY.bar.version}`);
-if (BAR_NEWER) rmSync('_site/assets/sites-bar', { recursive: true, force: true });
-const integ = BAR_NEWER ? null : REGISTRY.bar.integrity;
-if (!BAR_NEWER && (!integ || Object.keys(integ).sort().join() !== 'css,js,render')) { console.error(`catalogue/sites-registry.json: bar must be version ${BAR_VERSION} with integrity pins for render, js and css`); process.exit(1); }
+// The pins of the vendored version, from bar.versions[<version>].integrity (the registry keeps every version's pins,
+// append-only: dev@'s reshape, 19 Nov 07:50 UTC). The bar is switched off, and its files left out, only when the
+// registry no longer lists the vendored version (security@, 05:09 UTC); a listed version with other bytes stops the build.
+const listed = REGISTRY.bar && REGISTRY.bar.versions && Object.prototype.hasOwnProperty.call(REGISTRY.bar.versions, BAR_VERSION) ? REGISTRY.bar.versions[BAR_VERSION] : null;
+const BAR_OFF = !listed;
+if (BAR_OFF) console.warn(`sites bar ${BAR_VERSION} off: the registry no longer lists it (it names ${REGISTRY.bar && REGISTRY.bar.version})`);
+if (BAR_OFF) rmSync('_site/assets/sites-bar', { recursive: true, force: true });
+const integ = BAR_OFF ? null : listed.integrity;
+if (!BAR_OFF && (!integ || typeof integ !== 'object' || Object.keys(integ).sort().join() !== 'css,js,render')) { console.error(`catalogue/sites-registry.json: bar.versions["${BAR_VERSION}"].integrity must pin render, js and css`); process.exit(1); }
 if (readdirSync(BAR).sort().join() !== Object.keys(PIN).sort().join()) { console.error(`${BAR}: must hold exactly the three pinned files`); process.exit(1); }
 if (readdirSync('src/assets/sites-bar').join() !== BAR_VERSION) { console.error('src/assets/sites-bar: must hold only the pinned version'); process.exit(1); }
-if (!BAR_NEWER) for (const [f, k] of Object.entries(PIN)) { const got = 'sha256-' + createHash('sha256').update(readFileSync(join(BAR, f))).digest('base64'); if (typeof integ[k] !== 'string' || got !== integ[k]) { console.error(`sites bar: ${f} is ${got}, not the pinned ${integ[k]}`); process.exit(1); } }
-// renderBar is imported statically (top of file): the hash check above runs before it is ever called
-const barHtml = BAR_NEWER ? '' : renderBar(REGISTRY, { here: 'library.promptugal.news' });
-if (!BAR_NEWER && !barHtml) { console.error('sites bar: the registry was refused (catalogue/sites-registry.json); fix the copy, never ship without the bar'); process.exit(1); }
+if (!BAR_OFF) for (const [f, k] of Object.entries(PIN)) { const got = 'sha256-' + createHash('sha256').update(readFileSync(join(BAR, f))).digest('base64'); if (typeof integ[k] !== 'string' || got !== integ[k]) { console.error(`sites bar: ${f} is ${got}, not the pinned ${integ[k]}`); process.exit(1); } }
+// renderBar is imported statically (top of file), so its module loads before the pin check; it is only called after the check (LIB-2026-044, accepted: its top level defines functions only)
+const barHtml = BAR_OFF ? '' : renderBar(REGISTRY, { here: 'library.promptugal.news' });
+if (!BAR_OFF && !barHtml) { console.error('sites bar: the registry was refused (catalogue/sites-registry.json); fix the copy, never ship without the bar'); process.exit(1); }
 
 // ---------- read and check the catalogue ----------
 const readJSON = (f) => JSON.parse(readFileSync(f, 'utf8'));

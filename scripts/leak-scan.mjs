@@ -111,7 +111,8 @@ export function scanText(path, text) {
   // The sites bar's SRI pins (public sha256 hashes of public files), in the registry copy only, by field and exact pattern
   // (security@, 19 Nov about 01:30 UTC: the registry pins each file as sha256-<base64>).
   // Only inside an "integrity" object (its parent key checked, not only its depth), each value the whole pin (LIB-2026-056).
-  if (path === 'catalogue/sites-registry.json') body = body.replace(/^  "integrity": \{\n((?:   "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?\n){1,3})  \}/gm, (blk, inner) => blk.replace(inner, inner.replace(/[^\n]/g, ' ')));
+  // At any depth (bar.integrity and bar.versions["<v>"].integrity), the parent key checked and each value the whole pin.
+  if (path === 'catalogue/sites-registry.json') body = body.replace(/^( +)"integrity": \{\n((?:\1 "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?\n){1,3})\1\}/gm, (blk, ind, inner) => blk.replace(inner, inner.replace(/[^\n]/g, ' ')));
   body.split('\n').forEach((line, i) => {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
