@@ -59,15 +59,15 @@ jobs:
           git merge-base --is-ancestor "$BEFORE" "$AFTER" || { echo "dev was not fast-forwarded" >&2; exit 1; }
           trusted=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE")
           # every security check comes from that release's copy; a missing copy fails the step (security@, 19 Nov 14:08 UTC)
-          for f in check-signatures.mjs check-commits.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done
+          for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$trusted:scripts/$f" > "$RUNNER_TEMP/$f"; done
           node "$RUNNER_TEMP/check-commits.mjs" "$trusted" "$AFTER"
           node "$RUNNER_TEMP/check-signatures.mjs" "$trusted" "$AFTER"
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
       - run: node scripts/validate.mjs
-      - name: Leak scan (tracked files and the built site)
-        run: node scripts/leak-scan.mjs
+      - name: Leak scan (tracked files and the built site), from the release copy written by the signature step
+        run: node "$RUNNER_TEMP/leak-scan.mjs"
       - name: The leak scan's exemptions still catch a key-shaped string beside them
         run: node scripts/test-leak-scan.mjs
       - if: steps.mode.outputs.deploy == 'true'

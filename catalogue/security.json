@@ -713,8 +713,8 @@
    "found": "2026-11-19",
    "found_by": "security@'s second ruling (controls 7 widened and 8), passed on by conductor.b@ at 14:08 UTC; AppSec post-review (Sonnet inner pass of library.b@)",
    "fix": "check-commits skips no commit (it came with the first commit, 1af3014), reads its exemptions from the last release, ignores replace refs and grafts, and runs from the release copy. The leak scan finds the repository from where it is run, so the next release runs it from the release copy too. Transition, one release each: the copies tagged before this fix still read exemptions from the tree and locate the leak scan by its own path; signatures still block an unsigned commit meanwhile",
-   "state": "fixing",
-   "fixed_in": "this commit and the next release"
+   "state": "fixed",
+   "fixed_in": "68e05ec (the trailer check) and the commit after it (the leak scan)"
   }
  ],
  "from_the_central_log": [

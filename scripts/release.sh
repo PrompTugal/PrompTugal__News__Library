@@ -9,7 +9,6 @@ cd "$(dirname "$0")/.."
 git fetch -q origin dev
 node scripts/build.mjs
 node scripts/validate.mjs
-node scripts/leak-scan.mjs
 node scripts/test-leak-scan.mjs
 node scripts/test-check-signatures.mjs
 # The signature check runs from the last release's copy, never from the tree it checks (control 7, conductor.b@ 19 Nov 14:01 UTC).
@@ -20,7 +19,8 @@ base=$(sed -n "s/^  VERSION_BASE: '\([0-9.]*\)'$/\1/p" .github/workflows/pages.y
 [ -n "$base" ] || { echo "VERSION_BASE not found in pages.yml" >&2; exit 1; }
 last=$(git describe --tags --abbrev=0 --match "v${base}.*" origin/dev)
 # every security check comes from the release's copy, and a missing copy stops the release (security@, 19 Nov 14:08 UTC)
-for f in check-signatures.mjs check-commits.mjs; do git show "$last:scripts/$f" > "$trusted/$f"; done
+for f in check-signatures.mjs check-commits.mjs leak-scan.mjs; do git show "$last:scripts/$f" > "$trusted/$f"; done
+node "$trusted/leak-scan.mjs"
 node "$trusted/check-commits.mjs" origin/dev HEAD "$last"
 node "$trusted/check-signatures.mjs" origin/dev HEAD
 for i in 1 2 3 4 5; do
@@ -29,7 +29,7 @@ for i in 1 2 3 4 5; do
   # One gate per line: under set -e a failure inside an && chain does not stop the script (specialist.code@ finding 1).
   node scripts/build.mjs >/dev/null
   node scripts/validate.mjs >/dev/null
-  node scripts/leak-scan.mjs >/dev/null
+  node "$trusted/leak-scan.mjs" >/dev/null
   node "$trusted/check-commits.mjs" origin/dev HEAD "$last" >/dev/null
   node "$trusted/check-signatures.mjs" origin/dev HEAD >/dev/null
   if git -c push.negotiate=true push -q origin HEAD:dev; then echo "released $(git rev-parse --short HEAD) to dev"; exit 0; fi
