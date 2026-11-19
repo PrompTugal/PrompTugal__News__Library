@@ -71,6 +71,12 @@ jobs:
       NODE_OPTIONS: ''
       GIT_NO_REPLACE_OBJECTS: '1'
       GIT_GRAFT_FILE: /dev/null
+      # pushed attributes are off: git reads them from the empty tree (git 2.42 or later), and from no global file
+      # (events.b@'s finding, via conductor.b@ 16:25 UTC: deleting .gitattributes leaves the index copy in force)
+      GIT_ATTR_SOURCE: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: core.attributesFile
+      GIT_CONFIG_VALUE_0: /dev/null
     steps:
       - uses: actions/checkout@v4
         with:
@@ -83,6 +89,8 @@ jobs:
       # say) is refused first, and every pushed .gitattributes is removed (live.b@'s review, 16:15 UTC)
       - name: Refuse a pushed _site, and remove pushed .gitattributes
         run: |
+          v=$(git version | sed -n 's/^git version \([0-9]*\)\.\([0-9]*\).*/\1 \2/p'); set -- $v
+          [ "${1:-0}" -gt 2 ] || { [ "${1:-0}" -eq 2 ] && [ "${2:-0}" -ge 42 ]; } || { echo "git 2.42 or later is needed for GIT_ATTR_SOURCE" >&2; exit 1; }
           if [ -e _site ] || [ -L _site ]; then echo "the pushed tree holds _site" >&2; exit 1; fi
           git ls-files -z -- '.gitattributes' '**/.gitattributes' | xargs -0 -r rm -f --
           rm -f .git/info/attributes

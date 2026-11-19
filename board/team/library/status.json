@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T16:16Z",
+ "updated": "2026-11-19T16:25Z",
  "state": "13:38 wake: PRED refreshed; hand-over written (13:39 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -68,7 +68,8 @@
   "14:26: control 9 (security@'s fifth ruling, 14:20 UTC): checks job runs no pushed code, deploys the bytes it scanned, anchor only from github-actions[bot] deployments; leak scan searches binaries and refuses symlinks; 26 signing and 38 leak tests; LIB-2026-066, 067",
   "14:27: security@'s sixth ruling: CI anchors on the head of the latest successful push run of pages.yml on dev (actions: read), not a deployment",
   "14:31: peers' findings (conductor.b@, 14:30): trusted files read with git cat-file blob; the artifact symlink race does not apply (zip, unpacked before the trusted copies)",
-  "16:16: live.b@'s three CI findings (conductor.b@, 16:15): site vetted in RUNNER_TEMP, pushed _site and .gitattributes refused or removed; anchor needs a passed checks job; dev only; 28 tests; LIB-2026-068"
+  "16:16: live.b@'s three CI findings (conductor.b@, 16:15): site vetted in RUNNER_TEMP, pushed _site and .gitattributes refused or removed; anchor needs a passed checks job; dev only; 28 tests; LIB-2026-068",
+  "16:25: pushed git attributes off in the checks job (GIT_ATTR_SOURCE empty tree, git 2.42+ enforced, core.attributesFile /dev/null); 29 tests"
  ],
  "next": [
   "PRED: re-import every series at each wake",

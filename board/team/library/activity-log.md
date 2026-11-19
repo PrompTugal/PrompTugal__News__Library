@@ -42,3 +42,4 @@
 | 2026-11-19 | 14:27 | Signing anchor: the latest successful run on dev | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 14:31 | Peers' findings checked; trusted files read with git cat-file | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 16:16 | live.b@'s CI findings: site vetted outside the checkout; anchor needs passed checks; dev only | [handover](debriefs/2026-11-19-handover.md) |
+| 2026-11-19 | 16:25 | Pushed git attributes off in the checks job, from the index too | [handover](debriefs/2026-11-19-handover.md) |
