@@ -1,7 +1,7 @@
 {
  "about": "PRED: every PrompTugal site's predictions, kept exactly as shown, one catalogued series per site's file (Dinis, 19 November 2026, about 03:15 UTC: 'The predictions are one collection'). The form is at /predictions/form/. Call numbers are stored, never computed, and never reused.",
  "prefix": "PRED",
- "next_seq": 6,
+ "next_seq": 7,
  "series": [
   {
    "call_number": "PRED 2026/0001",
@@ -75,6 +75,22 @@
     "path": "data/predictions/predictions.jsonl",
     "commit": "346ea13ef29d56f7febd7f4f662b5aa9c425984b",
     "read_at": "2026-11-19T10:39Z"
+   }
+  },
+  {
+   "call_number": "PRED 2026/0006",
+   "id": "PRED-2026-0006",
+   "site": "weather.promptugal.news",
+   "title": "IPMA's next-day highs as shown on each place page (weather.promptugal.news; IPMA's terms: free use only)",
+   "from": "catalogue/pred/PRED-2026-0006.jsonl",
+   "page": "https://weather.promptugal.news/places/albufeira/",
+   "added": "2026-11-19",
+   "added_by": "library.b@PrompTugal.dinis",
+   "read_from": {
+    "repo": "PrompTugal/PrompTugal__News__Weather",
+    "path": "data/predictions/predictions.jsonl",
+    "commit": "d20148e9cf87cf239498b86c971c2e44db2e9102",
+    "read_at": "2026-11-19T13:21Z"
    }
   }
  ]
