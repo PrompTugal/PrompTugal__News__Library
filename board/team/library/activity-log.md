@@ -10,3 +10,4 @@
 | 2026-11-19 | 00:55 wake | sites bar 1.1.0 installed; preview.svg 320x180; LIB-2026-024 to 027 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 01:15 wake | signed commits on: key published with its session, check-signatures.mjs in release.sh and CI; LIB-2026-028 to 037 | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 01:25 | signed commits: keys read from the parent commit (LIB-2026-032 fixed); data in the browser checked, nothing to load yet | [handover](debriefs/2026-11-18-handover.md) |
+| 2026-11-19 | 01:35 | show the past and predictions: the library's named in status.json; first planned on the WS26 finding aid | [handover](debriefs/2026-11-18-handover.md) |

@@ -50,6 +50,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 - `board/team/library/status.json`, `activity-log.md`, `debriefs/2026-11-18-handover.md`.
 
 ## PROPOSED (not built)
+- Predictions kept and checked (Dinis, 19 November, about 01:22 UTC): the library shows none of its own; first, a 'what was said / what happened' block on the WS26 finding aid for Day Two and Day Three, and /api/v1/predictions/ws26.json. Later, perhaps, every site's predictions catalogued as shown.
 - The fact-checker beyond promptugal.news's articles (the library's cards, the other sites); Wikipedia and Wikidata as the reference layer; a page per university (Dinis, 18 November, about 16:00 UTC).
 - Talks by timestamp inside each day's replay; Day One and other stages' replays (needs a collector by data.b@ or a browser-capable read).
 - More collections: the events, places, organisations and topics PrompTugal.news covers.
