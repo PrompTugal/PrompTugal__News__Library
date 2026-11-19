@@ -12,12 +12,15 @@
 // other commit is checked, including ones on branches merged in. Merge commits fail (release.sh keeps dev linear).
 // CI commits nothing in this repository (pages.yml only pushes tags), so no commit is exempt. Only git is run.
 // AppSec post-review, 19 Nov 2026: LIB-2026-028 to 037.
+// The gates run this file from the last release's copy, never from the pushed tree (control 7; release.sh, pages.yml).
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+// replace refs and grafts are ignored, so a root commit cannot be given a parent locally (AppSec, 19 Nov 14:10 UTC)
+const ENV = { ...process.env, GIT_NO_REPLACE_OBJECTS: '1', GIT_GRAFT_FILE: '/dev/null' };
+const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env: ENV }).trim();
 const tryGit = (...args) => { try { return git(...args); } catch { return null; } };
 const lines = (s) => (s ? s.split('\n').filter(Boolean) : []);
 // dev's head when this check was added (the sites bar 1.1.0 release, v0.1.21): it and its ancestors are not checked.
@@ -49,6 +52,9 @@ try {
   for (const c of added) {
     const short = c.slice(0, 7);
     checked++;
+    // an orphan (a commit with no parent) would trust the keys in its own tree: refused, unless it is in BOOTSTRAP
+    // (conductor.b@, 19 Nov 2026 14:01 UTC, from videos.b@'s pre-review: control 6)
+    if (!BOOTSTRAP.has(c) && git('rev-list', '--parents', '-n', '1', c).split(' ').length < 2) { problems.push(`${short}: a commit with no parent (an orphan) cannot be checked against earlier keys`); continue; }
     const agents = lines(git('log', '-1', '--format=%(trailers:key=Agent,valueonly)', c));
     const sessions = lines(git('log', '-1', '--format=%(trailers:key=Claude-Session,valueonly)', c)); // compared exactly, untrimmed
     if (agents.length !== 1) { problems.push(`${short}: needs exactly one Agent: trailer`); continue; }

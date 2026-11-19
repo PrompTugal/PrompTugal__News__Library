@@ -13,7 +13,14 @@ node scripts/leak-scan.mjs
 node scripts/test-leak-scan.mjs
 node scripts/check-commits.mjs origin/dev HEAD
 node scripts/test-check-signatures.mjs
-node scripts/check-signatures.mjs origin/dev HEAD
+# The signature check runs from the last release's copy, never from the tree it checks (control 7, conductor.b@ 19 Nov 14:01 UTC).
+git fetch -q --tags origin
+trusted=$(mktemp -d); trap 'rm -rf "$trusted"' EXIT
+# the release tag reachable from dev before this push; VERSION_BASE is read from pages.yml so the two cannot drift
+base=$(sed -n "s/^  VERSION_BASE: '\([0-9.]*\)'$/\1/p" .github/workflows/pages.yml)
+last=$(git describe --tags --abbrev=0 --match "v${base}.*" origin/dev)
+git show "$last:scripts/check-signatures.mjs" > "$trusted/check-signatures.mjs"
+node "$trusted/check-signatures.mjs" origin/dev HEAD
 for i in 1 2 3 4 5; do
   git fetch -q origin dev
   git rebase -q origin/dev
@@ -22,7 +29,7 @@ for i in 1 2 3 4 5; do
   node scripts/validate.mjs >/dev/null
   node scripts/leak-scan.mjs >/dev/null
   node scripts/check-commits.mjs origin/dev HEAD >/dev/null
-  node scripts/check-signatures.mjs origin/dev HEAD >/dev/null
+  node "$trusted/check-signatures.mjs" origin/dev HEAD >/dev/null
   if git -c push.negotiate=true push -q origin HEAD:dev; then echo "released $(git rev-parse --short HEAD) to dev"; exit 0; fi
   sleep $((i * 3))
 done

@@ -37,7 +37,7 @@ function sshKey(name) {
 }
 
 const git = (...a) => execFileSync('git', ['-C', repo, ...a], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
-const run = (before) => { try { return { ok: true, out: execFileSync(process.execPath, [CHECK, before, 'HEAD'], { cwd: repo, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }) }; } catch (e) { return { ok: false, out: `${e.stdout || ''}${e.stderr || ''}` }; } };
+const run = (before, check = CHECK) => { try { return { ok: true, out: execFileSync(process.execPath, [check, before, 'HEAD'], { cwd: repo, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }) }; } catch (e) { return { ok: false, out: `${e.stdout || ''}${e.stderr || ''}` }; } };
 const results = [];
 let failed = 0;
 try {
@@ -71,15 +71,38 @@ try {
       git('checkout', '-q', '-b', 'side'); commit('side' + trailers()); git('checkout', '-q', '-');
       git('merge', '-q', '--no-ff', '-m', 'merge' + trailers(), 'side');
     }, false, 'a merge commit'],
+    // control 6 (conductor.b@, 19 Nov 2026 14:01 UTC, from videos.b@'s pre-review): an orphan would trust its own keys
+    ['an orphan commit fails', () => { git('checkout', '-q', '--orphan', 'orphan'); commit('orphan' + trailers()); }, false, 'a commit with no parent'],
+    // control 7: a push that rewrites the check to pass still fails, because the gate runs the last release's copy
+    ['a pushed tree cannot change the check', () => {
+      writeFileSync(join(repo, 'scripts/check-signatures.mjs'), "console.log('OK (1 commits checked');\n");
+      commit('tamper' + trailers(), ['-c', 'commit.gpgsign=false']);
+      const pushed = run(base, join(repo, 'scripts/check-signatures.mjs'));
+      if (!pushed.ok) throw new Error('the tampered copy should pass, or this case proves nothing');
+      writeFileSync(trusted, git('show', `${base}:scripts/check-signatures.mjs`) + '\n');
+    }, false, 'signature missing', () => trusted],
   ];
-  for (const [name, make, pass, reason] of cases) {
-    try { git('branch', '-q', '-D', 'side'); } catch { /* none yet */ }
+  const trusted = join(dir, 'trusted-check-signatures.mjs');
+  for (const [name, make, pass, reason, check] of cases) {
+    // each case starts from the base, so an earlier case's failure cannot satisfy a later one
+    git('checkout', '-q', '-f', 'test-main'); git('reset', '-q', '--hard', base); git('clean', '-qfdx');
+    for (const b of ['side', 'orphan']) { try { git('branch', '-q', '-D', b); } catch { /* none yet */ } }
     make();
-    const r = run(base);
+    const r = run(base, check ? check() : CHECK);
     const ok = r.ok === pass && r.out.includes(reason);
     if (!ok) failed++;
     results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: expected ${pass ? 'a pass' : 'a failure'} saying "${reason}", got ${r.ok ? 'a pass' : 'a failure'}: ${r.out.trim().split('\n').slice(-2).join(' / ')}`}`);
   }
+  // control 7's wiring: the gates run a release tag's copy of the check, never scripts/check-signatures.mjs from the tree
+  const wired = (name, file, uses) => {
+    const t = readFileSync(file, 'utf8');
+    const direct = /node\s+scripts\/check-signatures\.mjs/.test(t);
+    const ok = !direct && uses.every((u) => t.includes(u));
+    if (!ok) failed++;
+    results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: ${file} must run the release copy (git show "<tag>:scripts/check-signatures.mjs") and never node scripts/check-signatures.mjs`}`);
+  };
+  wired('release.sh runs the release copy of the check', 'scripts/release.sh', ['git show "$last:scripts/check-signatures.mjs"', 'node "$trusted/check-signatures.mjs" origin/dev HEAD']);
+  wired('CI runs the release copy, found from dev before the push', '.github/workflows/pages.yml', ['describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE"', 'git show "$trusted:scripts/check-signatures.mjs"', 'node "$RUNNER_TEMP/check-signatures.mjs"']);
 } finally { rmSync(dir, { recursive: true, force: true }); }
 console.log(results.join('\n'));
 if (failed) { console.error(`FAILED: ${failed} of ${results.length} signature-check tests`); process.exit(1); }

@@ -682,6 +682,28 @@
    "fix": "Length must be H:MM:SS; it is shown on the card, escaped",
    "state": "fixed",
    "fixed_in": "the 07:38 wake's commit"
+  },
+  {
+   "id": "LIB-2026-062",
+   "severity": "medium",
+   "title": "An orphan commit (no parent) could trust the keys in its own tree",
+   "where": "scripts/check-signatures.mjs",
+   "found": "2026-11-19",
+   "found_by": "videos.b@'s pre-review of PrompTugal__News__Videos de181ef, passed on by conductor.b@ at 14:01 UTC (controls 6 and 7)",
+   "fix": "Refused by name: a commit with no parent fails unless it is in BOOTSTRAP. Before, it already failed, but only because its parent's keys file could not be read; a test now asserts the reason",
+   "state": "fixed",
+   "fixed_in": "the 14:01 fix commit"
+  },
+  {
+   "id": "LIB-2026-063",
+   "severity": "medium",
+   "title": "The signature gate ran the checker from the tree it was checking, so a push could change the checker",
+   "where": "scripts/release.sh, .github/workflows/pages.yml",
+   "found": "2026-11-19",
+   "found_by": "videos.b@'s pre-review of PrompTugal__News__Videos de181ef, passed on by conductor.b@ at 14:01 UTC (controls 6 and 7)",
+   "fix": "The gate runs a release tag's copy of scripts/check-signatures.mjs, never the pushed tree's. CI finds that tag from dev as it was before the push, so a tag pushed with the commits is not chosen; release.sh finds it from origin/dev. Replace refs and grafts are ignored. Tests show a tampered copy passing and the release copy failing it, and assert that release.sh and pages.yml are wired this way. Still open, and Dinis's: the workflow file is in the pushed tree, and tags are not protected; branch and tag protection close both",
+   "state": "fixed",
+   "fixed_in": "the 14:01 fix commit"
   }
  ],
  "from_the_central_log": [

@@ -59,8 +59,14 @@ jobs:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
         run: |
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
-          node scripts/check-signatures.mjs "${last:-$BEFORE}" "$AFTER"
+          # Control 7 (conductor.b@, 19 Nov 14:01 UTC): run the last release's copy of the check, never the pushed tree's.
+          # The release is found from dev as it was before this push, so a tag pushed with these commits is not chosen;
+          # the range runs from that tag, so every commit since it is checked by it.
+          [ -n "$BEFORE" ] || BEFORE=$(git rev-parse "$AFTER^")  # a run by hand: dev as it was before its head
+          git merge-base --is-ancestor "$BEFORE" "$AFTER" || { echo "dev was not fast-forwarded" >&2; exit 1; }
+          trusted=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE")
+          git show "$trusted:scripts/check-signatures.mjs" > "$RUNNER_TEMP/check-signatures.mjs"
+          node "$RUNNER_TEMP/check-signatures.mjs" "$trusted" "$AFTER"
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}

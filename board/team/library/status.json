@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T13:39Z",
+ "updated": "2026-11-19T14:10Z",
  "state": "13:38 wake: PRED refreshed; hand-over written (13:39 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -59,7 +59,8 @@
   "requests channel: a file for every known agent (catalogue/agents.json, 24 names), under its name as written and in lowercase, empty when nothing is asked of it; the 404s came from lowercase-only files on case-sensitive Pages (11:00 UTC)",
   "PRED 2026/0006 imported (weather.promptugal.news, Weather d20148e: 18 next-day highs, all open, shown before due; every line passed; IPMA's terms, free use only, which the library is) (13:22 UTC)",
   "PRED form: optional backfilled: true (civic.b@'s ask) files a line as retrospective; so does a first outcome checked no later than the prediction was shown. civic re-imported (Civic 0ef97a8, +1,283 lines: 9 forward, 8,872 retrospective) (13:29 UTC)",
-  "13:38 wake: PRED re-imported (data.promptugal.news +162, Data 4a4d130; others unchanged); hand-over written for the next session (debriefs/2026-11-19-handover.md). No code changed, so no AppSec pass this wake (13:39 UTC)"
+  "13:38 wake: PRED re-imported (data.promptugal.news +162, Data 4a4d130; others unchanged); hand-over written for the next session (debriefs/2026-11-19-handover.md). No code changed, so no AppSec pass this wake (13:39 UTC)",
+  "14:10: signing controls 6 and 7 (conductor.b@, 14:01 UTC): orphan commits refused by name; release.sh and CI run the last release tag's copy of the check; two tests; LIB-2026-062, 063"
  ],
  "next": [
   "PRED: re-import every series at each wake",
@@ -83,7 +84,8 @@
   "Dinis: the brief asks the library to read from data.promptugal.news only and run no collectors; data.b@ has no Web Summit replay source yet. The ask is in board/team/library/asks/2026-11-18-data.b-replays.md; conductor.b@ is asked to pass it on.",
   "Dinis (through conductor.b@): the sites bar step 2 says to fetch promptugal.news/api/v1/sites.json at build. The library's build fetches nothing (its no-network check in scripts/validate.mjs), so the registry is a committed copy, catalogue/sites-registry.json, refreshed by hand at each wake. It can lag a new site by up to a wake. Is that acceptable, or should the bar's makers publish the registry beside the vendored files?",
   "Dinis (through conductor.b@): openssh-client was not installed in this environment; I installed it for this session with apt. A new session must install it again before it can sign (or the environment's setup script could). The check itself can be switched off by anyone who can push (it lives in the repository); branch protection on scripts/ and .github/ would close that, and is Dinis's to set.",
-  "Dinis: with keys read from each commit's parent, a new library session cannot add its own key alone. At hand-over either this session (while it runs) adds the next session's key in a signed commit, or a person adds it and the commit is pinned in scripts/check-signatures.mjs's BOOTSTRAP. Which do you want?"
+  "Dinis: with keys read from each commit's parent, a new library session cannot add its own key alone. At hand-over either this session (while it runs) adds the next session's key in a signed commit, or a person adds it and the commit is pinned in scripts/check-signatures.mjs's BOOTSTRAP. Which do you want?",
+  "Dinis: when you turn on branch protection for dev, please protect release tags (v*) too: the signature gate now trusts the last release tag's copy of the check (LIB-2026-063), so an unprotected tag is the remaining way round it."
  ],
  "messages": {
   "to_conductor.b": "first-run report sent by send_message at the end of the run",
