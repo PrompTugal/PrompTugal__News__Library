@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-18T23:40Z",
+ "updated": "2026-11-19T00:25Z",
  "state": "fourth wake (22:38 UTC): withdrawn articles corrected across the catalogue and the fact-checker",
  "latest_debrief": "board/team/library/debriefs/2026-11-18-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -36,6 +36,7 @@
   "Billing only on promptugal.news (Dinis ~23:45 UTC, read at source: board/guidance/2026-11-18-billing-only-on-the-main-site.md): the library has no billing, meter or adverts; every footer now says so; one piece of work per push, as before"
  ],
  "next": [
+  "Catalogue the NVIDIA talk and Event Highlights from data.promptugal.news/api/v1/youtube-replays/latest.json once it is served (404 at 00:22 UTC); add lengths and dates to the three day replays from it; credit YouTube, link its terms, keep no view or like counts (YouTube's 30-day rule); talk chapters: none exist (the descriptions have no timestamps)",
   "Sites bar, part 2: when dev@ and designer@ publish it (conductor.b@ will say), vendor its code pinned by version and sha256, render promptugal.news/api/v1/sites.json with escaping and only https links to *.promptugal.news; the library has no sites rail of its own to replace",
   "Re-render src/preview.png (node scripts/render-preview.cjs after a build) at each wake",
   "Fact-checker pass 2: the library's own cards, then data.promptugal.news, events, videos and the other PrompTugal sites; Google Fact Check Tools once the key exists",

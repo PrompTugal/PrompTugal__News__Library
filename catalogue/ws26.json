@@ -2710,7 +2710,7 @@
   },
   {
    "what": "Talks by timestamp",
-   "note": "No talk start times confirmed. data.b@'s Perplexity pass (18 November) gave one chapter lead for Day One, marked 'not read from YouTube'; leads are not catalogued as facts. Confirmed chapters need the YouTube Data API key (with Dinis)."
+   "note": "None to catalogue: data.b@'s YouTube Data API source (19 November) finds no timestamp lines in the official replays' descriptions, so Web Summit has published no chapters. Perplexity's single chapter lead is unconfirmed and not used."
   },
   {
    "what": "Standalone talk recordings and speaker-side write-ups",

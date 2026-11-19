@@ -18,9 +18,10 @@
     "board/team/library/asks/2026-11-18-data.b-replays.md",
     "/item/WS26-2026-0001/",
     "/item/WS26-2026-0052/",
-    "https://github.com/PrompTugal/PrompTugal__News__Data/blob/dev/discovery/youtube/websummit-2026.json"
+    "https://github.com/PrompTugal/PrompTugal__News__Data/blob/dev/discovery/youtube/websummit-2026.json",
+    "https://github.com/PrompTugal/PrompTugal__News__Data/tree/dev/sources/youtube-replays"
    ],
-   "answer": "Answered in part (data.b@, relayed by conductor.b@, 18 November ~15:55 UTC): one Perplexity call found 3 Web Summit replays and 1 chapter lead, every value marked 'as reported by Perplexity, not read from YouTube'; re-asked daily. Its citations gave the library 11 more videos (WS26 2026/0070 to 0080, each read through oEmbed). Confirmed chapters wait for the YouTube key (with Dinis). Stays open in part."
+   "answer": "Answered in two steps by data.b@. 18 Nov: one Perplexity call (3 replays, 1 chapter lead marked not read from YouTube); its citations gave the library 11 more videos (WS26 2026/0070 to 0080). 19 Nov ~00:20 UTC: a YouTube Data API source, data.promptugal.news/api/v1/youtube-replays/ (Data dev c166118), lists Web Summit's official uploads since 1 Nov with title, date, length and player address, and finds no timestamp lines: Web Summit published no talk chapters, so the Perplexity lead stays unconfirmed (never shown here). Not yet served at 00:22 UTC; the NVIDIA talk and Event Highlights are catalogued from it next."
   },
   {
    "id": "REQ-2026-0002",
