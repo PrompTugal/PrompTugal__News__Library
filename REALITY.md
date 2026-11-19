@@ -40,7 +40,7 @@ A thing not written here does not exist, whatever a brief says. PROPOSED marks w
 ### The preview
 - `/preview.svg` (built at every build from the library's own counts), `/api/v1/preview.json` (where each number comes from), `/preview.png` (rendered by hand and committed; may lag), `og:image` on every page. `/preview.svg` is the 320 by 180 picture the sites bar shows; the larger card is `/preview-card.svg`.
 
-### The sites bar (19 November, 1.1.0 about 01:00 UTC, 1.1.1 about 02:05 UTC)
+### The sites bar (19 November, 1.1.0 about 01:00 UTC, 1.1.1 about 01:53 UTC by date -u)
 - Sites bar 1.1.1 on every page (Dinis, 18 November, about 22:00 UTC; 1.1.0 at conductor.b@'s word of 00:55 UTC, 1.1.1 at security@'s go of about 01:30 UTC). Three files vendored in `src/assets/sites-bar/1.1.1/`; the build checks each against the full SRI pin in the registry copy's `bar.integrity` and stops on any difference, any other file or any other version.
 - The registry is a copy, `catalogue/sites-registry.json`, of promptugal.news/api/v1/sites.json (with its pins), refreshed by hand (the build fetches nothing). In the browser the bar reads each site's own `version.json` and `preview.svg`, so the policy allows images and reads from https://*.promptugal.news; scripts and styles stay the library's own.
 
