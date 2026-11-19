@@ -50,9 +50,9 @@ for (const f of files.filter((f) => f.endsWith('.js'))) {
 // recursively) may make a network request, so none can read websummit.com or www.wikidata.org (linked only).
 // Naming a host in a link is allowed; calling one is not. child_process is allowed only where every call runs git,
 // in the files listed here with that reason.
-const GIT_ONLY = new Set(['scripts/check-commits.mjs', 'scripts/check-signatures.mjs', 'scripts/leak-scan.mjs']);
+const GIT_ONLY = new Set(['scripts/check-commits.mjs', 'scripts/check-signatures.mjs', 'scripts/leak-scan.mjs', 'scripts/check-symlinks.mjs']);
 // The signature check's tests also run that check with this same node (process.execPath), on a throwaway clone.
-const GIT_AND_NODE = new Set(['scripts/test-check-signatures.mjs', 'scripts/test-leak-scan.mjs']);
+const GIT_AND_NODE = new Set(['scripts/test-check-signatures.mjs', 'scripts/test-leak-scan.mjs', 'scripts/test-check-symlinks.mjs']);
 // Playwright only in the hand-run preview renderer, which loads a local file and blocks every other request.
 const PLAYWRIGHT_LOCAL = new Set(['scripts/render-preview.cjs']);
 const NET = /\bfetch\s*\(|globalThis\s*\[|from\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|require\(\s*['"](?:node:)?(?:https?|http2|net|tls|dgram|dns)['"]|\bimport\s*\(|\bWebSocket\b|\bundici\b|XMLHttpRequest|\.goto\s*\(|\brequest\.(?:get|post|fetch)\s*\(|^\s*(?:curl|wget)\b/m;

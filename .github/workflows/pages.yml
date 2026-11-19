@@ -44,6 +44,8 @@ jobs:
           node-version: 22
       - name: The signature check's own tests (each failing case asserts its reason)
         run: node scripts/test-check-signatures.mjs
+      - name: The symlink check's own tests (control 10; wired into the checks job once a release holds it)
+        run: node scripts/test-check-symlinks.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}

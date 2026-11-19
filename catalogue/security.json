@@ -759,6 +759,17 @@
    "fix": "The checks job refuses a pushed _site, removes every pushed .gitattributes, downloads the site into RUNNER_TEMP, refuses anything but plain files and directories, then moves it into place. A is the head of the latest successful push run on dev whose own job named checks passed. The checks, deploy and tag jobs run only for refs/heads/dev. Still open: a workflow that keeps the job's name but weakens it, which branch protection, Dinis's, closes. From 16:25 UTC (events.b@'s finding via conductor.b@, 16:25): deleting a pushed .gitattributes left the index copy in force (shown in a throwaway repository), so the checks job sets GIT_ATTR_SOURCE to the empty tree (git 2.42 or later, enforced) and core.attributesFile to /dev/null",
    "state": "fixed",
    "fixed_in": "the 16:16 commit"
+  },
+  {
+   "id": "LIB-2026-069",
+   "severity": "medium",
+   "title": "No check refused symlinks in the pushed history, the tree or the downloaded site (control 10)",
+   "where": "scripts/check-symlinks.mjs, .github/workflows/pages.yml",
+   "found": "2026-11-19",
+   "found_by": "security@'s control 10 (ed70bd996), via conductor.b@ at 16:50 UTC; events.b@'s path-matching pitfall (16:57 UTC); AppSec post-review (Sonnet inner pass of library.b@)",
+   "fix": "scripts/check-symlinks.mjs refuses any symlink added or changed by any commit in A..AFTER (diff-tree -r --raw -z -m, so a merge's own change is seen), in AFTER's tree, the index, the working tree and the site; exceptions only from A's scripts/symlink-exceptions.json, each with an ASCII path, its target and a reason, compared as whole byte strings. Post-review findings fixed before the push: merges were invisible, a .git link in the site was skipped, non-UTF-8 names could collide, AFTER's tree was not read, an excepted link could be re-pointed. 12 tests. Wired into the checks job at the next release, once a release holds the file",
+   "state": "fixing",
+   "fixed_in": "the 19:42 commit (the check and its tests) and the next release (the wiring)"
   }
  ],
  "from_the_central_log": [

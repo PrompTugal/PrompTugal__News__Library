@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T16:51Z",
- "state": "Between wakes: CI security controls 1 to 9 and peers' findings done (v0.1.58); PRED 2026/0007 imported; next wake 19:38 Lisbon (16:38 UTC by date -u)",
+ "updated": "2026-11-19T19:42Z",
+ "state": "19:38 wake: control 10, first of two releases (the check and 12 tests); the wiring follows once CI tags it (19:42 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -70,10 +70,12 @@
   "14:31: peers' findings (conductor.b@, 14:30): trusted files read with git cat-file blob; the artifact symlink race does not apply (zip, unpacked before the trusted copies)",
   "16:16: live.b@'s three CI findings (conductor.b@, 16:15): site vetted in RUNNER_TEMP, pushed _site and .gitattributes refused or removed; anchor needs a passed checks job; dev only; 28 tests; LIB-2026-068",
   "16:25: pushed git attributes off in the checks job (GIT_ATTR_SOURCE empty tree, git 2.42+ enforced, core.attributesFile /dev/null); 29 tests",
-  "16:38: Dinis's word of about 16:30 UTC, read at source (Website board/guidance/2026-11-19-twice-a-day.md): two wakes a day, the library's at 08:38 and 19:38 Lisbon; hand-over updated"
+  "16:38: Dinis's word of about 16:30 UTC, read at source (Website board/guidance/2026-11-19-twice-a-day.md): two wakes a day, the library's at 08:38 and 19:38 Lisbon; hand-over updated",
+  "19:42 (19:38 wake): control 10 check, scripts/check-symlinks.mjs, and 12 tests, run in release.sh and CI; AppSec post-review: 2 high, 3 medium, 2 low, all fixed before the push (LIB-2026-069). Read at source: Dinis's cameras-and-map word (17:40 UTC); the library has no map and no cameras; London places to come from PRED 2026/0007. The conductor passes and the pre-review were not run as separate sub-agents: one security piece, with one AppSec pass"
  ],
  "next": [
-  "19:38 wake: control 10, no symlinks (security@ ed70bd996, via conductor.b@ 16:50 UTC): the checks job refuses any mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checkout and in the artifact; exceptions only from a file in A's tree, each with a reason; tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails; match exception paths as whole strings read NUL-separated (diff-tree -z, ls-files -z), never line by line (events.b@'s pitfall, via conductor.b@ 16:57 UTC), with a test of a file name holding a newline; then send conductor.b@ the commit id",
+  "Control 10, second release: once CI has tagged the check, add check-symlinks.mjs to the checks job's copies from A and run it with --site _site; add it to release.sh's release copies; then send conductor.b@ the commit id",
+  "London on the library's pages: PRED 2026/0007 holds bulletins' London rain predictions; tag the series with its places (Faro, London) from ontologist@'s registry (Dinis, 19 Nov about 17:40 UTC)",
   "PRED: re-import every series at each wake",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",

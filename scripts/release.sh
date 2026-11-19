@@ -11,6 +11,7 @@ node scripts/build.mjs
 node scripts/validate.mjs
 node scripts/test-leak-scan.mjs
 node scripts/test-check-signatures.mjs
+node scripts/test-check-symlinks.mjs
 # The signature check runs from the last release's copy, never from the tree it checks (control 7, conductor.b@ 19 Nov 14:01 UTC).
 git fetch -q --tags origin
 trusted=$(mktemp -d); trap 'rm -rf "$trusted"' EXIT

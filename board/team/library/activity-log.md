@@ -44,3 +44,4 @@
 | 2026-11-19 | 16:16 | live.b@'s CI findings: site vetted outside the checkout; anchor needs passed checks; dev only | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 16:25 | Pushed git attributes off in the checks job, from the index too | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 16:38 | Two wakes a day from now (Dinis, about 16:30 UTC); hand-over updated | [handover](debriefs/2026-11-19-handover.md) |
+| 2026-11-19 | 19:42 wake | Control 10: the symlink check and its tests; wiring next release | [handover](debriefs/2026-11-19-handover.md) |
