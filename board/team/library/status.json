@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-19T16:38Z",
+ "updated": "2026-11-19T16:51Z",
  "state": "Between wakes: CI security controls 1 to 9 and peers' findings done (v0.1.58); PRED 2026/0007 imported; next wake 19:38 Lisbon (16:38 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -73,6 +73,7 @@
   "16:38: Dinis's word of about 16:30 UTC, read at source (Website board/guidance/2026-11-19-twice-a-day.md): two wakes a day, the library's at 08:38 and 19:38 Lisbon; hand-over updated"
  ],
  "next": [
+  "19:38 wake: control 10, no symlinks (security@ ed70bd996, via conductor.b@ 16:50 UTC): the checks job refuses any mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checkout and in the artifact; exceptions only from a file in A's tree, each with a reason; tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails; then send conductor.b@ the commit id",
   "PRED: re-import every series at each wake",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",
   "Refresh catalogue/sites-registry.json from promptugal.news/api/v1/sites.json at each wake (by hand; the build fetches nothing)",
