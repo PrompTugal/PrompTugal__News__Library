@@ -690,7 +690,7 @@
    "where": "scripts/check-signatures.mjs",
    "found": "2026-11-19",
    "found_by": "videos.b@'s pre-review of PrompTugal__News__Videos de181ef, passed on by conductor.b@ at 14:01 UTC (controls 6 and 7)",
-   "fix": "Refused by name: a commit with no parent fails unless it is in BOOTSTRAP. Before, it already failed, but only because its parent's keys file could not be read; a test now asserts the reason",
+   "fix": "Refused by name: a commit with no parent fails unless it is in BOOTSTRAP. Before, it already failed, but only because its parent's keys file could not be read; a test now asserts the reason. A shallow checkout is refused too, in the check and in CI (security@'s ruling, 19 Nov 14:07 UTC); tests: an orphan signed with its own key, and a shallow clone, both fail. An unrelated history can only come in by a merge, and merges are refused",
    "state": "fixed",
    "fixed_in": "the 14:01 fix commit"
   },

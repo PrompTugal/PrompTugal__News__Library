@@ -62,6 +62,7 @@ jobs:
           # Control 7 (conductor.b@, 19 Nov 14:01 UTC): run the last release's copy of the check, never the pushed tree's.
           # The release is found from dev as it was before this push, so a tag pushed with these commits is not chosen;
           # the range runs from that tag, so every commit since it is checked by it.
+          [ "$(git rev-parse --is-shallow-repository)" = false ] || { echo "a shallow checkout cannot be checked" >&2; exit 1; }
           [ -n "$BEFORE" ] || BEFORE=$(git rev-parse "$AFTER^")  # a run by hand: dev as it was before its head
           git merge-base --is-ancestor "$BEFORE" "$AFTER" || { echo "dev was not fast-forwarded" >&2; exit 1; }
           trusted=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE")

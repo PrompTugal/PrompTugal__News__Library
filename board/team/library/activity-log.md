@@ -34,3 +34,4 @@
 | 2026-11-19 | 13:29 | PRED form gains backfilled; civic +1,283 lines | [handover](debriefs/2026-11-18-handover.md) |
 | 2026-11-19 | 13:38 wake | PRED refreshed (data +162); hand-over written | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 14:10 | Signing controls 6 and 7: orphans refused; the gate runs the last release's check | [handover](debriefs/2026-11-19-handover.md) |
+| 2026-11-19 | 14:10 | Control 6 completed: shallow checkouts refused; 16 signing tests | [handover](debriefs/2026-11-19-handover.md) |

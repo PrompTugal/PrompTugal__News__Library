@@ -73,6 +73,12 @@ try {
     }, false, 'a merge commit'],
     // control 6 (conductor.b@, 19 Nov 2026 14:01 UTC, from videos.b@'s pre-review): an orphan would trust its own keys
     ['an orphan commit fails', () => { git('checkout', '-q', '--orphan', 'orphan'); commit('orphan' + trailers()); }, false, 'a commit with no parent'],
+    ['an orphan signed with its own key fails', () => {
+      git('checkout', '-q', '--orphan', 'orphan');
+      const k = JSON.parse(readFileSync(keysFile, 'utf8'));
+      k.keys.push({ id: 'self', agent: 'self.b@PrompTugal.dinis', session: SESSION.split('/').pop(), claude_session: SESSION, status: 'active', type: 'ssh-ed25519', ssh_public_key: other.line });
+      writeFileSync(keysFile, JSON.stringify(k, null, 1) + '\n'); commit('own key' + trailers('self.b@PrompTugal.dinis'), ['-c', `user.signingkey=${other.file}`]);
+    }, false, 'a commit with no parent'],
     // control 7: a push that rewrites the check to pass still fails, because the gate runs the last release's copy
     ['a pushed tree cannot change the check', () => {
       writeFileSync(join(repo, 'scripts/check-signatures.mjs'), "console.log('OK (1 commits checked');\n");
@@ -92,6 +98,15 @@ try {
     const ok = r.ok === pass && r.out.includes(reason);
     if (!ok) failed++;
     results.push(`${ok ? 'ok  ' : 'FAIL'} ${name}${ok ? '' : `: expected ${pass ? 'a pass' : 'a failure'} saying "${reason}", got ${r.ok ? 'a pass' : 'a failure'}: ${r.out.trim().split('\n').slice(-2).join(' / ')}`}`);
+  }
+  // control 6: a shallow checkout is refused (its oldest commits look parentless)
+  {
+    const shallow = join(dir, 'shallow');
+    execFileSync('git', ['clone', '-q', '--depth', '2', '-b', 'test-main', `file://${repo}`, shallow]);
+    let out = '', ok = false;
+    try { execFileSync(process.execPath, [CHECK, 'HEAD~1', 'HEAD'], { cwd: shallow, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); } catch (e) { out = `${e.stdout || ''}${e.stderr || ''}`; ok = out.includes('a shallow checkout'); }
+    if (!ok) failed++;
+    results.push(`${ok ? 'ok  ' : 'FAIL'} a shallow checkout fails${ok ? '' : `: ${out.trim() || 'it passed'}`}`);
   }
   // control 7's wiring: the gates run a release tag's copy of the check, never scripts/check-signatures.mjs from the tree
   const wired = (name, file, uses) => {

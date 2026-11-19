@@ -60,7 +60,8 @@
   "PRED 2026/0006 imported (weather.promptugal.news, Weather d20148e: 18 next-day highs, all open, shown before due; every line passed; IPMA's terms, free use only, which the library is) (13:22 UTC)",
   "PRED form: optional backfilled: true (civic.b@'s ask) files a line as retrospective; so does a first outcome checked no later than the prediction was shown. civic re-imported (Civic 0ef97a8, +1,283 lines: 9 forward, 8,872 retrospective) (13:29 UTC)",
   "13:38 wake: PRED re-imported (data.promptugal.news +162, Data 4a4d130; others unchanged); hand-over written for the next session (debriefs/2026-11-19-handover.md). No code changed, so no AppSec pass this wake (13:39 UTC)",
-  "14:10: signing controls 6 and 7 (conductor.b@, 14:01 UTC): orphan commits refused by name; release.sh and CI run the last release tag's copy of the check; two tests; LIB-2026-062, 063"
+  "14:10: signing controls 6 and 7 (conductor.b@, 14:01 UTC): orphan commits refused by name; release.sh and CI run the last release tag's copy of the check; two tests; LIB-2026-062, 063",
+  "14:10: security@'s ruling on controls 6 and 7 (14:07 UTC): shallow checkouts refused in the check and CI; tests for an orphan signed with its own key and a shallow clone (16 cases)"
  ],
  "next": [
   "PRED: re-import every series at each wake",

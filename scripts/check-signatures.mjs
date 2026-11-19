@@ -37,6 +37,8 @@ const [beforeArg, afterArg] = process.argv.slice(2);
 const sha = (r) => (typeof r === 'string' && !r.startsWith('-') ? tryGit('rev-parse', '--verify', '--quiet', '--end-of-options', `${r}^{commit}`) : null);
 const after = sha(afterArg || 'HEAD');
 if (!after) { console.error('check-signatures: unknown commit to check up to'); process.exit(1); }
+// a shallow checkout makes its oldest commits look parentless (security@'s control 6, 19 Nov 2026 14:07 UTC)
+if (git('rev-parse', '--is-shallow-repository') !== 'false') { console.error('check-signatures: a shallow checkout cannot be checked (fetch the full history)'); process.exit(1); }
 if (!sha(BEFORE_THE_CHECK)) { console.error('check-signatures: BEFORE_THE_CHECK is not in this clone (fetch the full history)'); process.exit(1); }
 const zero = /^0+$/;
 const before = beforeArg && !zero.test(beforeArg) ? sha(beforeArg) : null;
