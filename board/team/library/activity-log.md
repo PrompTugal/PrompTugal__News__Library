@@ -46,3 +46,4 @@
 | 2026-11-19 | 16:38 | Two wakes a day from now (Dinis, about 16:30 UTC); hand-over updated | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-19 | 19:42 wake | Control 10: the symlink check and its tests; wiring next release | [handover](debriefs/2026-11-19-handover.md) |
 | 2026-11-20 | 08:45 wake | Places page with sourced coordinates; ptmap vendored, drawn next release | [handover](debriefs/2026-11-19-handover.md) |
+| 2026-11-20 | 19:40 wake | Every PRED series re-imported (data +324, weather +72, bulletins +10, events +4); places refreshed | [handover](debriefs/2026-11-19-handover.md) |

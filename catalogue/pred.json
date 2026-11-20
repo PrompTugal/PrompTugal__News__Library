@@ -25,8 +25,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Travel",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "ebfdbe93aa024f2387615fef977e68e80edaa10f",
-    "read_at": "2026-11-19T13:39Z"
+    "commit": "fff0aee337577fab666b44673edb7fbe211bb3cf",
+    "read_at": "2026-11-20T19:39Z"
    }
   },
   {
@@ -41,8 +41,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Data",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "4a4d13005725f1c24d6cd12ebee2d66ee2f2df91",
-    "read_at": "2026-11-19T13:39Z"
+    "commit": "65c66677f4957a21ffbcf6d58b3f8794f505d39f",
+    "read_at": "2026-11-20T19:39Z"
    }
   },
   {
@@ -57,8 +57,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Civic",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "517abd389609ef6fc799de8a4761a56cb014441a",
-    "read_at": "2026-11-19T13:39Z"
+    "commit": "2207d0d0fa80a494333ab767a8554bf71431e471",
+    "read_at": "2026-11-20T19:39Z"
    }
   },
   {
@@ -73,8 +73,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Startups",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "350960fde24f164a52b5743f2740af3ddfc05395",
-    "read_at": "2026-11-19T13:39Z"
+    "commit": "f28061f070b1242e88a4e2b900a05c03a79ef83c",
+    "read_at": "2026-11-20T19:39Z"
    }
   },
   {
@@ -89,8 +89,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Weather",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "d20148e9cf87cf239498b86c971c2e44db2e9102",
-    "read_at": "2026-11-19T13:39Z"
+    "commit": "b00e8fb5016603621eb03a03688d87d3c1edd9ae",
+    "read_at": "2026-11-20T19:39Z"
    }
   },
   {
@@ -105,8 +105,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Bulletins",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "b56b63cf71e46eb588561f75dd8e3bd3bb38c2ca",
-    "read_at": "2026-11-19T14:13Z"
+    "commit": "a73c3d035de0ec52238f84b87296bf9abc361cdb",
+    "read_at": "2026-11-20T19:39Z"
    }
   },
   {
@@ -121,8 +121,8 @@
    "read_from": {
     "repo": "PrompTugal/PrompTugal__News__Events",
     "path": "data/predictions/predictions.jsonl",
-    "commit": "3667f0be2a7e6a6b816e7e6ee0fb3fbba3b27081",
-    "read_at": "2026-11-20T08:46Z"
+    "commit": "77c4e41a17e3c5eeab835f613867da404a1a848f",
+    "read_at": "2026-11-20T19:39Z"
    }
   }
  ]
