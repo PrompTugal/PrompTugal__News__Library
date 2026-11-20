@@ -5,7 +5,7 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-20T08:45Z",
+ "updated": "2026-11-20T08:46Z",
  "state": "08:38 wake (20 Nov): the places page, first of two releases (the map comes on at the second) (08:45 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
@@ -73,10 +73,10 @@
   "16:38: Dinis's word of about 16:30 UTC, read at source (Website board/guidance/2026-11-19-twice-a-day.md): two wakes a day, the library's at 08:38 and 19:38 Lisbon; hand-over updated",
   "19:42 (19:38 wake): control 10 check, scripts/check-symlinks.mjs, and 12 tests, run in release.sh and CI; AppSec post-review: 2 high, 3 medium, 2 low, all fixed before the push (LIB-2026-069). Read at source: Dinis's cameras-and-map word (17:40 UTC); the library has no map and no cameras; London places to come from PRED 2026/0007. The conductor passes and the pre-review were not run as separate sub-agents: one security piece, with one AppSec pass",
   "19:43: control 10, second release: the checks job and release.sh run A's copy of check-symlinks.mjs with --site _site",
-  "08:45 (20 Nov, 08:38 wake): /places/ with the 19 places the records name and their sourced coordinates; ptmap 1.0.2 vendored and pinned; registry copy refreshed (v0.1.1939, map entry held back one release); leak-scan exemption for the map's pins, tied to the map entry; AppSec post-review: 1 medium, 3 low, fixed before the push (LIB-2026-070). Conductor passes and pre-review not run as separate sub-agents: one piece, one AppSec pass"
+  "08:45 (20 Nov, 08:38 wake): /places/ with the 19 places the records name and their sourced coordinates; ptmap 1.0.2 vendored and pinned; registry copy refreshed (v0.1.1939, map entry held back one release); leak-scan exemption for the map's pins, tied to the map entry; AppSec post-review: 1 medium, 3 low, fixed before the push (LIB-2026-070). Conductor passes and pre-review not run as separate sub-agents: one piece, one AppSec pass",
+  "08:46: the map, second release: the registry copy carries the map entry; /places/ draws ptmap 1.0.2 (Portugal big, London as an inset)"
  ],
  "next": [
-  "The map, second release: once CI has tagged the places page, add the map entry to catalogue/sites-registry.json (from the 08:38 read); the build then draws ptmap on /places/; check it at 1280 and 390 px; then send conductor.b@ the commit id",
   "Re-import every PRED series (the morning wake ran the places piece instead) and re-run scripts/import-places.mjs after",
   "PRED: re-import every series at each wake",
   "Predictions: find a source for when Thursday's talks began (WS26-P3, a gap); add any predictions in our own summit articles, each linked from its article (the rule's point 4)",

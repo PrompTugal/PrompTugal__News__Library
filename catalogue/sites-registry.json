@@ -175,5 +175,39 @@
   "by": "PrompTugal.news",
   "scope": "what PrompTugal.news made in this file; an item taken from someone else carries its own license"
  },
- "library_copy": "A copy of https://promptugal.news/api/v1/sites.json (registry v0.1.1939), read 2026-11-20T08:39Z by library.b@PrompTugal.dinis and refreshed by hand (the library's build fetches nothing). The build checks the vendored bar against bar.versions[<its version>].integrity and the vendored map against map.versions[<its version>].integrity. Left out of this copy for now: map (the shared map's entry; it comes in at the next release, once the leak scan CI runs, taken from the last release, knows the map's sha384 pins). Also left out: obs_tz (the shared time-zone table, which the library does not use), and the older flat pin keys in bar.versions.<v> (bar.versions.<v>.js and so on; the same pins remain under .integrity)."
+ "map": {
+  "version": "1.0.2",
+  "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.2",
+  "spec": "https://github.com/promptugal/promptugal__news__website/blob/dev/board/spec-the-shared-map.md",
+  "review": "passed (security@ 168c14fc5)",
+  "review_note": "map.version is the newest version security@ has passed (1.0.2, its version to vendor: the outline's full ISC notice, rights@'s 083881123), and map.review is its review; each version under map.versions carries its own review. The reviews: board/team/security/reviews/2026-11-19-1936-ptmap-1.0.0.md (1.0.0, then the post-reviews of 1.0.1 and 1.0.2).",
+  "install": "The shared map, ptmap (designer@'s, Dinis's word of 19 Nov 17:40: Portugal big, London and the EU (Brussels) small; board/spec-the-shared-map.md). Copy design/shared-map/<version>/ptmap.js and ptmap.css from this repository into your site and check each against map.versions[\"<version>\"].integrity (sha384 SRI, the full string); never load them from promptugal.news (design/ scripts are not deployed). Call PTMap.render(el, {places, current, london, eu, label}); links go only to https://*.promptugal.news. Vendor a version once its review starts \"passed\" (security@), with script-src 'self'; move to a newer version once it is listed.",
+  "versions": {
+   "1.0.0": {
+    "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.0",
+    "review": "passed (security@ b5fc4fdef)",
+    "integrity": {
+     "ptmap.js": "sha384-DTKT78bHZnXubTm1EQf8kV/djRJ+A9XX/EuLNM9mk+ErXcqcqACz0uhrLs047c1+",
+     "ptmap.css": "sha384-6BPLIDsviq+W+7Lh+zVwzn4LHF32T+NG82aKVbhcm71nguK3gJu7RqHHYLhU59rQ"
+    }
+   },
+   "1.0.1": {
+    "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.1",
+    "review": "passed (security@ d84da3d39)",
+    "integrity": {
+     "ptmap.js": "sha384-KLL9q2weOxtsOYZxMVKNgQY+o4Awl6ydXqPl39p08/0UXdYsRwTSXcEE2J7IV2Vg",
+     "ptmap.css": "sha384-nFj5yaibLdzQtqG/sUT69VPtf5jioZd0IVPvt1QJPgFshstN4wex0shfxuo1Yxg4"
+    }
+   },
+   "1.0.2": {
+    "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.2",
+    "review": "passed (security@ 168c14fc5)",
+    "integrity": {
+     "ptmap.js": "sha384-Rn8I0fS+oEjcuuvGS0GLkoldKoDwR2VxjoMeAtwl4TmVc/rcj+xXkVdkjn4ftw5h",
+     "ptmap.css": "sha384-Ji68i1PNka7ujjhJLdOOubmPrwb0k1ECIMOE0GlPDOWK51y5TmfRt7TP1NL4OY4t"
+    }
+   }
+  }
+ },
+ "library_copy": "A copy of https://promptugal.news/api/v1/sites.json (registry v0.1.1939), read 2026-11-20T08:39Z by library.b@PrompTugal.dinis and refreshed by hand (the library's build fetches nothing). The build checks the vendored bar against bar.versions[<its version>].integrity and the vendored map against map.versions[<its version>].integrity. Left out of this copy: obs_tz (the shared time-zone table, which the library does not use), and the older flat pin keys in bar.versions.<v> (bar.versions.<v>.js and so on; the same pins remain under .integrity)."
 }
