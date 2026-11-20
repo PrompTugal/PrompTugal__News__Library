@@ -50,7 +50,7 @@ for (const f of files.filter((f) => f.endsWith('.js'))) {
 // recursively) may make a network request, so none can read websummit.com or www.wikidata.org (linked only).
 // Naming a host in a link is allowed; calling one is not. child_process is allowed only where every call runs git,
 // in the files listed here with that reason.
-const GIT_ONLY = new Set(['scripts/check-commits.mjs', 'scripts/check-signatures.mjs', 'scripts/leak-scan.mjs', 'scripts/check-symlinks.mjs']);
+const GIT_ONLY = new Set(['scripts/check-commits.mjs', 'scripts/check-signatures.mjs', 'scripts/leak-scan.mjs', 'scripts/check-symlinks.mjs', 'scripts/import-places.mjs']);
 // The signature check's tests also run that check with this same node (process.execPath), on a throwaway clone.
 const GIT_AND_NODE = new Set(['scripts/test-check-signatures.mjs', 'scripts/test-leak-scan.mjs', 'scripts/test-check-symlinks.mjs']);
 // Playwright only in the hand-run preview renderer, which loads a local file and blocks every other request.

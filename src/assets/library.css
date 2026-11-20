@@ -114,3 +114,9 @@ h2.sh a{font-weight:500;letter-spacing:0;text-transform:none;font-family:var(--s
 .pf-gap{border:1.5px dashed var(--muted);color:var(--muted)}
 .pf-key span{font:500 12px var(--sans);padding:3px 8px;margin-right:6px}
 @media (max-width:640px){.pf li{grid-template-columns:minmax(0,1fr)}.pf-due,.pf-v{padding-top:0}}
+
+/* the places map (ptmap, vendored): kept small beside the text */
+.places-map { max-width: 340px; margin: 1rem 0 1.5rem; }
+.places-map svg { width: 100%; height: auto; display: block; }
+.plist { list-style: none; padding: 0; }
+.plist li { margin: 0 0 .9rem; padding-bottom: .9rem; border-bottom: 1px solid var(--rule, rgba(0,0,0,.12)); }

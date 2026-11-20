@@ -1,0 +1,417 @@
+{
+ "about": "The places the library's own records name, copied from ontologist@'s places registry with each coordinate's source (Wikidata, CC0, or the main site's by-place list). Matched by name or alias against the first part of a prediction's subject, or by a collection's place.",
+ "from": {
+  "repo": "PrompTugal/PrompTugal__News__Website",
+  "path": "data/site/places-registry.json",
+  "commit": "8094c3254f2acce3709c07de0e6b1cfb1be284ab",
+  "read_at": "2026-11-20T08:45Z"
+ },
+ "places": [
+  {
+   "id": "albufeira",
+   "name": "Albufeira",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.25,
+    37.089
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "alcoutim",
+   "name": "Alcoutim",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.471,
+    37.471
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "aljezur",
+   "name": "Aljezur",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.803,
+    37.318
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "castro-marim",
+   "name": "Castro Marim",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.443,
+    37.218
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "faro",
+   "name": "Faro",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.935,
+    37.019
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0003",
+    "PRED-2026-0006",
+    "PRED-2026-0007"
+   ]
+  },
+  {
+   "id": "lagoa",
+   "name": "Lagoa",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.453,
+    37.135
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "lagos",
+   "name": "Lagos",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.673,
+    37.102
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "lisbon",
+   "name": "Lisbon",
+   "aliases": [
+    "lisboa"
+   ],
+   "kind": "city",
+   "country": "PT",
+   "at": [
+    -9.139,
+    38.722
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": "Q597",
+   "named_by": [
+    "PRED-2026-0003",
+    "PRED-2026-0006",
+    "WS26"
+   ]
+  },
+  {
+   "id": "london",
+   "name": "London",
+   "aliases": [],
+   "kind": "city",
+   "country": "GB",
+   "at": [
+    -0.1275,
+    51.5072
+   ],
+   "at_source": {
+    "url": "https://www.wikidata.org/wiki/Q84",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "Wikidata coordinate location (P625), read by query"
+   },
+   "wikidata": "Q84",
+   "named_by": [
+    "PRED-2026-0007"
+   ]
+  },
+  {
+   "id": "loule",
+   "name": "Loulé",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.023,
+    37.138
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0003",
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "monchique",
+   "name": "Monchique",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.555,
+    37.317
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "olhao",
+   "name": "Olhão",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.841,
+    37.026
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "portimao",
+   "name": "Portimão",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.537,
+    37.138
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0003",
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "quarteira",
+   "name": "Quarteira",
+   "aliases": [],
+   "kind": "city",
+   "country": "PT",
+   "at": [
+    -8.103,
+    37.069
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "sao-bras-de-alportel",
+   "name": "São Brás de Alportel",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.888,
+    37.153
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "silves",
+   "name": "Silves",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.44,
+    37.189
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "tavira",
+   "name": "Tavira",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.649,
+    37.127
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "vila-do-bispo",
+   "name": "Vila do Bispo",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -8.911,
+    37.083
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  },
+  {
+   "id": "vila-real-de-santo-antonio",
+   "name": "Vila Real de Santo António",
+   "aliases": [],
+   "kind": "municipality",
+   "country": "PT",
+   "at": [
+    -7.418,
+    37.195
+   ],
+   "at_source": {
+    "repo_path": "data/by-place/places.json",
+    "repo": "PrompTugal/PrompTugal__News__Website",
+    "read_at": "2026-11-19T20:05Z",
+    "how": "the place's seat as the by-place list gives it (the map's own point)"
+   },
+   "wikidata": null,
+   "named_by": [
+    "PRED-2026-0006"
+   ]
+  }
+ ]
+}

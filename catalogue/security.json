@@ -770,6 +770,17 @@
    "fix": "scripts/check-symlinks.mjs refuses any symlink added or changed by any commit in A..AFTER (diff-tree -r --raw -z -m, so a merge's own change is seen), in AFTER's tree, the index, the working tree and the site; exceptions only from A's scripts/symlink-exceptions.json, each with an ASCII path, its target and a reason, compared as whole byte strings. Post-review findings fixed before the push: merges were invisible, a .git link in the site was skipped, non-UTF-8 names could collide, AFTER's tree was not read, an excepted link could be re-pointed. 12 tests. Wired into the checks job at the next release, once a release holds the file",
    "state": "fixed",
    "fixed_in": "5415ef1 (the check and its tests) and the commit after it (the checks job and release.sh run A's copy)"
+  },
+  {
+   "id": "LIB-2026-070",
+   "severity": "medium",
+   "title": "The places page: a hand-edited coordinate source could ship as a javascript: link; the map-pin exemption first matched any integrity block",
+   "where": "scripts/build.mjs, scripts/import-places.mjs, scripts/leak-scan.mjs",
+   "found": "2026-11-20",
+   "found_by": "AppSec post-review (Sonnet inner pass of library.b@), the 08:38 wake, before the push",
+   "fix": "The build checks every field of catalogue/places.json again (names and aliases as plain text, coordinates, the source an https address or a file in the main site's repository) and stops on any problem; the importer passes Lisbon through the same checks and reads the clone's commit from its files, never running git there; the leak scan's exemption for ptmap's sha384 pins holds only inside a map version's own entry (its files line, its review, then integrity), tested with a pin of the wrong length and one under the bar; the map's review must read \"passed\" or start \"passed (\"",
+   "state": "fixed",
+   "fixed_in": "the 08:45 commit"
   }
  ],
  "from_the_central_log": [

@@ -113,7 +113,11 @@ export function scanText(path, text) {
   // (security@, 19 Nov about 01:30 UTC: the registry pins each file as sha256-<base64>).
   // Only inside an "integrity" object (its parent key checked, not only its depth), each value the whole pin (LIB-2026-056).
   // At any depth (bar.integrity and bar.versions["<v>"].integrity), the parent key checked and each value the whole pin.
-  if (path === 'catalogue/sites-registry.json') body = body.replace(/^( +)"integrity": \{\n((?:\1 "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?\n){1,3})\1\}/gm, (blk, ind, inner) => blk.replace(inner, inner.replace(/[^\n]/g, ' ')));
+  if (path === 'catalogue/sites-registry.json') body = body.replace(/^( +)"integrity": \{\n((?:\1 "(?:js|css|render)": "sha256-[A-Za-z0-9+\/]{43}=",?\n){1,3})\1\}/gm, (blk, ind, inner) => blk.replace(inner, inner.replace(/[^\n]/g, ' ')))
+  // the shared map's SRI pins (ptmap: public sha384 hashes of public files, map.versions["<v>"].integrity), the same way:
+  // the parent key checked, only the keys ptmap.js and ptmap.css, each value the whole sha384 pin (20 Nov, the places map)
+    // only in a map version's own entry: its files line names design/shared-map/v<version>, then its review, then integrity
+    .replace(/^( +)"files": "https:\/\/github\.com\/promptugal\/promptugal__news__website\/tree\/dev\/design\/shared-map\/v\d{1,3}\.\d{1,3}\.\d{1,3}",\n\1"review": "[^"\n]{1,200}",\n\1"integrity": \{\n((?:\1 "ptmap\.(?:js|css)": "sha384-[A-Za-z0-9+\/]{64}",?\n){1,2})\1\}/gm, (blk, ind, inner) => blk.replace(inner, inner.replace(/[^\n]/g, ' ')));
   body.split('\n').forEach((line, i) => {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);

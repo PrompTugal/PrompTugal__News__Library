@@ -11,12 +11,19 @@ import { execFileSync } from 'node:child_process';
 
 const b64 = (n) => randomBytes(n).toString('base64');
 const pin = () => 'sha256-' + randomBytes(32).toString('base64'); // 43 characters and one '='
+const pin384 = () => 'sha384-' + randomBytes(48).toString('base64'); // 64 characters, no padding
 const token = () => ['gh', 'p_'].join('') + randomBytes(27).toString('base64').replace(/[+/=]/g, 'x').slice(0, 36);
 const sshPub = () => { const raw = generateKeyPairSync('ed25519').publicKey.export({ format: 'der', type: 'spki' }).subarray(-32); const blob = Buffer.concat([Buffer.from([0, 0, 0, 11]), Buffer.from('ssh-ed25519'), Buffer.from([0, 0, 0, 32]), raw]); return 'ssh-ed25519 ' + blob.toString('base64'); };
 const flagged = (path, text, kind) => { const f = scanText(path, text); return kind ? f.some((x) => x.kind === kind) : f.length > 0; };
 const cases = [
   ['a pin at bar.integrity in the registry copy passes', 'catalogue/sites-registry.json', `{\n "bar": {\n  "integrity": {\n   "js": "${pin()}",\n   "css": "${pin()}"\n  }\n }\n}`, false],
   ['a pin at bar.versions[v].integrity in the registry copy passes', 'catalogue/sites-registry.json', `{\n "bar": {\n  "versions": {\n   "1.2.0": {\n    "integrity": {\n     "js": "${pin()}",\n     "css": "${pin()}"\n    }\n   }\n  }\n }\n}`, false],
+  ['a map pin in a map version\'s entry in the registry copy passes', 'catalogue/sites-registry.json', `{\n "map": {\n  "versions": {\n   "1.0.2": {\n    "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.2",\n    "review": "passed (security@ 168c14fc5)",\n    "integrity": {\n     "ptmap.js": "${pin384()}",\n     "ptmap.css": "${pin384()}"\n    }\n   }\n  }\n }\n}`, false],
+  ['a map pin of the wrong length fails', 'catalogue/sites-registry.json', `{\n "map": {\n  "versions": {\n   "1.0.2": {\n    "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.2",\n    "review": "passed (security@ 168c14fc5)",\n    "integrity": {\n     "ptmap.js": "${pin384().slice(0, -1)}"\n    }\n   }\n  }\n }\n}`, true],
+  ['a map pin in an integrity block without the map entry\'s files and review fails', 'catalogue/sites-registry.json', `{\n "bar": {\n  "integrity": {\n   "ptmap.js": "${pin384()}"\n  }\n }\n}`, true],
+  ['a sha384 pin under another key in an integrity block fails', 'catalogue/sites-registry.json', `{\n "map": {\n  "integrity": {\n   "note": "${pin384()}"\n  }\n }\n}`, true],
+  ['a map pin outside an integrity block fails', 'catalogue/sites-registry.json', `{\n "map": {\n  "ptmap.js": "${pin384()}"\n }\n}`, true],
+  ['a map pin in another file fails', 'board/team/library/status.json', `{\n "integrity": {\n  "ptmap.js": "${pin384()}"\n }\n}`, true],
   ['a pin under js directly in a version, without integrity, fails', 'catalogue/sites-registry.json', `{\n "bar": {\n  "versions": {\n   "1.2.0": {\n    "js": "${pin()}"\n   }\n  }\n }\n}`, true],
   ['the same pin under another key in the registry copy fails', 'catalogue/sites-registry.json', `{\n "note": "${pin()}"\n}`, true],
   ['a pin at integrity depth but under an unknown name fails', 'catalogue/sites-registry.json', `{\n "bar": {\n  "integrity": {\n   "extra": "${pin()}"\n  }\n }\n}`, true],

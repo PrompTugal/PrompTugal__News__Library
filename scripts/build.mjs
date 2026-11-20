@@ -45,6 +45,22 @@ if (!BAR_OFF) for (const [f, k] of Object.entries(PIN)) { const got = 'sha256-' 
 const barHtml = BAR_OFF ? '' : renderBar(REGISTRY, { here: 'library.promptugal.news' });
 if (!BAR_OFF && !barHtml) { console.error('sites bar: the registry was refused (catalogue/sites-registry.json); fix the copy, never ship without the bar'); process.exit(1); }
 
+// ---------- the shared map, ptmap 1.0.2 (Dinis, 19 Nov about 17:40 UTC; designer@'s, security@'s go 168c14fc5) ----------
+// Vendored from PrompTugal__News__Website design/shared-map/v1.0.2/, checked here against map.versions["1.0.2"].integrity
+// (sha384, the full string) in the registry copy. Used only while the registry lists the version and its review starts
+// "passed" (events.b@'s pitfall: the review reads "passed (security@ ...)"); otherwise the map is off and its files left out.
+const MAP_VERSION = '1.0.2';
+const MAP = `src/assets/ptmap/${MAP_VERSION}`;
+const mapListed = REGISTRY.map && REGISTRY.map.versions && Object.prototype.hasOwnProperty.call(REGISTRY.map.versions, MAP_VERSION) ? REGISTRY.map.versions[MAP_VERSION] : null;
+const MAP_OFF = !mapListed || typeof mapListed.review !== 'string' || !(mapListed.review === 'passed' || mapListed.review.startsWith('passed ('));
+if (MAP_OFF) { console.warn(`map ${MAP_VERSION} off: the registry does not list it as passed`); rmSync('_site/assets/ptmap', { recursive: true, force: true }); }
+if (readdirSync('src/assets/ptmap').join() !== MAP_VERSION) { console.error('src/assets/ptmap: must hold only the pinned version'); process.exit(1); }
+if (!MAP_OFF) {
+  const mi = mapListed.integrity;
+  if (!mi || typeof mi !== 'object' || Object.keys(mi).sort().join() !== 'ptmap.css,ptmap.js') { console.error(`catalogue/sites-registry.json: map.versions["${MAP_VERSION}"].integrity must pin ptmap.js and ptmap.css`); process.exit(1); }
+  for (const f of ['ptmap.js', 'ptmap.css']) { const got = 'sha384-' + createHash('sha384').update(readFileSync(join(MAP, f))).digest('base64'); if (got !== mi[f]) { console.error(`map: ${f} is ${got}, not the pinned ${mi[f]}`); process.exit(1); } }
+}
+
 // ---------- read and check the catalogue ----------
 const readJSON = (f) => JSON.parse(readFileSync(f, 'utf8'));
 const nodesFile = readJSON('catalogue/nodes.json');
@@ -192,7 +208,7 @@ const kindLabel = (k) => KIND[k] || k;
 
 // img-src and connect-src also allow the other PrompTugal sites, for the sites bar's previews and version files only
 const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://*.promptugal.news; connect-src 'self' https://*.promptugal.news; base-uri 'none'; form-action 'self'";
-function page({ path, title, description, body, md, scripts = [] }) {
+function page({ path, title, description, body, md, scripts = [], styles = [] }) {
   const twin = md != null;
   const html = `<!doctype html>
 <html lang="en-GB">
@@ -208,13 +224,13 @@ function page({ path, title, description, body, md, scripts = [] }) {
 <meta property="og:image" content="${SITE}/preview.png">
 <meta property="og:title" content="${esc(title)}">
 <link rel="stylesheet" href="/assets/library.css">
-${barHtml ? `<link rel="stylesheet" href="/assets/sites-bar/${BAR_VERSION}/sites-bar.css">\n` : ''}
+${barHtml ? `<link rel="stylesheet" href="/assets/sites-bar/${BAR_VERSION}/sites-bar.css">\n` : ''}${styles.map((h) => `<link rel="stylesheet" href="${h}">\n`).join('')}
 ${twin ? '<link rel="alternate" type="text/markdown" href="index.md">\n' : ''}</head>
 <body>
 ${barHtml}
 <a class="skip" href="#main">Skip to the catalogue</a>
 <header class="top"><div class="w"><a class="brand" href="/"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="135" height="22"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="135" height="22"><span>· Library</span></a>
-<nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/fact-check/">Fact-check</a><a href="/requests/">Requests</a><a href="/librarians/">For librarians</a></nav></div></header>
+<nav class="nav" aria-label="Library"><a href="/catalogue/">Catalogue</a><a href="/collections/">Collections</a><a href="/finding-aids/">Finding aids</a><a href="/graph/">The graph</a><a href="/places/">Places</a><a href="/fact-check/">Fact-check</a><a href="/requests/">Requests</a><a href="/librarians/">For librarians</a></nav></div></header>
 <main id="main" class="w">
 ${body}
 <footer class="foot">
@@ -623,6 +639,42 @@ ${teams.map((t) => `<h2>${esc(t)}</h2>${reqs.requests.filter((q) => q.to === t).
   }
   page({ path: '/predictions/', title: 'Predictions: PrompTugal.news Library', description: 'Every PrompTugal site\'s predictions, kept exactly as shown, beside what happened: one collection, PRED.', body, md });
 }
+
+// ---------- places: the places the library's records name, on the shared map (Dinis, 19 Nov about 17:40 UTC) ----------
+{
+  const pl = readJSON('catalogue/places.json');
+  const PID = /^[a-z0-9][a-z0-9-]{0,60}$/;
+  const okAt = (a) => Array.isArray(a) && a.length === 2 && a.every((x) => typeof x === 'number' && Number.isFinite(x)) && Math.abs(a[0]) <= 180 && Math.abs(a[1]) <= 90;
+  // every field is checked again here, so a hand edit of catalogue/places.json cannot ship (AppSec post-review, 20 Nov)
+  const PTEXT = (s, n) => typeof s === 'string' && s.length > 0 && s.length <= n && !/[\u0000-\u001f\u007f<>[\]`*_|#\\]/.test(s);
+  const okSrc = (s) => {
+    if (!s || typeof s !== 'object' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/.test(s.read_at || '') || !PTEXT(s.how, 200)) return false;
+    if ('url' in s) { let u = null; try { u = new URL(s.url); } catch { return false; } return u.protocol === 'https:' && !u.username && !u.password && !u.port && s.url.length <= 300 && !/\s/.test(s.url); }
+    return s.repo === 'PrompTugal/PrompTugal__News__Website' && typeof s.repo_path === 'string' && /^[a-z0-9_][a-z0-9_./-]{0,200}$/.test(s.repo_path) && !s.repo_path.split('/').includes('..');
+  };
+  const places = (pl.places || []).filter((p) => { const ok = p && PID.test(p.id) && PTEXT(p.name, 80) && Array.isArray(p.aliases) && p.aliases.every((a) => PTEXT(a, 80)) && (p.country === null || /^[A-Z]{2}$/.test(p.country)) && okAt(p.at) && okSrc(p.at_source) && Array.isArray(p.named_by) && p.named_by.every((x) => /^(WS26|PRED-\d{4}-\d{4})$/.test(x)); if (!ok) fail(`catalogue/places.json: ${p && PID.test(p.id) ? p.id : 'a place'} is not a place the build can show`); return ok; });
+  if (!pl.from || !/^([0-9a-f]{40}|unknown)$/.test(pl.from.commit || '') || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/.test(pl.from.read_at || '')) fail('catalogue/places.json: from must name the commit and time it was read');
+  const keys = (p) => new Set([p.name, ...(p.aliases || [])].map((n) => n.toLowerCase()));
+  // per place: how many lines of each series name it, and the WS26 items it holds
+  const rows = places.map((p) => {
+    const k = keys(p);
+    const series = predSeries.map((se) => ({ se, n: se.lines.filter((l) => l.type === 'prediction' && typeof l.subject === 'string' && k.has(l.subject.split(',')[0].trim().toLowerCase())).length })).filter((x) => x.n);
+    const ws = (p.named_by || []).includes('WS26') ? held.filter((i) => i.collection === 'ws26').length : 0;
+    return { p, series, ws, n: series.reduce((a, x) => a + x.n, 0) + ws };
+  });
+  const here = (id) => `${SITE}/places/#${id}`;
+  const pt = rows.filter((r) => r.p.country === 'PT');
+  const london = rows.find((r) => r.p.id === 'london');
+  const mapData = { places: pt.map((r) => ({ id: r.p.id, name: r.p.name, at: r.p.at, href: here(r.p.id), n: r.n })), ...(london ? { london: { href: here('london') } } : {}), label: "Places the library's records name" };
+  const srcOf = (s) => (s.url ? `<a href="${esc(s.url)}">${esc(s.url)}</a>` : `${esc(s.repo)}: ${esc(s.repo_path)}`);
+  const li = (r) => `<li id="${esc(r.p.id)}"><b>${esc(r.p.name)}</b>${r.p.country && r.p.country !== 'PT' ? ` (${esc(r.p.country)})` : ''}: ${[...(r.ws ? [`<a href="/collections/ws26/">Web Summit Lisbon 2026</a>, ${r.ws} items held`] : []), ...r.series.map((x) => `<a href="/predictions/${esc(x.se.id)}/">${esc(x.se.call_number)}</a>, ${x.n} prediction${x.n === 1 ? "" : "s"}`)].join('; ')}<br><span class="note">At ${r.p.at[1]}, ${r.p.at[0]} (latitude, longitude), from ${srcOf(r.p.at_source)}, read ${esc(r.p.at_source.read_at)}.</span></li>`;
+  const mapBlock = MAP_OFF ? '<p class="note">The map is off: the sites registry does not list its version as passed.</p>' : `<div id="places-map" class="places-map" data-places="${esc(JSON.stringify(mapData))}"></div>`;
+  const body = `<section class="page"><p class="crumb"><a href="/">Library</a> › Places</p><p class="k">Places · ${rows.length}</p><h1>The places in the library</h1><p>Every place the library's records name: Lisbon for Web Summit, and the places in the sites' predictions, matched by name against ontologist@'s places registry. Portugal is drawn big; London is shown small, as an inset, with its own record below. The map is the shared one every PrompTugal site uses (ptmap ${MAP_VERSION}, by designer@).</p>${mapBlock}<h2>By place</h2><ul class="plist">${[...pt, ...rows.filter((r) => r.p.country !== 'PT')].map(li).join('')}</ul><p class="note">The places and their coordinates: copied from PrompTugal__News__Website's data/site/places-registry.json (${esc(((pl.from || {}).commit || 'unknown').slice(0, 9))}, read ${esc((pl.from || {}).read_at || '')}) by scripts/import-places.mjs. The map's outline: Natural Earth (public domain), packaged by world-atlas (ISC, its notice in the map's file). JSON: <a href="/api/v1/places/index.json">/api/v1/places/index.json</a>.</p></section>`;
+  const md = `# The places in the library\n\n${rows.map((r) => `- ${r.p.name}${r.p.country && r.p.country !== 'PT' ? ` (${r.p.country})` : ''}: ${[...(r.ws ? [`Web Summit Lisbon 2026, ${r.ws} items held`] : []), ...r.series.map((x) => `${x.se.call_number}, ${x.n} prediction${x.n === 1 ? "" : "s"}`)].join('; ')}. At ${r.p.at[1]}, ${r.p.at[0]}.`).join('\n')}\n`;
+  page({ path: '/places/', title: 'Places: PrompTugal.news Library', description: "The places the library's records name, on the shared map: Portugal big, London small.", body, md, ...(MAP_OFF ? {} : { scripts: [`/assets/ptmap/${MAP_VERSION}/ptmap.js`, '/assets/places-map.js'], styles: [`/assets/ptmap/${MAP_VERSION}/ptmap.css`] }) });
+  json('api/v1/places/index.json', { about: pl.about, from: pl.from, places: rows.map((r) => ({ id: r.p.id, name: r.p.name, country: r.p.country, at: r.p.at, at_source: r.p.at_source, wikidata: r.p.wikidata, items_held: r.ws, series: r.series.map((x) => ({ id: x.se.id, call_number: x.se.call_number, predictions: x.n })) })) });
+}
+if (problems.length) { console.error(problems.join('\n')); console.error(`FAILED: ${problems.length} problem(s) in the places`); process.exit(1); }
 
 // the hand pages (content/*.md and content/finding-aids/*.md)
 for (const f of walk('content').filter((f) => f.endsWith('.md'))) {

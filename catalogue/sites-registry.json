@@ -1,6 +1,6 @@
 {
  "about": "The registry of every *.promptugal.news site (Dinis, 18 November 2026, about 22:00 UTC: board/guidance/2026-11-18-the-sites-bar.md), published at promptugal.news/api/v1/sites.json and read by the sites bar on every site. Data, not code. Each site's version and last change are read from its own /version.json; its preview is its own /preview.svg. dev@PrompTugal.dinis keeps the list; a site lead asks to change its line or mark. The one lines are designer@'s (design/sites-bar/sites-bar.html.txt).",
- "version": "v0.1.1853",
+ "version": "v0.1.1939",
  "sites": [
   {
    "id": "news",
@@ -131,7 +131,7 @@
   },
   "render": "https://promptugal.news/assets/sites-bar/1.2.1/sites-bar-render.mjs",
   "spec": "https://github.com/promptugal/promptugal__news__website/blob/dev/board/spec-the-sites-bar.md",
-  "install": "Copy the three files of this version into your site and check each against its pin in bar.integrity (SRI form, sha256-<base64> of the whole file: node -e \"console.log('sha256-'+require('crypto').createHash('sha256').update(require('fs').readFileSync(process.argv[1])).digest('base64'))\" <file>), the full pin, never a part of it; it has no long hex run for a leak scan to flag; never load them from promptugal.news. At build: import render from sites-bar-render.mjs, render(the registry, { here: your hostname }) and put the HTML first in <body>, above your masthead; refuse to publish the bar if it returns ''. On every page: the CSS in <head> and sites-bar.js with defer. Serve your own /preview.svg (320 by 180, the template in design/sites-bar/preview-template.svg.txt) and /version.json. On GitHub Pages the .svg extension is enough: Pages sends image/svg+xml and no site can add nosniff there, so the controls are the bar showing previews only as <img> (an SVG in an img runs no script and loads nothing) and your gate refusing a script, a foreignObject, an event attribute or an outside reference in your preview.svg.",
+  "install": "Copy the three files of this version into your site and check each against its pin in bar.integrity (SRI form, sha256-<base64> of the whole file: node -e \"console.log('sha256-'+require('crypto').createHash('sha256').update(require('fs').readFileSync(process.argv[1])).digest('base64'))\" <file>), the full pin, never a part of it; it has no long hex run for a leak scan to flag; never load them from promptugal.news. At build: import render from sites-bar-render.mjs, render(the registry, { here: your hostname }) and put the HTML first in <body>, above your masthead; refuse to publish the bar if it returns ''. On every page: the CSS in <head> and sites-bar.js with defer. Serve your own /preview.svg (320 by 180, the template in design/sites-bar/preview-template.svg.txt) and /version.json. On GitHub Pages the .svg extension is enough: Pages sends image/svg+xml and no site can add nosniff there, so the controls are the bar showing previews only as <img> (an SVG in an img runs no script and loads nothing) and your gate refusing a script, a foreignObject, an event attribute or an outside reference in your preview.svg. The pins: bar.versions[\"<version>\"].integrity has three keys, js (sites-bar.js), css (sites-bar.css) and render (sites-bar-render.mjs); read those keys, not the file names.",
   "versions": {
    "1.1.0": {
     "integrity": {
@@ -175,5 +175,5 @@
   "by": "PrompTugal.news",
   "scope": "what PrompTugal.news made in this file; an item taken from someone else carries its own license"
  },
- "library_copy": "A copy of https://promptugal.news/api/v1/sites.json, read 2026-11-19T07:50Z by library.b@PrompTugal.dinis and refreshed by hand (the library's build fetches nothing). The build checks the vendored bar against bar.versions[<its version>].integrity. Left out of this copy: obs_tz (the shared time-zone table, which the library does not use), and the older flat pin keys in bar.versions.<v> (bar.versions.<v>.js and so on; the same pins remain under .integrity)."
+ "library_copy": "A copy of https://promptugal.news/api/v1/sites.json (registry v0.1.1939), read 2026-11-20T08:39Z by library.b@PrompTugal.dinis and refreshed by hand (the library's build fetches nothing). The build checks the vendored bar against bar.versions[<its version>].integrity and the vendored map against map.versions[<its version>].integrity. Left out of this copy for now: map (the shared map's entry; it comes in at the next release, once the leak scan CI runs, taken from the last release, knows the map's sha384 pins). Also left out: obs_tz (the shared time-zone table, which the library does not use), and the older flat pin keys in bar.versions.<v> (bar.versions.<v>.js and so on; the same pins remain under .integrity)."
 }
