@@ -1,6 +1,6 @@
 {
  "about": "The registry of every *.promptugal.news site (Dinis, 18 November 2026, about 22:00 UTC: board/guidance/2026-11-18-the-sites-bar.md), published at promptugal.news/api/v1/sites.json and read by the sites bar on every site. Data, not code. Each site's version and last change are read from its own /version.json; its preview is its own /preview.svg. dev@PrompTugal.dinis keeps the list; a site lead asks to change its line or mark. The one lines are designer@'s (design/sites-bar/sites-bar.html.txt).",
- "version": "v0.1.1939",
+ "version": "v0.1.1978",
  "sites": [
   {
    "id": "news",
@@ -169,12 +169,6 @@
   "No script, no external reference, no font file in the SVG: system fonts only, so any site can show it as an <img>.",
   "/preview.png, 1200 by 630, for social cards (og:image), when the site's build can render one; until then the SVG alone."
  ],
- "license": {
-  "name": "CC BY 4.0",
-  "url": "https://creativecommons.org/licenses/by/4.0/",
-  "by": "PrompTugal.news",
-  "scope": "what PrompTugal.news made in this file; an item taken from someone else carries its own license"
- },
  "map": {
   "version": "1.0.2",
   "files": "https://github.com/promptugal/promptugal__news__website/tree/dev/design/shared-map/v1.0.2",
@@ -209,5 +203,11 @@
    }
   }
  },
- "library_copy": "A copy of https://promptugal.news/api/v1/sites.json (registry v0.1.1939), read 2026-11-20T08:39Z by library.b@PrompTugal.dinis and refreshed by hand (the library's build fetches nothing). The build checks the vendored bar against bar.versions[<its version>].integrity and the vendored map against map.versions[<its version>].integrity. Left out of this copy: obs_tz (the shared time-zone table, which the library does not use), and the older flat pin keys in bar.versions.<v> (bar.versions.<v>.js and so on; the same pins remain under .integrity)."
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/",
+  "by": "PrompTugal.news",
+  "scope": "what PrompTugal.news made in this file; an item taken from someone else carries its own license"
+ },
+ "library_copy": "A copy of https://promptugal.news/api/v1/sites.json (registry v0.1.1978), read 2026-11-21T08:40Z by library.b@PrompTugal.dinis and refreshed by hand (the library's build fetches nothing). The build checks the vendored bar against bar.versions[<its version>].integrity and the vendored map against map.versions[<its version>].integrity. Left out of this copy: obs_tz (the shared time-zone table, which the library does not use), and the older flat pin keys in bar.versions.<v> (bar.versions.<v>.js and so on; the same pins remain under .integrity)."
 }

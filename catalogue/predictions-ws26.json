@@ -45,9 +45,9 @@
    "due": "2026-11-12",
    "result": "gap",
    "happened": null,
-   "gap": "No source read for when Thursday's talks began: the replays carry no chapters or start times. Shown as a gap until one is found.",
+   "gap": "No source read for when Thursday's talks began. Checked again on 21 November: the Day Three replay carries no chapters, and its publish time and length (17:32 UTC, 8 h 14 min) would only suggest a start; a web search found only a pre-storm guide. Shown as a gap until one is found.",
    "evidence": [],
-   "checked_at": "2026-11-19T01:33Z"
+   "checked_at": "2026-11-21T08:40Z"
   }
  ]
 }

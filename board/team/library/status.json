@@ -5,8 +5,8 @@
  "site": "https://library.promptugal.news",
  "session": "session_01Kw9UwFNC1sX4AKoWo4XhEP",
  "focus": "the catalogue and the graph at the heart of PrompTugal.news; first collection Web Summit Lisbon 2026",
- "updated": "2026-11-20T19:40Z",
- "state": "19:38 wake (20 Nov): every PRED series re-imported; places refreshed (19:40 UTC by date -u)",
+ "updated": "2026-11-21T08:41Z",
+ "state": "08:38 wake (21 Nov): every PRED series re-imported; registry copy and preview refreshed; WS26-P3 re-checked, still a gap (08:41 UTC by date -u)",
  "latest_debrief": "board/team/library/debriefs/2026-11-19-handover.md",
  "inner_passes": "opening conductor pass, security pre-review, the work, AppSec post-review of the diff, closing conductor pass: all ran as Sonnet sub-agents on 18 November; findings and fixes in the debrief",
  "done": [
@@ -76,7 +76,8 @@
   "08:45 (20 Nov, 08:38 wake): /places/ with the 19 places the records name and their sourced coordinates; ptmap 1.0.2 vendored and pinned; registry copy refreshed (v0.1.1939, map entry held back one release); leak-scan exemption for the map's pins, tied to the map entry; AppSec post-review: 1 medium, 3 low, fixed before the push (LIB-2026-070). Conductor passes and pre-review not run as separate sub-agents: one piece, one AppSec pass",
   "08:46: the map, second release: the registry copy carries the map entry; /places/ draws ptmap 1.0.2 (Portugal big, London as an inset)",
   "08:47: PRED 2026/0008, events.promptugal.news's organisers' event dates, imported at events.b@'s ask (Events 3667f0b): 598 lines, 589 expected-date predictions, 580 open, 9 gaps, none retrospective",
-  "19:40 (20 Nov, 19:38 wake): every PRED series re-imported from fresh read-only clones: data +324 (Data 65c6667, 1026 open), weather +72 (Weather b00e8fb, 90 open), bulletins +10 (Bulletins a73c3d0: 13 open; 6 retrospective, 3 held, 3 missed), events +4 (Events 77c4e41: 584 open, 9 gaps); travel, civic and startups unchanged; no file refused; none of data's or weather's forecasts is past due yet. Places re-read (19). No code changed, so no AppSec pass this wake"
+  "19:40 (20 Nov, 19:38 wake): every PRED series re-imported from fresh read-only clones: data +324 (Data 65c6667, 1026 open), weather +72 (Weather b00e8fb, 90 open), bulletins +10 (Bulletins a73c3d0: 13 open; 6 retrospective, 3 held, 3 missed), events +4 (Events 77c4e41: 584 open, 9 gaps); travel, civic and startups unchanged; no file refused; none of data's or weather's forecasts is past due yet. Places re-read (19). No code changed, so no AppSec pass this wake",
+  "08:41 (21 Nov, 08:38 wake): PRED re-imported: data +207 (Data bd410a7), weather +54 (Weather e31e3ce), events +48 (Events 26fbbb7), bulletins +2 (Bulletins bf670be), startups +1 (Startups da8c1ab); travel and civic unchanged; no file refused. Registry copy refreshed to v0.1.1978 (bar 1.2.1 and map 1.0.2 pins unchanged). Preview re-rendered. WS26-P3 re-checked: no source for when Thursday's talks began (the replay's publish time and length only suggest one; a web search found a pre-storm guide only); still a gap. No code changed, so no AppSec pass"
  ],
  "next": [
   "PRED: re-import every series at each wake",
